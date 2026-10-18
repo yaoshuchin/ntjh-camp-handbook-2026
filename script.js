@@ -5,13 +5,20 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof CAMP_DATA === "undefined") {
-    console.error("CAMP_DATA is not loaded!");
+    console.error("CAMP_DATA is not loaded! Please check data.js.");
     return;
   }
 
   const { info, classes, itinerary, students, tents, squads, teachingGuides, checklist, rules } = CAMP_DATA;
 
-  // 狀態管理
+  // 狀態管理（安全讀取 localStorage）
+  let initialChecklistState = {};
+  try {
+    initialChecklistState = JSON.parse(localStorage.getItem("ntjh_camp_pack_list_v1") || "{}");
+  } catch (e) {
+    initialChecklistState = {};
+  }
+
   const state = {
     activeTab: "itinerary",
     selectedDay: 1,
@@ -23,63 +30,106 @@ document.addEventListener("DOMContentLoaded", () => {
     squadViewMode: "card", // 'card' or 'table'
     rosterQuery: "",
     rosterFilter: "all",
-    checklistState: JSON.parse(localStorage.getItem("ntjh_camp_pack_list_v1") || "{}")
+    checklistState: initialChecklistState
   };
-
-  // 初始化所有模組
-  initNavigation();
-  initQuickHeroCards();
-  initItinerary();
-  initTents();
-  initSquads();
-  initRoster();
-  initAttractions();
-  initScoutKnowledgeCards();
-  initCampfireLyrics();
-  initMountainTraining();
-  initChecklist();
-  initRules();
 
   /* ==========================================================================
      1. 導航切換 (Desktop Tabs & Mobile Bottom Nav)
      ========================================================================== */
-  function initNavigation() {
+  function switchTab(targetTab) {
+    if (!targetTab) return;
+    state.activeTab = targetTab;
+
     const desktopBtns = document.querySelectorAll(".nav-tab-btn");
     const mobileBtns = document.querySelectorAll(".mobile-nav-btn");
     const panes = document.querySelectorAll(".tab-pane");
 
-    function switchTab(targetTab) {
-      state.activeTab = targetTab;
+    desktopBtns.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.tab === targetTab);
+    });
+    mobileBtns.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.tab === targetTab);
+    });
 
-      desktopBtns.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.tab === targetTab);
-      });
-      mobileBtns.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.tab === targetTab);
-      });
+    panes.forEach(pane => {
+      const isTarget = pane.id === `tab-${targetTab}`;
+      pane.classList.toggle("active", isTarget);
+      pane.style.display = isTarget ? "block" : "none";
+    });
 
-      panes.forEach(pane => {
-        pane.classList.toggle("active", pane.id === `tab-${targetTab}`);
-      });
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, null, `#${targetTab}`);
     }
 
-    window.switchTabTo = switchTab;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // 註冊全域函式以供呼叫
+  window.switchTabTo = switchTab;
+
+  function initNavigation() {
+    const desktopBtns = document.querySelectorAll(".nav-tab-btn");
+    const mobileBtns = document.querySelectorAll(".mobile-nav-btn");
 
     desktopBtns.forEach(btn => {
-      btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const tab = btn.dataset.tab;
+        if (tab) switchTab(tab);
+      });
     });
 
     mobileBtns.forEach(btn => {
-      btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const tab = btn.dataset.tab;
+        if (tab) switchTab(tab);
+      });
     });
 
+    // 全域委派事件：確保點擊按鈕內文字、圖示或動態標籤均可切換
+    document.addEventListener("click", (e) => {
+      const tabTarget = e.target.closest("[data-tab]");
+      if (tabTarget) {
+        const tab = tabTarget.getAttribute("data-tab");
+        if (tab) {
+          switchTab(tab);
+        }
+      }
+    });
+
+    // 檢查網址 hash
     const hash = window.location.hash.replace("#", "");
     if (hash && document.getElementById(`tab-${hash}`)) {
       switchTab(hash);
+    } else {
+      switchTab("itinerary");
     }
   }
+
+  // 安全依序初始化所有模組，個別異常不影響其他功能
+  const modules = [
+    ["導航功能", initNavigation],
+    ["頂部卡片", initQuickHeroCards],
+    ["行程總覽", initItinerary],
+    ["帳篷速查", initTents],
+    ["野炊小隊", initSquads],
+    ["學生名冊", initRoster],
+    ["營地景點", initAttractions],
+    ["童軍技能卡", initScoutKnowledgeCards],
+    ["營火晚會", initCampfireLyrics],
+    ["山訓探索", initMountainTraining],
+    ["行李清單", initChecklist],
+    ["生活營規", initRules]
+  ];
+
+  modules.forEach(([name, initFn]) => {
+    try {
+      initFn();
+    } catch (err) {
+      console.error(`[模組初始化異常 - ${name}]:`, err);
+    }
+  });
 
   /* ==========================================================================
      2. 頂部快速資訊 (Quick Hero Cards)

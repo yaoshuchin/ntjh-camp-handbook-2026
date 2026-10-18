@@ -1,4 +1,5 @@
-// 南投縣立南投國民中學 115學年度 二年級戶外教育（隔宿露營）資料庫（去個資版）\nconst CAMP_DATA = {
+// 南投縣立南投國民中學 115學年度 二年級戶外教育（隔宿露營）資料庫（去個資版）
+const CAMP_DATA = {
   "info": {
     "school": "南投縣立南投國民中學",
     "title": "115學年度 二年級戶外教育隔宿露營行動手冊",
@@ -2929,4 +2930,5 @@
     "5. 競賽精神：炊事競賽、營火表演、山訓挑戰與精神總錦標均採班級團體積分制，勝不驕、敗不餒，展現南投國中優良風範。",
     "6. 緊急應變：活動期間如感身體不適、受傷或中暑暈眩，立即向同帳室長、小隊長、隨隊老師或隊輔通報送醫護站。"
   ]
-};\nif (typeof module !== 'undefined' && module.exports) { module.exports = CAMP_DATA; }\n
+};
+if (typeof module !== 'undefined' && module.exports) { module.exports = CAMP_DATA; }
