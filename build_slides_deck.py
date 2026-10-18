@@ -1041,6 +1041,6 @@ html += f"""          </tbody>
 </html>
 """
 
-with open('index.html', 'w', encoding='utf-8') as f:
+with open('slides.html', 'w', encoding='utf-8') as f:
     f.write(html)
-print("Saved index.html successfully!")
+print("Saved slides.html successfully!")
