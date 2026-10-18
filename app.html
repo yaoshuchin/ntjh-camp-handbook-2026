@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>南投國中 115學年度二年級隔宿露營行動手冊</title>
+  <meta name="description" content="南投縣立南投國民中學 115學年度 二年級戶外教育隔宿露營行動手冊（尖山埤山訓探索與野營炊事）。提供行程時間軸、帳篷住宿與野炊小隊即時速查、野營搭帳教學、童軍技能、山訓探索、行李打包清單與生活營規。">
+  <meta name="theme-color" content="#15803d">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%2315803d'/%3E%3Cpath d='M8 22l8-14 8 14H8z' fill='%23f97316'/%3E%3C/svg%3E">
+
+  <!-- 快取控制 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- 主樣式表 -->
+  <link rel="stylesheet" href="app.css?v=202610190200">
+</head>
+<body>
+
+  <!-- ================== 頂部 Hero Header ================== -->
+  <header class="hero-header">
+    <div class="hero-inner">
+      <div class="hero-badge-wrap">
+        <span class="badge-tag">🏫 南投縣立南投國民中學</span>
+        <span class="badge-tag highlight">兩天一夜</span>
+        <span class="badge-tag">115學年度 二年級隔宿露營</span>
+        <span class="badge-tag">全校 7 班 · 106 位學生（去個資版）</span>
+      </div>
+      <h1 class="hero-title">115學年度 二年級隔宿露營行動手冊</h1>
+      <p class="hero-subtitle">
+        集合出發：07:30～08:00 學校集合（921地震公園逃生演練） 08:00 發車 ｜ 尖山埤山訓探索 · 野營炊事 · 名間生態共融之旅
+      </p>
+
+      <!-- 快速營地與電話撥號卡片 -->
+      <div class="hero-quick-cards" id="hero-camps-container">
+        <!-- 由 JavaScript 動態生成 -->
+      </div>
+    </div>
+  </header>
+
+  <!-- ================== 主導航 Tabs (桌機 & 平板) ================== -->
+  <nav class="nav-tab-bar" aria-label="主要分頁導航">
+    <div class="nav-tabs-container">
+      <a href="index.html" class="nav-link-highlight" title="開啟全螢幕投影片簡報">
+        🖥️ 去個資簡報模式
+      </a>
+      <button class="nav-tab-btn active" data-tab="itinerary">📅 行程總覽</button>
+      <button class="nav-tab-btn" data-tab="tents">⛺ 帳篷速查</button>
+      <button class="nav-tab-btn" data-tab="squads">🍳 野炊小隊</button>
+      <button class="nav-tab-btn" data-tab="roster">🔍 學生名冊</button>
+      <button class="nav-tab-btn" data-tab="camping">🏕️ 野營常識</button>
+      <button class="nav-tab-btn" data-tab="scout">⚜️ 童軍技能</button>
+      <button class="nav-tab-btn" data-tab="mountain">🧗 山訓探索</button>
+      <button class="nav-tab-btn" data-tab="checklist">🎒 行李清單</button>
+      <button class="nav-tab-btn" data-tab="rules">⚠️ 營規公約</button>
+    </div>
+  </nav>
+
+  <!-- ================== 主內容區域 ================== -->
+  <main class="main-content">
+    
+    <!-- 1. 行程總覽分頁 -->
+    <section class="tab-pane active" id="tab-itinerary">
+      <div class="section-header">
+        <h2 class="section-title">📅 兩天一夜 完整行程時間軸</h2>
+        <p class="section-desc">點選下方天數切換行程細節、用餐安排與重點時間</p>
+      </div>
+
+      <!-- 天數切換按鈕組 -->
+      <div class="day-selector" id="day-selector">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+
+      <!-- 當日行程內容容器 -->
+      <div class="timeline-card" id="timeline-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+    <!-- 2. 帳篷住宿速查分頁 -->
+    <section class="tab-pane" id="tab-tents">
+      <div class="section-header">
+        <h2 class="section-title">⛺ 帳篷住宿分配速查（全校 27 頂帳篷）</h2>
+        <p class="section-desc">輸入同學姓名、座號、班級（如 201）、帳別（如 男第1帳）即時搜尋</p>
+      </div>
+
+      <div class="search-bar-wrap">
+        <div class="search-input-group">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="tent-search-input" class="search-input" placeholder="輸入同學姓名、座號、班級或帳號...">
+        </div>
+        <div class="filter-chips-wrap" id="tent-filter-chips">
+          <button class="chip-btn active" data-class="all">全部班級 (7 班)</button>
+          <button class="chip-btn" data-class="201">201 班</button>
+          <button class="chip-btn" data-class="202">202 班</button>
+          <button class="chip-btn" data-class="203">203 班</button>
+          <button class="chip-btn" data-class="204">204 班</button>
+          <button class="chip-btn" data-class="205">205 班</button>
+          <button class="chip-btn" data-class="206">206 班</button>
+          <button class="chip-btn" data-class="207">207 班</button>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <span id="tent-count-label" style="font-size:13px; font-weight:700; color:var(--text-muted);">共 27 頂帳篷</span>
+        <button onclick="window.print()" class="chip-btn" style="background:var(--primary-light); color:var(--primary-dark); font-weight:700;">🖨️ 列印查帳名冊</button>
+      </div>
+
+      <div class="cards-grid" id="tents-cards-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+    <!-- 3. 野炊小隊速查分頁 -->
+    <section class="tab-pane" id="tab-squads">
+      <div class="section-header">
+        <h2 class="section-title">🍳 野炊/烤肉活動小隊編組速查（全校 15 個小隊）</h2>
+        <p class="section-desc">輸入班級、姓名、職稱（如 大廚、伙夫、小隊長）快速查閱職責分工</p>
+      </div>
+
+      <div class="search-bar-wrap">
+        <div class="search-input-group">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="squad-search-input" class="search-input" placeholder="輸入班級、姓名或職稱 (如 大廚、水夫)...">
+        </div>
+        <div class="filter-chips-wrap" id="squad-filter-chips">
+          <button class="chip-btn active" data-class="all">全部班級 (15 隊)</button>
+          <button class="chip-btn" data-class="201">201 班</button>
+          <button class="chip-btn" data-class="202">202 班</button>
+          <button class="chip-btn" data-class="203">203 班</button>
+          <button class="chip-btn" data-class="204">204 班</button>
+          <button class="chip-btn" data-class="205">205 班</button>
+          <button class="chip-btn" data-class="206">206 班</button>
+          <button class="chip-btn" data-class="207">207 班</button>
+        </div>
+      </div>
+
+      <div class="cards-grid" id="squads-cards-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+    <!-- 4. 全校學生名冊即時速查 -->
+    <section class="tab-pane" id="tab-roster">
+      <div class="section-header">
+        <h2 class="section-title">🔍 全校學生資料庫總清冊（共 106 位同學）</h2>
+        <p class="section-desc">支援即時輸入同學姓名、座號、帳別、野炊職稱或飲食習慣快速檢索</p>
+      </div>
+
+      <div class="search-bar-wrap">
+        <div class="search-input-group">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="roster-search-input" class="search-input" placeholder="輸入姓名、座號、帳別、小隊或職稱...">
+        </div>
+        <div class="filter-chips-wrap" id="roster-filter-chips">
+          <button class="chip-btn active" data-filter="all">全部學生 (106人)</button>
+          <button class="chip-btn" data-filter="male">男生 (48人)</button>
+          <button class="chip-btn" data-filter="female">女生 (58人)</button>
+          <button class="chip-btn" data-filter="leader">室長幹部 (27人)</button>
+          <button class="chip-btn" data-filter="veg">素食 (1人)</button>
+        </div>
+      </div>
+
+      <div style="font-size:13px; font-weight:700; color:var(--text-muted); margin-bottom:8px;" id="roster-count-label">
+        顯示 106 筆資料
+      </div>
+
+      <div class="table-responsive">
+        <table class="custom-table" id="roster-table">
+          <thead>
+            <tr>
+              <th>序號</th>
+              <th>班級</th>
+              <th>座號</th>
+              <th>姓名</th>
+              <th>性別</th>
+              <th>導師</th>
+              <th>帳篷分配</th>
+              <th>室長註記</th>
+              <th>野炊小隊</th>
+              <th>小隊職稱</th>
+              <th>飲食習慣</th>
+            </tr>
+          </thead>
+          <tbody id="roster-tbody">
+            <!-- 由 JavaScript 生成 -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. 野營常識教學專題 -->
+    <section class="tab-pane" id="tab-camping">
+      <div class="section-header">
+        <h2 class="section-title">🏕️ 野營常識與帳篷搭設教學指引</h2>
+        <p class="section-desc">掌握標準六人蒙古包帳篷結構、搭設拆收六部曲與無痕山林原則</p>
+      </div>
+
+      <div id="camping-guides-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+    <!-- 6. 童軍技能教育專題 -->
+    <section class="tab-pane" id="tab-scout">
+      <div class="section-header">
+        <h2 class="section-title">⚜️ 童軍技能教育實作教學指引</h2>
+        <p class="section-desc">生火技巧、戰術偽裝、方向辨識、童軍八大繩結、六大毒蛇與營火晚會</p>
+      </div>
+
+      <div id="scout-skills-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+    <!-- 7. 山訓探索教育專題 -->
+    <section class="tab-pane" id="tab-mountain">
+      <div class="section-header">
+        <h2 class="section-title">🧗 分站山訓與探索教育教學指引</h2>
+        <p class="section-desc">高空垂降、PA探索解手結、人工抱石攀岩、水彈射擊生存遊戲與獨木橋平衡</p>
+      </div>
+
+      <div id="mountain-guides-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+    <!-- 8. 行李清單分頁 -->
+    <section class="tab-pane" id="tab-checklist">
+      <div class="section-header">
+        <h2 class="section-title">🎒 行前行李打包檢核清單</h2>
+        <p class="section-desc">點擊勾選已準備之物品，系統自動記憶儲存於您的手機，重整不遺失！</p>
+      </div>
+
+      <!-- 打包進度儀表板 -->
+      <div class="progress-banner">
+        <div style="flex:1;">
+          <div style="display:flex; justify-content:space-between; font-weight:700; font-size:14px;">
+            <span>行李打包完成度</span>
+            <span id="pack-progress-text">0%</span>
+          </div>
+          <div class="progress-bar-outer">
+            <div class="progress-bar-inner" id="pack-progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+        <button id="btn-reset-checklist" class="chip-btn" style="margin-left:14px; background:rgba(255,255,255,0.2); color:#ffffff; border-color:rgba(255,255,255,0.4);">
+          重置勾選
+        </button>
+      </div>
+
+      <div id="checklist-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+    <!-- 9. 營規公約分頁 -->
+    <section class="tab-pane" id="tab-rules">
+      <div class="section-header">
+        <h2 class="section-title">⚠️ 露營生活常規與緊急應變網絡</h2>
+        <p class="section-desc">嚴守營地生活常規，確保全體師生人身安全與營隊榮譽</p>
+      </div>
+
+      <div id="rules-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================== 手機底部導航列 (Mobile Bottom Bar) ================== -->
+  <nav class="mobile-bottom-bar" aria-label="手機快捷導航">
+    <button class="m-nav-item active" data-tab="itinerary">
+      <span class="m-nav-icon">📅</span>
+      <span>行程</span>
+    </button>
+    <button class="m-nav-item" data-tab="tents">
+      <span class="m-nav-icon">⛺</span>
+      <span>帳篷</span>
+    </button>
+    <button class="m-nav-item" data-tab="squads">
+      <span class="m-nav-icon">🍳</span>
+      <span>野炊</span>
+    </button>
+    <button class="m-nav-item" data-tab="scout">
+      <span class="m-nav-icon">⚜️</span>
+      <span>童軍</span>
+    </button>
+    <button class="m-nav-item" data-tab="mountain">
+      <span class="m-nav-icon">🧗</span>
+      <span>山訓</span>
+    </button>
+    <button class="m-nav-item" data-tab="checklist">
+      <span class="m-nav-icon">🎒</span>
+      <span>行李</span>
+    </button>
+  </nav>
+
+  <!-- 引用資料庫與互動邏輯腳本 -->
+  <script src="data.js?v=202610190200"></script>
+  <script src="app.js?v=202610190200"></script>
+</body>
+</html>

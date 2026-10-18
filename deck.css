@@ -1,0 +1,1062 @@
+/* 由 build_gpt_slides.py 從 lesson-deck.css 機械衍生 —— 不要手改這個檔。
+   要改樣式請改 MAP / EXTRA_CSS 再重跑產生器。 */
+/* ============================================================
+   DSLab Lesson · 網頁簡報引擎
+   風格依照 ComfyUI 官方（Style.png）：深紫黑底 + 螢光黃綠 + 節點卡
+   一份內容兩種模式：present（全螢幕 16:9 投影）/ read（捲動閱讀）
+   ============================================================ */
+
+:root {
+    /* Comfy 官方色板 */
+    --cf-bg: #1A1A1C;
+    --cf-bg-2: #212022;
+    --cf-bg-glow: #2E2621;
+    --cf-panel: #26221D;
+    --cf-panel-2: #332B24;
+    --cf-node: #3A3531;
+    --cf-node-head: #2B2724;
+    --cf-line: rgba(232, 163, 61, 0.55);
+    --cf-accent: #E8A33D;
+    --cf-accent-dim: #8C4A2F;
+    --cf-on-accent: #1A1A1C;
+    --cf-text: #F2EDE6;
+    --cf-text-dim: #B5AEA5;
+    --cf-text-faint: #8B8680;
+    --cf-rule: rgba(255, 255, 255, 0.10);
+    --cf-warn: #C75B3A;
+
+    /* 固定投影畫布 */
+    --slide-w: 1280px;
+    --slide-h: 720px;
+
+    --cf-display: 'Anton', 'Noto Sans TC', system-ui, sans-serif;
+    --cf-sans: 'Inter Tight', 'Noto Sans TC', system-ui, sans-serif;
+    --cf-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--cf-bg); }
+
+body.deck {
+    background:
+        radial-gradient(900px 520px at 12% -8%, var(--cf-bg-glow) 0%, transparent 62%),
+        radial-gradient(760px 460px at 92% 4%, #241F1B 0%, transparent 58%),
+        var(--cf-bg);
+    background-attachment: fixed;
+    color: var(--cf-text);
+    font-family: var(--cf-sans);
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--cf-accent); color: var(--cf-on-accent); }
+
+/* ━━━━━━━━━━━━━━━━ 頂部工具列 ━━━━━━━━━━━━━━━━ */
+.deck-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    height: 60px;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+    background: rgba(26, 26, 28, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--cf-rule);
+}
+
+.deck-back {
+    font-family: var(--cf-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--cf-text-faint);
+    border: 1px solid var(--cf-rule);
+    border-radius: 999px;
+    padding: 0.34rem 0.85rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.deck-back:hover { color: var(--cf-accent); border-color: var(--cf-accent); }
+
+.deck-id {
+    font-family: var(--cf-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--cf-accent);
+    white-space: nowrap;
+}
+
+.deck-name {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 500;
+    font-size: 0.92rem;
+    color: var(--cf-text-dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.deck-tools { margin-left: auto; display: flex; align-items: center; gap: 0.7rem; }
+
+.deck-btn {
+    font-family: var(--cf-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--cf-text-dim);
+    background: transparent;
+    border: 1px solid var(--cf-rule);
+    border-radius: 999px;
+    padding: 0.38rem 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.deck-btn:hover { color: var(--cf-accent); border-color: var(--cf-accent); }
+.deck-btn.is-on {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+    color: var(--cf-on-accent);
+    font-weight: 700;
+}
+
+.deck-count {
+    font-family: var(--cf-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--cf-text-faint);
+    min-width: 4.2em;
+    text-align: right;
+}
+
+/* ━━━━━━━━━━━━━━━━ 舞台 ━━━━━━━━━━━━━━━━ */
+.deck-stage {
+    padding: clamp(1.2rem, 3vw, 2.4rem) clamp(0.9rem, 3vw, 2.4rem) 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.4rem, 3vw, 2.6rem);
+}
+
+/* 每張投影片＝固定 1280×720 畫布，用 scale 等比縮放 */
+.slide-fit {
+    width: 100%;
+    max-width: var(--slide-w);
+    position: relative;
+}
+.slide-fit::before {
+    content: "";
+    display: block;
+    padding-top: calc(var(--slide-h) / var(--slide-w) * 100%);
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    width: var(--slide-w);
+    height: var(--slide-h);
+    transform-origin: top left;
+    background: linear-gradient(158deg, var(--cf-panel) 0%, #1E1C1A 78%);
+    border: 1px solid var(--cf-rule);
+    border-radius: 20px;
+    /* 底部留 6px 餘裕：線上字型渲染與本機有微小差異，實測會多出 1px 而長出捲軸。
+       與其一頁一頁追，不如給全域一點緩衝。 */
+    padding: 52px 60px 40px;
+    /* 正常情況下溢出檢查保證塞得下；這裡的 auto 是為了讓使用者點開 <details> 之後還能捲 */
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.slide::-webkit-scrollbar { width: 8px; }
+.slide::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 8px; }
+
+/* 投影片右上角的節點接點小圓（Comfy 節點語彙） */
+.slide::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--cf-accent);
+    box-shadow: 0 0 10px rgba(232, 163, 61, 0.8);
+}
+
+/* ── 投影模式：一次只顯示一張 ── */
+body.deck[data-mode="present"] .slide-fit { display: none; }
+body.deck[data-mode="present"] .slide-fit.is-current { display: block; }
+body.deck[data-mode="present"] .deck-stage { padding-bottom: 6.5rem; }
+
+/* ── 閱讀模式：全部攤開 ── */
+body.deck[data-mode="read"] .slide-fit { display: block; }
+
+/* ━━━━━━━━━━━━━━━━ 投影片內容排版 ━━━━━━━━━━━━━━━━ */
+.s-eyebrow {
+    font-family: var(--cf-mono);
+    font-size: 15px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--cf-accent);
+    margin-bottom: 18px;
+}
+
+.s-title {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+}
+
+.s-title-xl {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+}
+
+/* 黃色重點膠囊（Style.png 的主視覺語彙） */
+.s-pill {
+    display: inline-block;
+    background: var(--cf-accent);
+    color: var(--cf-on-accent);
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 900;
+    padding: 2px 18px 6px;
+    border-radius: 12px;
+    line-height: 1.24;
+}
+
+.s-sub {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--cf-text-dim);
+    margin-bottom: 26px;
+    max-width: 60ch;
+}
+
+.s-body { font-size: 19px; line-height: 1.85; color: var(--cf-text-dim); }
+.s-body strong { color: var(--cf-text); font-weight: 600; }
+.s-body em { color: var(--cf-accent); font-style: normal; font-weight: 600; }
+
+.s-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.s-list li {
+    position: relative;
+    padding-left: 26px;
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--cf-text-dim);
+}
+.s-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cf-accent);
+}
+.s-list li strong { color: var(--cf-text); font-weight: 700; }
+
+/* 兩欄 / 三欄 */
+.s-cols { display: grid; gap: 26px; }
+.s-cols.c2 { grid-template-columns: 1fr 1fr; }
+.s-cols.c3 { grid-template-columns: repeat(3, 1fr); }
+.s-cols.c2-1 { grid-template-columns: 1.35fr 1fr; }
+
+/* ━━━━━━━━━━━━━━━━ 節點卡（Comfy 語彙） ━━━━━━━━━━━━━━━━ */
+.node {
+    background: var(--cf-node);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+}
+
+.node-head {
+    background: var(--cf-node-head);
+    padding: 10px 16px;
+    font-family: var(--cf-mono);
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cf-text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.node-head::before,
+.node-head::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cf-accent);
+    flex: none;
+}
+
+.node-body { padding: 16px 18px; font-size: 17px; line-height: 1.75; color: var(--cf-text-dim); }
+.node-body strong { color: var(--cf-text); }
+
+/* ━━━━━━━━━━━━━━━━ 表格 ━━━━━━━━━━━━━━━━ */
+.s-table { width: 100%; border-collapse: collapse; font-size: 17px; }
+.s-table th, .s-table td {
+    text-align: left;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--cf-rule);
+}
+.s-table th {
+    font-family: var(--cf-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cf-accent);
+    font-weight: 500;
+}
+.s-table td { color: var(--cf-text-dim); font-family: 'Noto Sans TC', var(--cf-sans); }
+.s-table tr:last-child td { border-bottom: none; }
+.s-table td strong { color: var(--cf-text); font-weight: 600; }
+
+/* ━━━━━━━━━━━━━━━━ 四大元件 ━━━━━━━━━━━━━━━━ */
+
+/* ① 工作流下載（本地 / 官方雲端） */
+.wf-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.wf-dl {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--cf-panel-2);
+    border: 1px solid var(--cf-rule);
+    border-radius: 14px;
+    padding: 14px 20px;
+    transition: all 0.22s ease;
+    min-width: 250px;
+}
+.wf-dl:hover {
+    border-color: var(--cf-accent);
+    background: #332B24;
+    transform: translateY(-2px);
+}
+.wf-dl-ic {
+    width: 38px;
+    height: 38px;
+    flex: none;
+    border-radius: 10px;
+    background: var(--cf-accent);
+    color: var(--cf-on-accent);
+    display: grid;
+    place-items: center;
+    font-family: var(--cf-mono);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+}
+.wf-dl-t {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--cf-text);
+}
+.wf-dl-s {
+    font-family: var(--cf-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--cf-text-faint);
+}
+.wf-dl[data-kind="cloud"] .wf-dl-ic { background: #8C4A2F; color: #fff; }
+
+/* ② 可複製文字塊 */
+.copybox {
+    position: relative;
+    background: #171614;
+    border: 1px solid var(--cf-rule);
+    border-radius: 14px;
+    overflow: hidden;
+}
+.copybox-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 12px 9px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid var(--cf-rule);
+}
+.copybox-label {
+    font-family: var(--cf-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cf-text-faint);
+}
+.copy-btn {
+    font-family: var(--cf-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--cf-on-accent);
+    background: var(--cf-accent);
+    border: none;
+    border-radius: 999px;
+    padding: 5px 14px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.18s ease;
+    flex: none;
+}
+.copy-btn:hover { filter: brightness(1.12); }
+.copy-btn.done { background: #7E9E6B; }
+
+.copybox pre {
+    margin: 0;
+    padding: 15px 18px;
+    font-family: var(--cf-mono);
+    font-size: 14px;
+    line-height: 1.72;
+    color: #D8D0C6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 210px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cf-accent-dim) transparent;
+}
+.copybox pre::-webkit-scrollbar { width: 8px; }
+.copybox pre::-webkit-scrollbar-thumb { background: var(--cf-accent-dim); border-radius: 8px; }
+
+/* ③ 影片 */
+.s-video {
+    width: 100%;
+    /* 720px 畫布扣掉 padding 與標題，內容區約 520px；媒體封頂讓投影不會被切 */
+    max-height: 370px;
+    object-fit: contain;
+    border-radius: 14px;
+    border: 1px solid var(--cf-rule);
+    background: #000;
+    display: block;
+}
+.s-figcap {
+    font-family: var(--cf-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--cf-text-faint);
+    margin-top: 8px;
+}
+.s-img {
+    width: 100%;
+    max-height: 370px;
+    object-fit: contain;
+    border-radius: 14px;
+    border: 1px solid var(--cf-rule);
+    display: block;
+    background: #131211;
+}
+.s-img.contain { object-fit: contain; }
+
+/* 三欄或內容較多的頁面用這個更矮的上限（由溢出檢查決定何時該用） */
+.s-img.short, .s-video.short { max-height: 290px; }
+
+/* ④ Tips */
+.tip {
+    display: flex;
+    gap: 14px;
+    background: rgba(232, 163, 61, 0.08);
+    border: 1px solid rgba(232, 163, 61, 0.32);
+    border-left: 4px solid var(--cf-accent);
+    border-radius: 12px;
+    padding: 14px 18px;
+}
+.tip-tag {
+    font-family: var(--cf-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    color: var(--cf-accent);
+    flex: none;
+    padding-top: 2px;
+}
+.tip-body {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--cf-text-dim);
+}
+.tip-body strong { color: var(--cf-text); font-weight: 700; }
+
+.tip.warn { background: rgba(199, 91, 58, 0.09); border-color: rgba(199, 91, 58, 0.36); border-left-color: var(--cf-warn); }
+.tip.warn .tip-tag { color: var(--cf-warn); }
+
+/* ⑤ Grok 摺疊 */
+.grok {
+    background: var(--cf-panel-2);
+    border: 1px solid var(--cf-rule);
+    border-radius: 14px;
+    overflow: hidden;
+}
+.grok > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--cf-text);
+    transition: background 0.18s ease;
+}
+.grok > summary::-webkit-details-marker { display: none; }
+.grok > summary:hover { background: #332B24; }
+.grok > summary::before {
+    content: "GROK";
+    font-family: var(--cf-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    background: var(--cf-accent);
+    color: var(--cf-on-accent);
+    border-radius: 999px;
+    padding: 3px 10px;
+    flex: none;
+}
+.grok > summary::after {
+    content: "▸ 點開";
+    margin-left: auto;
+    font-family: var(--cf-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--cf-text-faint);
+    flex: none;
+}
+.grok[open] > summary::after { content: "▾ 收起"; }
+.grok-in { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ━━━━━━━━━━━━━━━━ 投影模式底部控制列 ━━━━━━━━━━━━━━━━ */
+.deck-ctrl {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(26, 26, 28, 0.93);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--cf-rule);
+    border-radius: 999px;
+    padding: 8px 12px;
+}
+body.deck[data-mode="read"] .deck-ctrl { display: none; }
+
+.ctrl-btn {
+    font-family: var(--cf-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--cf-text-dim);
+    background: transparent;
+    border: 1px solid var(--cf-rule);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+.ctrl-btn:hover:not(:disabled) { color: var(--cf-accent); border-color: var(--cf-accent); }
+.ctrl-btn:disabled { opacity: 0.3; cursor: default; }
+
+.ctrl-pos { font-family: var(--cf-mono); font-size: 0.78rem; color: var(--cf-accent); padding: 0 6px; }
+
+/* 閱讀模式的頁碼標記 */
+.slide-no {
+    position: absolute;
+    bottom: 20px;
+    right: 26px;
+    font-family: var(--cf-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: var(--cf-text-faint);
+}
+
+/* ━━━━━━━━━━━━━━━━ 上一堂 / 下一堂 ━━━━━━━━━━━━━━━━ */
+.deck-lesson-nav {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+.deck-lesson-nav:hover { color: var(--cf-accent); border-color: var(--cf-accent); }
+
+/* ━━━━━━━━━━━━━━━━ 可點的外部連結 ━━━━━━━━━━━━━━━━ */
+.s-link {
+    color: var(--cf-accent);
+    border-bottom: 1px solid rgba(232, 163, 61, 0.4);
+    word-break: break-all;
+    transition: all 0.18s ease;
+}
+.s-link:hover { border-bottom-color: var(--cf-accent); background: rgba(232, 163, 61, 0.12); }
+.s-link::after { content: " ↗"; font-size: 0.85em; opacity: 0.7; }
+
+/* 行內的「去這裡」小鈕（例如 grok.com） */
+.s-link.go {
+    display: inline-block;
+    border: 1px solid var(--cf-accent);
+    border-radius: 999px;
+    padding: 1px 12px 3px;
+    font-family: var(--cf-mono);
+    font-size: 0.82em;
+    letter-spacing: 0.04em;
+    word-break: normal;
+}
+.s-link.go:hover { background: var(--cf-accent); color: var(--cf-on-accent); }
+
+/* ━━━━━━━━━━━━━━━━ 總覽浮層 ━━━━━━━━━━━━━━━━ */
+.deck-toc {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    background: rgba(16, 15, 14, 0.86);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+}
+.deck-toc[hidden] { display: none; }
+
+.deck-toc-panel {
+    width: min(1100px, 100%);
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, var(--cf-panel) 0%, #1C1A18 82%);
+    border: 1px solid var(--cf-rule);
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.deck-toc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--cf-rule);
+}
+.deck-toc-title {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--cf-text);
+}
+
+.deck-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 8px;
+    padding: 16px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cf-accent-dim) transparent;
+}
+.deck-toc-grid::-webkit-scrollbar { width: 9px; }
+.deck-toc-grid::-webkit-scrollbar-thumb { background: var(--cf-accent-dim); border-radius: 9px; }
+
+.toc-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.16s ease;
+    font-family: inherit;
+}
+.toc-item:hover { background: rgba(232, 163, 61, 0.10); border-color: rgba(232, 163, 61, 0.45); }
+.toc-item.is-current { background: var(--cf-accent); border-color: var(--cf-accent); }
+
+.toc-no {
+    font-family: var(--cf-mono);
+    font-size: 0.8rem;
+    color: var(--cf-accent);
+    flex: none;
+    padding-top: 2px;
+}
+.toc-item.is-current .toc-no { color: var(--cf-on-accent); }
+
+.toc-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.toc-eyebrow {
+    font-family: var(--cf-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    color: var(--cf-text-faint);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.toc-item.is-current .toc-eyebrow { color: rgba(26, 26, 28, 0.62); }
+
+.toc-h {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 600;
+    font-size: 0.94rem;
+    line-height: 1.4;
+    color: var(--cf-text);
+}
+.toc-item.is-current .toc-h { color: var(--cf-on-accent); font-weight: 800; }
+
+/* 總覽底部：跳到其他課程 */
+.deck-toc-lessons {
+    border-top: 1px solid var(--cf-rule);
+    padding: 14px 16px 16px;
+    background: rgba(0, 0, 0, 0.22);
+}
+.deck-toc-sub {
+    font-family: var(--cf-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cf-text-faint);
+    margin-bottom: 10px;
+}
+.toc-lesson-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.toc-lesson {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 1px solid var(--cf-rule);
+    border-radius: 10px;
+    padding: 8px 14px;
+    transition: all 0.16s ease;
+    min-width: 150px;
+}
+.toc-lesson:hover { border-color: var(--cf-accent); background: rgba(232, 163, 61, 0.10); }
+.toc-lesson.is-current { border-color: var(--cf-accent); background: rgba(232, 163, 61, 0.16); }
+
+.toc-lesson-id {
+    font-family: var(--cf-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--cf-accent);
+}
+.toc-lesson-t {
+    font-family: 'Noto Sans TC', var(--cf-sans);
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--cf-text);
+}
+
+/* ━━━━━━━━━━━━━━━━ 手機 ━━━━━━━━━━━━━━━━ */
+
+/* 🚨 窄螢幕直接【脫掉固定畫布】。
+   1280×720 等比縮到 356px 寬＝0.28 倍，任何字級都會變成 5px 不可讀——
+   那不是字太小，是這個版面在手機上結構性地不成立。
+   投影要的是「位置固定」，手機要的是「讀得到」，兩者不可能同一個排版，
+   所以這裡讓投影片回到一般流動版面：多欄收單欄、高度自然撐開、字級放大。
+   內容仍然只有一份，只是把框脫掉。 */
+@media (max-width: 860px) {
+    .slide-fit::before { display: none; }
+    .slide-fit { max-width: 680px; }
+
+    .slide {
+        position: static;
+        width: 100%;
+        height: auto;
+        /* 蓋掉 JS 寫進 style 的 scale()：手機不縮放 */
+        transform: none !important;
+        overflow: visible;
+        padding: 26px 20px 34px;
+        border-radius: 16px;
+    }
+
+    .slide-no { position: static; text-align: right; margin-top: 14px; }
+    .slide::after { top: 14px; right: 16px; }
+
+    /* 多欄一律收成單欄 */
+    .s-cols.c2, .s-cols.c3, .s-cols.c2-1 { grid-template-columns: 1fr; gap: 16px; }
+
+    /* 字級改成手機可讀 */
+    .s-eyebrow { font-size: 12px; margin-bottom: 12px; }
+    .s-title { font-size: 27px; }
+    .s-title-xl { font-size: 38px; }
+    .s-sub { font-size: 16px; margin-bottom: 18px; }
+    .s-body, .s-list li { font-size: 16px; }
+    .node-body, .tip-body { font-size: 15px; }
+    .s-table { font-size: 14px; }
+    .s-table th, .s-table td { padding: 8px 9px; }
+    .copybox pre { font-size: 13px; max-height: 260px; }
+
+    /* 高度限制只為投影存在，手機不需要 */
+    .s-img, .s-video, .s-img.short, .s-video.short { max-height: none; }
+
+    /* 手機沒有投影情境：一律攤開，隱藏模式切換與翻頁列 */
+    body.deck[data-mode="present"] .slide-fit { display: block; }
+    .deck-ctrl { display: none; }
+    #mode-btn { display: none; }
+
+    .wf-dl { min-width: 0; width: 100%; }
+
+    /* 節點標題是長底線命名（integrated_multimodal_description），
+       桌機一行放得下，手機會被 node 的 overflow:hidden 裁掉 —— 讓它換行 */
+    .node-head { font-size: 12px; letter-spacing: 0.06em; gap: 8px; align-items: flex-start; }
+    .node-head > span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+    .node-head::before, .node-head::after { margin-top: 4px; }
+}
+
+@media (max-width: 760px) {
+    .deck-name { display: none; }
+    .deck-bar { gap: 0.7rem; padding: 0 0.8rem; }
+    .deck-btn { padding: 0.34rem 0.7rem; font-size: 0.66rem; }
+}
+
+/* 400px 實測：deck-tools 會把頁面撐寬 16px。
+   手機上「全螢幕」幾乎用不到，頁碼底部控制列也有一份 —— 這兩個先讓位。 */
+@media (max-width: 540px) {
+    #fs-btn { display: none; }
+    .deck-count { display: none; }
+    /* 上一堂／下一堂讓位：總覽浮層底部有完整的跳堂列，功能不會消失 */
+    .deck-lesson-nav { display: none; }
+    .deck-toc-grid { grid-template-columns: 1fr; }
+    .deck-id { font-size: 0.62rem; letter-spacing: 0.12em; }
+    .deck-back { padding: 0.3rem 0.6rem; font-size: 0.64rem; }
+    .deck-bar { gap: 0.5rem; padding: 0 0.6rem; }
+}
+
+
+/* ━━━━━━━━━━ 0918GPT · 工業風外掛層 ━━━━━━━━━━
+   只加材質與節奏，不覆寫結構；上游 lesson-deck.css 改版仍可重新衍生。 */
+:root {
+    --ind-rust: #8C4A2F;
+    --ind-walnut: #4A3428;
+    --ind-concrete: #8B8680;
+    --ind-amber: #E8A33D;
+}
+body.deck {
+    background:
+        /* 混凝土顆粒：兩層極淡的斜線疊出不規則感，比 noise 圖省一個請求 */
+        repeating-linear-gradient(64deg, rgba(255,255,255,.014) 0 2px, transparent 2px 7px),
+        repeating-linear-gradient(-19deg, rgba(0,0,0,.16) 0 3px, transparent 3px 11px),
+        radial-gradient(1100px 600px at 10% -10%, #2E2621 0%, transparent 60%),
+        radial-gradient(820px 480px at 94% 2%, #241F1B 0%, transparent 58%),
+        #1A1A1C;
+    background-attachment: fixed;
+}
+.slide {
+    border-left: 3px solid var(--ind-rust);
+}
+.s-eyebrow {
+    font-family: var(--cf-mono);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ind-concrete);
+}
+.s-title {
+    letter-spacing: -.01em;
+    font-weight: 900;
+}
+/* 標題下的鐵鏽色細線：工業風的分隔靠線，不靠陰影 */
+.s-title::after {
+    content: "";
+    display: block;
+    width: 68px;
+    height: 3px;
+    margin-top: 12px;
+    background: var(--ind-rust);
+}
+.slide-cover .s-title-xl::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 4px;
+    margin-top: 18px;
+    background: linear-gradient(90deg, var(--ind-amber), var(--ind-rust));
+}
+/* 步驟條 */
+.steps { display: grid; gap: 10px; }
+.steps.grid3 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 820px) { .steps.grid3 { grid-template-columns: 1fr; } }
+.steps .step { display: flex; gap: 14px; align-items: flex-start;
+    padding: 10px 14px; background: #26221D;
+    border-left: 2px solid var(--ind-walnut); }
+.step-n { font-family: var(--cf-mono); font-size: 15px; font-weight: 700;
+    color: var(--ind-amber); padding-top: 2px; min-width: 28px; }
+.step-b { display: flex; flex-direction: column; gap: 2px; }
+.step-b b { font-weight: 600; font-size: 16px; }
+.step-b span { color: var(--cf-text-dim); font-size: 14px; line-height: 1.55; }
+/* 下載鈕 */
+.dl { display: inline-flex; align-items: center; gap: 10px;
+    padding: 10px 16px; background: #332B24; border: 1px solid #4A3428;
+    font-size: 15px; transition: .16s; }
+.dl:hover { border-color: var(--ind-amber); background: #3A3129; }
+.dl-ic { font-family: var(--cf-mono); color: var(--ind-amber); font-weight: 700; }
+.dl-t { font-weight: 600; }
+.dl-note { color: var(--cf-text-faint); font-size: 13px; }
+/* 多欄 */
+.cols { display: grid; gap: 16px; }
+.cols.c2 { grid-template-columns: 1fr 1fr; }
+.cols.c3 { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 820px) { .cols.c2, .cols.c3 { grid-template-columns: 1fr; } }
+/* 佔位節次 */
+.wip { border: 1px dashed #4A3428; padding: 22px; text-align: center;
+    color: var(--cf-text-faint); background: rgba(74,52,40,.16); }
+.wip b { display: block; color: var(--ind-amber); font-size: 18px; margin-bottom: 6px; }
+
+
+/* ━━━━━━━━━━ 0918GPT · 本課程新增元件 ━━━━━━━━━━ */
+.lead { font-size: 17px; color: var(--cf-text-dim); margin-bottom: 16px; line-height: 1.75; }
+.nd { color: var(--cf-text-dim); font-size: 14px; margin-bottom: 8px; }
+.ln-row { margin-top: 14px; }
+/* 圖片放進多欄版面時，欄寬才是上限 —— 沒有這一條，1800px 的原圖會把手機版整個撐爆 */
+.cols .s-img, .cols .s-video { max-width: 100%; height: auto; }
+
+/* ━━━ 2026-09-20：s-sub 在【簡報模式】收 margin，一次解掉 6 頁溢出 ━━━
+   量出來的事實（用 0919 移植過來的擋門 ＋ iterations/diag_overflow.py）：
+     畫布 client 718px；固定開銷 eyebrow 26 ＋ title 69 ＋ slide-no 22 ＋ padding
+     .s-sub 實際吃掉 35px(行高) ＋ 26px(margin-bottom) = 61px
+     s3-d1/d3/d4/d5/d6 溢出 16px、s3-d10 溢出 19px ← 全部【小於】那 26px 的 margin
+   📌 所以這不是六個獨立問題，是【同一個 margin 撐出來的】——收 20px 就一起解決。
+   ⚠️ 只鎖 present：溢出只發生在簡報模式（手機／閱讀模式實測全綠），
+      閱讀模式是長頁捲動、那 26px 是它該有的呼吸感，不該被投影的需求綁架。 */
+body[data-mode="present"] .s-sub { margin-bottom: 6px; }
+
+/* ━━━ 同一個思路的第二步：簡報模式把畫布的上下 padding 收 22px ━━━
+   .slide 原本是 padding: 52px 60px 40px（上下共 92px）。
+   投影時是滿版全螢幕，上下留 92px 其實比閱讀模式更不需要；
+   而剩下四頁的溢出是 8~41px —— 與其逐頁削內容（會削掉學員要看的東西），
+   不如把「可用空間」本身還回去一點。
+   ⚠️ 左右維持 60px 不動：那是行長的舒適區，收窄會讓文字難讀。
+   ⚠️ 一樣只鎖 present。 */
+body[data-mode="present"] .slide { padding: 38px 60px 26px; }   /* 底部再收 6px：最後兩頁只差 3/5px */
+
+/* ━━━ 第三步：標題區在簡報模式收 14px（eyebrow 18→8、title 10→6）━━━
+   剩下三頁只差 9~19px。標題區原本吃 padding52 ＋ eyebrow margin18 ＋ title margin10 = 80px
+   才開始放內容；投影是滿版，那個開場留白可以少一點。
+   ⚠️ 只動 margin 不動 font-size／line-height —— 字的大小是可讀性，留白只是呼吸感，
+      要犧牲先犧牲後者。⚠️ 一樣只鎖 present。 */
+body[data-mode="present"] .s-eyebrow { margin-bottom: 8px; }
+body[data-mode="present"] .s-title   { margin-bottom: 6px; }
+
+/* 摺疊區的標籤：上游 lesson-deck.css 寫死 content:"GROK"（那是 H3 課程用的，
+   那堂課真的有走 Grok）。本課從頭到尾沒有用到 Grok，所以在這一層蓋成「參考」。
+   🚨 不去改上游 —— 上游是跟 H3 課程共用的，改了會一起變；而且 deck.css 是機械衍生的，
+      改上游等於讓兩堂課共用一個只對其中一堂正確的字。覆寫要發生在「只有這堂課吃得到」的地方。
+   （主人 2026-09-17：「簡報中第三部分為何有 grok 呢，實際上我們沒有用到這個 AI 吧」） */
+.grok > summary::before { content: "參考"; }
+
+/* ━━━ 首頁：上課網址 ＋ QR ＋ 離線包（主人 2026-09-18 上課當天要求）━━━ */
+.share-row { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+.share-qr { width: 190px; height: 190px; flex: none;
+    border: 1px solid var(--ind-rust); border-radius: 10px; background: #F2EDE6; padding: 8px; }
+.share-txt { flex: 1 1 320px; min-width: 280px; }
+.share-url { font-family: var(--cf-mono); font-size: 30px; font-weight: 700;
+    color: var(--ind-amber); letter-spacing: .02em; margin: 0 0 10px; word-break: break-all; }
+@media (max-width: 720px) { .share-qr { width: 150px; height: 150px; } .share-url { font-size: 23px; } }
+
+/* ━━━ 點圖放大（主人 2026-09-17：投影時圖太小，同學看不到要點啥）━━━
+   包裝層不佔高度：block + relative，只當定位脈絡。 */
+.zoomwrap { display: block; position: relative; cursor: zoom-in; }
+.zoomwrap::after {
+    content: "⤢ 點圖放大";
+    position: absolute; right: 10px; bottom: 10px;
+    font-family: var(--cf-mono); font-size: 12px; letter-spacing: .06em;
+    padding: 4px 9px; border-radius: 4px;
+    background: rgba(0,0,0,.62); color: var(--ind-amber);
+    border: 1px solid var(--ind-rust);
+    pointer-events: none;            /* 徽章本身不吃點擊，點到的一定是圖 */
+    opacity: .9;
+}
+.zoomwrap:hover::after { opacity: 1; }
+/* 燈箱：疊在最上層，present 模式的固定畫布也蓋得住 */
+.lightbox {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(8,8,9,.94);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; cursor: zoom-out;
+}
+.lightbox img {
+    max-width: 96vw; max-height: 92vh;
+    object-fit: contain; border-radius: 10px;
+    border: 1px solid var(--ind-rust);
+}
+.lightbox .lb-hint {
+    position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+    font-family: var(--cf-mono); font-size: 13px; color: var(--cf-text-faint);
+}
+
+/* 問答條：常見踩坑 */
+.qa { display: grid; gap: 10px; }
+.qa-i { padding: 12px 16px; background: #26221D; border-left: 2px solid var(--ind-rust); }
+.qa-i .q { font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+.qa-i .q::before { content: "？ "; color: var(--ind-amber); font-family: var(--cf-mono); }
+.qa-i .a { color: var(--cf-text-dim); font-size: 14.5px; line-height: 1.6; }
+.qa-i .a::before { content: "→ "; color: var(--ind-concrete); font-family: var(--cf-mono); }
+
+/* 行內程式碼／設定鍵名。
+   🚨 2026-09-16 實犯：上游 lesson-deck.css 完全沒有 code 規則，而 check_classes()
+      只掃 class 屬性、不掃標籤名 —— 所以 17 個 <code> 一路通過擋門，
+      在頁面上卻會退回瀏覽器預設字型，在深色工業風版面裡看起來像壞掉的純文字。
+      失敗形狀跟 09-13 的自創 class 一模一樣：CSS 對它完全沉默。 */
+code { font-family: var(--cf-mono); font-size: 0.92em; padding: 2px 6px;
+    background: #26221D; border: 1px solid rgba(232,163,61,.18); border-radius: 3px;
+    color: var(--ind-amber); white-space: nowrap; }
+/* copybox 內本來就是整塊等寬，不要再疊一層框 */
+.copybox code, pre code { background: none; border: 0; padding: 0; color: inherit; font-size: 1em; }
+
+/* ━━━━━━━━━━ 課程首頁 ━━━━━━━━━━ */
+body.deck.hub { padding-bottom: 0; }
+.hub-main { max-width: 1120px; margin: 0 auto; padding: 46px 26px 80px; }
+.hub-hero { padding-bottom: 34px; margin-bottom: 34px; border-bottom: 1px solid rgba(232,163,61,.14); }
+.hub-lead { margin-top: 20px; max-width: 760px; font-size: 17.5px; line-height: 1.85;
+    color: var(--cf-text-dim); }
+.hub-sec { margin-bottom: 46px; }
+.hub-h { font-size: 15px; font-family: var(--cf-mono); letter-spacing: .18em;
+    text-transform: uppercase; color: var(--ind-concrete); margin-bottom: 18px; }
+.hub-h::after { content: ""; display: block; width: 46px; height: 2px;
+    margin-top: 10px; background: var(--ind-rust); }
+.hub-intro p { max-width: 820px; margin-bottom: 14px; line-height: 1.9;
+    color: var(--cf-text-dim); font-size: 16px; }
+.hub-intro b { color: var(--cf-text); font-weight: 600; }
+
+.hub-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 26px; }
+.fact { padding: 16px 18px; background: #26221D; border-top: 2px solid var(--ind-amber); }
+.fact b { display: block; font-size: 26px; font-weight: 800; letter-spacing: -.02em; }
+.fact span { display: block; margin-top: 4px; font-size: 13.5px; color: var(--cf-text-faint); }
+
+.hub-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.hub-card { display: flex; flex-direction: column; gap: 10px; padding: 22px;
+    background: linear-gradient(160deg, #2A2420 0%, #1E1C1A 84%);
+    border: 1px solid #3A312A; border-left: 3px solid var(--ind-rust);
+    transition: .18s; }
+.hub-card:not(.static):hover { border-left-color: var(--ind-amber); transform: translateY(-2px); }
+.card-id { font-family: var(--cf-mono); font-size: 12.5px; letter-spacing: .16em;
+    color: var(--ind-amber); text-transform: uppercase; }
+.card-wip { display: inline-block; margin-left: 8px; padding: 1px 7px; font-size: 11px;
+    letter-spacing: .06em; color: #1A1A1C; background: var(--ind-concrete); }
+.card-t { font-size: 19px; font-weight: 700; line-height: 1.4; }
+.card-d { font-size: 14px; line-height: 1.72; color: var(--cf-text-dim); flex: 1; }
+.card-n { font-family: var(--cf-mono); font-size: 12.5px; color: var(--cf-text-faint); }
+.hub-cards.prep .hub-card { border-left-color: var(--ind-walnut); }
+.hub-foot { max-width: 1120px; margin: 0 auto; padding: 22px 26px 60px;
+    border-top: 1px solid rgba(232,163,61,.12); color: var(--cf-text-faint); font-size: 13.5px; }
+
+@media (max-width: 900px) {
+    .hub-facts { grid-template-columns: repeat(2, 1fr); }
+    .hub-cards { grid-template-columns: 1fr; }
+    .hub-main { padding: 30px 18px 60px; }
+}
