@@ -1003,3 +1003,64 @@ body {
   border-color: #ef4444;
   transform: translateY(-1px);
 }
+
+/* ================== 手冊全文檢視區塊 ================== */
+.manual-markdown-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  line-height: 1.75;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+.manual-markdown-box h1 {
+  font-size: 1.35rem;
+  color: var(--primary-dark);
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--primary-light);
+  padding-bottom: 8px;
+}
+.manual-markdown-box h2 {
+  font-size: 1.18rem;
+  color: var(--primary-dark);
+  margin-top: 28px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+.manual-markdown-box h3 {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.manual-markdown-box blockquote {
+  background: #f8fafc;
+  border-left: 4px solid var(--primary);
+  margin: 12px 0;
+  padding: 10px 16px;
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+.manual-markdown-box table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.85rem;
+}
+.manual-markdown-box th, .manual-markdown-box td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+}
+.manual-markdown-box th {
+  background: #f1f5f9;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.manual-markdown-box ul, .manual-markdown-box ol {
+  padding-left: 24px;
+  margin: 10px 0;
+}

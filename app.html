@@ -16,7 +16,7 @@
   <meta http-equiv="Expires" content="0">
 
   <!-- 主樣式表 -->
-  <link rel="stylesheet" href="styles.css?v=202610190300">
+  <link rel="stylesheet" href="styles.css?v=202610190400">
 </head>
 <body>
 
@@ -48,6 +48,7 @@
         🖥️ 去個資簡報模式
       </a>
       <button class="nav-tab-btn active" data-tab="itinerary">📅 行程總覽</button>
+      <button class="nav-tab-btn" data-tab="bus">🚌 車輛團務</button>
       <button class="nav-tab-btn" data-tab="tents">⛺ 帳篷速查</button>
       <button class="nav-tab-btn" data-tab="squads">🍳 野炊小隊</button>
       <button class="nav-tab-btn" data-tab="roster">🔍 學生名冊</button>
@@ -57,6 +58,7 @@
       <button class="nav-tab-btn" data-tab="mountain">🧗 山訓探索</button>
       <button class="nav-tab-btn" data-tab="checklist">🎒 行李清單</button>
       <button class="nav-tab-btn" data-tab="notices">⚠️ 生活須知</button>
+      <button class="nav-tab-btn" data-tab="manual">📖 手冊全文</button>
     </div>
   </nav>
 
@@ -81,7 +83,18 @@
       </div>
     </section>
 
-    <!-- 2. 帳篷住宿速查分頁 -->
+    <!-- 2. 車輛編組與隨車師長團務表分頁 -->
+    <section class="tab-pane" id="tab-bus">
+      <div class="section-header">
+        <h2 class="section-title">🚌 遊覽車編組與隨車師長團務表</h2>
+        <p class="section-desc">全校 4 部遊覽車（1車、2車、3車、丁車）班級配置、男女生人數、飲食統計與隨車行政導師名單（依公文團務表標準製作）</p>
+      </div>
+      <div id="bus-content-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
+    <!-- 3. 帳篷住宿速查分頁 -->
     <section class="tab-pane" id="tab-tents">
       <div class="section-header">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
@@ -390,6 +403,17 @@
       </div>
     </section>
 
+    <!-- 11. 完整手冊全文檢視與下載分頁 -->
+    <section class="tab-pane" id="tab-manual">
+      <div class="section-header">
+        <h2 class="section-title">📖 南投國中隔宿手冊 全文檢視與下載</h2>
+        <p class="section-desc">完整整合行前摘要、兩天一夜行程、帳篷名冊、野炊小隊、三大教學專題、裝備清單與營規應變網絡（去個資版）</p>
+      </div>
+      <div id="manual-content-container">
+        <!-- 由 JavaScript 生成 -->
+      </div>
+    </section>
+
   </main>
 
   <!-- ================== 手機底部導航列 (Mobile Bottom Nav) ================== -->
@@ -401,6 +425,10 @@
     <button class="mobile-nav-btn active" data-tab="itinerary">
       <span>📅</span>
       <span>行程</span>
+    </button>
+    <button class="mobile-nav-btn" data-tab="bus">
+      <span>🚌</span>
+      <span>車輛</span>
     </button>
     <button class="mobile-nav-btn" data-tab="tents">
       <span>⛺</span>
@@ -438,10 +466,14 @@
       <span>⚠️</span>
       <span>須知</span>
     </button>
+    <button class="mobile-nav-btn" data-tab="manual">
+      <span>📖</span>
+      <span>全文</span>
+    </button>
   </nav>
 
   <!-- 引用資料庫與互動腳本（帶快取刷新版本號） -->
-  <script src="data.js?v=202610190300"></script>
-  <script src="script.js?v=202610190300"></script>
+  <script src="data.js?v=202610190400"></script>
+  <script src="script.js?v=202610190400"></script>
 </body>
 </html>

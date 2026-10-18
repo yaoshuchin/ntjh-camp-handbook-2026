@@ -120,7 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ["營火晚會", initCampfireLyrics],
     ["山訓探索", initMountainTraining],
     ["行李清單", initChecklist],
-    ["生活營規", initRules]
+    ["生活營規", initRules],
+    ["車輛編組", initBusSchedule],
+    ["手冊全文", initManualViewer]
   ];
 
   modules.forEach(([name, initFn]) => {
@@ -953,5 +955,241 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     `;
+  }
+
+  /* ==========================================================================
+     13. 車輛編組與隨車師長團務表 (Bus Schedule)
+     ========================================================================== */
+  function initBusSchedule() {
+    const container = document.getElementById("bus-content-container");
+    if (!container || !CAMP_DATA.busSchedule) return;
+
+    const busList = CAMP_DATA.busSchedule;
+
+    container.innerHTML = `
+      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px 16px; margin-bottom:16px;">
+        <h3 style="color:#1e40af; font-size:1.05rem; font-weight:800; margin-bottom:4px;">🚌 南投國中二年級隔宿露營 遊覽車編組團務表</h3>
+        <p style="font-size:0.85rem; color:#2563eb;">全校共編配 4 部遊覽車（1車、2車、3車、丁車），共計 106 位學生（男48/女58，葷105/素1）與 9 位隨車行政及各班導師（男3/女6）。</p>
+      </div>
+
+      <!-- 車輛卡片網格 -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-bottom:20px;">
+        ${busList.map(b => `
+          <div class="data-card" style="border-top:4px solid var(--primary);">
+            <div class="data-card-header">
+              <div class="data-card-title" style="font-size:1.15rem; color:var(--primary-dark);">🚌 ${b.bus}</div>
+              <span class="badge-pill squad">${b.subtotal.total} 人 (男${b.subtotal.male} / 女${b.subtotal.female})</span>
+            </div>
+            <div style="font-size:0.88rem; line-height:1.6;">
+              <div style="margin-bottom:8px;">
+                <b style="color:var(--text-main);">乘車班級：</b>
+                <div style="margin-top:4px; padding-left:8px; border-left:2px solid #cbd5e1;">
+                  ${b.classes.map(c => `
+                    <div><strong>${c.class}</strong>：男 ${c.male} 人、女 ${c.female} 人，合計 <strong>${c.total} 人</strong> ${c.veg > 0 ? `<span class="badge-pill veg" style="font-size:0.75rem;">素食 ${c.veg}</span>` : ''}</div>
+                  `).join("")}
+                </div>
+              </div>
+              <div style="margin-bottom:8px; background:#f8fafc; padding:8px 10px; border-radius:6px; border:1px solid var(--border);">
+                <b style="color:var(--primary-dark);">👨‍🏫 隨車師長 (${b.teachers.length} 位)：</b>
+                <div style="color:var(--text-main); font-weight:600; margin-top:2px;">
+                  ${b.teachers.join("、")}
+                </div>
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">
+                📌 備註：${b.note}
+              </div>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+
+      <!-- 依公文格式完整團務總表 -->
+      <div class="data-card">
+        <div class="data-card-header">
+          <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-main);">📋 南投縣立南投國民中學【團務表】官方車次配置總表</h4>
+          <button onclick="window.print()" class="quick-btn" style="border:1px solid #cbd5e1; padding:4px 10px; font-size:0.8rem;">🖨️ 列印團務表</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="custom-table" style="margin-top:8px;">
+            <thead>
+              <tr>
+                <th rowspan="2" style="text-align:center; vertical-align:middle;">車次</th>
+                <th rowspan="2" style="text-align:center; vertical-align:middle;">班級</th>
+                <th colspan="2" style="text-align:center;">人數</th>
+                <th rowspan="2" style="text-align:center; vertical-align:middle;">合計</th>
+                <th rowspan="2" style="text-align:center; vertical-align:middle;">素食</th>
+                <th rowspan="2" style="text-align:left; vertical-align:middle;">隨車師長</th>
+              </tr>
+              <tr>
+                <th style="text-align:center;">男</th>
+                <th style="text-align:center;">女</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2" style="text-align:center; font-weight:800; vertical-align:middle;">1車</td>
+                <td>205 班</td>
+                <td style="text-align:center;">7</td>
+                <td style="text-align:center;">4</td>
+                <td rowspan="2" style="text-align:center; font-weight:800; vertical-align:middle;">20</td>
+                <td rowspan="2" style="text-align:center; font-weight:800; color:#16a34a; vertical-align:middle;">1</td>
+                <td rowspan="2" style="vertical-align:middle;">董O遠 (主任)、林O銓 (205導師)、許O玉 (206導師)</td>
+              </tr>
+              <tr>
+                <td>206 班</td>
+                <td style="text-align:center;">4</td>
+                <td style="text-align:center;">5</td>
+              </tr>
+              <tr>
+                <td rowspan="2" style="text-align:center; font-weight:800; vertical-align:middle;">2車</td>
+                <td>202 班</td>
+                <td style="text-align:center;">6</td>
+                <td style="text-align:center;">12</td>
+                <td rowspan="2" style="text-align:center; font-weight:800; vertical-align:middle;">33</td>
+                <td rowspan="2" style="text-align:center; vertical-align:middle;">0</td>
+                <td rowspan="2" style="vertical-align:middle;">黃O君 (202導師)、李O儒 (204導師)</td>
+              </tr>
+              <tr>
+                <td>204 班</td>
+                <td style="text-align:center;">7</td>
+                <td style="text-align:center;">8</td>
+              </tr>
+              <tr>
+                <td rowspan="2" style="text-align:center; font-weight:800; vertical-align:middle;">3車</td>
+                <td>201 班</td>
+                <td style="text-align:center;">10</td>
+                <td style="text-align:center;">7</td>
+                <td rowspan="2" style="text-align:center; font-weight:800; vertical-align:middle;">32</td>
+                <td rowspan="2" style="text-align:center; vertical-align:middle;">0</td>
+                <td rowspan="2" style="vertical-align:middle;">黃O月 (201導師)、林O玟 (203導師)</td>
+              </tr>
+              <tr>
+                <td>203 班</td>
+                <td style="text-align:center;">6</td>
+                <td style="text-align:center;">9</td>
+              </tr>
+              <tr>
+                <td style="text-align:center; font-weight:800;">丁車</td>
+                <td>207 班</td>
+                <td style="text-align:center;">8</td>
+                <td style="text-align:center;">13</td>
+                <td style="text-align:center; font-weight:800;">21</td>
+                <td style="text-align:center;">0</td>
+                <td>姚O勤 (組長)、黃O慧 (207導師)</td>
+              </tr>
+              <tr style="background:#f1f5f9; font-weight:800;">
+                <td colspan="2" style="text-align:center;">全校總計</td>
+                <td style="text-align:center;">48</td>
+                <td style="text-align:center;">58</td>
+                <td style="text-align:center; color:var(--primary-dark);">106</td>
+                <td style="text-align:center; color:#16a34a;">1</td>
+                <td>隨車師長 9 位（男 3、女 6、素 0）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 行車安全須知 -->
+      <div class="data-card" style="margin-top:14px; border-left:4px solid #f59e0b;">
+        <h4 style="color:#b45309; font-weight:800; font-size:0.95rem; margin-bottom:6px;">⚠️ 行車安全重點叮嚀（落實 921 地震公園逃生演練原則）</h4>
+        <ul style="font-size:0.85rem; color:var(--text-muted); line-height:1.6; padding-left:18px;">
+          <li><b>全程繫好安全帶</b>：車輛發動離校起至抵達目的地，全體人員必須全程繫妥安全帶。</li>
+          <li><b>逃生門與走道淨空</b>：遊覽車走道與逃生門前嚴禁堆置背包行李，確保突發狀況迅速疏散。</li>
+          <li><b>安全演練與裝備確認</b>：出發前確認車上滅火器（前後各一）、車窗擊破器（至少三具）之確切位置與操作方式。</li>
+        </ul>
+      </div>
+    `;
+  }
+
+  /* ==========================================================================
+     14. 手冊全文檢視與下載 (Manual Viewer)
+     ========================================================================== */
+  function initManualViewer() {
+    const container = document.getElementById("manual-content-container");
+    if (!container || !CAMP_DATA.fullManualMd) return;
+
+    let md = CAMP_DATA.fullManualMd;
+
+    function renderSimpleMd(text) {
+      const lines = text.split('\n');
+      let html = [];
+      let inTable = false;
+      let tableRows = [];
+
+      function flushTable() {
+        if (!inTable || tableRows.length === 0) return;
+        let tHtml = '<table>';
+        tableRows.forEach((r, idx) => {
+          let cols = r.split('|').map(c => c.trim()).filter((c, i, arr) => i > 0 && i < arr.length - 1);
+          if (cols.length === 0) return;
+          if (cols.every(c => c.replace(/[\-:\s]/g, '').length === 0)) return;
+          let tag = idx === 0 ? 'th' : 'td';
+          tHtml += '<tr>' + cols.map(c => `<${tag}>${c}</${tag}>`).join('') + '</tr>';
+        });
+        tHtml += '</table>';
+        html.push(tHtml);
+        tableRows = [];
+        inTable = false;
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+        if (line.trim().startsWith('|')) {
+          inTable = true;
+          tableRows.push(line.trim());
+          continue;
+        } else if (inTable) {
+          flushTable();
+        }
+
+        if (line.startsWith('# ')) {
+          html.push(`<h1>${line.slice(2)}</h1>`);
+        } else if (line.startsWith('## ')) {
+          html.push(`<h2>${line.slice(3)}</h2>`);
+        } else if (line.startsWith('### ')) {
+          html.push(`<h3>${line.slice(4)}</h3>`);
+        } else if (line.startsWith('> ')) {
+          html.push(`<blockquote>${line.slice(2)}</blockquote>`);
+        } else if (line.startsWith('- [ ] ')) {
+          html.push(`<div style="margin:4px 0;"><input type="checkbox" disabled> ${line.slice(6)}</div>`);
+        } else if (line.startsWith('- ')) {
+          html.push(`<li>${line.slice(2)}</li>`);
+        } else if (line.trim() === '---') {
+          html.push('<hr style="border:none; border-top:1px solid var(--border); margin:18px 0;">');
+        } else if (line.trim().length > 0) {
+          html.push(`<p style="margin:6px 0;">${line}</p>`);
+        }
+      }
+      flushTable();
+      return html.join('');
+    }
+
+    container.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+        <div>
+          <span class="badge-tag highlight">去個資正式手冊</span>
+          <span style="font-size:0.85rem; color:var(--text-muted); margin-left:6px;">檔案：南投國中隔宿手冊-去個資.md</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button id="btn-download-md" class="quick-btn" style="border:1px solid #cbd5e1; padding:6px 12px;">📥 下載 Markdown 檔</button>
+          <button onclick="window.print()" class="quick-btn" style="border:1px solid #cbd5e1; padding:6px 12px;">🖨️ 列印全手冊</button>
+        </div>
+      </div>
+      <div class="manual-markdown-box">
+        ${renderSimpleMd(md)}
+      </div>
+    `;
+
+    const dlBtn = document.getElementById("btn-download-md");
+    if (dlBtn) {
+      dlBtn.addEventListener("click", () => {
+        const blob = new Blob([CAMP_DATA.fullManualMd], { type: "text/markdown;charset=utf-8" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "南投國中115學年度隔宿露營手冊-去個資版.md";
+        a.click();
+      });
+    }
   }
 });
