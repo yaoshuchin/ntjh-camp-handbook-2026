@@ -953,6 +953,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!container || !rules) return;
 
     container.innerHTML = `
+      <!-- 學務處董主任行前宣導重要叮嚀 -->
+      <div style="border:2px solid #ef4444; background:#fff5f5; border-radius:8px; padding:14px 16px; margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #fecaca; padding-bottom:8px; margin-bottom:10px;">
+          <h3 style="color:#b91c1c; font-size:1.05rem; font-weight:800; margin:0;">📢 10/20（二）董O遠主任 畢旅行前說明會重點宣導</h3>
+          <span style="font-size:0.75rem; background:#fee2e2; color:#b91c1c; font-weight:700; padding:2px 8px; border-radius:4px;">學務處宣導</span>
+        </div>
+        <ul style="margin:0; padding-left:18px; font-size:0.88rem; color:#1e293b; line-height:1.7;">
+          <li style="margin-bottom:6px;"><b style="color:#b91c1c;">一、違禁品查驗：</b><strong style="color:#dc2626;">出發前再檢查一次</strong>！嚴禁攜帶<strong style="color:#dc2626;">菸、酒、檳榔、刀械…</strong>等任何危險違禁品。</li>
+          <li style="margin-bottom:6px;"><b style="color:#b91c1c;">二、個人物品準備：</b><strong style="color:#dc2626;">健保卡</strong>、個人常備醫藥必備，零用錢<strong style="color:#dc2626;">限 2000 元以內</strong>；<strong style="color:#dc2626;">體育服晚上穿</strong>；<strong style="color:#dc2626;">不要帶任天堂 Switch 等電玩主機…</strong>。</li>
+          <li style="margin-bottom:6px;"><b style="color:#b91c1c;">三、服裝儀容規範：</b>著合宜便服。女生<strong style="color:#dc2626;">不要穿小可愛、熱褲、短裙！褲子至少一個拳頭高度</strong>；全程穿著<strong style="color:#dc2626;">布鞋</strong>（拖鞋僅限沙灘踏浪活動穿）。</li>
+          <li style="margin-bottom:6px;"><b style="color:#b91c1c;">四、飯店高檔公物愛護：</b>飯店都是五星級飯店，<strong style="color:#dc2626;">地毯很貴、偷抽菸引發灑水設施極為昂貴</strong>，嚴禁抽菸嬉鬧，違者照價賠償！</li>
+          <li style="margin-bottom:6px;"><b style="color:#b91c1c;">五、義大設施安全：</b><strong style="color:#dc2626;">適合自己的遊戲去玩就好！</strong>有<strong style="color:#dc2626;">心臟病或氣喘絕對不要玩刺激的遊戲！</strong>最恐怖的設施不要跟我搶…安全第一！</li>
+          <li><b style="color:#b91c1c;">六、校規紀律與機動車處置：</b>隨隊設有<strong style="color:#dc2626;">機動車巡查</strong>！違犯校規之<strong style="color:#dc2626;">打架、抽菸、喝酒、吃檳榔等（下車再檢查），一律即刻送回學校，家長帶回家管教！記大過處分！</strong></li>
+        </ul>
+      </div>
+
       <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:12px 16px; margin-bottom:16px;">
         <h3 style="color:#166534; font-size:1.05rem; font-weight:800; margin-bottom:4px;">🏕️ 南投國中二年級隔宿露營生活守則</h3>
         <p style="font-size:0.85rem; color:#15803d;">安全是返家的唯一道路，榮譽是全體南投健兒的共同標竿！</p>
