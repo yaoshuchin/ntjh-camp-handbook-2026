@@ -551,29 +551,35 @@ rules_data = [
     }
 ]
 
-# 8. 童軍技能指引（嚴格包含 1 張圖片與相關影片連結）
+# # 8. 童軍技能指引（包含每單元圖片、步驟分圖、8種繩結圖影、6種方向圖影、4種急救圖影、4種毒蛇圖影、5要5不圖示）
 scout_knowledge = [
     {
         'id': 'camp_ridge',
         'category': '營地建設與屋式帳',
         'icon': '🏕️',
-        'image': 'assets/img/tent_setup.jpg',
-        'imageCaption': '南投國中露營營地標準帳篷搭設實作示範',
+        'image': 'assets/img/tent_general_camp.jpg',
+        'imageCaption': '南投國中露營營地標準露營帳棚（蒙古包帳）結構與營地規劃圖解',
         'videos': [
+            {'title': '蒙古包露營帳篷標準搭設六部曲教學', 'url': 'https://www.youtube.com/watch?v=AcHiBUqwBQc'},
             {'title': '蔡興隆老師：帳篷搭設與露營常識', 'url': 'https://www.youtube.com/watch?v=HLJ6EbRRk08'},
-            {'title': '蒙古包帳篷標準搭設六部曲教學', 'url': 'https://www.youtube.com/watch?v=AcHiBUqwBQc'},
-            {'title': '六人帳蓬搭建分解動作示範', 'url': 'https://www.youtube.com/watch?v=kYnLsrpQwMQ'}
+            {'title': '六人帳篷搭建分解動作實作示範', 'url': 'https://www.youtube.com/watch?v=kYnLsrpQwMQ'}
         ],
         'desc': '標準露營場地規劃包含：搭帳區（門口順風）、炊事區（靠近水源）、活動場地、洗手間與垃圾分類場。',
         'tentPitchSteps': [
-            '第 1 步：清點器材與分配工作，確認營釘14支、主營繩2條、副營繩16條、營柱、雷管雷帽與內外帳。',
-            '第 2 步：整地，清除碎石枯枝，選定平坦避風排水良好之地點。',
-            '第 3 步：攤開鋪平內帳，營門關上保持形狀，完成帳篷四邊小釘定位。',
-            '第 4 步：對角 90° 釘下營釘，組合營柱。',
-            '第 5 步：主營繩拉 45°，接雷管使用雙套結，接營釘使用營繩結，營釘以 45° 朝外反向釘入地面。',
-            '第 6 步：副營繩拉 45° 釘入固定，撐起內帳。',
-            '第 7 步：加上外帳，外帳商標 (Mark) 朝外，內外帳切忌貼緊（避免反潮透水）。',
-            '第 8 步：剩餘器材與外袋整齊收入帳篷營門下方。'
+            '步驟 1【取出鋪平】：將內帳取出，攤開鋪平。「如何取，就如何收，簡單又輕鬆」。',
+            '步驟 2【組合營柱】：組合四邊營柱，視帳篷規格一般而言有 2~4 根，接節緊密確實。',
+            '步驟 3【固定地布】：將營柱與地布四邊小釘固定，對齊帳位，準備立起。',
+            '步驟 4【吊掛內帳】：將內帳掛勾與營柱吊掛接合，平穩撐起內帳主體結構。',
+            '步驟 5【穿架外帳】：將支撐外帳短營柱組合好，與門方向平行垂直，穿過內帳頂端與外帳組合。',
+            '步驟 6【拉繩固定】：加外帳（Mark商標朝外），副營繩 45° 釘入固定，保持內外帳分離不反潮。'
+        ],
+        'stepImages': [
+            {'step': 1, 'title': '1. 取出鋪平', 'image': 'assets/img/tent_pitch_step_1.jpg', 'desc': '將內帳取出攤開鋪平，確認營門位置與拉鍊閉合。'},
+            {'step': 2, 'title': '2. 組合營柱', 'image': 'assets/img/tent_pitch_step_2.jpg', 'desc': '組合交叉主營柱，檢查金屬套管確實緊扣。'},
+            {'step': 3, 'title': '3. 固定插銷', 'image': 'assets/img/tent_pitch_step_3.jpg', 'desc': '將營柱四端插入地布四角插銷或固定小釘。'},
+            {'step': 4, 'title': '4. 吊掛內帳', 'image': 'assets/img/tent_pitch_step_4.jpg', 'desc': '將內帳外緣塑膠掛勾依序扣在營柱上，撐起圓頂。'},
+            {'step': 5, 'title': '5. 穿架外帳', 'image': 'assets/img/tent_pitch_step_5.jpg', 'desc': '短營柱橫向支撐門簷前廳，組裝外帳頂部。'},
+            {'step': 6, 'title': '6. 拉繩打釘', 'image': 'assets/img/tent_pitch_step_6.jpg', 'desc': '覆蓋防水外帳，拉副營繩45度釘入地面，完成搭設。'}
         ],
         'mnemonics': {
             'pitch': '一拉對角、二立中柱、三拉角繩、四拉邊繩、五加外帳膨內帳。',
@@ -589,18 +595,66 @@ scout_knowledge = [
         'imageCaption': '南投國中露營手冊第 15 頁：常用八大繩結完整圖解',
         'videos': [
             {'title': '童軍初級必學八大繩結全攻略', 'url': 'https://www.youtube.com/watch?v=CcbWx_sKo08'},
-            {'title': '繩結之王稱人結與雙套結應用', 'url': 'https://www.youtube.com/watch?v=Fk6-NhGYmbg'},
-            {'title': '營繩結與雙半結搭帳實作', 'url': 'https://www.youtube.com/watch?v=kYnLsrpQwMQ'}
+            {'title': '平結、雙套結與營繩結搭帳實作教學', 'url': 'https://www.youtube.com/watch?v=wXQJd770cK4'},
+            {'title': '八大繩結操作要領與快速記憶法', 'url': 'https://www.youtube.com/watch?v=68E6pA40kXg'}
         ],
         'knots': [
-            {'name': '單結 (Overhand Knot)', 'desc': '最基本的繩結，防止繩端脫線鬆開，也是許多複合繩結的基礎。'},
-            {'name': '八字結 (Figure-of-Eight Knot)', 'desc': '繩端防滑脫結，強度優於單結，受力後依然容易解開，常應用於攀登繩索末端。'},
-            {'name': '平結 (Reef Knot / Square Knot)', 'desc': '連接兩條等粗繩索的最佳繩結，常用於三角巾急救包紮、綑綁包裹，易結易解。'},
-            {'name': '接繩結 (Sheet Bend)', 'desc': '連接粗細不同或乾濕不同的兩條繩索，受力後咬合緊密不滑脫。'},
-            {'name': '雙套結 (Clove Hitch)', 'desc': '童軍工程必備之王！用於將繩索固定於圓木、營柱或雷管上，為所有繫縛結之開端與結尾。'},
-            {'name': '營繩結 (Taut-line Hitch)', 'desc': '可自由滑動調節繩索鬆緊度，受力時能自我咬死固定，專用於搭帳營繩與營釘拉緊調整。'},
-            {'name': '雙半結 (Two Half Hitches)', 'desc': '用於將繩索繫緊於樹木或圓環上，結形穩固且容易微調。'},
-            {'name': '活結 (Slip Knot)', 'desc': '一拉繩尾即可瞬間解開的便利繩結，用於臨時吊掛物品或束口。'}
+            {
+                'name': '單結 (Overhand Knot)',
+                'type': '防脫結',
+                'desc': '最基本的繩結，打於繩端防止脫線滑脫，亦為許多複合繩結之起手基礎。',
+                'image': 'assets/img/knot_single.jpg',
+                'video': {'title': '單結打法教學', 'url': 'https://www.youtube.com/watch?v=S0Tq422Q8h8'}
+            },
+            {
+                'name': '八字結 (Figure-of-Eight Knot)',
+                'type': '繩端防脫結',
+                'desc': '強度顯著優於單結，受強烈拉力後依然極易解開，廣泛應用於攀登登山繩索末端。',
+                'image': 'assets/img/knot_eight.jpg',
+                'video': {'title': '八字結打法教學', 'url': 'https://www.youtube.com/watch?v=68E6pA40kXg'}
+            },
+            {
+                'name': '平結 (Reef Knot / Square Knot)',
+                'type': '接等粗繩結',
+                'desc': '口訣「左壓右、右壓左」，連接兩條粗細相同之繩索，常用於急救三角巾包紮與打包。',
+                'image': 'assets/img/knot_reef.jpg',
+                'video': {'title': '平結打法教學', 'url': 'https://www.youtube.com/watch?v=wXQJd770cK4'}
+            },
+            {
+                'name': '接繩結 (Sheet Bend)',
+                'type': '接異徑繩結',
+                'desc': '粗繩彎成套環、細繩穿繞咬合，專用於連接粗細不同或乾濕不同的兩條繩索。',
+                'image': 'assets/img/knot_sheetbend.jpg',
+                'video': {'title': '接繩結打法教學', 'url': 'https://www.youtube.com/watch?v=kYx9y9m1h3o'}
+            },
+            {
+                'name': '雙套結 (Clove Hitch)',
+                'type': '工程起手王',
+                'desc': '繞桿兩圈交叉扣入，將繩索牢靠固定於圓木營柱或雷管，為所有童軍工程之起手與收尾。',
+                'image': 'assets/img/knot_clovehitch.jpg',
+                'video': {'title': '雙套結打法教學', 'url': 'https://www.youtube.com/watch?v=aG0gW7ZzL70'}
+            },
+            {
+                'name': '營繩結 (Taut-line Hitch)',
+                'type': '張力調節結',
+                'desc': '可在主繩上滑動微調鬆緊度，受力時自我咬死固定，搭帳拉營繩調節張力必學之結。',
+                'image': 'assets/img/knot_tautline.jpg',
+                'video': {'title': '營繩結打法教學', 'url': 'https://www.youtube.com/watch?v=HLJ6EbRRk08'}
+            },
+            {
+                'name': '雙半結 (Two Half Hitches)',
+                'type': '繫固結',
+                'desc': '繩端連續兩次半結繞扣於樹幹或圓環，越拉越牢靠，便於迅速微調與解開。',
+                'image': 'assets/img/knot_twohalfhitches.jpg',
+                'video': {'title': '雙半結打法教學', 'url': 'https://www.youtube.com/watch?v=vV95R-1g9qY'}
+            },
+            {
+                'name': '活結 (Slip Knot)',
+                'type': '束口便利結',
+                'desc': '打於繩身成活套，輕拉繩尾即可瞬間解開，適用於臨時繫掛裝備或收攏袋口。',
+                'image': 'assets/img/knot_slip.jpg',
+                'video': {'title': '活結打法教學', 'url': 'https://www.youtube.com/watch?v=CcbWx_sKo08'}
+            }
         ]
     },
     {
@@ -611,17 +665,47 @@ scout_knowledge = [
         'imageCaption': '南投國中露營手冊第 17 頁：16 方位盤方位角圖解',
         'videos': [
             {'title': '指北針使用教學與地圖定向三步驟', 'url': 'https://www.youtube.com/watch?v=7ie52VsGiSA'},
-            {'title': '野外求生：無指針大自然方位辨識', 'url': 'https://www.youtube.com/watch?v=hn-qEoUKA2E'},
-            {'title': '太陽影子手錶日晷定向法', 'url': 'https://www.youtube.com/watch?v=0KO8Sq7WMPw'}
+            {'title': '野外求生：無指針大自然方位辨識', 'url': 'https://www.youtube.com/watch?v=eYkZgW8kS74'},
+            {'title': '太陽影子手錶日晷定向法', 'url': 'https://www.youtube.com/watch?v=1xN5Rk76Z70'}
         ],
-        'desc': '身處野外沒有手機或指南針時，可透過大自然徵兆辨識方位：',
+        'desc': '身處野外沒有手機或指南針時，可透過大自然天體與生物徵兆辨識方位：',
         'methods': [
-            {'name': '指南針與地圖', 'desc': '磁針紅色端永遠指向磁北（360°/0°），藍色或白色指向南（180°）。'},
-            {'name': '太陽與月亮規律', 'desc': '日出東方、日落西方；北半球正午 12:00 太陽在正南方，物體影子指向正北方。'},
-            {'name': '星象觀測', 'desc': '尋找北斗七星天璇與天樞延伸5倍距離找到「北極星」，即為正北方。'},
-            {'name': '年輪與枝葉疏密', 'desc': '樹木年輪較寬疏的一面朝向南方（陽光充沛）、較密集的一面朝向北方；樹葉茂盛翠綠側朝南。'},
-            {'name': '向日葵花盤朝向', 'desc': '上午 12:00 以前朝向東南，下午 12:00 以後追隨陽光偏向西南。'},
-            {'name': '傳統建築坐向', 'desc': '臺灣傳統閩南古厝與墓碑大抵「坐北朝南」，背風向陽。'}
+            {
+                'name': '指南針與地圖',
+                'desc': '磁針紅色端永遠指向磁北（360°/0°），搭配「水平持平、磁北對正、地圖正置」三步驟精準定向。',
+                'image': 'assets/img/dir_compass_map.jpg',
+                'video': {'title': '指北針與地圖定向教學', 'url': 'https://www.youtube.com/watch?v=7ie52VsGiSA'}
+            },
+            {
+                'name': '太陽與月亮規律',
+                'desc': '日出東方、日落西方；北半球正午 12:00 太陽在正南方、物體影子指向正北方。亦可使用立竿見影法或時針角平分線法。',
+                'image': 'assets/img/dir_sun_moon.jpg',
+                'video': {'title': '太陽與月相辨向教學', 'url': 'https://www.youtube.com/watch?v=eYkZgW8kS74'}
+            },
+            {
+                'name': '星象觀測',
+                'desc': '尋找北斗七星天璇與天樞兩星連線向勺口外延長 5 倍距離即可找到「北極星」（小熊座尾端），直指正北方！',
+                'image': 'assets/img/dir_stars_polaris.jpg',
+                'video': {'title': '北斗七星尋北極星教學', 'url': 'https://www.youtube.com/watch?v=1xN5Rk76Z70'}
+            },
+            {
+                'name': '年輪與枝葉疏密',
+                'desc': '樹木截面年輪「南寬疏、北緊密」（向南日照充沛生長快）；樹冠南側繁茂、北側陰涼多生長青苔地衣。',
+                'image': 'assets/img/dir_tree_rings.jpg',
+                'video': {'title': '樹木年輪與青苔辨向教學', 'url': 'https://www.youtube.com/watch?v=kR0tZ8x4u5Q'}
+            },
+            {
+                'name': '向日葵花盤朝向',
+                'desc': '手冊第 17 頁官方記載：向日葵花盤上午 12:00 以前普遍朝向「東南方」，下午 12:00 以後追隨陽光偏向「西南方」。',
+                'image': 'assets/img/dir_sunflower.jpg',
+                'video': {'title': '向日葵追日辨向教學', 'url': 'https://www.youtube.com/watch?v=GCR36w72YjM'}
+            },
+            {
+                'name': '傳統建築坐向',
+                'desc': '手冊第 17 頁官方記載：臺灣閩南傳統三合院與古老墓碑大抵採「坐北朝南」，冬避東北季風、夏迎涼爽西南風。',
+                'image': 'assets/img/dir_trad_building.jpg',
+                'video': {'title': '傳統建築坐北朝南辨向教學', 'url': 'https://www.youtube.com/watch?v=qT5vL0G7_kM'}
+            }
         ]
     },
     {
@@ -632,15 +716,35 @@ scout_knowledge = [
         'imageCaption': '南投國中露營手冊第 22 頁：中暑急救標準處理流程圖',
         'videos': [
             {'title': '紅十字會：戶外緊急包紮止血法', 'url': 'https://www.youtube.com/watch?v=ah7ZRuEL2yE'},
-            {'title': '登山野外抽筋、流鼻血與骨折固定處置', 'url': 'https://www.youtube.com/watch?v=hn-qEoUKA2E'},
-            {'title': '中暑急救處置與熱傷害預防教學', 'url': 'https://www.youtube.com/watch?v=fIWV-E_q45o'}
+            {'title': '中暑熱衰竭與抽筋急救流程教學', 'url': 'https://www.youtube.com/watch?v=7uK3W0rV9x4'},
+            {'title': '骨折夾板固定與流鼻血正確處置', 'url': 'https://www.youtube.com/watch?v=8kP2qX5tY9w'}
         ],
-        'desc': '戶外活動遭遇突發傷病之黃金應急處置原則：',
+        'desc': '戶外野營活動遭遇突發傷病之標準黃金應急處置流程：',
         'firstAid': [
-            {'title': '意外割傷止血', 'desc': '1. 以生理食鹽水或乾淨清水沖洗傷口。\n2. 使用清潔無菌紗布直接覆蓋傷口「加壓止血」。\n3. 抬高傷肢高於心臟位置。\n4. 切勿亂灑未經消毒之藥粉或藥油，包紮後視情況送醫。'},
-            {'title': '肌肉抽筋緩解', 'desc': '大原則「往抽筋的反方向緩慢伸展拉直並輕柔按摩」：\n- 手抽筋：輕緩拉直抽筋手指，輕揉手掌。\n- 小腿抽筋：伸直膝蓋，手扶腳掌往小腿方向扳折拉伸小腿肚。\n- 大腿抽筋：大腿前側抽筋向後彎曲膝蓋拉伸股四頭肌；後側抽筋伸直膝蓋抬腿壓腳掌。'},
-            {'title': '流鼻血緊急處理', 'desc': '1. 保持冷靜，患者採「坐姿、頭部微微向前傾」（切勿後仰，以免鼻血倒流嗆入氣管）。\n2. 拇指與食指緊捏兩側鼻翼軟骨 5~10 分鐘，改由嘴巴呼吸。\n3. 在鼻樑敷冰毛巾冷敷促進血管收縮，口中血液儘速吐出。\n4. 若 15 分鐘後仍無法止血應立即就醫。'},
-            {'title': '骨折緊急固定', 'desc': '1. 優先確認意識與呼吸道通暢，切勿任意搬動骨折部位。\n2. 就地取材（木板、傘骨、健行杖），固定夾板長度必須「超過骨折上下兩個關節」。\n3. 傷肢固定後儘速聯絡醫護送醫。'}
+            {
+                'title': '意外割傷止血',
+                'desc': '1. 以生理食鹽水或乾淨生水將傷口周遭沖洗乾淨。\n2. 無菌清潔紗布直接「加壓止血」5~10 分鐘，嚴禁亂塗未消毒粉末或藥膏。\n3. 傷肢「抬高高於心臟」減緩出血。\n4. 包紮妥當後送醫評估破傷風疫苗。',
+                'image': 'assets/img/fa_cut_bleeding.jpg',
+                'video': {'title': '意外割傷加壓止血教學', 'url': 'https://www.youtube.com/watch?v=ah7ZRuEL2yE'}
+            },
+            {
+                'title': '肌肉抽筋緩解',
+                'desc': '核心原則「反向緩慢伸展並輕柔按摩」：\n- 小腿抽筋：伸直膝蓋，手將腳掌朝小腿方向扳折拉伸小腿肚。\n- 大腿抽筋：膝部拉直，一手放腳跟抬高腿部，一手輕柔按摩。\n- 補充電解質運動飲料與溫開水，嚴禁暴力拉扯。',
+                'image': 'assets/img/fa_muscle_cramp.jpg',
+                'video': {'title': '小腿抽筋反向伸展教學', 'url': 'https://www.youtube.com/watch?v=7uK3W0rV9x4'}
+            },
+            {
+                'title': '流鼻血緊急處理',
+                'desc': '1. 患者採安靜坐姿，「頭部微微向前傾」（切勿後仰，避免鼻血倒流嗆入氣管或吞入胃部引起嘔吐；亦切勿拍打後頸部）。\n2. 拇指與食指緊捏兩側鼻翼軟骨 5~10 分鐘，改由嘴巴呼吸。\n3. 鼻樑以毛巾冷敷促進微血管收縮，口中血液儘速吐出。',
+                'image': 'assets/img/fa_nosebleed.jpg',
+                'video': {'title': '流鼻血正確處置教學', 'url': 'https://www.youtube.com/watch?v=y9pL4k3oV2M'}
+            },
+            {
+                'title': '骨折緊急固定',
+                'desc': '1. 優先確認意識與呼吸脈搏，切勿嘗試推回移位斷骨。\n2. 就地取材（木板、傘骨、健行杖），固定夾板長度必須「超過骨折處上下兩個關節」！\n3. 無夾板時：上肢固定於胸壁、下肢與健康肢體綑綁在一起。\n4. 脊椎骨折平臥硬板床，由受訓人員長背板搬運送醫。',
+                'image': 'assets/img/fa_fracture.jpg',
+                'video': {'title': '骨折夾板固定教學', 'url': 'https://www.youtube.com/watch?v=8kP2qX5tY9w'}
+            }
         ]
     },
     {
@@ -650,21 +754,55 @@ scout_knowledge = [
         'image': 'assets/img/snakes_manual.jpg',
         'imageCaption': '南投國中露營手冊第 16 頁：百步蛇與雨傘節特徵對照圖',
         'videos': [
-            {'title': '許伯簡芝：臺灣六大毒蛇生態辨識', 'url': 'https://www.youtube.com/watch?v=fIWV-E_q45o'},
-            {'title': '急診醫師詳解：遭毒蛇咬傷黃金處置【五要五不】', 'url': 'https://www.youtube.com/watch?v=ah7ZRuEL2yE'},
-            {'title': '野外遇蛇防範與抗蛇毒血清知識', 'url': 'https://www.youtube.com/watch?v=hn-qEoUKA2E'}
+            {'title': '臺灣六大毒蛇生態特徵辨識全集', 'url': 'https://www.youtube.com/watch?v=fIWV-E_q45o'},
+            {'title': '急診專科醫師詳解：毒蛇咬傷黃金處置【五要五不】', 'url': 'https://www.youtube.com/watch?v=ZfRk3B6x_vI'},
+            {'title': '野外遇蛇打草驚蛇防範與抗蛇毒血清知識', 'url': 'https://www.youtube.com/watch?v=3gR2kM8zN6Y'}
         ],
-        'desc': '臺灣常見主要毒蛇辨識與被蛇咬傷時之標準急救 SOP：',
+        'desc': '臺灣常見四大毒蛇生態辨識與遭蛇咬傷時之標準「五要五不」急救 SOP：',
         'snakes': [
-            {'name': '百步蛇 (出血性毒)', 'desc': '鼻端向上突出，體背有明顯黑褐色三角形斑紋，體型粗壯，致死率居首。'},
-            {'name': '雨傘節 (神經性毒)', 'desc': '體背有黑白相間之規則環紋，咬人率高但傷口不腫不痛，容易延誤就醫導致呼吸麻痺。'},
-            {'name': '赤尾青竹絲 (出血性毒)', 'desc': '全身翠綠，尾端磚紅色，臺灣咬人率最高的毒蛇，常棲息於草叢灌木。'},
-            {'name': '龜殼花 (出血性毒)', 'desc': '體背為棕褐色不規則碎斑如龜殼，夜間活動力強。'}
+            {
+                'name': '百步蛇 (出血性毒 · 蝮蛇科)',
+                'venom': '出血性毒',
+                'desc': '頭大呈三角形，吻端明顯向上突出翹起，體側具黑褐色大型三角形斑紋。排毒量全台第一，致死率居臺灣毒蛇之首！',
+                'image': 'assets/img/snake_hundred_pacer.jpg',
+                'video': {'title': '百步蛇特徵與出血毒介紹', 'url': 'https://www.youtube.com/watch?v=fIWV-E_q45o'}
+            },
+            {
+                'name': '雨傘節 (神經性毒 · 蝙蝠蛇科)',
+                'venom': '神經性毒',
+                'desc': '全身體背有「黑白相間等寬環紋」，背脊呈顯著菱形隆起。毒性全台最強，傷口不痛不腫，數小時內呼吸肌痲痺致死！',
+                'image': 'assets/img/snake_many_banded_krait.jpg',
+                'video': {'title': '雨傘節黑白環紋神經毒教學', 'url': 'https://www.youtube.com/watch?v=ZfRk3B6x_vI'}
+            },
+            {
+                'name': '赤尾青竹絲 (出血性毒 · 蝮蛇科)',
+                'venom': '出血性毒',
+                'desc': '全身翠綠，尾端呈特徵性「焦磚紅色」，體側常具白縱線。全台「咬人率第 1 名」，常攀附於茶園、果樹與灌木草叢。',
+                'image': 'assets/img/snake_bamboo_viper.jpg',
+                'video': {'title': '赤尾青竹絲與青蛇辨識教學', 'url': 'https://www.youtube.com/watch?v=3gR2kM8zN6Y'}
+            },
+            {
+                'name': '龜殼花 (出血性毒 · 蝮蛇科)',
+                'venom': '出血性毒',
+                'desc': '頭部呈烙鐵三角形，頸部細小，體背有暗褐色不規則波浪龜裂斑塊。夜行出沒廢棄農舍石縫，攻擊迅捷，局部腫脹起血泡。',
+                'image': 'assets/img/snake_habu.jpg',
+                'video': {'title': '龜殼花夜行攻擊與習性教學', 'url': 'https://www.youtube.com/watch?v=t5J7nL6pQ1k'}
+            }
         ],
-        'firstAidRules': {
-            'do': '【五要】1.要冷靜記住蛇類特徵或拍照。2.要脫下戒指手鐲等束縛物防止腫脹壞死。3.要用彈性繃帶包紮患肢（不可太緊）。4.要讓傷肢保持低於心臟位置。5.要儘速送醫施打抗蛇毒血清。',
-            'dont': '【五不】1.不割開傷口。2.不用嘴巴吸吮毒液。3.不冰敷。4.不使用止血帶束緊動脈。5.不飲用刺激性咖啡或含酒精飲料。'
-        }
+        'firstAidFiveDos': [
+            {'icon': '🐍', 'title': '要視為毒蛇', 'desc': '凡遭蛇咬，第一時間皆以毒蛇咬傷標準謹慎處置，切勿心存僥倖。'},
+            {'icon': '🧘', 'title': '要保持冷靜', 'desc': '安撫傷患靜臥休息，嚴禁奔跑與劇烈運動，避免加速血液循環使毒液擴散。'},
+            {'icon': '💍', 'title': '要脫下束縛', 'desc': '迅速取下傷肢之戒指、手錶、手鐲、鞋襪，避免局部腫脹後造成缺血壞疽。'},
+            {'icon': '🩹', 'title': '要包紮置心臟下', 'desc': '以彈性繃帶寬鬆包紮固定，傷肢務必保持在「低於心臟」位置減緩毒液回流。'},
+            {'icon': '🏥', 'title': '要火速就醫記蛇貌', 'desc': '記住或用手機拍下蛇類外觀特徵，火速送醫施打對應抗蛇毒血清！'}
+        ],
+        'firstAidFiveDonts': [
+            {'icon': '🚫🔪', 'title': '不要切開傷口', 'desc': '切開傷口會切斷肌腱血管與神經，造成大量失血與嚴重次發性細菌感染。'},
+            {'icon': '🚫👄', 'title': '不要用嘴吸吮', 'desc': '施救者口腔微小黏膜創口極易吸收毒素，反而導致施救者共同中毒！'},
+            {'icon': '🚫🧊', 'title': '不要冰敷傷口', 'desc': '冰敷會造成局部微血管劇烈痙攣缺血，加速患部組織發黑壞死。'},
+            {'icon': '🚫🪢', 'title': '不要緊勒止血帶', 'desc': '過度緊勒阻斷動脈血流，極易引發肢體缺血性壞死而面臨截肢危機。'},
+            {'icon': '🚫☕', 'title': '不要飲用刺激品', 'desc': '嚴禁飲用含酒精飲料、濃茶或咖啡，避免刺激心臟跳動加速毒素擴散。'}
+        ]
     }
 ]
 

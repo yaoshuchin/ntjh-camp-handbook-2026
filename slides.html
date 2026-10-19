@@ -148,7 +148,10 @@
 </head>
 <body class="deck" data-mode="present">
 <header class="deck-bar">
-  <span class="deck-id">南投國中 115 隔宿露營</span>
+  <div style="display:flex; align-items:center; gap:10px;">
+    <img src="assets/img/school_logo.png" alt="南投國中 Logo" style="height:32px; width:auto; background:#fff; padding:2px 4px; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,0.3);">
+    <span class="deck-id">南投國中 115 隔宿露營</span>
+  </div>
   <span class="deck-name">二年級隔宿露營行動簡報手冊（去個資版）</span>
   <div class="deck-tools" id="deck-tools">
     <button class="deck-btn" id="nav-prev-top" type="button" title="上一頁 (← / P)">◀ 上一頁</button>
@@ -164,6 +167,10 @@
 
   <!-- Slide 01: 封面 -->
   <section class="slide slide-cover" id="slide-01">
+    <div style="display:flex; align-items:center; justify-content:center; gap:20px; margin-bottom:14px;">
+      <img src="assets/img/school_logo.png" alt="南投國中 校徽 Logo" style="height:76px; width:auto; background:#fff; padding:4px 8px; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,0.4);">
+      <img src="assets/img/site_qr.png" alt="手冊 QR Code" style="height:76px; width:76px; background:#fff; padding:4px; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,0.4);" title="手機掃描立即同步瀏覽">
+    </div>
     <p class="s-eyebrow">南投縣立南投國民中學 · 115 學年度 · 二年級戶外教育活動</p>
     <h1 class="s-title-xl" style="font-size: 44px; line-height: 1.25;">隔宿露營 行動簡報手冊<br><span style="font-size:30px; color:var(--cf-accent);">尖山埤山訓探索 · 野營炊事 · 團結成長之旅（去個資版）</span></h1>
     <p class="s-sub" style="font-size: 17px; margin-top: 14px;">
@@ -346,10 +353,10 @@
     </div>
   </section>
 
-  <!-- Slide 06: 野營常識 ① 營地建設與屋式帳 -->
+  <!-- Slide 06: 野營常識 ① 營地建設與一般帳棚 -->
   <section class="slide" id="slide-06">
     <p class="s-eyebrow">CAMPING SKILLS · 教學參考 ①</p>
-    <h2 class="s-title">野營常識 · 營地規劃原則與屋式帳器材步驟</h2>
+    <h2 class="s-title">野營常識 · 營地規劃原則與標準一般露營帳棚</h2>
     <div class="s-body">
       <div class="cols c2">
         <div>
@@ -364,75 +371,72 @@
             </div>
           </div>
           <div class="card-slide">
-            <h4>📦 屋式帳標準器材</h4>
-            <div style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
-              營釘 14 支 ｜ 主營繩 2 條、副營繩 16 條 ｜ 營柱、雷管、雷帽 ｜ 營樑、內帳、外帳。
+            <h4>📦 一般露營帳（蒙古包帳）標準器材</h4>
+            <div style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.5;">
+              鋼質營釘 14 支 ｜ 主營繩 2 條、副營繩 16 條 ｜ 玻璃纖維/鋁合金營柱 ｜ 防水外帳、透氣內帳、防潮地布。
             </div>
-          </div>
-        </div>
-        <div>
-          <div class="card-slide">
-            <h4>⛺ 屋式帳搭設十步驟（手冊官方標準）</h4>
-            <ol style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.45; padding-left:18px;">
-              <li>先清點器材，分配工作 ｜ 2. 整地排除尖石枯枝</li>
-              <li>營門關上保持帳形 ｜ 4. 所有的帳篷定位對齊</li>
-              <li>對角 90° 釘下營釘 ｜ 6. 組合金屬營柱</li>
-              <li>主營繩拉 45°，接雷管用<b>雙套結</b>，接營釘用<b>營繩結</b>，營釘 45° 釘入</li>
-              <li>副營繩拉 45°，營釘 45° 釘入固定</li>
-              <li>加外帳，Mark（商標）朝外</li>
-              <li>剩餘器材和袋子整齊收入帳篷營門下方</li>
-            </ol>
           </div>
           <div class="tip" style="margin-top:6px;">
             <span class="tip-tag">搭帳口訣</span>
             <div class="tip-body"><b>一拉對角、二立中柱、三拉角繩、四拉邊繩、五加外帳膨內帳</b>！</div>
           </div>
         </div>
+        <div>
+          <img class="img-slide" src="assets/img/tent_general_camp.jpg" alt="標準露營帳棚圖解" style="height:210px; object-fit:contain; background:#fff; padding:2px;">
+          <div class="deck-res-box" style="margin-top:6px;">
+            <div class="deck-res-row">
+              <span class="deck-res-label">影片：</span>
+              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=AcHiBUqwBQc" target="_blank">🎬 蒙古包帳篷標準搭設</a>
+              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=HLJ6EbRRk08" target="_blank">🎬 蔡興隆老師露營常識</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 07: 野營常識 ② 帳棚搭設圖文與無痕山林 -->
+  <!-- Slide 07: 野營常識 ② 屋式帳搭設步驟（每步附圖） -->
   <section class="slide" id="slide-07">
     <p class="s-eyebrow">CAMPING SKILLS · 教學參考 ②</p>
-    <h2 class="s-title">野營常識 · 帳棚搭設四步驟圖解 ＆ 無痕山林 (LNT)</h2>
+    <h2 class="s-title">野營常識 · 帳棚搭設六步驟分解圖解（手冊第 14 頁）</h2>
     <div class="s-body">
-      <div class="cols c2">
-        <div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-            <div class="card-slide">
-              <h4 style="font-size:12.5px;">1. 取出鋪平</h4>
-              <p style="font-size:11px; color:var(--cf-text-dim);">將內帳取出攤開鋪平。「如何取就如何收，簡單又輕鬆」。</p>
-            </div>
-            <div class="card-slide">
-              <h4 style="font-size:12.5px;">2. 組合營柱</h4>
-              <p style="font-size:11px; color:var(--cf-text-dim);">組合四邊營柱，視帳篷規格一般而言有 2-4 根，接節緊密。</p>
-            </div>
-            <div class="card-slide">
-              <h4 style="font-size:12.5px;">3. 吊掛內帳</h4>
-              <p style="font-size:11px; color:var(--cf-text-dim);">營柱與地布四邊小釘固定，內帳與營柱吊掛接合撐起內帳。</p>
-            </div>
-            <div class="card-slide">
-              <h4 style="font-size:12.5px;">4. 穿架外帳</h4>
-              <p style="font-size:11px; color:var(--cf-text-dim);">短營柱組合好與營門方向平行垂直，穿過內帳頂端與外帳組合。</p>
-            </div>
-          </div>
-          <div class="card-slide" style="margin-top:6px;">
-            <h4>🌿 無痕山林 (LNT) 七大原則</h4>
-            <div style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.45;">
-              1.事前充分準備 2.在堅實地面紮營 3.妥善處理廢棄物 4.保持環境原貌 5.減低用火影響 6.尊重野生動物 7.考量其他使用者。
-            </div>
-          </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px;">
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/tent_pitch_step_1.jpg" alt="1. 取出鋪平" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">1. 取出鋪平</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">內帳攤開鋪平，營門拉鍊閉合。「如何取就如何收」。</p>
         </div>
-        <div>
-          <img class="img-slide" src="assets/img/tent_setup.jpg" alt="帳棚搭設">
-          <div class="deck-res-box" style="margin-top:6px;">
-            <div class="deck-res-row">
-              <span class="deck-res-label">影片：</span>
-              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=AcHiBUqwBQc" target="_blank">🎬 蒙古包帳篷搭設</a>
-              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=HLJ6EbRRk08" target="_blank">🎬 6人帳實作教學</a>
-            </div>
-          </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/tent_pitch_step_2.jpg" alt="2. 組合營柱" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">2. 組合營柱</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">組合交叉四邊營柱，檢查金屬套管確實緊扣。</p>
+        </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/tent_pitch_step_3.jpg" alt="3. 固定插銷" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">3. 固定插銷</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">營柱四端插入地布四角插銷或小釘對齊定位。</p>
+        </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/tent_pitch_step_4.jpg" alt="4. 吊掛內帳" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">4. 吊掛內帳</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">將內帳掛勾依序扣在營柱上，平穩撐起內帳主體。</p>
+        </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/tent_pitch_step_5.jpg" alt="5. 穿架外帳" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">5. 穿架外帳</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">短營柱橫向支撐門簷前廳，穿過頂端與外帳組合。</p>
+        </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/tent_pitch_step_6.jpg" alt="6. 拉繩打釘" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">6. 拉繩打釘</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">覆蓋防水外帳，拉副營繩45度釘入，維持內外分離。</p>
+        </div>
+      </div>
+      <div class="deck-res-box" style="margin-top:6px;">
+        <div class="deck-res-row">
+          <span class="deck-res-label">影片：</span>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=kYnLsrpQwMQ" target="_blank">🎬 六人帳篷搭建分解示範</a>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=AcHiBUqwBQc" target="_blank">🎬 蒙古包標準搭設步驟</a>
         </div>
       </div>
     </div>
@@ -517,232 +521,286 @@
     </div>
   </section>
 
-  <!-- Slide 10: 童軍技能 ② 戰術偽裝與方向辨識 -->
+  <!-- Slide 10: 童軍技能 ② 自然方向辨識 6 大模式 -->
   <section class="slide" id="slide-10">
     <p class="s-eyebrow">SCOUT SKILLS · 教學參考 ⑤</p>
-    <h2 class="s-title">童軍技能 · 戰術偽裝原則與自然方向辨識 (16方位)</h2>
+    <h2 class="s-title">童軍技能 · 自然方向辨識六大模式（每種附圖解與影音）</h2>
     <div class="s-body">
-      <div class="cols c2">
-        <div>
-          <div class="card-slide" style="margin-bottom:8px;">
-            <h4>🪖 面部偽裝「凸暗凹亮」打破輪廓原則</h4>
-            <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
-              <b>凸處塗暗</b>：額頭、鼻樑、顴骨、下巴等反光面塗深綠/黑色迷彩。<br>
-              <b>凹處塗亮</b>：眼窩、人中、頸項陰影部位塗淡草綠色。<br>
-              <b>破壞對稱</b>：以斜斑紋塗抹，破壞人臉原有生理輪廓，完美隱身草叢。
-            </p>
-          </div>
-          <div class="card-slide">
-            <h4>🧭 自然方向辨識（手冊官方記載）</h4>
-            <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.45;">
-              1. <b>指針與地圖</b>：指南針磁北校正。<br>
-              2. <b>日月星象</b>：日出東日落西；北斗七星尋北極星（正北方）。<br>
-              3. <b>樹木年輪</b>：密者為北（南向陽光多年輪疏寬，北向年輪密集）。<br>
-              4. <b>樹木茂密</b>：密者為南、青苔多者為北。<br>
-              5. <b>向日葵</b>：12:00 以前朝向東南，12:00 以後朝向西南。<br>
-              6. <b>古老房舍與墓碑</b>：閩南傳統建築大多「坐北朝南」。
-            </p>
-          </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px;">
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/dir_compass_map.jpg" alt="指南針與地圖" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">🧭 指南針與地圖</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">磁針紅端直指磁北(0°)，地圖正置定向三步驟。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=7ie52VsGiSA" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 指南針教學</a>
         </div>
-        <div>
-          <div class="card-slide" style="margin-bottom:6px;">
-            <h4>🧭 16 方位盤角度速查</h4>
-            <div style="font-size:11px; color:var(--cf-text-dim); line-height:1.4;">
-              1. 北 0° ｜ 2. 北北東 22.5° ｜ 3. 東北 45° ｜ 4. 東東北 67.5°<br>
-              5. 東 90° ｜ 6. 東南東 112.5° ｜ 7. 東南 135° ｜ 8. 南南東 157.5°<br>
-              9. 南 180° ｜ 10. 南南西 202.5° ｜ 11. 西南 225° ｜ 12. 西南西 247.5°<br>
-              13. 西 270° ｜ 14. 西西北 292.5° ｜ 15. 西北 315° ｜ 16. 北西北 337.5°
-            </div>
-          </div>
-          <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
-            <img class="img-slide" src="assets/img/direction_16_compass.jpg" alt="16 方位盤圖解" style="height:110px; width:auto; max-width:140px; object-fit:contain; background:#fff; padding:4px;">
-            <div class="deck-res-box" style="flex:1; margin-top:0;">
-              <div class="deck-res-row">
-                <span class="deck-res-label">影片：</span>
-                <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=7ie52VsGiSA" target="_blank">🎬 指北針教學</a>
-                <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=eYkZgW8kS74" target="_blank">🎬 自然定向法</a>
-              </div>
-            </div>
-          </div>
-          <div class="tip">
-            <span class="tip-tag">追蹤記號</span>
-            <div class="tip-body">以落葉、枯枝或石塊擺成箭頭、叉號或藏寶信號，引導隊友行進定向。</div>
-          </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/dir_sun_moon.jpg" alt="太陽與月亮規律" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">☀️ 太陽與月亮規律</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">日出東落西，正午影子指北；立竿見影與月相法。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=eYkZgW8kS74" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 日月定向教學</a>
+        </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/dir_stars_polaris.jpg" alt="星象觀測" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">✨ 星象觀測尋北極星</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">北斗七星天璇天樞延5倍，夜間直指正北方。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=1xN5Rk76Z70" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 星象觀測教學</a>
+        </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/dir_tree_rings.jpg" alt="年輪與枝葉疏密" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">🌲 年輪與枝葉疏密</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">樹木年輪南寬北密；南側茂盛，北側陰暗青苔多。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=kR0tZ8x4u5Q" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 植物年輪教學</a>
+        </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/dir_sunflower.jpg" alt="向日葵花盤朝向" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">🌻 向日葵花盤朝向</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">手冊官方記載：上午朝東南、下午朝西南。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=GCR36w72YjM" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 向日葵追日教學</a>
+        </div>
+        <div class="card-slide" style="padding:6px;">
+          <img src="assets/img/dir_trad_building.jpg" alt="傳統建築坐向" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
+          <h4 style="font-size:11.5px; margin:4px 0 2px;">🏛️ 傳統建築坐向</h4>
+          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">手冊官方記載：臺灣閩南傳統三合院大抵坐北朝南。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=qT5vL0G7_kM" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 古厝坐向教學</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 11: 童軍技能 ③ 常用八大繩結 -->
+  <!-- Slide 11: 童軍技能 ③ 常用八大繩結（每種附圖解與教學影片） -->
   <section class="slide" id="slide-11">
     <p class="s-eyebrow">SCOUT SKILLS · 教學參考 ⑥</p>
-    <h2 class="s-title">童軍技能 · 出神入化！手冊常用八大繩結</h2>
+    <h2 class="s-title">童軍技能 · 出神入化！手冊常用八大繩結（每種附圖解與教學影音）</h2>
     <div class="s-body">
-      <div class="cols c2">
-        <div>
-          <table class="table-deck">
-            <thead><tr><th>繩結名稱</th><th>用途類別</th><th>操作要領與應用場合</th></tr></thead>
-            <tbody>
-              <tr><td><strong>單結</strong></td><td>防脫結</td><td>最基礎繩結，打於繩尾防止脫線滑脫</td></tr>
-              <tr><td><strong>八字結</strong></td><td>繩端結</td><td>強度優於單結，受力後極易解開，登山攀岩必備</td></tr>
-              <tr><td><strong>活結</strong></td><td>束口吊掛</td><td>輕拉繩尾即可瞬間解開，臨時繫綁行李</td></tr>
-              <tr><td><strong>平結</strong></td><td>接等粗繩</td><td>左壓右右壓左，連接粗細相同之繩索，急救三角巾包紮</td></tr>
-              <tr><td><strong>接繩結</strong></td><td>接異徑繩</td><td>粗繩成環細繩穿繞，連接粗細不同或乾濕不同之繩</td></tr>
-              <tr><td><strong>雙套結</strong></td><td>工程起手</td><td>繞桿兩圈交叉扣入，搭帳固定於營柱雷管必備之王</td></tr>
-              <tr><td><strong>雙半結</strong></td><td>繫固於樁</td><td>兩次半結繞固定於樹木或圓環，越拉越牢</td></tr>
-              <tr><td><strong>營繩結</strong></td><td>張力調節</td><td>可滑動微調長度張力，受力咬死，搭帳拉營繩必備</td></tr>
-            </tbody>
-          </table>
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px;">
+        <div class="card-slide" style="padding:5px;">
+          <img src="assets/img/knot_single.jpg" alt="單結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
+          <h4 style="font-size:11px; margin:3px 0 1px;">單結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(防脫結)</span></h4>
+          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">最基礎繩結，打於繩尾防止脫線滑脫。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=S0Tq422Q8h8" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 單結教學</a>
         </div>
-        <div>
-          <img class="img-slide" src="assets/img/rope_knots_manual.jpg" alt="八大繩結手冊圖解" style="height:175px; object-fit:contain; background:#fff; padding:4px;">
-          <div class="deck-res-box" style="margin-top:6px;">
-            <div class="deck-res-row">
-              <span class="deck-res-label">影片：</span>
-              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=CcbWx_sKo08" target="_blank">🎬 八大繩結全攻略</a>
-              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=wXQJd770cK4" target="_blank">🎬 雙套與營繩結教學</a>
-            </div>
-          </div>
-          <div class="tip" style="margin-top:6px;">
-            <span class="tip-tag">練習口訣</span>
-            <div class="tip-body"><b>平結接等粗、接繩接異徑；雷管用雙套、營繩結調拉線</b>！童軍繩隨身帶隨手練。</div>
-          </div>
+        <div class="card-slide" style="padding:5px;">
+          <img src="assets/img/knot_eight.jpg" alt="八字結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
+          <h4 style="font-size:11px; margin:3px 0 1px;">八字結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(繩端防脫)</span></h4>
+          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">強度優於單結，受力後極易解開，攀岩必備。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=68E6pA40kXg" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 八字結教學</a>
+        </div>
+        <div class="card-slide" style="padding:5px;">
+          <img src="assets/img/knot_reef.jpg" alt="平結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
+          <h4 style="font-size:11px; margin:3px 0 1px;">平結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(接等粗繩)</span></h4>
+          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">左壓右右壓左，接等粗繩索，三角巾急救。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=wXQJd770cK4" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 平結教學</a>
+        </div>
+        <div class="card-slide" style="padding:5px;">
+          <img src="assets/img/knot_sheetbend.jpg" alt="接繩結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
+          <h4 style="font-size:11px; margin:3px 0 1px;">接繩結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(接異徑繩)</span></h4>
+          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">粗繩成環細繩穿繞，連接粗細乾濕不同繩索。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=kYx9y9m1h3o" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 接繩結教學</a>
+        </div>
+        <div class="card-slide" style="padding:5px;">
+          <img src="assets/img/knot_clovehitch.jpg" alt="雙套結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
+          <h4 style="font-size:11px; margin:3px 0 1px;">雙套結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(工程起手)</span></h4>
+          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">繞桿兩圈交叉扣入，固定營柱雷管必備之王。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=aG0gW7ZzL70" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 雙套結教學</a>
+        </div>
+        <div class="card-slide" style="padding:5px;">
+          <img src="assets/img/knot_tautline.jpg" alt="營繩結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
+          <h4 style="font-size:11px; margin:3px 0 1px;">營繩結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(張力調節)</span></h4>
+          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">滑動微調長度張力，受力咬死，搭帳拉繩必備。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=HLJ6EbRRk08" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 營繩結教學</a>
+        </div>
+        <div class="card-slide" style="padding:5px;">
+          <img src="assets/img/knot_twohalfhitches.jpg" alt="雙半結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
+          <h4 style="font-size:11px; margin:3px 0 1px;">雙半結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(繫固於樁)</span></h4>
+          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">兩次半結繞固定於樹木或圓環，越拉越牢。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=vV95R-1g9qY" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 雙半結教學</a>
+        </div>
+        <div class="card-slide" style="padding:5px;">
+          <img src="assets/img/knot_slip.jpg" alt="活結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
+          <h4 style="font-size:11px; margin:3px 0 1px;">活結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(束口吊掛)</span></h4>
+          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">拉繩尾即可瞬間解開，適用臨時繫綁行李。</p>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=CcbWx_sKo08" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 活結教學</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 12: 野外安全 ① 臺灣毒蛇辨識 -->
+  <!-- Slide 12: 野外安全 ① 臺灣四大毒蛇（每種附圖解與教學影音） -->
   <section class="slide" id="slide-12">
     <p class="s-eyebrow">OUTDOOR SAFETY · 教學參考 ⑦</p>
-    <h2 class="s-title">野外安全 · 臺灣主要毒蛇辨識與習性</h2>
+    <h2 class="s-title">野外安全 · 臺灣主要毒蛇辨識與習性（每種附圖解與教學影音）</h2>
     <div class="s-body">
-      <div class="grid-deck-2">
-        <div class="card-slide" style="border-left:4px solid #ef4444;">
-          <h4 style="color:#f87171;">百步蛇 (出血性毒 · 蝮蛇科)</h4>
-          <p style="font-size:12px; line-height:1.5; color:var(--cf-text-dim);">
-            <b>特徵</b>：頭大呈三角形，吻端明顯向上突出翹起，體側黑褐色大三角形斑紋。<br>
-            <b>危險</b>：排毒量大，咬人率第五，<b>致死率第一</b>！皮下嚴重出血壞死。
-          </p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div class="card-slide" style="border-left:4px solid #ef4444; padding:6px; display:flex; gap:8px; align-items:center;">
+          <img src="assets/img/snake_hundred_pacer.jpg" alt="百步蛇" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+              <h4 style="color:#f87171; font-size:12px; margin:0;">百步蛇</h4>
+              <span style="font-size:9.5px; background:rgba(239,68,68,0.2); color:#fca5a5; padding:1px 5px; border-radius:3px;">出血性毒</span>
+            </div>
+            <p style="font-size:10px; line-height:1.35; color:var(--cf-text-dim); margin:0 0 4px;">頭大呈三角形，吻端向上翹起，側有黑褐三角形斑。排毒量大，致死率居首！</p>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=fIWV-E_q45o" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 百步蛇特徵介紹</a>
+          </div>
         </div>
-        <div class="card-slide" style="border-left:4px solid #ef4444;">
-          <h4 style="color:#f87171;">雨傘節 (神經性毒 · 蝙蝠蛇科)</h4>
-          <p style="font-size:12px; line-height:1.5; color:var(--cf-text-dim);">
-            <b>特徵</b>：體背黑白相間等寬環紋，背脊呈菱形隆起。<br>
-            <b>危險</b>：咬人率第三，<b>致死率第二</b>！咬傷不痛不腫，數小時內呼吸衰竭！
-          </p>
+
+        <div class="card-slide" style="border-left:4px solid #ef4444; padding:6px; display:flex; gap:8px; align-items:center;">
+          <img src="assets/img/snake_many_banded_krait.jpg" alt="雨傘節" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+              <h4 style="color:#f87171; font-size:12px; margin:0;">雨傘節</h4>
+              <span style="font-size:9.5px; background:rgba(239,68,68,0.2); color:#fca5a5; padding:1px 5px; border-radius:3px;">神經性毒</span>
+            </div>
+            <p style="font-size:10px; line-height:1.35; color:var(--cf-text-dim); margin:0 0 4px;">體背黑白相間等寬環紋，背脊呈菱形隆起。咬傷不痛不腫，數小時內呼吸衰竭！</p>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=ZfRk3B6x_vI" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 雨傘節生態教學</a>
+          </div>
         </div>
-        <div class="card-slide" style="border-left:4px solid #f59e0b;">
-          <h4 style="color:#fbbf24;">赤尾青竹絲 (出血性毒 · 蝮蛇科)</h4>
-          <p style="font-size:12px; line-height:1.5; color:var(--cf-text-dim);">
-            <b>特徵</b>：體色翠綠，尾端磚紅色，體側有一條白色縱線。<br>
-            <b>危險</b>：台灣咬人率最高（常棲於草叢灌木），毒性相對較溫和。
-          </p>
+
+        <div class="card-slide" style="border-left:4px solid #f59e0b; padding:6px; display:flex; gap:8px; align-items:center;">
+          <img src="assets/img/snake_bamboo_viper.jpg" alt="赤尾青竹絲" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+              <h4 style="color:#fbbf24; font-size:12px; margin:0;">赤尾青竹絲</h4>
+              <span style="font-size:9.5px; background:rgba(245,158,11,0.2); color:#fde68a; padding:1px 5px; border-radius:3px;">出血性毒</span>
+            </div>
+            <p style="font-size:10px; line-height:1.35; color:var(--cf-text-dim); margin:0 0 4px;">體色翠綠，尾端磚紅色，體側白縱線。台灣咬人率最高（常棲灌木草叢）。</p>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=3gR2kM8zN6Y" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 青竹絲辨識教學</a>
+          </div>
         </div>
-        <div class="card-slide" style="border-left:4px solid #f59e0b;">
-          <h4 style="color:#fbbf24;">龜殼花 (出血性毒 · 蝮蛇科)</h4>
-          <p style="font-size:12px; line-height:1.5; color:var(--cf-text-dim);">
-            <b>特徵</b>：頭部呈烙鐵三角形，背部有褐色不規則波浪龜裂狀斑塊。<br>
-            <b>危險</b>：夜間出沒於枯枝落葉堆，出血毒性強，咬傷腫脹血泡。
-          </p>
+
+        <div class="card-slide" style="border-left:4px solid #f59e0b; padding:6px; display:flex; gap:8px; align-items:center;">
+          <img src="assets/img/snake_habu.jpg" alt="龜殼花" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+              <h4 style="color:#fbbf24; font-size:12px; margin:0;">龜殼花</h4>
+              <span style="font-size:9.5px; background:rgba(245,158,11,0.2); color:#fde68a; padding:1px 5px; border-radius:3px;">出血性毒</span>
+            </div>
+            <p style="font-size:10px; line-height:1.35; color:var(--cf-text-dim); margin:0 0 4px;">頭烙鐵三角形，背部有暗褐龜裂斑塊。夜行出沒落葉堆，出血毒性強，咬傷起血泡。</p>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=t5J7nL6pQ1k" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 龜殼花習性教學</a>
+          </div>
         </div>
       </div>
-      <div class="tip" style="margin-top:8px;">
+      <div class="tip" style="margin-top:6px;">
         <span class="tip-tag">防蛇鐵則</span>
         <div class="tip-body">戶外野外行進落實<b>「打草驚蛇」</b>；穿著長褲布鞋、夜間攜手電筒，嚴禁徒手翻動草叢與石塊！</div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 13: 野外安全 ② 蛇傷急救【五要五不】 -->
+  <!-- Slide 13: 野外安全 ② 蛇傷急救【五要五不】每句附專屬圖示 -->
   <section class="slide" id="slide-13">
     <p class="s-eyebrow">FIRST AID · 教學參考 ⑧</p>
-    <h2 class="s-title">野外安全 · 毒蛇咬傷黃金自救【五要五不】原則</h2>
+    <h2 class="s-title">野外安全 · 毒蛇咬傷自救【五要五不】圖示原則</h2>
     <div class="s-body">
       <div class="cols c2">
-        <div class="card-slide" style="border-left:4px solid #22c55e;">
-          <h4 style="color:#4ade80;">✅ 毒蛇咬傷【五要】原則</h4>
-          <ul style="font-size:12.5px; line-height:1.6; color:var(--cf-text-dim); padding-left:16px;">
-            <li><b>要視為毒蛇</b>：凡遭蛇咬，第一時間皆以毒蛇咬傷處理。</li>
-            <li><b>要保持冷靜</b>：安撫傷患靜坐，避免奔跑劇烈運動加速血液循環。</li>
-            <li><b>要脫下束縛物</b>：迅速取下傷肢之戒指、手錶、手鐲，避免腫脹缺血壞死。</li>
-            <li><b>要彈性包紮固定</b>：以彈性繃帶寬鬆包紮，患肢保持<b>低於心臟</b>位置。</li>
-            <li><b>要火速送醫</b>：記下或拍下蛇類外觀特徵，儘速送醫施打對應抗蛇毒血清。</li>
-          </ul>
+        <div class="card-slide" style="border-left:4px solid #22c55e; padding:8px;">
+          <h4 style="color:#4ade80; margin-bottom:6px; font-size:13px;">✅ 毒蛇咬傷【五要】原則</h4>
+          <div style="display:grid; gap:4px;">
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🐍</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">要視為毒蛇</b>：遭蛇咬第一時間皆以毒蛇咬傷謹慎處置。</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🧘</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">要保持冷靜</b>：安撫傷患靜臥，避免奔跑劇烈運動加速血液循環。</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">💍</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">要脫下束縛</b>：取下戒指手錶手鐲鞋襪，避免腫脹缺血壞死。</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🩹</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">要包紮置心下</b>：彈性繃帶寬鬆包紮，患肢保持<b>低於心臟</b>位置。</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🏥</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">要火速就醫</b>：記下或拍下蛇類外觀，速就醫施打對應血清！</div>
+            </div>
+          </div>
         </div>
-        <div class="card-slide" style="border-left:4px solid #ef4444;">
-          <h4 style="color:#f87171;">❌ 毒蛇咬傷【五不】禁忌</h4>
-          <ul style="font-size:12.5px; line-height:1.6; color:var(--cf-text-dim); padding-left:16px;">
-            <li><b>不要切開傷口</b>：切開會破壞血管肌腱，造成大量失血與細菌感染。</li>
-            <li><b>不要用嘴吸吮</b>：口腔微創黏膜會吸收毒素，造成施救者中毒！</li>
-            <li><b>不要冰敷傷口</b>：冰敷造成極度血管痙攣，加速局部組織壞疽。</li>
-            <li><b>不要使用止血帶勒緊</b>：過度束緊阻斷動脈，易引發缺血截肢危機！</li>
-            <li><b>不要飲用刺激品</b>：嚴禁飲酒、濃茶或咖啡，避免擴散毒素。</li>
-          </ul>
+
+        <div class="card-slide" style="border-left:4px solid #ef4444; padding:8px;">
+          <h4 style="color:#f87171; margin-bottom:6px; font-size:13px;">❌ 毒蛇咬傷【五不】禁忌</h4>
+          <div style="display:grid; gap:4px;">
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🚫🔪</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">不要切開傷口</b>：破壞肌腱血管，造成大量失血與感染。</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🚫👄</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">不要用嘴吸吮</b>：口腔黏膜微創吸收毒素，造成施救者中毒！</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🚫🧊</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">不要冰敷傷口</b>：造成血管極度痙攣，加速組織壞疽發黑。</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🚫🪢</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">不要緊勒止血帶</b>：阻斷動脈血流，易引發肢體缺血截肢危機。</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.08); padding:3px 6px; border-radius:4px;">
+              <span style="font-size:18px; line-height:1;">🚫☕</span>
+              <div style="font-size:11px; line-height:1.3; color:var(--cf-text-dim);"><b style="color:#fff;">不要飲用刺激品</b>：嚴禁飲酒、濃茶或咖啡，避免擴散毒素。</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; margin-top:8px;">
-        <img src="assets/img/snakes_manual.jpg" alt="百步蛇與雨傘節手冊特徵圖" style="height:85px; width:auto; border-radius:6px; border:1px solid var(--cf-rule); background:#fff; padding:2px;">
-        <div class="deck-res-box" style="flex:1; margin-top:0;">
-          <div class="deck-res-row">
-            <span class="deck-res-label">影片：</span>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=fIWV-E_q45o" target="_blank">🎬 臺灣六大毒蛇辨識</a>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=ZfRk3B6x_vI" target="_blank">🎬 毒蛇咬傷五要五不急救教學</a>
-          </div>
+      <div class="deck-res-box" style="margin-top:6px;">
+        <div class="deck-res-row">
+          <span class="deck-res-label">影片：</span>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=fIWV-E_q45o" target="_blank">🎬 臺灣六大毒蛇辨識全集</a>
+          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=ZfRk3B6x_vI" target="_blank">🎬 毒蛇咬傷五要五不教學</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 14: 簡易急救專題 -->
+  <!-- Slide 14: 簡易急救專題（每種附圖解與教學影音） -->
   <section class="slide" id="slide-14">
     <p class="s-eyebrow">FIRST AID · 手冊官方課程</p>
-    <h2 class="s-title">簡易急救 · 意外割傷、抽筋、流鼻血與骨折緊急處理</h2>
+    <h2 class="s-title">簡易急救 · 割傷止血、抽筋、流鼻血與骨折處理（每種附圖解與影音）</h2>
     <div class="s-body">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-        <div class="card-slide">
-          <h4>🩹 意外割傷處理</h4>
-          <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
-            1. 生水或稀釋消毒藥水洗淨傷口。<br>
-            2. 無菌清潔紗布直接「加壓止血」，不可亂用未經消毒粉末或藥油。<br>
-            3. 繃帶紮好並儘可能將傷處「抬高高於心臟」。<br>
-            4. 趕緊送醫救治。
-          </p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div class="card-slide" style="padding:6px; display:flex; gap:8px; align-items:center;">
+          <img src="assets/img/fa_cut_bleeding.jpg" alt="意外割傷止血" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+          <div style="flex:1;">
+            <h4 style="font-size:11.5px; margin:0 0 2px;">🩹 意外割傷止血</h4>
+            <p style="font-size:10px; color:var(--cf-text-dim); line-height:1.35; margin:0 0 4px;">
+              1. 乾淨生水沖洗傷口。2. 紗布「直接加壓止血」5~10分。3. 傷肢「抬高高於心臟」。4. 送醫評估疫苗。
+            </p>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=ah7ZRuEL2yE" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 割傷止血教學</a>
+          </div>
         </div>
-        <div class="card-slide">
-          <h4>🦵 肌肉抽筋緩解四部位手法</h4>
-          <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
-            <b>手抽筋</b>：慢慢拉直抽筋手指，輕輕施力按摩。<br>
-            <b>腳抽筋</b>：慢慢拉直腳趾，輕輕按摩腳部肌肉。<br>
-            <b>大腿抽筋</b>：膝部拉直，一手放腳跟抬高腿部，一手按壓按摩。<br>
-            <b>小腿抽筋</b>：小心伸直膝蓋抬腿，腳掌向上屈壓向小腿，輕柔按摩。
-          </p>
+
+        <div class="card-slide" style="padding:6px; display:flex; gap:8px; align-items:center;">
+          <img src="assets/img/fa_muscle_cramp.jpg" alt="肌肉抽筋緩解" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+          <div style="flex:1;">
+            <h4 style="font-size:11.5px; margin:0 0 2px;">🦵 肌肉抽筋緩解</h4>
+            <p style="font-size:10px; color:var(--cf-text-dim); line-height:1.35; margin:0 0 4px;">
+              原則「反向緩慢伸展輕柔按摩」：小腿抽筋伸直膝蓋腳掌扳向小腿；大腿抬高按摩；補充電解質與水。
+            </p>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=7uK3W0rV9x4" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 抽筋拉伸教學</a>
+          </div>
         </div>
-        <div class="card-slide">
-          <h4>🩸 流鼻血緊急處理（大原則）</h4>
-          <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
-            1. 安靜坐椅上，<b>「頭向前傾」</b>（千萬不要後仰避免嗆血，勿拍脖子）。<br>
-            2. 改用口呼吸，手用力捏住兩側鼻部軟骨 5~10 分鐘設法止血。<br>
-            3. 鼻樑以毛巾冷敷，口中血液吐出；10~15 分鐘未止血儘速就醫。
-          </p>
+
+        <div class="card-slide" style="padding:6px; display:flex; gap:8px; align-items:center;">
+          <img src="assets/img/fa_nosebleed.jpg" alt="流鼻血緊急處理" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+          <div style="flex:1;">
+            <h4 style="font-size:11.5px; margin:0 0 2px;">🩸 流鼻血緊急處理</h4>
+            <p style="font-size:10px; color:var(--cf-text-dim); line-height:1.35; margin:0 0 4px;">
+              1. 安靜坐椅上，<b>「頭向前傾」</b>（切勿後仰防嗆血）。2. 捏兩側鼻翼軟骨 5~10 分鐘改口呼吸。3. 毛巾冷敷鼻樑。
+            </p>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=y9pL4k3oV2M" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 流鼻血處置教學</a>
+          </div>
         </div>
-        <div class="card-slide">
-          <h4>🦴 骨折緊急處理</h4>
-          <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
-            1. 檢查意識呼吸，休克時心肺復甦。<br>
-            2. 固定傷肢減輕疼痛，就地取材（木板、竹竿），<b>夾板長度超過上下兩關節</b>！<br>
-            3. 無材料時上肢固定胸壁、下肢與未受傷側綑綁。<br>
-            4. 脊椎骨折平臥硬板，等待救護人員。
-          </p>
-        </div>
-      </div>
-      <div style="display:flex; gap:10px; align-items:center; margin-top:8px;">
-        <img src="assets/img/firstaid_heatstroke.jpg" alt="中暑急救標準處理流程圖" style="height:85px; width:auto; border-radius:6px; border:1px solid var(--cf-rule); background:#fff; padding:2px;">
-        <div class="deck-res-box" style="flex:1; margin-top:0;">
-          <div class="deck-res-row">
-            <span class="deck-res-label">影片：</span>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=ah7ZRuEL2yE" target="_blank">🎬 戶外包紮止血法</a>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=7uK3W0rV9x4" target="_blank">🎬 中暑熱衰竭急救流程</a>
+
+        <div class="card-slide" style="padding:6px; display:flex; gap:8px; align-items:center;">
+          <img src="assets/img/fa_fracture.jpg" alt="骨折緊急固定" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+          <div style="flex:1;">
+            <h4 style="font-size:11.5px; margin:0 0 2px;">🦴 骨折緊急固定</h4>
+            <p style="font-size:10px; color:var(--cf-text-dim); line-height:1.35; margin:0 0 4px;">
+              1. 切勿推回斷骨。2. 夾板長度<b>超過上下兩關節</b>固定。3. 無夾板上肢固胸壁、下肢與健肢綑綁。4. 平臥硬板送醫。
+            </p>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=8kP2qX5tY9w" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 骨折固定教學</a>
           </div>
         </div>
       </div>

@@ -719,8 +719,23 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           ` : ''}
 
+          ${sec.stepImages ? `
+            <h4 style="margin:14px 0 8px; color:var(--primary);">⛺ 屋式帳搭設分解步驟（每步附圖）：</h4>
+            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-bottom:14px;">
+              ${sec.stepImages.map(st => `
+                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; display:flex; flex-direction:column;">
+                  <img src="${st.image}" alt="${st.title}" style="width:100%; height:140px; object-fit:cover; background:#fff; border-bottom:1px solid var(--border);" loading="lazy">
+                  <div style="padding:10px; flex:1;">
+                    <strong style="color:var(--primary); font-size:0.88rem; display:block; margin-bottom:4px;">${st.title}</strong>
+                    <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.45; margin:0;">${st.desc}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+
           ${sec.tentPitchSteps ? `
-            <h4 style="margin-bottom:6px; color:var(--primary);">⛺ 屋式帳搭設步驟：</h4>
+            <h4 style="margin-bottom:6px; color:var(--primary);">⛺ 屋式帳搭設步驟總結：</h4>
             <ol class="guide-step-list">
               ${sec.tentPitchSteps.map(s => `<li>${s}</li>`).join("")}
             </ol>
@@ -732,57 +747,133 @@ document.addEventListener("DOMContentLoaded", () => {
           ` : ''}
 
           ${sec.knots ? `
-            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:10px;">
+            <h4 style="margin:14px 0 8px; color:var(--primary);">🪢 八大繩結（每種皆附圖解與教學影片）：</h4>
+            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
               ${sec.knots.map(k => `
-                <div style="background:var(--bg-main); border:1px solid var(--border); padding:10px; border-radius:var(--radius-sm);">
-                  <strong style="color:var(--primary); font-size:0.92rem;">🪢 ${k.name}</strong>
-                  <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">${k.desc}</p>
+                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; display:flex; flex-direction:column;">
+                  <img src="${k.image}" alt="${k.name}" style="width:100%; height:160px; object-fit:contain; background:#fff; padding:6px; border-bottom:1px solid var(--border);" loading="lazy">
+                  <div style="padding:10px; flex:1; display:flex; flex-direction:column;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                      <strong style="color:var(--primary); font-size:0.92rem;">🪢 ${k.name}</strong>
+                      <span style="font-size:0.72rem; background:rgba(34,197,94,0.15); color:var(--primary); padding:1px 6px; border-radius:4px; font-weight:700;">${k.type}</span>
+                    </div>
+                    <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.45; margin-bottom:8px; flex:1;">${k.desc}</p>
+                    ${k.video ? `
+                      <a href="${k.video.url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:4px; font-size:0.76rem; background:#fff; color:#dc2626; border:1px solid #fca5a5; padding:3px 8px; border-radius:var(--radius-full); text-decoration:none; font-weight:600; width:fit-content;">
+                        🎬 ${k.video.title} ↗
+                      </a>
+                    ` : ''}
+                  </div>
                 </div>
-              `).join("")}
+              `).join('')}
             </div>
           ` : ''}
 
           ${sec.methods ? `
-            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:10px;">
+            <h4 style="margin:14px 0 8px; color:var(--accent-dark);">🧭 自然方向辨識（每種皆附圖解與教學影片）：</h4>
+            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
               ${sec.methods.map(m => `
-                <div style="background:var(--bg-main); border:1px solid var(--border); padding:10px; border-radius:var(--radius-sm);">
-                  <strong style="color:var(--accent-dark); font-size:0.92rem;">🧭 ${m.name}</strong>
-                  <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">${m.desc}</p>
+                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; display:flex; flex-direction:column;">
+                  <img src="${m.image}" alt="${m.name}" style="width:100%; height:160px; object-fit:contain; background:#fff; padding:4px; border-bottom:1px solid var(--border);" loading="lazy">
+                  <div style="padding:10px; flex:1; display:flex; flex-direction:column;">
+                    <strong style="color:var(--accent-dark); font-size:0.92rem; margin-bottom:4px;">🧭 ${m.name}</strong>
+                    <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.45; margin-bottom:8px; flex:1;">${m.desc}</p>
+                    ${m.video ? `
+                      <a href="${m.video.url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:4px; font-size:0.76rem; background:#fff; color:#dc2626; border:1px solid #fca5a5; padding:3px 8px; border-radius:var(--radius-full); text-decoration:none; font-weight:600; width:fit-content;">
+                        🎬 ${m.video.title} ↗
+                      </a>
+                    ` : ''}
+                  </div>
                 </div>
-              `).join("")}
+              `).join('')}
             </div>
           ` : ''}
 
           ${sec.firstAid ? `
-            <div style="display:flex; flex-direction:column; gap:10px;">
+            <h4 style="margin:14px 0 8px; color:#b91c1c;">🩹 野外簡易急救處置（每種皆附圖解與教學影片）：</h4>
+            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
               ${sec.firstAid.map(fa => `
-                <div style="background:var(--bg-main); border-left:4px solid #ef4444; padding:10px 14px; border-radius:0 8px 8px 0; border-top:1px solid var(--border); border-right:1px solid var(--border); border-bottom:1px solid var(--border);">
-                  <strong style="color:#b91c1c; font-size:0.94rem;">🩹 ${fa.title}</strong>
-                  <p style="font-size:0.82rem; color:var(--text-secondary); margin-top:4px; white-space:pre-line;">${fa.desc}</p>
+                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; display:flex; flex-direction:column;">
+                  <img src="${fa.image}" alt="${fa.title}" style="width:100%; height:160px; object-fit:contain; background:#fff; padding:4px; border-bottom:1px solid var(--border);" loading="lazy">
+                  <div style="padding:10px; flex:1; display:flex; flex-direction:column;">
+                    <strong style="color:#b91c1c; font-size:0.92rem; margin-bottom:4px;">🩹 ${fa.title}</strong>
+                    <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.45; margin-bottom:8px; flex:1; white-space:pre-line;">${fa.desc}</p>
+                    ${fa.video ? `
+                      <a href="${fa.video.url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:4px; font-size:0.76rem; background:#fff; color:#dc2626; border:1px solid #fca5a5; padding:3px 8px; border-radius:var(--radius-full); text-decoration:none; font-weight:600; width:fit-content;">
+                        🎬 ${fa.video.title} ↗
+                      </a>
+                    ` : ''}
+                  </div>
                 </div>
-              `).join("")}
+              `).join('')}
             </div>
           ` : ''}
 
           ${sec.snakes ? `
-            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:10px; margin-bottom:12px;">
+            <h4 style="margin:14px 0 8px; color:#991b1b;">🐍 臺灣四大毒蛇生態辨識（每種皆附圖解與教學影片）：</h4>
+            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-bottom:14px;">
               ${sec.snakes.map(sn => `
-                <div style="background:var(--bg-main); border:1px solid var(--border); padding:10px; border-radius:var(--radius-sm);">
-                  <strong style="color:#991b1b; font-size:0.9rem;">🐍 ${sn.name}</strong>
-                  <p style="font-size:0.78rem; color:var(--text-secondary); margin-top:4px;">${sn.desc}</p>
+                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; display:flex; flex-direction:column;">
+                  <img src="${sn.image}" alt="${sn.name}" style="width:100%; height:160px; object-fit:contain; background:#fff; padding:4px; border-bottom:1px solid var(--border);" loading="lazy">
+                  <div style="padding:10px; flex:1; display:flex; flex-direction:column;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                      <strong style="color:#991b1b; font-size:0.9rem;">🐍 ${sn.name}</strong>
+                      <span style="font-size:0.72rem; background:#fee2e2; color:#991b1b; padding:1px 6px; border-radius:4px; font-weight:700;">${sn.venom}</span>
+                    </div>
+                    <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.45; margin-bottom:8px; flex:1;">${sn.desc}</p>
+                    ${sn.video ? `
+                      <a href="${sn.video.url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:4px; font-size:0.76rem; background:#fff; color:#dc2626; border:1px solid #fca5a5; padding:3px 8px; border-radius:var(--radius-full); text-decoration:none; font-weight:600; width:fit-content;">
+                        🎬 ${sn.video.title} ↗
+                      </a>
+                    ` : ''}
+                  </div>
                 </div>
-              `).join("")}
+              `).join('')}
             </div>
-            <div style="background:#fef2f2; border-left:4px solid #ef4444; padding:10px 14px; border-radius:0 8px 8px 0; font-size:0.84rem; color:#991b1b; margin-top:8px;">
-              <div style="margin-bottom:4px;"><strong>${sec.firstAidRules.do}</strong></div>
-              <div><strong>${sec.firstAidRules.dont}</strong></div>
+          ` : ''}
+
+          ${sec.firstAidFiveDos ? `
+            <div style="margin-top:14px;">
+              <h4 style="color:#15803d; font-size:0.95rem; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+                <span>✅</span> <span>毒蛇咬傷黃金急救【五要】守則（每項圖示詳解）：</span>
+              </h4>
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:8px; margin-bottom:14px;">
+                ${sec.firstAidFiveDos.map(d => `
+                  <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-sm); padding:10px; display:flex; gap:10px; align-items:flex-start;">
+                    <span style="font-size:1.6rem; line-height:1;">${d.icon}</span>
+                    <div>
+                      <strong style="color:#166534; font-size:0.86rem; display:block; margin-bottom:2px;">${d.title}</strong>
+                      <span style="font-size:0.76rem; color:#15803d; line-height:1.4; display:block;">${d.desc}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          ${sec.firstAidFiveDonts ? `
+            <div>
+              <h4 style="color:#b91c1c; font-size:0.95rem; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+                <span>❌</span> <span>毒蛇咬傷禁忌【五不】原則（每項圖示警示）：</span>
+              </h4>
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:8px; margin-bottom:14px;">
+                ${sec.firstAidFiveDonts.map(d => `
+                  <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:var(--radius-sm); padding:10px; display:flex; gap:10px; align-items:flex-start;">
+                    <span style="font-size:1.6rem; line-height:1;">${d.icon}</span>
+                    <div>
+                      <strong style="color:#991b1b; font-size:0.86rem; display:block; margin-bottom:2px;">${d.title}</strong>
+                      <span style="font-size:0.76rem; color:#b91c1c; line-height:1.4; display:block;">${d.desc}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
             </div>
           ` : ''}
 
           ${sec.videos && sec.videos.length > 0 ? `
             <div style="margin-top:16px; padding:12px 14px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.22); border-radius:var(--radius-sm);">
               <div style="color:#b91c1c; font-size:0.86rem; font-weight:700; display:flex; align-items:center; gap:6px; margin-bottom:8px;">
-                <span>🎬</span> <span>延伸實務影音教學：</span>
+                <span>🎬</span> <span>延伸實務影音教學全輯：</span>
               </div>
               <div style="display:flex; flex-wrap:wrap; gap:8px;">
                 ${sec.videos.map(v => `
