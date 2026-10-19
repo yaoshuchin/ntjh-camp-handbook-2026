@@ -623,19 +623,33 @@ document.addEventListener("DOMContentLoaded", () => {
         phone: "(06) 623-3888",
         telLink: "tel:066233888",
         mapUrl: "https://maps.google.com/?q=柳營尖山埤渡假村",
-        webUrl: "https://www.taisugar.com.tw/chinese/CP.aspx?s=357&n=10433"
+        webUrl: "https://www.taisugar.com.tw/chinese/CP.aspx?s=357&n=10433",
+        videos: [
+          { title: "🎬 全國最幸福百甲山水導覽", url: "https://www.youtube.com/watch?v=lDcxvZLpFzg" },
+          { title: "🎬 尖山埤漫遊：湖光生態", url: "https://www.youtube.com/watch?v=t0kx0gp59Rg" },
+          { title: "🎬 柳營尖山埤露營山訓基地", url: "https://www.youtube.com/watch?v=nhbdVGMLyOo" }
+        ]
       },
       {
         id: "attract-school",
         name: "南投市立南投國民中學（起訖基地）",
         tag: "校本部集合 · 921地震公園演練 · 平安抵校",
-        img: "assets/img/jianshanpi_3.jpg",
+        img: "assets/img/school_campus_panoramic.jpg",
         desc: "南投國中為本次戶外教育隔宿露營之集合出發與平安抵達基地。第一天 07:30 於學校操場及 921 地震公園集合點名、落實逃生避難演練，08:00 準時專車發車；第二天下午 14:00 專車自營地返程，預計 16:30 平安返抵學校，清點行囊歡樂賦歸。",
-        features: ["921地震公園落實防震與車輛逃生演練", "隨車師長與行政團隊全程督導護送", "專車直達接送，預計 16:30 平安抵校"],
+        features: [
+          "校門石碑與教學行政大樓：南投市祖祠路 361 號",
+          "921地震公園落實防震與車輛逃生演練",
+          "隨車師長與行政團隊全程督導護送，專車直達接送"
+        ],
         phone: "(049) 222-2549",
         telLink: "tel:0492222549",
         mapUrl: "https://maps.google.com/?q=南投市立南投國民中學",
-        webUrl: "https://ntjh.ntct.edu.tw/"
+        webUrl: "https://ntjh.ntct.edu.tw/",
+        videos: [
+          { title: "🎬 飛閱投中：校園全景空拍巡禮", url: "https://www.youtube.com/watch?v=LTHQ0ce8aLY" },
+          { title: "🎬 60周年校慶運動會與校園成果", url: "https://www.youtube.com/watch?v=gV0nUrw1BbQ" },
+          { title: "🎬 南投國中校園風采活動花絮", url: "https://www.youtube.com/watch?v=KCagLyhd8iM" }
+        ]
       }
     ];
 
@@ -654,6 +668,18 @@ document.addEventListener("DOMContentLoaded", () => {
                   ${s.features.map(f => `<li>${f}</li>`).join("")}
                 </ul>
               </div>
+              ${s.videos && s.videos.length ? `
+                <div style="margin-bottom:12px; background:rgba(34,197,94,0.06); border:1px solid rgba(34,197,94,0.25); border-radius:6px; padding:8px 10px;">
+                  <div style="font-size:0.8rem; font-weight:700; color:var(--primary-dark); margin-bottom:6px;">🎬 精選 YouTube 介紹影片：</div>
+                  <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                    ${s.videos.map(v => `
+                      <a href="${v.url}" target="_blank" rel="noopener noreferrer" class="video-chip-link" style="font-size:0.75rem; padding:3px 8px;">
+                        ${v.title}
+                      </a>
+                    `).join("")}
+                  </div>
+                </div>
+              ` : ""}
               <div class="attraction-actions">
                 <a href="${s.telLink}" class="quick-btn">📞 撥號</a>
                 <a href="${s.mapUrl}" target="_blank" rel="noopener noreferrer" class="quick-btn">🗺️ Google 地圖</a>

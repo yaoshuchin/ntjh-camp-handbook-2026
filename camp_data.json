@@ -19,7 +19,13 @@
         "telLink": "tel:066233888",
         "address": "台南市柳營區旭山里60號",
         "mapUrl": "https://maps.google.com/?q=柳營尖山埤渡假村",
-        "desc": "台糖旗艦渡假勝地，坐擁尖山埤水庫湖光山色，配備完善露營區、野炊烤肉場、高空山訓攀岩場與營火晚會大草坪。"
+        "desc": "台糖旗艦渡假勝地，坐擁尖山埤水庫湖光山色，配備完善露營區、野炊烤肉場、高空山訓攀岩場與營火晚會大草坪。",
+        "img": "assets/img/jianshanpi_2.jpg",
+        "videos": [
+          { "title": "全國最幸福百甲山水導覽", "url": "https://www.youtube.com/watch?v=lDcxvZLpFzg" },
+          { "title": "尖山埤渡假村漫遊：湖光生態", "url": "https://www.youtube.com/watch?v=t0kx0gp59Rg" },
+          { "title": "柳營尖山埤露營山訓基地實景", "url": "https://www.youtube.com/watch?v=nhbdVGMLyOo" }
+        ]
       },
       {
         "name": "南投市立南投國民中學",
@@ -28,7 +34,13 @@
         "telLink": "tel:0492222549",
         "address": "南投縣南投市祖祠路361號",
         "mapUrl": "https://maps.google.com/?q=南投市立南投國民中學",
-        "desc": "南投國中校本部，活動集合出發（921地震公園逃生演練）與平安返抵學校之起訖基地。"
+        "desc": "南投國中校本部，活動集合出發（921地震公園逃生演練）與平安返抵學校之起訖基地。",
+        "img": "assets/img/school_campus_panoramic.jpg",
+        "videos": [
+          { "title": "飛閱南投國中：校園全景空拍巡禮", "url": "https://www.youtube.com/watch?v=LTHQ0ce8aLY" },
+          { "title": "南投國中60周年校慶運動會成果展", "url": "https://www.youtube.com/watch?v=gV0nUrw1BbQ" },
+          { "title": "南投國中校園風采與精彩活動花絮", "url": "https://www.youtube.com/watch?v=KCagLyhd8iM" }
+        ]
       }
     ],
     "stats": {
