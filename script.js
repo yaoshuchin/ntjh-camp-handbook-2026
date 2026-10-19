@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const { info, classes, buses, students, tents, squads, itinerary, checklist, rules, scoutKnowledge } = CAMP_DATA;
+  const { info, classes, buses, students, tents, squads, itinerary, checklist, rules, scoutKnowledge, preCampBriefing } = CAMP_DATA;
 
   // 1. 初始化狀態管理
   let initialChecklistState = {};
@@ -957,6 +957,48 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================================================
+     行前說明會四大重點宣導（源自：隔宿露營行前說明會.txt）
+     ========================================================================== */
+  function renderBriefing() {
+    const container = document.getElementById("briefing-content-container");
+    if (!container || !preCampBriefing) return;
+
+    container.innerHTML = `
+      <div style="background:linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border:2px solid #fdba74; border-radius:var(--radius-md); padding:16px 18px; margin-bottom:18px; box-shadow:0 3px 12px rgba(234,88,12,0.06);">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+          <span style="font-size:1.8rem;">📢</span>
+          <div>
+            <h3 style="margin:0; font-size:1.2rem; color:#9a3412; font-weight:800;">${preCampBriefing.title}</h3>
+            <p style="margin:2px 0 0; font-size:0.86rem; color:#c2410c;">${preCampBriefing.subtitle}</p>
+          </div>
+        </div>
+        <p style="margin:8px 0 0; font-size:0.84rem; color:#7c2d12; line-height:1.6;">
+          本項規範由南投國中學務處、教官室與二年級導師團隊共同宣導，請全體同學與家長務必詳閱並嚴格遵守。出發當日於 921 地震公園集合時實施最後安全檢查，違規者依重大校規嚴格處分！
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
+        ${preCampBriefing.items.map(item => `
+          <div class="info-card" style="border-left:5px solid ${item.num === '四' ? '#dc2626' : (item.num === '一' ? '#ea580c' : (item.num === '三' ? '#16a34a' : '#2563eb'))}; background:#fff; position:relative;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:1.6rem; line-height:1;">${item.icon}</span>
+                <h4 style="margin:0; font-size:1.02rem; color:var(--text-primary); font-weight:700;">重點 ${item.num} · ${item.title}</h4>
+              </div>
+              <span class="meta-pill" style="background:${item.num === '四' ? '#fee2e2' : (item.num === '一' ? '#ffedd5' : (item.num === '三' ? '#dcfce7' : '#e0f2fe'))}; color:${item.num === '四' ? '#991b1b' : (item.num === '一' ? '#c2410c' : (item.num === '三' ? '#166534' : '#0369a1'))}; font-weight:700;">
+                ${item.tag}
+              </span>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.65; margin:0;">
+              ${item.desc}
+            </p>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  /* ==========================================================================
      全部重新渲染（切換隱私模式時使用）
      ========================================================================== */
   function reRenderAll() {
@@ -966,6 +1008,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderSquads();
     renderRoster();
     renderBuses();
+    renderBriefing();
     renderChecklist();
     renderScout();
     renderRules();

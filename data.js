@@ -8750,6 +8750,40 @@ const CAMP_DATA = {
       ]
     }
   ],
+  "preCampBriefing": {
+    "title": "隔宿露營行前說明會",
+    "subtitle": "出發前重要生活常規宣導與重大違紀處分叮嚀",
+    "items": [
+      {
+        "num": "一",
+        "title": "違禁品出發前再檢查一次",
+        "icon": "🚫",
+        "tag": "出發前安檢",
+        "desc": "出發前請在家再徹底檢查一次行囊！嚴禁攜帶菸品、酒類、檳榔、刀械器具等違禁品。出發當天於 921 地震公園集合時，各班隨隊導師將實施出發前行李安全檢查。"
+      },
+      {
+        "num": "二",
+        "title": "個人重要物品與通訊報平安",
+        "icon": "🪪",
+        "tag": "必備物品與手機保管",
+        "desc": "【健保卡正本】、【個人常備醫藥】、【零用錢 600 元以內】、【體育服】（第一天夜間盥洗後就寢換穿）。【手機通訊管制】：露營期間手機由隨隊人員統一保管，於第一天晚間安排約 1 小時開放通話，讓同學打電話回家向家長報平安，其餘時間專注體驗童軍活動。"
+      },
+      {
+        "num": "三",
+        "title": "服裝儀容規範與畢旅連動機制",
+        "icon": "👕",
+        "tag": "服裝紀律",
+        "desc": "出發時著便服或班服，下身務必穿著「深色長褲」（防蚊蟲叮咬割傷與山訓磨損）。【重要叮嚀】：未來畢業旅行之服裝穿著開放彈性，將完全看全體同學在本次隔宿露營之日常規律與小隊紀律表現！"
+      },
+      {
+        "num": "四",
+        "title": "機動車待命！重大違紀即刻遣返送回",
+        "icon": "🚨",
+        "tag": "嚴厲校規懲處",
+        "desc": "【機動車待命專送機制】：凡違犯校規之打架滋事、抽菸、喝酒、吃檳榔等重大違紀行為，營區現場備有機動車輛，【即刻專車送回學校】，通知家長當天到校帶回家管教！並依學生獎懲辦法嚴厲【記大過】處分，絕不寬貸！"
+      }
+    ]
+  },
   "scoutKnowledge": [
     {
       "id": "camp_ridge",
@@ -8832,16 +8866,16 @@ const CAMP_DATA = {
       "imageCaption": "南投國中露營手冊第 15 頁：常用八大繩結完整圖解",
       "videos": [
         {
-          "title": "童軍初級必學八大繩結全攻略",
+          "title": "童軍初級必學八大繩結全攻略 (杜祈霖老師)",
           "url": "https://www.youtube.com/watch?v=CcbWx_sKo08"
         },
         {
-          "title": "平結、雙套結與營繩結搭帳實作教學",
-          "url": "https://www.youtube.com/watch?v=wXQJd770cK4"
+          "title": "雙套結棍上打法教學",
+          "url": "https://www.youtube.com/watch?v=K40kJJ0bSr0"
         },
         {
-          "title": "八大繩結操作要領與快速記憶法",
-          "url": "https://www.youtube.com/watch?v=68E6pA40kXg"
+          "title": "營繩結帳篷風繩打法教學",
+          "url": "https://www.youtube.com/watch?v=eSZnKHwomHM"
         }
       ],
       "knots": [
@@ -8851,8 +8885,8 @@ const CAMP_DATA = {
           "desc": "最基本的繩結，打於繩端防止脫線滑脫，亦為許多複合繩結之起手基礎。",
           "image": "assets/img/knot_single.jpg",
           "video": {
-            "title": "單結打法教學",
-            "url": "https://www.youtube.com/watch?v=S0Tq422Q8h8"
+            "title": "單結打法教學影片 (Overhand Knot)",
+            "url": "https://www.youtube.com/watch?v=u31i8uMJEEY"
           }
         },
         {
@@ -8861,8 +8895,8 @@ const CAMP_DATA = {
           "desc": "強度顯著優於單結，受強烈拉力後依然極易解開，廣泛應用於攀登登山繩索末端。",
           "image": "assets/img/knot_eight.jpg",
           "video": {
-            "title": "八字結打法教學",
-            "url": "https://www.youtube.com/watch?v=68E6pA40kXg"
+            "title": "八字結打法教學影片 (Figure-8 Knot)",
+            "url": "https://www.youtube.com/watch?v=VWTN7pMyaVg"
           }
         },
         {
@@ -8871,8 +8905,8 @@ const CAMP_DATA = {
           "desc": "口訣「左壓右、右壓左」，連接兩條粗細相同之繩索，常用於急救三角巾包紮與打包。",
           "image": "assets/img/knot_reef.jpg",
           "video": {
-            "title": "平結打法教學",
-            "url": "https://www.youtube.com/watch?v=wXQJd770cK4"
+            "title": "平結打法教學影片 (Reef Knot)",
+            "url": "https://www.youtube.com/watch?v=ac5gHDUkIcY"
           }
         },
         {
@@ -8881,8 +8915,8 @@ const CAMP_DATA = {
           "desc": "粗繩彎成套環、細繩穿繞咬合，專用於連接粗細不同或乾濕不同的兩條繩索。",
           "image": "assets/img/knot_sheetbend.jpg",
           "video": {
-            "title": "接繩結打法教學",
-            "url": "https://www.youtube.com/watch?v=kYx9y9m1h3o"
+            "title": "接繩結打法教學影片 (Sheet Bend)",
+            "url": "https://www.youtube.com/watch?v=-h7ZMySH0IY"
           }
         },
         {
@@ -8891,8 +8925,8 @@ const CAMP_DATA = {
           "desc": "繞桿兩圈交叉扣入，將繩索牢靠固定於圓木營柱或雷管，為所有童軍工程之起手與收尾。",
           "image": "assets/img/knot_clovehitch.jpg",
           "video": {
-            "title": "雙套結打法教學",
-            "url": "https://www.youtube.com/watch?v=aG0gW7ZzL70"
+            "title": "雙套結打法教學影片 (Clove Hitch)",
+            "url": "https://www.youtube.com/watch?v=K40kJJ0bSr0"
           }
         },
         {
@@ -8901,8 +8935,8 @@ const CAMP_DATA = {
           "desc": "可在主繩上滑動微調鬆緊度，受力時自我咬死固定，搭帳拉營繩調節張力必學之結。",
           "image": "assets/img/knot_tautline.jpg",
           "video": {
-            "title": "營繩結打法教學",
-            "url": "https://www.youtube.com/watch?v=HLJ6EbRRk08"
+            "title": "營繩結打法教學影片 (Taut-line Hitch)",
+            "url": "https://www.youtube.com/watch?v=eSZnKHwomHM"
           }
         },
         {
@@ -8911,8 +8945,8 @@ const CAMP_DATA = {
           "desc": "繩端連續兩次半結繞扣於樹幹或圓環，越拉越牢靠，便於迅速微調與解開。",
           "image": "assets/img/knot_twohalfhitches.jpg",
           "video": {
-            "title": "雙半結打法教學",
-            "url": "https://www.youtube.com/watch?v=vV95R-1g9qY"
+            "title": "雙半結打法教學影片 (Two Half Hitches)",
+            "url": "https://www.youtube.com/watch?v=Ub9Bf1bgmQk"
           }
         },
         {
@@ -8921,8 +8955,8 @@ const CAMP_DATA = {
           "desc": "打於繩身成活套，輕拉繩尾即可瞬間解開，適用於臨時繫掛裝備或收攏袋口。",
           "image": "assets/img/knot_slip.jpg",
           "video": {
-            "title": "活結打法教學",
-            "url": "https://www.youtube.com/watch?v=CcbWx_sKo08"
+            "title": "活結打法教學影片 (Slip Knot)",
+            "url": "https://www.youtube.com/watch?v=zhlxG9r8emQ"
           }
         }
       ]
@@ -8935,16 +8969,16 @@ const CAMP_DATA = {
       "imageCaption": "南投國中露營手冊第 17 頁：16 方位盤方位角圖解",
       "videos": [
         {
-          "title": "指北針使用教學與地圖定向三步驟",
-          "url": "https://www.youtube.com/watch?v=7ie52VsGiSA"
+          "title": "定向越野指北針解讀地圖教學",
+          "url": "https://www.youtube.com/watch?v=BrUQSgHSZa0"
         },
         {
-          "title": "野外求生：無指針大自然方位辨識",
-          "url": "https://www.youtube.com/watch?v=eYkZgW8kS74"
+          "title": "利用北斗七星尋找北極星定向教學",
+          "url": "https://www.youtube.com/watch?v=VtaAc502eqc"
         },
         {
-          "title": "太陽影子手錶日晷定向法",
-          "url": "https://www.youtube.com/watch?v=1xN5Rk76Z70"
+          "title": "天球概念與太陽視運動軌跡定向",
+          "url": "https://www.youtube.com/watch?v=Pn9RIbYEMwA"
         }
       ],
       "desc": "身處野外沒有手機或指南針時，可透過大自然天體與生物徵兆辨識方位：",
@@ -8954,8 +8988,8 @@ const CAMP_DATA = {
           "desc": "磁針紅色端永遠指向磁北（360°/0°），搭配「水平持平、磁北對正、地圖正置」三步驟精準定向。",
           "image": "assets/img/dir_compass_map.jpg",
           "video": {
-            "title": "指北針與地圖定向教學",
-            "url": "https://www.youtube.com/watch?v=7ie52VsGiSA"
+            "title": "定向越野指北針解讀地圖教學",
+            "url": "https://www.youtube.com/watch?v=BrUQSgHSZa0"
           }
         },
         {
@@ -8963,8 +8997,8 @@ const CAMP_DATA = {
           "desc": "日出東方、日落西方；北半球正午 12:00 太陽在正南方、物體影子指向正北方。亦可使用立竿見影法或時針角平分線法。",
           "image": "assets/img/dir_sun_moon.jpg",
           "video": {
-            "title": "太陽與月相辨向教學",
-            "url": "https://www.youtube.com/watch?v=eYkZgW8kS74"
+            "title": "太陽視運動與立竿見影定向教學",
+            "url": "https://www.youtube.com/watch?v=Pn9RIbYEMwA"
           }
         },
         {
@@ -8972,8 +9006,8 @@ const CAMP_DATA = {
           "desc": "尋找北斗七星天璇與天樞兩星連線向勺口外延長 5 倍距離即可找到「北極星」（小熊座尾端），直指正北方！",
           "image": "assets/img/dir_stars_polaris.jpg",
           "video": {
-            "title": "北斗七星尋北極星教學",
-            "url": "https://www.youtube.com/watch?v=1xN5Rk76Z70"
+            "title": "利用北斗七星尋找北極星教學",
+            "url": "https://www.youtube.com/watch?v=VtaAc502eqc"
           }
         },
         {
@@ -8981,8 +9015,8 @@ const CAMP_DATA = {
           "desc": "樹木截面年輪「南寬疏、北緊密」（向南日照充沛生長快）；樹冠南側繁茂、北側陰涼多生長青苔地衣。",
           "image": "assets/img/dir_tree_rings.jpg",
           "video": {
-            "title": "樹木年輪與青苔辨向教學",
-            "url": "https://www.youtube.com/watch?v=kR0tZ8x4u5Q"
+            "title": "樹木年輪秘密與辨向教學",
+            "url": "https://www.youtube.com/watch?v=Q8Xz5zvxCRo"
           }
         },
         {
@@ -8990,8 +9024,8 @@ const CAMP_DATA = {
           "desc": "手冊第 17 頁官方記載：向日葵花盤上午 12:00 以前普遍朝向「東南方」，下午 12:00 以後追隨陽光偏向「西南方」。",
           "image": "assets/img/dir_sunflower.jpg",
           "video": {
-            "title": "向日葵追日辨向教學",
-            "url": "https://www.youtube.com/watch?v=GCR36w72YjM"
+            "title": "向日葵追日的秘密與移動方向",
+            "url": "https://www.youtube.com/watch?v=kT5xUlc8qJ8"
           }
         },
         {
@@ -8999,8 +9033,8 @@ const CAMP_DATA = {
           "desc": "手冊第 17 頁官方記載：臺灣閩南傳統三合院與古老墓碑大抵採「坐北朝南」，冬避東北季風、夏迎涼爽西南風。",
           "image": "assets/img/dir_trad_building.jpg",
           "video": {
-            "title": "傳統建築坐北朝南辨向教學",
-            "url": "https://www.youtube.com/watch?v=qT5vL0G7_kM"
+            "title": "台灣傳統建築坐北朝南解密",
+            "url": "https://www.youtube.com/watch?v=4vEPMHnSEbo"
           }
         }
       ]
@@ -9013,16 +9047,16 @@ const CAMP_DATA = {
       "imageCaption": "南投國中露營手冊第 22 頁：中暑急救標準處理流程圖",
       "videos": [
         {
-          "title": "紅十字會：戶外緊急包紮止血法",
-          "url": "https://www.youtube.com/watch?v=ah7ZRuEL2yE"
+          "title": "全民學急救：傷口加壓止血教學",
+          "url": "https://www.youtube.com/watch?v=WdcT0HK2zYA"
         },
         {
-          "title": "中暑熱衰竭與抽筋急救流程教學",
-          "url": "https://www.youtube.com/watch?v=7uK3W0rV9x4"
+          "title": "EMT單項技術：骨折固定捲式護木夾板教學",
+          "url": "https://www.youtube.com/watch?v=DzQzMpd0uTE"
         },
         {
-          "title": "骨折夾板固定與流鼻血正確處置",
-          "url": "https://www.youtube.com/watch?v=8kP2qX5tY9w"
+          "title": "小朋友流鼻血正確處置教學 (李立昂醫師)",
+          "url": "https://www.youtube.com/watch?v=DllJ-LtTlkA"
         }
       ],
       "desc": "戶外野營活動遭遇突發傷病之標準黃金應急處置流程：",
@@ -9032,8 +9066,8 @@ const CAMP_DATA = {
           "desc": "1. 以生理食鹽水或乾淨生水將傷口周遭沖洗乾淨。\n2. 無菌清潔紗布直接「加壓止血」5~10 分鐘，嚴禁亂塗未消毒粉末或藥膏。\n3. 傷肢「抬高高於心臟」減緩出血。\n4. 包紮妥當後送醫評估破傷風疫苗。",
           "image": "assets/img/fa_cut_bleeding.jpg",
           "video": {
-            "title": "意外割傷加壓止血教學",
-            "url": "https://www.youtube.com/watch?v=ah7ZRuEL2yE"
+            "title": "傷口加壓止血教學 (全民學急救)",
+            "url": "https://www.youtube.com/watch?v=WdcT0HK2zYA"
           }
         },
         {
@@ -9041,8 +9075,8 @@ const CAMP_DATA = {
           "desc": "核心原則「反向緩慢伸展並輕柔按摩」：\n- 小腿抽筋：伸直膝蓋，手將腳掌朝小腿方向扳折拉伸小腿肚。\n- 大腿抽筋：膝部拉直，一手放腳跟抬高腿部，一手輕柔按摩。\n- 補充電解質運動飲料與溫開水，嚴禁暴力拉扯。",
           "image": "assets/img/fa_muscle_cramp.jpg",
           "video": {
-            "title": "小腿抽筋反向伸展教學",
-            "url": "https://www.youtube.com/watch?v=7uK3W0rV9x4"
+            "title": "小腿抽筋2動作伸展減緩疼痛",
+            "url": "https://www.youtube.com/watch?v=fVUNWsuhPAs"
           }
         },
         {
@@ -9050,8 +9084,8 @@ const CAMP_DATA = {
           "desc": "1. 患者採安靜坐姿，「頭部微微向前傾」（切勿後仰，避免鼻血倒流嗆入氣管或吞入胃部引起嘔吐；亦切勿拍打後頸部）。\n2. 拇指與食指緊捏兩側鼻翼軟骨 5~10 分鐘，改由嘴巴呼吸。\n3. 鼻樑以毛巾冷敷促進微血管收縮，口中血液儘速吐出。",
           "image": "assets/img/fa_nosebleed.jpg",
           "video": {
-            "title": "流鼻血正確處置教學",
-            "url": "https://www.youtube.com/watch?v=y9pL4k3oV2M"
+            "title": "流鼻血正確處置捏鼻止血教學",
+            "url": "https://www.youtube.com/watch?v=DllJ-LtTlkA"
           }
         },
         {
@@ -9059,8 +9093,8 @@ const CAMP_DATA = {
           "desc": "1. 優先確認意識與呼吸脈搏，切勿嘗試推回移位斷骨。\n2. 就地取材（木板、傘骨、健行杖），固定夾板長度必須「超過骨折處上下兩個關節」！\n3. 無夾板時：上肢固定於胸壁、下肢與健康肢體綑綁在一起。\n4. 脊椎骨折平臥硬板床，由受訓人員長背板搬運送醫。",
           "image": "assets/img/fa_fracture.jpg",
           "video": {
-            "title": "骨折夾板固定教學",
-            "url": "https://www.youtube.com/watch?v=8kP2qX5tY9w"
+            "title": "EMT單項技術：骨折捲式護木固定法",
+            "url": "https://www.youtube.com/watch?v=DzQzMpd0uTE"
           }
         }
       ]
@@ -9073,16 +9107,16 @@ const CAMP_DATA = {
       "imageCaption": "南投國中露營手冊第 16 頁：百步蛇與雨傘節特徵對照圖",
       "videos": [
         {
-          "title": "臺灣六大毒蛇生態特徵辨識全集",
+          "title": "臺灣六大毒蛇生態特徵辨識全集 (許伯簡芝)",
           "url": "https://www.youtube.com/watch?v=fIWV-E_q45o"
         },
         {
-          "title": "急診專科醫師詳解：毒蛇咬傷黃金處置【五要五不】",
-          "url": "https://www.youtube.com/watch?v=ZfRk3B6x_vI"
+          "title": "毒蛇咬傷急救【五要五不】黃金關鍵技巧",
+          "url": "https://www.youtube.com/watch?v=UDoayDd7LMY"
         },
         {
-          "title": "野外遇蛇打草驚蛇防範與抗蛇毒血清知識",
-          "url": "https://www.youtube.com/watch?v=3gR2kM8zN6Y"
+          "title": "臺灣六大毒蛇：雨傘節特徵與神經毒性",
+          "url": "https://www.youtube.com/watch?v=W2KDwhhAehQ"
         }
       ],
       "desc": "臺灣常見四大毒蛇生態辨識與遭蛇咬傷時之標準「五要五不」急救 SOP：",
@@ -9094,7 +9128,7 @@ const CAMP_DATA = {
           "image": "assets/img/snake_hundred_pacer.jpg",
           "video": {
             "title": "百步蛇特徵與出血毒介紹",
-            "url": "https://www.youtube.com/watch?v=fIWV-E_q45o"
+            "url": "https://www.youtube.com/watch?v=rqsA_4IpCLI"
           }
         },
         {
@@ -9103,8 +9137,8 @@ const CAMP_DATA = {
           "desc": "全身體背有「黑白相間等寬環紋」，背脊呈顯著菱形隆起。毒性全台最強，傷口不痛不腫，數小時內呼吸肌痲痺致死！",
           "image": "assets/img/snake_many_banded_krait.jpg",
           "video": {
-            "title": "雨傘節黑白環紋神經毒教學",
-            "url": "https://www.youtube.com/watch?v=ZfRk3B6x_vI"
+            "title": "雨傘節特徵與神經毒性介紹",
+            "url": "https://www.youtube.com/watch?v=W2KDwhhAehQ"
           }
         },
         {
@@ -9113,8 +9147,8 @@ const CAMP_DATA = {
           "desc": "全身翠綠，尾端呈特徵性「焦磚紅色」，體側常具白縱線。全台「咬人率第 1 名」，常攀附於茶園、果樹與灌木草叢。",
           "image": "assets/img/snake_bamboo_viper.jpg",
           "video": {
-            "title": "赤尾青竹絲與青蛇辨識教學",
-            "url": "https://www.youtube.com/watch?v=3gR2kM8zN6Y"
+            "title": "赤尾青竹絲生態與辨識 (許伯簡芝)",
+            "url": "https://www.youtube.com/watch?v=fIWV-E_q45o"
           }
         },
         {
@@ -9123,8 +9157,8 @@ const CAMP_DATA = {
           "desc": "頭部呈烙鐵三角形，頸部細小，體背有暗褐色不規則波浪龜裂斑塊。夜行出沒廢棄農舍石縫，攻擊迅捷，局部腫脹起血泡。",
           "image": "assets/img/snake_habu.jpg",
           "video": {
-            "title": "龜殼花夜行攻擊與習性教學",
-            "url": "https://www.youtube.com/watch?v=t5J7nL6pQ1k"
+            "title": "龜殼花特徵與野外習性介紹",
+            "url": "https://www.youtube.com/watch?v=mlKi0yiHvpw"
           }
         }
       ],
