@@ -51,15 +51,15 @@
   <!-- ================= 桌機 / 平板 導航列 ================= -->
   <nav class="desktop-nav-bar" aria-label="手冊主要分頁導航">
     <div class="nav-tabs-scroll">
-      <a href="slides.html" class="tab-btn" style="background:#ea580c; color:#fff; text-decoration:none;" title="開啟全螢幕簡報模式">🖥️ 去個資簡報模式</a>
-      <button class="tab-btn active" data-tab="itinerary">📅 行程時間軸</button>
-      <button class="tab-btn" data-tab="tents">⛺ 帳篷住宿速查</button>
-      <button class="tab-btn" data-tab="squads">🍳 野炊炊事分組</button>
-      <button class="tab-btn" data-tab="roster">🔍 全校學生名冊</button>
+      <a href="slides.html" class="tab-btn" style="background:#ea580c; color:#fff; text-decoration:none;" title="開啟全螢幕簡報模式">🖥️ 簡報模式</a>
+      <button class="tab-btn active" data-tab="itinerary">📅 行程表</button>
+      <button class="tab-btn" data-tab="tents">⛺ 帳篷速查</button>
+      <button class="tab-btn" data-tab="squads">🍳 野炊分組</button>
+      <button class="tab-btn" data-tab="roster">🔍 全校名冊</button>
       <button class="tab-btn" data-tab="buses">🚌 遊覽車編組</button>
-      <button class="tab-btn" data-tab="briefing" style="background:rgba(234,88,12,0.12); color:#ea580c; border:1px solid rgba(234,88,12,0.35); font-weight:700;">📢 行前說明會</button>
-      <button class="tab-btn" data-tab="checklist">🎒 行前行李清單</button>
-      <button class="tab-btn" data-tab="scout">⚜️ 童軍野營寶典</button>
+      <button class="tab-btn" data-tab="briefing" style="background:rgba(234,88,12,0.12); color:#ea580c; border:1px solid rgba(234,88,12,0.35); font-weight:700;">📢 行前說明</button>
+      <button class="tab-btn" data-tab="checklist">🎒 行李清單</button>
+      <button class="tab-btn" data-tab="scout">⚜️ 童軍野營</button>
       <button class="tab-btn" data-tab="rules">⚠️ 營規生活須知</button>
       <button class="tab-btn" data-tab="info">ℹ️ 營地與行政資訊</button>
     </div>
@@ -68,10 +68,10 @@
   <!-- ================= 主要內容區 ================= -->
   <main class="main-content">
 
-    <!-- 1. 兩日行程時間軸 -->
+    <!-- 1. 行程表 -->
     <section class="tab-pane active" id="tab-itinerary">
       <div class="section-head">
-        <h2 class="section-title">📅 兩天一夜 完整行程時間表</h2>
+        <h2 class="section-title">📅 行程表</h2>
         <p class="section-desc">包含集合出發、開訓營規、搭帳分站、野炊競賽、營火晚會、山訓挑戰與頒獎結訓完整規劃</p>
       </div>
 
@@ -84,10 +84,10 @@
       </div>
     </section>
 
-    <!-- 2. 帳篷住宿速查 -->
+    <!-- 2. 帳篷速查 -->
     <section class="tab-pane" id="tab-tents">
       <div class="section-head">
-        <h2 class="section-title">⛺ 帳篷住宿即時速查</h2>
+        <h2 class="section-title">⛺ 帳篷速查</h2>
         <p class="section-desc">全校 27 頂帳篷（男帳 A01~A13、女帳 B01~B14），支援輸入姓名、座號、帳號即時秒查</p>
       </div>
 
@@ -133,10 +133,10 @@
       </div>
     </section>
 
-    <!-- 3. 野炊炊事分組速查 -->
+    <!-- 3. 野炊分組 -->
     <section class="tab-pane" id="tab-squads">
       <div class="section-head">
-        <h2 class="section-title">🍳 野炊炊事分組即時速查</h2>
+        <h2 class="section-title">🍳 野炊分組</h2>
         <p class="section-desc">全校 15 個野炊小隊，標註小隊長、副小隊長、大廚、二廚、伙夫、水夫、事務分工與素食名單</p>
       </div>
 
@@ -175,10 +175,10 @@
       </div>
     </section>
 
-    <!-- 4. 全校學生名冊資料庫 -->
+    <!-- 4. 全校名冊 -->
     <section class="tab-pane" id="tab-roster">
       <div class="section-head">
-        <h2 class="section-title">🔍 全校學生資料庫速查</h2>
+        <h2 class="section-title">🔍 全校名冊</h2>
         <p class="section-desc">全校 106 位二年級同學，快速查詢座號、班級、性別、車次、帳號、野炊組別與飲食習慣</p>
       </div>
 
@@ -220,10 +220,10 @@
       </div>
     </section>
 
-    <!-- 5. 遊覽車編組與師長團務 -->
+    <!-- 5. 遊覽車編組 -->
     <section class="tab-pane" id="tab-buses">
       <div class="section-head">
-        <h2 class="section-title">🚌 遊覽車編組與隨車師長</h2>
+        <h2 class="section-title">🚌 遊覽車編組</h2>
         <p class="section-desc">全校 4 部遊覽車（1 車、2 車、3 車、丁車）搭乘班級配置、隨車行政師長與學生名冊</p>
       </div>
       <div id="buses-content-container">
@@ -231,10 +231,10 @@
       </div>
     </section>
 
-    <!-- 6. 隔宿露營行前說明會四大重點宣導（源自：隔宿露營行前說明會.txt） -->
+    <!-- 6. 行前說明 -->
     <section class="tab-pane" id="tab-briefing">
       <div class="section-head">
-        <h2 class="section-title">📢 隔宿露營行前說明會 · 四大生活規範與違紀處分叮嚀</h2>
+        <h2 class="section-title">📢 行前說明</h2>
         <p class="section-desc">學校官方行前生活規範宣導：違禁品檢查、個人重要物品與通訊報平安、服裝儀容紀律、機動車重大違紀處分</p>
       </div>
       <div id="briefing-content-container">
@@ -242,10 +242,10 @@
       </div>
     </section>
 
-    <!-- 7. 行前行李清單 -->
+    <!-- 7. 行李清單 -->
     <section class="tab-pane" id="tab-checklist">
       <div class="section-head">
-        <h2 class="section-title">🎒 行前行李打包清單</h2>
+        <h2 class="section-title">🎒 行李清單</h2>
         <p class="section-desc">點擊項目可打勾完成打包，進度自動儲存於手機瀏覽器，重開不遺失！</p>
       </div>
 
@@ -269,10 +269,10 @@
       </div>
     </section>
 
-    <!-- 7. 童軍野營技能寶典 -->
+    <!-- 8. 童軍野營 -->
     <section class="tab-pane" id="tab-scout">
       <div class="section-head">
-        <h2 class="section-title">⚜️ 童軍與野外技能寶典</h2>
+        <h2 class="section-title">⚜️ 童軍野營</h2>
         <p class="section-desc">包含營地建設、屋式帳搭收口訣、八大繩結、毒蛇五要五不、自然方向辨識與緊急急救法</p>
       </div>
       <div id="scout-content-container">
@@ -280,7 +280,7 @@
       </div>
     </section>
 
-    <!-- 8. 營規生活須知 -->
+    <!-- 9. 營規生活須知 -->
     <section class="tab-pane" id="tab-rules">
       <div class="section-head">
         <h2 class="section-title">⚠️ 營規生活須知與安全守則</h2>
@@ -308,31 +308,31 @@
   <nav class="mobile-bottom-nav" aria-label="手機端底部快捷導航">
     <button class="mobile-nav-btn active" data-tab="itinerary">
       <span class="mobile-nav-icon">📅</span>
-      <span>行程</span>
+      <span>行程表</span>
     </button>
     <button class="mobile-nav-btn" data-tab="tents">
       <span class="mobile-nav-icon">⛺</span>
-      <span>帳篷</span>
+      <span>帳篷速查</span>
     </button>
     <button class="mobile-nav-btn" data-tab="squads">
       <span class="mobile-nav-icon">🍳</span>
-      <span>野炊</span>
+      <span>野炊分組</span>
     </button>
     <button class="mobile-nav-btn" data-tab="roster">
       <span class="mobile-nav-icon">🔍</span>
-      <span>名冊</span>
+      <span>全校名冊</span>
     </button>
     <button class="mobile-nav-btn" data-tab="checklist">
       <span class="mobile-nav-icon">🎒</span>
-      <span>行李</span>
+      <span>行李清單</span>
     </button>
     <button class="mobile-nav-btn" data-tab="scout">
       <span class="mobile-nav-icon">⚜️</span>
-      <span>寶典</span>
+      <span>童軍野營</span>
     </button>
     <a href="slides.html" class="mobile-nav-btn" style="color:var(--accent); text-decoration:none;">
       <span class="mobile-nav-icon">🖥️</span>
-      <span>簡報</span>
+      <span>簡報模式</span>
     </a>
   </nav>
 

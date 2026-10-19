@@ -260,7 +260,37 @@
 
     window.addEventListener('resize', rescale);
 
+    /* ── 簡報底色主題切換 (淡藍、淡紅、淡綠、淡紫、淺灰) ── */
+    var VALID_THEMES = ['blue', 'red', 'green', 'purple', 'gray'];
+    function setTheme(th) {
+        if (VALID_THEMES.indexOf(th) === -1) th = 'blue';
+        VALID_THEMES.forEach(function (t) {
+            body.classList.remove('theme-' + t);
+        });
+        body.classList.add('theme-' + th);
+        try { localStorage.setItem('ntjh-deck-theme', th); } catch (e) {}
+
+        // 同步更新所有底色選取鈕之 active 狀態
+        var allBtns = document.querySelectorAll('[data-set-theme]');
+        allBtns.forEach(function (btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-set-theme') === th);
+        });
+    }
+
+    // 點擊切換主題
+    document.addEventListener('click', function (e) {
+        var tBtn = e.target.closest('[data-set-theme]');
+        if (tBtn) {
+            var th = tBtn.getAttribute('data-set-theme');
+            setTheme(th);
+        }
+    });
+
     /* ── 啟動 ── */
+    var savedTheme = 'blue';
+    try { savedTheme = localStorage.getItem('ntjh-deck-theme') || 'blue'; } catch (e) {}
+    setTheme(savedTheme);
+
     var saved = 'present';
     try { saved = localStorage.getItem('dslab-deck-mode') || 'present'; } catch (e) {}
     buildToc();

@@ -13,116 +13,220 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="deck.css?v=20261019_v2">
 <style>
-  /* ================= 淡藍色高質感簡報風格 (Pale / Light Blue Theme) ================= */
-  :root {
+  /* ================= 簡報色彩主題系統 (淡藍、淡紅、淡綠、淡紫、淺灰) ================= */
+  :root, body.theme-blue {
     --cf-bg: #f0f7ff;
     --cf-bg-2: #e0f2fe;
     --cf-bg-glow: #bae6fd;
     --cf-panel: #ffffff;
     --cf-panel-2: #f8fbff;
-    --cf-node: #ffffff;
+    --cf-card-border: #dbeafe;
     --cf-node-head: #e0f2fe;
     --cf-line: rgba(2, 132, 199, 0.25);
     --cf-accent: #0284c7;
     --cf-accent-dim: #0369a1;
-    --cf-on-accent: #ffffff;
+    --cf-accent-hover: #e0f2fe;
+    --cf-rule: #bae6fd;
+    --cf-title: #0c4a6e;
     --cf-text: #0f172a;
     --cf-text-dim: #334155;
     --cf-text-faint: #64748b;
-    --cf-rule: #bae6fd;
-    --cf-warn: #dc2626;
+    --cf-bar-bg: rgba(240, 247, 255, 0.95);
+    --cf-shadow: rgba(2, 132, 199, 0.08);
+    --cf-gradient: linear-gradient(90deg, #0284c7, #38bdf8, #60a5fa);
     --tag-pill: #0284c7;
     --fire-orange: #ea580c;
   }
 
+  body.theme-red {
+    --cf-bg: #fff1f2;
+    --cf-bg-2: #ffe4e6;
+    --cf-bg-glow: #fecdd3;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #fff5f5;
+    --cf-card-border: #fecdd3;
+    --cf-node-head: #ffe4e6;
+    --cf-line: rgba(225, 29, 72, 0.25);
+    --cf-accent: #e11d48;
+    --cf-accent-dim: #be123c;
+    --cf-accent-hover: #ffe4e6;
+    --cf-rule: #fecdd3;
+    --cf-title: #881337;
+    --cf-text: #1f2937;
+    --cf-text-dim: #4b5563;
+    --cf-text-faint: #6b7280;
+    --cf-bar-bg: rgba(255, 241, 242, 0.95);
+    --cf-shadow: rgba(225, 29, 72, 0.08);
+    --cf-gradient: linear-gradient(90deg, #e11d48, #fb7185, #fda4af);
+    --tag-pill: #e11d48;
+    --fire-orange: #ea580c;
+  }
+
+  body.theme-green {
+    --cf-bg: #f0fdf4;
+    --cf-bg-2: #dcfce7;
+    --cf-bg-glow: #bbf7d0;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #f7fef9;
+    --cf-card-border: #bbf7d0;
+    --cf-node-head: #dcfce7;
+    --cf-line: rgba(22, 163, 74, 0.25);
+    --cf-accent: #16a34a;
+    --cf-accent-dim: #15803d;
+    --cf-accent-hover: #dcfce7;
+    --cf-rule: #bbf7d0;
+    --cf-title: #14532d;
+    --cf-text: #0f172a;
+    --cf-text-dim: #334155;
+    --cf-text-faint: #64748b;
+    --cf-bar-bg: rgba(240, 253, 244, 0.95);
+    --cf-shadow: rgba(22, 163, 74, 0.08);
+    --cf-gradient: linear-gradient(90deg, #16a34a, #4ade80, #86efac);
+    --tag-pill: #16a34a;
+    --fire-orange: #ea580c;
+  }
+
+  body.theme-purple {
+    --cf-bg: #faf5ff;
+    --cf-bg-2: #f3e8ff;
+    --cf-bg-glow: #e9d5ff;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #fbf7ff;
+    --cf-card-border: #e9d5ff;
+    --cf-node-head: #f3e8ff;
+    --cf-line: rgba(147, 51, 234, 0.25);
+    --cf-accent: #9333ea;
+    --cf-accent-dim: #7e22ce;
+    --cf-accent-hover: #f3e8ff;
+    --cf-rule: #e9d5ff;
+    --cf-title: #581c87;
+    --cf-text: #0f172a;
+    --cf-text-dim: #334155;
+    --cf-text-faint: #64748b;
+    --cf-bar-bg: rgba(250, 245, 255, 0.95);
+    --cf-shadow: rgba(147, 51, 234, 0.08);
+    --cf-gradient: linear-gradient(90deg, #9333ea, #c084fc, #d8b4fe);
+    --tag-pill: #9333ea;
+    --fire-orange: #ea580c;
+  }
+
+  body.theme-gray {
+    --cf-bg: #f8fafc;
+    --cf-bg-2: #f1f5f9;
+    --cf-bg-glow: #e2e8f0;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #fafaf9;
+    --cf-card-border: #e2e8f0;
+    --cf-node-head: #f1f5f9;
+    --cf-line: rgba(71, 85, 105, 0.25);
+    --cf-accent: #475569;
+    --cf-accent-dim: #334155;
+    --cf-accent-hover: #e2e8f0;
+    --cf-rule: #cbd5e1;
+    --cf-title: #0f172a;
+    --cf-text: #0f172a;
+    --cf-text-dim: #334155;
+    --cf-text-faint: #64748b;
+    --cf-bar-bg: rgba(248, 250, 252, 0.95);
+    --cf-shadow: rgba(71, 85, 105, 0.08);
+    --cf-gradient: linear-gradient(90deg, #475569, #94a3b8, #cbd5e1);
+    --tag-pill: #475569;
+    --fire-orange: #ea580c;
+  }
+
   html {
-    background: #f0f7ff !important;
+    background: var(--cf-bg) !important;
   }
 
   body.deck {
     background:
-      radial-gradient(1100px 600px at 10% -5%, #e0f2fe 0%, transparent 60%),
-      radial-gradient(900px 550px at 90% 5%, #bae6fd 0%, transparent 55%),
-      radial-gradient(800px 600px at 50% 90%, #dbeafe 0%, transparent 60%),
-      #f0f7ff !important;
+      radial-gradient(1100px 600px at 10% -5%, var(--cf-bg-2) 0%, transparent 60%),
+      radial-gradient(900px 550px at 90% 5%, var(--cf-bg-glow) 0%, transparent 55%),
+      radial-gradient(800px 600px at 50% 90%, var(--cf-bg-2) 0%, transparent 60%),
+      var(--cf-bg) !important;
     background-attachment: fixed !important;
-    color: #0f172a !important;
+    color: var(--cf-text) !important;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
-  /* 頂部控制列（淡藍水晶玻璃） */
+  /* 頂部控制列 */
   .deck-bar {
-    background: rgba(240, 247, 255, 0.94) !important;
+    background: var(--cf-bar-bg) !important;
     backdrop-filter: blur(16px) !important;
-    border-bottom: 1px solid #bae6fd !important;
-    box-shadow: 0 2px 14px rgba(2, 132, 199, 0.06) !important;
+    border-bottom: 1px solid var(--cf-rule) !important;
+    box-shadow: 0 2px 14px var(--cf-shadow) !important;
+    transition: all 0.3s ease;
   }
   .deck-back {
-    color: #0369a1 !important;
-    border-color: #bae6fd !important;
+    color: var(--cf-accent-dim) !important;
+    border-color: var(--cf-rule) !important;
     background: #ffffff !important;
   }
   .deck-back:hover {
-    color: #0284c7 !important;
-    border-color: #0284c7 !important;
-    background: #e0f2fe !important;
+    color: var(--cf-accent) !important;
+    border-color: var(--cf-accent) !important;
+    background: var(--cf-accent-hover) !important;
   }
   .deck-id {
-    color: #0284c7 !important;
+    color: var(--cf-accent) !important;
   }
   .deck-name {
-    color: #0c4a6e !important;
+    color: var(--cf-title) !important;
   }
   .deck-btn {
     background: #ffffff !important;
-    border: 1px solid #bae6fd !important;
-    color: #0369a1 !important;
+    border: 1px solid var(--cf-rule) !important;
+    color: var(--cf-accent-dim) !important;
+    transition: all 0.2s ease;
   }
   .deck-btn:hover {
-    background: #e0f2fe !important;
-    color: #0284c7 !important;
-    border-color: #7dd3fc !important;
+    background: var(--cf-accent-hover) !important;
+    color: var(--cf-accent) !important;
+    border-color: var(--cf-rule) !important;
   }
   .deck-btn.active, .deck-btn.is-on {
-    background: #0284c7 !important;
+    background: var(--cf-accent) !important;
     color: #ffffff !important;
-    border-color: #0284c7 !important;
+    border-color: var(--cf-accent) !important;
   }
 
-  /* 投影幻燈片主容器（純淨白底搭配淡藍飾邊） */
+  /* 投影幻燈片主容器 */
   .slide {
     background: #ffffff !important;
-    border: 1px solid #bae6fd !important;
-    box-shadow: 0 12px 36px rgba(2, 132, 199, 0.08) !important;
-    color: #0f172a !important;
+    border: 1px solid var(--cf-rule) !important;
+    box-shadow: 0 12px 36px var(--cf-shadow) !important;
+    color: var(--cf-text) !important;
+    transition: all 0.3s ease;
   }
   .slide::before {
-    background: linear-gradient(90deg, #0284c7, #38bdf8, #60a5fa) !important;
+    background: var(--cf-gradient) !important;
   }
   .s-title {
-    color: #0c4a6e !important;
+    color: var(--cf-title) !important;
   }
   .s-eyebrow {
-    color: #0284c7 !important;
+    color: var(--cf-accent) !important;
   }
   .s-num {
-    color: #64748b !important;
+    color: var(--cf-text-faint) !important;
   }
   .slide-no {
-    color: #64748b !important;
+    color: var(--cf-text-faint) !important;
   }
 
-  /* 卡片元件（淡藍柔和背景） */
+  /* 卡片元件 */
   .card-slide {
-    background: #f8fbff !important;
-    border: 1px solid #dbeafe !important;
+    background: var(--cf-panel-2) !important;
+    border: 1px solid var(--cf-card-border) !important;
     border-radius: 8px;
     padding: 10px 12px;
-    box-shadow: 0 1px 4px rgba(2, 132, 199, 0.04) !important;
+    box-shadow: 0 1px 4px var(--cf-shadow) !important;
     color: #1e293b !important;
+    transition: all 0.3s ease;
   }
   .card-slide h4 {
     font-size: 13.5px;
-    color: #0284c7 !important;
+    color: var(--cf-accent) !important;
     margin-bottom: 4px;
     display: flex;
     align-items: center;
@@ -133,10 +237,10 @@
     color: #ea580c !important;
   }
   .card-slide p, .card-slide div, .card-slide ul, .card-slide ol {
-    color: #334155 !important;
+    color: var(--cf-text-dim) !important;
   }
 
-  /* 表格元件（淡藍標頭與格線） */
+  /* 表格元件 */
   .table-deck {
     width: 100%;
     border-collapse: collapse;
@@ -145,23 +249,23 @@
     background: #ffffff !important;
   }
   .table-deck th {
-    background: #e0f2fe !important;
-    color: #0c4a6e !important;
+    background: var(--cf-node-head) !important;
+    color: var(--cf-title) !important;
     padding: 6px 8px;
-    border: 1px solid #bae6fd !important;
+    border: 1px solid var(--cf-rule) !important;
     text-align: left;
     font-weight: 700;
   }
   .table-deck td {
     padding: 5px 8px;
-    border: 1px solid #e0f2fe !important;
-    color: #334155 !important;
+    border: 1px solid var(--cf-card-border) !important;
+    color: var(--cf-text-dim) !important;
   }
   .table-deck tr:nth-child(even) td {
-    background: #f8fbff !important;
+    background: var(--cf-panel-2) !important;
   }
   .table-deck strong {
-    color: #0c4a6e !important;
+    color: var(--cf-title) !important;
   }
 
   .grid-deck-2 {
@@ -180,14 +284,14 @@
     height: 180px;
     object-fit: cover;
     border-radius: 8px;
-    border: 1px solid #bae6fd !important;
+    border: 1px solid var(--cf-rule) !important;
   }
 
-  /* 提示標籤與資源區（淡藍清爽風格） */
+  /* 提示標籤與資源區 */
   .tip {
-    background: #f0f9ff !important;
-    border: 1px solid #bae6fd !important;
-    color: #0369a1 !important;
+    background: var(--cf-panel-2) !important;
+    border: 1px solid var(--cf-rule) !important;
+    color: var(--cf-accent-dim) !important;
     border-radius: 6px;
     padding: 6px 10px;
     display: flex;
@@ -195,7 +299,7 @@
     gap: 8px;
   }
   .tip-tag {
-    background: #0284c7 !important;
+    background: var(--cf-accent) !important;
     color: #ffffff !important;
     padding: 1px 6px;
     border-radius: 3px;
@@ -203,14 +307,14 @@
     font-weight: 700;
   }
   .tip-body {
-    color: #075985 !important;
+    color: var(--cf-title) !important;
     font-size: 11.5px;
   }
 
   .deck-res-box {
     margin-top: 6px;
-    background: #f0f7ff !important;
-    border: 1px solid #bae6fd !important;
+    background: var(--cf-panel-2) !important;
+    border: 1px solid var(--cf-rule) !important;
     border-radius: 6px;
     padding: 5px 8px;
   }
@@ -227,7 +331,7 @@
   }
   .deck-res-label {
     font-weight: 700;
-    color: #0c4a6e !important;
+    color: var(--cf-title) !important;
     min-width: 44px;
   }
   .deck-res-chip {
@@ -238,29 +342,29 @@
     border-radius: 4px;
     text-decoration: none;
     font-size: 11px;
-    color: #0369a1 !important;
+    color: var(--cf-accent-dim) !important;
     background: #ffffff !important;
-    border: 1px solid #bae6fd !important;
+    border: 1px solid var(--cf-rule) !important;
     transition: all 0.2s ease;
   }
   .deck-res-chip:hover {
-    border-color: #0284c7 !important;
-    color: #0284c7 !important;
-    background: #e0f2fe !important;
+    border-color: var(--cf-accent) !important;
+    color: var(--cf-accent) !important;
+    background: var(--cf-accent-hover) !important;
   }
   .deck-res-chip.video {
-    background: #eff6ff !important;
-    color: #1d4ed8 !important;
-    border-color: #bfdbfe !important;
+    background: var(--cf-bg) !important;
+    color: var(--cf-accent) !important;
+    border-color: var(--cf-rule) !important;
   }
   .deck-res-chip.video:hover {
-    background: #dbeafe !important;
-    color: #1e40af !important;
+    background: var(--cf-accent-hover) !important;
+    color: var(--cf-title) !important;
   }
   .deck-res-chip.map {
-    background: #e0f2fe !important;
-    color: #0369a1 !important;
-    border-color: #7dd3fc !important;
+    background: var(--cf-bg-2) !important;
+    color: var(--cf-accent-dim) !important;
+    border-color: var(--cf-rule) !important;
   }
 
   .tag-badge {
@@ -269,9 +373,9 @@
     border-radius: 4px;
     font-size: 12px;
     font-weight: 700;
-    background: #e0f2fe !important;
-    color: #0369a1 !important;
-    border: 1px solid #7dd3fc !important;
+    background: var(--cf-bg-2) !important;
+    color: var(--cf-accent-dim) !important;
+    border: 1px solid var(--cf-rule) !important;
   }
   .tag-badge.orange {
     background: #ffedd5 !important;
@@ -279,73 +383,121 @@
     border-color: #fdba74 !important;
   }
   .tag-badge.blue {
-    background: #dbeafe !important;
-    color: #1d4ed8 !important;
-    border-color: #93c5fd !important;
+    background: var(--cf-bg-2) !important;
+    color: var(--cf-accent-dim) !important;
+    border-color: var(--cf-rule) !important;
   }
 
   /* 底部固定控制面板 */
   .deck-ctrl {
-    background: rgba(240, 247, 255, 0.95) !important;
-    border: 1px solid #bae6fd !important;
-    box-shadow: 0 4px 18px rgba(2, 132, 199, 0.12) !important;
-    color: #0f172a !important;
+    background: var(--cf-bar-bg) !important;
+    border: 1px solid var(--cf-rule) !important;
+    box-shadow: 0 4px 18px var(--cf-shadow) !important;
+    color: var(--cf-text) !important;
   }
   .deck-ctrl-btn {
     background: #ffffff !important;
-    border: 1px solid #bae6fd !important;
-    color: #0369a1 !important;
+    border: 1px solid var(--cf-rule) !important;
+    color: var(--cf-accent-dim) !important;
   }
   .deck-ctrl-btn:hover:not(:disabled) {
-    background: #0284c7 !important;
+    background: var(--cf-accent) !important;
     color: #ffffff !important;
-    border-color: #0284c7 !important;
+    border-color: var(--cf-accent) !important;
   }
   .deck-ctrl-pos {
-    color: #0c4a6e !important;
+    color: var(--cf-title) !important;
     font-weight: 600;
   }
 
-  /* 目錄彈窗 Modal 淡藍風格 */
+  /* 目錄彈窗 Modal */
   .deck-toc {
     background: rgba(15, 23, 42, 0.35) !important;
     backdrop-filter: blur(8px) !important;
   }
   .deck-toc-box {
     background: #ffffff !important;
-    border: 1px solid #bae6fd !important;
-    box-shadow: 0 20px 45px rgba(2, 132, 199, 0.15) !important;
-    color: #0f172a !important;
+    border: 1px solid var(--cf-rule) !important;
+    box-shadow: 0 20px 45px var(--cf-shadow) !important;
+    color: var(--cf-text) !important;
   }
   .deck-toc-head h3 {
-    color: #0c4a6e !important;
+    color: var(--cf-title) !important;
   }
   .deck-toc-head p {
-    color: #64748b !important;
+    color: var(--cf-text-faint) !important;
   }
   .toc-item {
-    background: #f8fbff !important;
-    border: 1px solid #e0f2fe !important;
-    color: #1e293b !important;
+    background: var(--cf-panel-2) !important;
+    border: 1px solid var(--cf-card-border) !important;
+    color: var(--cf-text) !important;
   }
   .toc-item:hover {
-    background: #e0f2fe !important;
-    border-color: #7dd3fc !important;
-    color: #0284c7 !important;
+    background: var(--cf-accent-hover) !important;
+    border-color: var(--cf-rule) !important;
+    color: var(--cf-accent) !important;
   }
   .toc-item.is-current {
-    background: #dbeafe !important;
-    border-color: #0284c7 !important;
-    color: #1d4ed8 !important;
+    background: var(--cf-bg-2) !important;
+    border-color: var(--cf-accent) !important;
+    color: var(--cf-title) !important;
   }
   .toc-no {
-    color: #64748b !important;
+    color: var(--cf-text-faint) !important;
   }
   .toc-eb {
-    color: #0284c7 !important;
+    color: var(--cf-accent) !important;
   }
   .toc-h {
-    color: #0c4a6e !important;
+    color: var(--cf-title) !important;
+  }
+
+  /* 主題選擇器 (Theme Picker) 樣式 */
+  .theme-picker-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--cf-rule);
+    padding: 2px 8px;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px var(--cf-shadow);
+  }
+  .theme-picker-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--cf-title);
+    margin-right: 2px;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .theme-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .theme-btn:hover {
+    transform: scale(1.18);
+  }
+  .theme-btn.active {
+    box-shadow: 0 0 0 2px var(--cf-accent), 0 2px 6px rgba(0,0,0,0.25);
+    transform: scale(1.22);
+  }
+  .theme-btn.active::after {
+    content: "✓";
+    font-size: 10px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   }
 </style>
 
@@ -358,12 +510,20 @@
   </div>
   <span class="deck-name">二年級隔宿露營行動簡報手冊（去個資版）</span>
   <div class="deck-tools" id="deck-tools">
+    <div class="theme-picker-group" title="選擇簡報底色風格">
+      <span class="theme-picker-label">🎨 底色:</span>
+      <button class="theme-btn active" data-set-theme="blue" title="淡藍 (Pale Blue)" style="background:#38bdf8;"></button>
+      <button class="theme-btn" data-set-theme="red" title="淡紅 (Pale Red)" style="background:#fb7185;"></button>
+      <button class="theme-btn" data-set-theme="green" title="淡綠 (Pale Green)" style="background:#4ade80;"></button>
+      <button class="theme-btn" data-set-theme="purple" title="淡紫 (Pale Purple)" style="background:#c084fc;"></button>
+      <button class="theme-btn" data-set-theme="gray" title="淺灰 (Pale Gray)" style="background:#94a3b8;"></button>
+    </div>
     <button class="deck-btn" id="nav-prev-top" type="button" title="上一頁 (← / P)">◀ 上一頁</button>
     <button class="deck-btn" id="nav-next-top" type="button" title="下一頁 (→ / N / Space)">下一頁 ▶</button>
     <button class="deck-btn" id="toc-btn" type="button" title="開啟目錄總覽 (T)">目錄總覽</button>
     <button class="deck-btn" id="mode-btn" type="button" title="切換簡報/閱讀模式 (M)">📖 閱讀模式</button>
     <button class="deck-btn" id="fs-btn" type="button" title="全螢幕 (F)">全螢幕</button>
-    <a href="index.html" class="deck-btn" style="text-decoration:none; color:var(--cf-accent); border-color:rgba(34,197,94,0.4); margin-left:4px;">📱 手冊網頁版</a>
+    <a href="index.html" class="deck-btn" style="text-decoration:none; color:var(--cf-accent); border-color:var(--cf-rule); margin-left:4px;">📱 手冊網頁版</a>
     <span class="deck-count" id="deck-count"></span>
   </div>
 </header>
@@ -1747,6 +1907,14 @@
   <button class="ctrl-btn" id="ctrl-prev" type="button" aria-label="上一頁">◀ 上一頁</button>
   <span class="ctrl-pos" id="ctrl-pos">1 / 30</span>
   <button class="ctrl-btn" id="ctrl-next" type="button" aria-label="下一頁">下一頁 ▶</button>
+  <div class="theme-picker-group" title="切換簡報底色" style="margin-left:10px; padding:2px 7px;">
+    <span class="theme-picker-label" style="font-size:10.5px;">底色:</span>
+    <button class="theme-btn active" data-set-theme="blue" title="淡藍" style="background:#38bdf8; width:16px; height:16px;"></button>
+    <button class="theme-btn" data-set-theme="red" title="淡紅" style="background:#fb7185; width:16px; height:16px;"></button>
+    <button class="theme-btn" data-set-theme="green" title="淡綠" style="background:#4ade80; width:16px; height:16px;"></button>
+    <button class="theme-btn" data-set-theme="purple" title="淡紫" style="background:#c084fc; width:16px; height:16px;"></button>
+    <button class="theme-btn" data-set-theme="gray" title="淺灰" style="background:#94a3b8; width:16px; height:16px;"></button>
+  </div>
 </div>
 
 <!-- 目錄總覽浮層 -->
