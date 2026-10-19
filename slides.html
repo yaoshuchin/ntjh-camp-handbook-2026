@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="deck.css?v=20261019_v1">
+<link rel="stylesheet" href="deck.css?v=20261019_v2">
 <style>
   :root {
     --cf-accent: #22c55e;
@@ -150,11 +150,13 @@
 <header class="deck-bar">
   <span class="deck-id">南投國中 115 隔宿露營</span>
   <span class="deck-name">二年級隔宿露營行動簡報手冊（去個資版）</span>
-  <div class="deck-tools">
-    <a href="index.html" class="deck-btn" style="text-decoration:none; color:var(--cf-accent); border-color:rgba(34,197,94,0.4); margin-right:4px;">📱 手冊網頁版</a>
-    <button class="deck-btn" id="toc-btn" type="button">目錄總覽</button>
-    <button class="deck-btn is-on" id="mode-btn" type="button">閱讀模式</button>
-    <button class="deck-btn" id="fs-btn" type="button">全螢幕</button>
+  <div class="deck-tools" id="deck-tools">
+    <button class="deck-btn" id="nav-prev-top" type="button" title="上一頁 (← / P)">◀ 上一頁</button>
+    <button class="deck-btn" id="nav-next-top" type="button" title="下一頁 (→ / N / Space)">下一頁 ▶</button>
+    <button class="deck-btn" id="toc-btn" type="button" title="開啟目錄總覽 (T)">目錄總覽</button>
+    <button class="deck-btn" id="mode-btn" type="button" title="切換簡報/閱讀模式 (M)">📖 閱讀模式</button>
+    <button class="deck-btn" id="fs-btn" type="button" title="全螢幕 (F)">全螢幕</button>
+    <a href="index.html" class="deck-btn" style="text-decoration:none; color:var(--cf-accent); border-color:rgba(34,197,94,0.4); margin-left:4px;">📱 手冊網頁版</a>
     <span class="deck-count" id="deck-count"></span>
   </div>
 </header>
@@ -545,11 +547,21 @@
         <div>
           <div class="card-slide" style="margin-bottom:6px;">
             <h4>🧭 16 方位盤角度速查</h4>
-            <div style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.45;">
+            <div style="font-size:11px; color:var(--cf-text-dim); line-height:1.4;">
               1. 北 0° ｜ 2. 北北東 22.5° ｜ 3. 東北 45° ｜ 4. 東東北 67.5°<br>
               5. 東 90° ｜ 6. 東南東 112.5° ｜ 7. 東南 135° ｜ 8. 南南東 157.5°<br>
               9. 南 180° ｜ 10. 南南西 202.5° ｜ 11. 西南 225° ｜ 12. 西南西 247.5°<br>
               13. 西 270° ｜ 14. 西西北 292.5° ｜ 15. 西北 315° ｜ 16. 北西北 337.5°
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
+            <img class="img-slide" src="assets/img/direction_16_compass.jpg" alt="16 方位盤圖解" style="height:110px; width:auto; max-width:140px; object-fit:contain; background:#fff; padding:4px;">
+            <div class="deck-res-box" style="flex:1; margin-top:0;">
+              <div class="deck-res-row">
+                <span class="deck-res-label">影片：</span>
+                <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=7ie52VsGiSA" target="_blank">🎬 指北針教學</a>
+                <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=eYkZgW8kS74" target="_blank">🎬 自然定向法</a>
+              </div>
             </div>
           </div>
           <div class="tip">
@@ -583,7 +595,14 @@
           </table>
         </div>
         <div>
-          <img class="img-slide" src="assets/img/rope_knots.jpg" alt="八大繩結">
+          <img class="img-slide" src="assets/img/rope_knots_manual.jpg" alt="八大繩結手冊圖解" style="height:175px; object-fit:contain; background:#fff; padding:4px;">
+          <div class="deck-res-box" style="margin-top:6px;">
+            <div class="deck-res-row">
+              <span class="deck-res-label">影片：</span>
+              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=CcbWx_sKo08" target="_blank">🎬 八大繩結全攻略</a>
+              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=wXQJd770cK4" target="_blank">🎬 雙套與營繩結教學</a>
+            </div>
+          </div>
           <div class="tip" style="margin-top:6px;">
             <span class="tip-tag">練習口訣</span>
             <div class="tip-body"><b>平結接等粗、接繩接異徑；雷管用雙套、營繩結調拉線</b>！童軍繩隨身帶隨手練。</div>
@@ -662,6 +681,16 @@
           </ul>
         </div>
       </div>
+      <div style="display:flex; gap:10px; align-items:center; margin-top:8px;">
+        <img src="assets/img/snakes_manual.jpg" alt="百步蛇與雨傘節手冊特徵圖" style="height:85px; width:auto; border-radius:6px; border:1px solid var(--cf-rule); background:#fff; padding:2px;">
+        <div class="deck-res-box" style="flex:1; margin-top:0;">
+          <div class="deck-res-row">
+            <span class="deck-res-label">影片：</span>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=fIWV-E_q45o" target="_blank">🎬 臺灣六大毒蛇辨識</a>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=ZfRk3B6x_vI" target="_blank">🎬 毒蛇咬傷五要五不急救教學</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -705,6 +734,16 @@
             3. 無材料時上肢固定胸壁、下肢與未受傷側綑綁。<br>
             4. 脊椎骨折平臥硬板，等待救護人員。
           </p>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; margin-top:8px;">
+        <img src="assets/img/firstaid_heatstroke.jpg" alt="中暑急救標準處理流程圖" style="height:85px; width:auto; border-radius:6px; border:1px solid var(--cf-rule); background:#fff; padding:2px;">
+        <div class="deck-res-box" style="flex:1; margin-top:0;">
+          <div class="deck-res-row">
+            <span class="deck-res-label">影片：</span>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=ah7ZRuEL2yE" target="_blank">🎬 戶外包紮止血法</a>
+            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=7uK3W0rV9x4" target="_blank">🎬 中暑熱衰竭急救流程</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1385,6 +1424,24 @@
 
 </main>
 
-<script src="lesson-deck.js?v=20261019_v1"></script>
+<!-- 投影模式底部控制列 -->
+<div class="deck-ctrl" id="deck-ctrl">
+  <button class="ctrl-btn" id="ctrl-prev" type="button" aria-label="上一頁">◀ 上一頁</button>
+  <span class="ctrl-pos" id="ctrl-pos">1 / 30</span>
+  <button class="ctrl-btn" id="ctrl-next" type="button" aria-label="下一頁">下一頁 ▶</button>
+</div>
+
+<!-- 目錄總覽浮層 -->
+<div class="deck-toc" id="deck-toc" hidden style="display:none;">
+  <div class="deck-toc-panel">
+    <div class="deck-toc-head">
+      <span class="deck-toc-title">📋 簡報目錄總覽 (共 30 頁投影片)</span>
+      <button class="deck-btn" id="toc-close" type="button">✕ 關閉</button>
+    </div>
+    <div class="deck-toc-grid" id="deck-toc-grid"></div>
+  </div>
+</div>
+
+<script src="lesson-deck.js?v=20261019_v2"></script>
 </body>
 </html>

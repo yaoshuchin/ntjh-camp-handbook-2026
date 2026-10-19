@@ -19,16 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initialChecklistState = {};
   }
 
-  let savedPrivacy = true;
-  try {
-    const val = localStorage.getItem("ntjh_camp_privacy_mode");
-    if (val !== null) savedPrivacy = (val === "true");
-  } catch (e) {
-    savedPrivacy = true;
-  }
-
   const state = {
-    privacyMasked: savedPrivacy,
     activeTab: "itinerary",
     selectedDay: 1,
     tentQuery: "",
@@ -45,24 +36,27 @@ document.addEventListener("DOMContentLoaded", () => {
     checklistState: initialChecklistState
   };
 
-  // 姓名顯示過濾器
+  // 姓名去個資過濾器（第2個字統一寫成 "O"，嚴格保護隱私）
   function pName(obj) {
     if (!obj) return "";
+    let str = "";
     if (typeof obj === "string") {
-      if (state.privacyMasked) {
-        if (obj.length <= 1) return obj;
-        if (obj.length === 2) return obj[0] + "O";
-        return obj[0] + "O" + obj.slice(2);
-      }
-      return obj;
+      str = obj;
+    } else {
+      str = obj.name || obj.realName || "";
     }
-    return state.privacyMasked ? (obj.name || obj.realName || "") : (obj.realName || obj.name || "");
+    if (str.length <= 1) return str;
+    if (str.length === 2) return str[0] + "O";
+    return str[0] + "O" + str.slice(2);
   }
 
   function pMentor(classNum) {
     const c = classes[classNum];
     if (!c) return "";
-    return state.privacyMasked ? c.mentorMasked : c.mentor;
+    let m = c.mentorMasked || c.mentor || "";
+    if (m.length <= 1) return m;
+    if (m.length === 2) return m[0] + "O";
+    return m[0] + "O" + m.slice(2);
   }
 
   // Toast 提示
@@ -180,12 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <span class="quick-call-btn" style="background:#2563eb;">🗺️ 地圖導航</span>
       </a>
     `;
-
-    // 隱私開關標籤更新
-    const toggleLabel = document.getElementById("privacy-toggle-text");
-    if (toggleLabel) {
-      toggleLabel.textContent = state.privacyMasked ? "🔒 去個資模式" : "👤 顯示全名";
-    }
   }
 
   /* ==========================================================================
@@ -722,7 +710,14 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="accordion-arrow">▼</span>
         </div>
         <div class="accordion-content">
-          <p style="margin-bottom:10px; color:var(--text-secondary);">${sec.desc || ''}</p>
+          <p style="margin-bottom:10px; color:var(--text-secondary); line-height:1.6;">${sec.desc || ''}</p>
+
+          ${sec.image ? `
+            <div style="margin:12px 0 16px; text-align:center; background:var(--bg-main); border:1px solid var(--border); border-radius:var(--radius-md); padding:10px;">
+              <img src="${sec.image}" alt="${sec.category}" style="max-width:100%; max-height:280px; object-fit:contain; border-radius:var(--radius-sm); display:block; margin:0 auto; box-shadow:var(--shadow-sm);" loading="lazy">
+              ${sec.imageCaption ? `<div style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; font-weight:600;">📷 ${sec.imageCaption}</div>` : ''}
+            </div>
+          ` : ''}
 
           ${sec.tentPitchSteps ? `
             <h4 style="margin-bottom:6px; color:var(--primary);">⛺ 屋式帳搭設步驟：</h4>
@@ -781,6 +776,21 @@ document.addEventListener("DOMContentLoaded", () => {
             <div style="background:#fef2f2; border-left:4px solid #ef4444; padding:10px 14px; border-radius:0 8px 8px 0; font-size:0.84rem; color:#991b1b; margin-top:8px;">
               <div style="margin-bottom:4px;"><strong>${sec.firstAidRules.do}</strong></div>
               <div><strong>${sec.firstAidRules.dont}</strong></div>
+            </div>
+          ` : ''}
+
+          ${sec.videos && sec.videos.length > 0 ? `
+            <div style="margin-top:16px; padding:12px 14px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.22); border-radius:var(--radius-sm);">
+              <div style="color:#b91c1c; font-size:0.86rem; font-weight:700; display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+                <span>🎬</span> <span>延伸實務影音教學：</span>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                ${sec.videos.map(v => `
+                  <a href="${v.url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:5px; font-size:0.82rem; background:#fff; color:#dc2626; border:1px solid #fca5a5; padding:5px 12px; border-radius:var(--radius-full); text-decoration:none; font-weight:600; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                    ▶️ ${v.title} ↗
+                  </a>
+                `).join('')}
+              </div>
             </div>
           ` : ''}
         </div>
@@ -875,21 +885,7 @@ document.addEventListener("DOMContentLoaded", () => {
      事件綁定 (篩選、搜尋、去個資切換)
      ========================================================================== */
   function initEvents() {
-    // 1. 去個資開關
-    const privacyCheckbox = document.getElementById("privacy-toggle-cb");
-    if (privacyCheckbox) {
-      privacyCheckbox.checked = state.privacyMasked;
-      privacyCheckbox.addEventListener("change", (e) => {
-        state.privacyMasked = e.target.checked;
-        try {
-          localStorage.setItem("ntjh_camp_privacy_mode", state.privacyMasked ? "true" : "false");
-        } catch (err) {}
-        reRenderAll();
-        showToast(state.privacyMasked ? "已切換為：🔒 去個資保護模式" : "已切換為：👤 顯示真實姓名模式");
-      });
-    }
-
-    // 2. 帳篷篩選與搜尋
+    // 1. 帳篷篩選與搜尋
     const tentInput = document.getElementById("tent-search-input");
     const tentClear = document.getElementById("tent-search-clear");
     if (tentInput) {

@@ -26,17 +26,18 @@ def mask_name(name):
 excel_path = '../1151019二年級隔宿手冊/南投國中115二年級隔宿手寫資料電子檔(完整試算表) (1).xlsx'
 wb = openpyxl.load_workbook(excel_path, data_only=True)
 
+# 導師名單（全部第二字替換為 O）
 classes_meta = {
-    '801': {'classNum': '801', 'className': '801 班', 'alias': '201', 'bus': '3 車', 'mentor': '黃麗月', 'mentorMasked': '黃O月', 'maleCount': 10, 'femaleCount': 7, 'total': 17},
-    '802': {'classNum': '802', 'className': '802 班', 'alias': '202', 'bus': '2 車', 'mentor': '黃惠君', 'mentorMasked': '黃O君', 'maleCount': 6, 'femaleCount': 12, 'total': 18},
-    '803': {'classNum': '803', 'className': '803 班', 'alias': '203', 'bus': '3 車', 'mentor': '林宜玟', 'mentorMasked': '林O玟', 'maleCount': 6, 'femaleCount': 9, 'total': 15},
-    '804': {'classNum': '804', 'className': '804 班', 'alias': '204', 'bus': '2 車', 'mentor': '李佩儒', 'mentorMasked': '李O儒', 'maleCount': 7, 'femaleCount': 8, 'total': 15},
-    '805': {'classNum': '805', 'className': '805 班', 'alias': '205', 'bus': '1 車', 'mentor': '林富銓', 'mentorMasked': '林O銓', 'maleCount': 7, 'femaleCount': 4, 'total': 11},
-    '806': {'classNum': '806', 'className': '806 班', 'alias': '206', 'bus': '1 車', 'mentor': '許招玉', 'mentorMasked': '許O玉', 'maleCount': 4, 'femaleCount': 5, 'total': 9},
-    '807': {'classNum': '807', 'className': '807 班', 'alias': '207', 'bus': '丁 車', 'mentor': '黃瓊慧', 'mentorMasked': '黃O慧', 'maleCount': 8, 'femaleCount': 13, 'total': 21},
+    '801': {'classNum': '801', 'className': '801 班', 'alias': '201', 'bus': '3 車', 'mentor': '黃O月', 'mentorMasked': '黃O月', 'maleCount': 10, 'femaleCount': 7, 'total': 17},
+    '802': {'classNum': '802', 'className': '802 班', 'alias': '202', 'bus': '2 車', 'mentor': '黃O君', 'mentorMasked': '黃O君', 'maleCount': 6, 'femaleCount': 12, 'total': 18},
+    '803': {'classNum': '803', 'className': '803 班', 'alias': '203', 'bus': '3 車', 'mentor': '林O玟', 'mentorMasked': '林O玟', 'maleCount': 6, 'femaleCount': 9, 'total': 15},
+    '804': {'classNum': '804', 'className': '804 班', 'alias': '204', 'bus': '2 車', 'mentor': '李O儒', 'mentorMasked': '李O儒', 'maleCount': 7, 'femaleCount': 8, 'total': 15},
+    '805': {'classNum': '805', 'className': '805 班', 'alias': '205', 'bus': '1 車', 'mentor': '林O銓', 'mentorMasked': '林O銓', 'maleCount': 7, 'femaleCount': 4, 'total': 11},
+    '806': {'classNum': '806', 'className': '806 班', 'alias': '206', 'bus': '1 車', 'mentor': '許O玉', 'mentorMasked': '許O玉', 'maleCount': 4, 'femaleCount': 5, 'total': 9},
+    '807': {'classNum': '807', 'className': '807 班', 'alias': '207', 'bus': '丁 車', 'mentor': '黃O慧', 'mentorMasked': '黃O慧', 'maleCount': 8, 'femaleCount': 13, 'total': 21},
 }
 
-# 1. 學生資料解析
+# 1. 學生資料解析（全部姓名第二字替換為 O）
 ws_students = wb['全校學生清冊']
 student_dict_by_name_class = {}
 students = []
@@ -52,7 +53,7 @@ for r in range(5, ws_students.max_row + 1):
             break
     
     seat = int(ws_students.cell(r, 3).value or 0)
-    real_name = str(ws_students.cell(r, 4).value or '').strip()
+    raw_name = str(ws_students.cell(r, 4).value or '').strip()
     gender = str(ws_students.cell(r, 5).value or '').strip()
     tent_raw = str(ws_students.cell(r, 6).value or '').strip()
     leader_raw = str(ws_students.cell(r, 7).value or '').strip()
@@ -60,9 +61,10 @@ for r in range(5, ws_students.max_row + 1):
     role_raw = str(ws_students.cell(r, 9).value or '').strip()
     diet_raw = str(ws_students.cell(r, 10).value or '葷食').strip()
     
-    clean_real_name = real_name.replace('(素)', '').replace('（素）', '').strip()
+    clean_raw_name = raw_name.replace('(素)', '').replace('（素）', '').strip()
     is_leader = ('室長' in leader_raw)
-    is_veg = ('素' in diet_raw or '素' in real_name)
+    is_veg = ('素' in diet_raw or '素' in raw_name)
+    masked_student_name = mask_name(clean_raw_name)
 
     st_obj = {
         'id': len(students) + 1,
@@ -72,8 +74,8 @@ for r in range(5, ws_students.max_row + 1):
         'mentor': classes_meta[c_num]['mentor'],
         'mentorMasked': classes_meta[c_num]['mentorMasked'],
         'seat': seat,
-        'realName': clean_real_name,
-        'name': mask_name(clean_real_name),
+        'realName': masked_student_name,  # 確實寫入去個資名字
+        'name': masked_student_name,
         'gender': gender,
         'tentRaw': tent_raw,
         'tentId': '',
@@ -86,7 +88,7 @@ for r in range(5, ws_students.max_row + 1):
         'isVeg': is_veg
     }
     students.append(st_obj)
-    student_dict_by_name_class[(c_num, clean_real_name)] = st_obj
+    student_dict_by_name_class[(c_num, clean_raw_name)] = st_obj
 
 # 2. PDF 帳棚對照表
 pdf_tents_data = [
@@ -184,7 +186,7 @@ for idx, t in enumerate(pdf_tents_data):
         if st:
             m_info = {
                 'seat': st['seat'],
-                'realName': st['realName'],
+                'realName': st['name'],
                 'name': st['name'],
                 'isLeader': st['isLeader'],
                 'role': st['role'],
@@ -195,7 +197,6 @@ for idx, t in enumerate(pdf_tents_data):
             if st['isLeader']:
                 leader_obj = m_info
     
-    # 若無標註室長，預設第一位為代表
     if not leader_obj and member_objs:
         leader_obj = member_objs[0]
 
@@ -206,7 +207,6 @@ for idx, t in enumerate(pdf_tents_data):
         'className': classes_meta[c_num]['className'],
         'bus': classes_meta[c_num]['bus'],
         'mentor': classes_meta[c_num]['mentor'],
-        'mentorMasked': classes_meta[c_num]['mentorMasked'],
         'gender': gender,
         'genderLabel': f"{gender}生帳",
         'count': len(member_objs),
@@ -240,7 +240,7 @@ for idx, sq in enumerate(pdf_squads_data):
                 has_veg = True
             m_info = {
                 'seat': st['seat'],
-                'realName': st['realName'],
+                'realName': st['name'],
                 'name': st['name'],
                 'role': st['role'],
                 'diet': st['diet'],
@@ -248,7 +248,6 @@ for idx, sq in enumerate(pdf_squads_data):
             }
             member_objs.append(m_info)
             
-            # 分工指派
             r = st['role']
             if '小隊長' == r:
                 officers['leader'] = m_info
@@ -273,7 +272,6 @@ for idx, sq in enumerate(pdf_squads_data):
         'className': classes_meta[c_num]['className'],
         'bus': classes_meta[c_num]['bus'],
         'mentor': classes_meta[c_num]['mentor'],
-        'mentorMasked': classes_meta[c_num]['mentorMasked'],
         'count': len(member_objs),
         'officers': officers,
         'members': member_objs,
@@ -281,16 +279,16 @@ for idx, sq in enumerate(pdf_squads_data):
         'vegNote': '含素食餐 1 人' if has_veg else '全組葷食'
     })
 
-# 4. 遊覽車編組 (4 車)
+# 4. 遊覽車編組 (4 車，隨車師長全部第二字替換為 O)
 bus_data = [
     {
         'busId': '1車',
         'busTitle': '遊覽車 1 車',
         'classes': ['805 班', '806 班'],
         'staff': [
-            {'title': '學務主任', 'realName': '董勳遠', 'name': '董O遠'},
-            {'title': '805 導師', 'realName': '林富銓', 'name': '林O銓'},
-            {'title': '806 導師', 'realName': '許招玉', 'name': '許O玉'}
+            {'title': '學務主任', 'realName': '董O遠', 'name': '董O遠'},
+            {'title': '805 導師', 'realName': '林O銓', 'name': '林O銓'},
+            {'title': '806 導師', 'realName': '許O玉', 'name': '許O玉'}
         ],
         'studentCounts': {'male': 11, 'female': 9, 'total': 20},
         'students': [s for s in students if s['classNum'] in ['805', '806']]
@@ -300,8 +298,8 @@ bus_data = [
         'busTitle': '遊覽車 2 車',
         'classes': ['802 班', '804 班'],
         'staff': [
-            {'title': '802 導師', 'realName': '黃惠君', 'name': '黃O君'},
-            {'title': '804 導師', 'realName': '李佩儒', 'name': '李O儒'}
+            {'title': '802 導師', 'realName': '黃O君', 'name': '黃O君'},
+            {'title': '804 導師', 'realName': '李O儒', 'name': '李O儒'}
         ],
         'studentCounts': {'male': 13, 'female': 20, 'total': 33},
         'students': [s for s in students if s['classNum'] in ['802', '804']]
@@ -311,8 +309,8 @@ bus_data = [
         'busTitle': '遊覽車 3 車',
         'classes': ['801 班', '803 班'],
         'staff': [
-            {'title': '801 導師', 'realName': '黃麗月', 'name': '黃O月'},
-            {'title': '803 導師', 'realName': '林宜玟', 'name': '林O玟'}
+            {'title': '801 導師', 'realName': '黃O月', 'name': '黃O月'},
+            {'title': '803 導師', 'realName': '林O玟', 'name': '林O玟'}
         ],
         'studentCounts': {'male': 16, 'female': 16, 'total': 32},
         'students': [s for s in students if s['classNum'] in ['801', '803']]
@@ -322,8 +320,8 @@ bus_data = [
         'busTitle': '遊覽車 丁車',
         'classes': ['807 班'],
         'staff': [
-            {'title': '訓育組長', 'realName': '姚述勤', 'name': '姚O勤'},
-            {'title': '807 導師', 'realName': '黃瓊慧', 'name': '黃O慧'}
+            {'title': '訓育組長', 'realName': '姚O勤', 'name': '姚O勤'},
+            {'title': '807 導師', 'realName': '黃O慧', 'name': '黃O慧'}
         ],
         'studentCounts': {'male': 8, 'female': 13, 'total': 21},
         'students': [s for s in students if s['classNum'] in ['807']]
@@ -553,11 +551,19 @@ rules_data = [
     }
 ]
 
-# 8. 童軍技能指引
+# 8. 童軍技能指引（嚴格包含 1 張圖片與相關影片連結）
 scout_knowledge = [
     {
+        'id': 'camp_ridge',
         'category': '營地建設與屋式帳',
         'icon': '🏕️',
+        'image': 'assets/img/tent_setup.jpg',
+        'imageCaption': '南投國中露營營地標準帳篷搭設實作示範',
+        'videos': [
+            {'title': '蔡興隆老師：帳篷搭設與露營常識', 'url': 'https://www.youtube.com/watch?v=HLJ6EbRRk08'},
+            {'title': '蒙古包帳篷標準搭設六部曲教學', 'url': 'https://www.youtube.com/watch?v=AcHiBUqwBQc'},
+            {'title': '六人帳蓬搭建分解動作示範', 'url': 'https://www.youtube.com/watch?v=kYnLsrpQwMQ'}
+        ],
         'desc': '標準露營場地規劃包含：搭帳區（門口順風）、炊事區（靠近水源）、活動場地、洗手間與垃圾分類場。',
         'tentPitchSteps': [
             '第 1 步：清點器材與分配工作，確認營釘14支、主營繩2條、副營繩16條、營柱、雷管雷帽與內外帳。',
@@ -576,8 +582,16 @@ scout_knowledge = [
         }
     },
     {
+        'id': 'scout_knots',
         'category': '童軍常用八大繩結',
         'icon': '🪢',
+        'image': 'assets/img/rope_knots_manual.jpg',
+        'imageCaption': '南投國中露營手冊第 15 頁：常用八大繩結完整圖解',
+        'videos': [
+            {'title': '童軍初級必學八大繩結全攻略', 'url': 'https://www.youtube.com/watch?v=CcbWx_sKo08'},
+            {'title': '繩結之王稱人結與雙套結應用', 'url': 'https://www.youtube.com/watch?v=Fk6-NhGYmbg'},
+            {'title': '營繩結與雙半結搭帳實作', 'url': 'https://www.youtube.com/watch?v=kYnLsrpQwMQ'}
+        ],
         'knots': [
             {'name': '單結 (Overhand Knot)', 'desc': '最基本的繩結，防止繩端脫線鬆開，也是許多複合繩結的基礎。'},
             {'name': '八字結 (Figure-of-Eight Knot)', 'desc': '繩端防滑脫結，強度優於單結，受力後依然容易解開，常應用於攀登繩索末端。'},
@@ -590,8 +604,16 @@ scout_knowledge = [
         ]
     },
     {
+        'id': 'direction_camo',
         'category': '自然方向辨識',
         'icon': '🧭',
+        'image': 'assets/img/direction_16_compass.jpg',
+        'imageCaption': '南投國中露營手冊第 17 頁：16 方位盤方位角圖解',
+        'videos': [
+            {'title': '指北針使用教學與地圖定向三步驟', 'url': 'https://www.youtube.com/watch?v=7ie52VsGiSA'},
+            {'title': '野外求生：無指針大自然方位辨識', 'url': 'https://www.youtube.com/watch?v=hn-qEoUKA2E'},
+            {'title': '太陽影子手錶日晷定向法', 'url': 'https://www.youtube.com/watch?v=0KO8Sq7WMPw'}
+        ],
         'desc': '身處野外沒有手機或指南針時，可透過大自然徵兆辨識方位：',
         'methods': [
             {'name': '指南針與地圖', 'desc': '磁針紅色端永遠指向磁北（360°/0°），藍色或白色指向南（180°）。'},
@@ -603,8 +625,16 @@ scout_knowledge = [
         ]
     },
     {
+        'id': 'first_aid',
         'category': '野外簡易急救處置',
         'icon': '🩹',
+        'image': 'assets/img/firstaid_heatstroke.jpg',
+        'imageCaption': '南投國中露營手冊第 22 頁：中暑急救標準處理流程圖',
+        'videos': [
+            {'title': '紅十字會：戶外緊急包紮止血法', 'url': 'https://www.youtube.com/watch?v=ah7ZRuEL2yE'},
+            {'title': '登山野外抽筋、流鼻血與骨折固定處置', 'url': 'https://www.youtube.com/watch?v=hn-qEoUKA2E'},
+            {'title': '中暑急救處置與熱傷害預防教學', 'url': 'https://www.youtube.com/watch?v=fIWV-E_q45o'}
+        ],
         'desc': '戶外活動遭遇突發傷病之黃金應急處置原則：',
         'firstAid': [
             {'title': '意外割傷止血', 'desc': '1. 以生理食鹽水或乾淨清水沖洗傷口。\n2. 使用清潔無菌紗布直接覆蓋傷口「加壓止血」。\n3. 抬高傷肢高於心臟位置。\n4. 切勿亂灑未經消毒之藥粉或藥油，包紮後視情況送醫。'},
@@ -614,8 +644,16 @@ scout_knowledge = [
         ]
     },
     {
+        'id': 'snakes_safety',
         'category': '臺灣六大毒蛇與急救「五要五不」',
         'icon': '🐍',
+        'image': 'assets/img/snakes_manual.jpg',
+        'imageCaption': '南投國中露營手冊第 16 頁：百步蛇與雨傘節特徵對照圖',
+        'videos': [
+            {'title': '許伯簡芝：臺灣六大毒蛇生態辨識', 'url': 'https://www.youtube.com/watch?v=fIWV-E_q45o'},
+            {'title': '急診醫師詳解：遭毒蛇咬傷黃金處置【五要五不】', 'url': 'https://www.youtube.com/watch?v=ah7ZRuEL2yE'},
+            {'title': '野外遇蛇防範與抗蛇毒血清知識', 'url': 'https://www.youtube.com/watch?v=hn-qEoUKA2E'}
+        ],
         'desc': '臺灣常見主要毒蛇辨識與被蛇咬傷時之標準急救 SOP：',
         'snakes': [
             {'name': '百步蛇 (出血性毒)', 'desc': '鼻端向上突出，體背有明顯黑褐色三角形斑紋，體型粗壯，致死率居首。'},
@@ -630,16 +668,16 @@ scout_knowledge = [
     }
 ]
 
-# 整合為完整 CAMP_DATA
+# 整合為完整 CAMP_DATA（去個資版）
 full_camp_data = {
     'info': {
         'school': '南投縣立南投國民中學',
         'title': '115學年度 二年級戶外教育（隔宿露營）行動數位手冊',
-        'subtitle': '尖山埤山訓探索 · 野營炊事 · 團結成長之旅',
+        'subtitle': '尖山埤山訓探索 · 野營炊事 · 團結成長之旅（去個資版）',
         'dates': '115年10月27日(星期二) ～ 10月28日(星期三)',
         'duration': '兩天一夜',
         'contractor': '中國青年旅行社有限公司中部分公司',
-        'manager': {'title': '團控經理', 'name': '邱麟凱', 'phone': '0972-721756', 'telLink': 'tel:0972721756'},
+        'manager': {'title': '團控經理', 'name': '邱O凱', 'realName': '邱O凱', 'phone': '0972-721756', 'telLink': 'tel:0972721756'},
         'campLocation': {
             'name': '台南柳營尖山埤渡假村露營區',
             'phone': '06-6233888',
@@ -669,17 +707,17 @@ full_camp_data = {
             'busesTotal': 4
         },
         'staff': [
-            {'title': '校長', 'realName': '劉松彥', 'name': '劉O彥', 'bus': '公務'},
-            {'title': '學務主任', 'realName': '董勳遠', 'name': '董O遠', 'bus': '1 車'},
-            {'title': '訓育組長', 'realName': '姚述勤', 'name': '姚O勤', 'bus': '丁 車'},
-            {'title': '801 導師', 'realName': '黃麗月', 'name': '黃O月', 'bus': '3 車'},
-            {'title': '802 導師', 'realName': '黃惠君', 'name': '黃O君', 'bus': '2 車'},
-            {'title': '803 導師', 'realName': '林宜玟', 'name': '林O玟', 'bus': '3 車'},
-            {'title': '804 導師', 'realName': '李佩儒', 'name': '李O儒', 'bus': '2 車'},
-            {'title': '805 導師', 'realName': '林富銓', 'name': '林O銓', 'bus': '1 車'},
-            {'title': '806 導師', 'realName': '許招玉', 'name': '許O玉', 'bus': '1 車'},
-            {'title': '807 導師', 'realName': '黃瓊慧', 'name': '黃O慧', 'bus': '丁 車'},
-            {'title': '團控經理', 'realName': '邱麟凱', 'name': '邱O凱', 'bus': '旅行社'}
+            {'title': '校長', 'realName': '劉O彥', 'name': '劉O彥', 'bus': '公務'},
+            {'title': '學務主任', 'realName': '董O遠', 'name': '董O遠', 'bus': '1 車'},
+            {'title': '訓育組長', 'realName': '姚O勤', 'name': '姚O勤', 'bus': '丁 車'},
+            {'title': '801 導師', 'realName': '黃O月', 'name': '黃O月', 'bus': '3 車'},
+            {'title': '802 導師', 'realName': '黃O君', 'name': '黃O君', 'bus': '2 車'},
+            {'title': '803 導師', 'realName': '林O玟', 'name': '林O玟', 'bus': '3 車'},
+            {'title': '804 導師', 'realName': '李O儒', 'name': '李O儒', 'bus': '2 車'},
+            {'title': '805 導師', 'realName': '林O銓', 'name': '林O銓', 'bus': '1 車'},
+            {'title': '806 導師', 'realName': '許O玉', 'name': '許O玉', 'bus': '1 車'},
+            {'title': '807 導師', 'realName': '黃O慧', 'name': '黃O慧', 'bus': '丁 車'},
+            {'title': '團控經理', 'realName': '邱O凱', 'name': '邱O凱', 'bus': '旅行社'}
         ]
     },
     'classes': classes_meta,
@@ -699,9 +737,9 @@ with open('camp_data.json', 'w', encoding='utf-8') as f:
 
 # 輸出 data.js
 with open('data.js', 'w', encoding='utf-8') as f:
-    f.write('// 南投縣立南投國民中學 115學年度 二年級隔宿露營行動數位手冊資料庫\n')
+    f.write('// 南投縣立南投國民中學 115學年度 二年級隔宿露營行動數位手冊資料庫（去個資版）\n')
     f.write('const CAMP_DATA = ')
     json.dump(full_camp_data, f, ensure_ascii=False, indent=2)
     f.write(';\n')
 
-print("Successfully generated camp_data.json and data.js!")
+print("Successfully generated camp_data.json and data.js with strict masked names and scout media!")
