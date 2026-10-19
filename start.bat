@@ -1,9 +1,10 @@
 @echo off
-chcp 65001 > nul
+chcp 65001 >nul
 echo ========================================================
-echo   正在啟動「南投國中 115 二年級隔宿露營行動簡報手冊（去個資版）」...
-echo   本機伺服器位址：http://localhost:8080
+echo   南投國中 115學年度二年級隔宿露營行動數位手冊
+echo   尖山埤山訓探索 · 野營炊事 · 團結成長之旅
 echo ========================================================
-start http://localhost:8080
+echo 正在為您啟動本機手冊服務...
+start "" "http://localhost:8080/index.html"
 python -m http.server 8080
 pause

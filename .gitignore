@@ -1,8 +1,4 @@
-*.xlsx
-*.xls
-*.docx
 __pycache__/
 *.pyc
 .DS_Store
-Thumbs.db
-~$*
+*.log

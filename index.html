@@ -1,485 +1,332 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>南投國中 115學年度二年級隔宿露營行動數位手冊</title>
-  <meta name="description" content="南投縣立南投國民中學 115學年度 二年級戶外教育隔宿露營行動數位手冊（去個資版）。提供兩日行程互動時間軸、帳篷住宿與野炊小隊即時速查、營地資訊、童軍技能知識卡、營火晚會歌詞、山訓探索教育、行李打包清單與生活營規。">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>南投國中 115學年度二年級隔宿露營專屬行動手冊</title>
+  <meta name="description" content="南投縣立南投國民中學 115學年度 二年級戶外教育隔宿露營（台南尖山埤）專屬 RWD 行動數位手冊。提供帳篷住宿速查、野炊小隊分工、兩日行程時間軸、遊覽車編組、行前行李清單與童軍技能寶典。">
   <meta name="theme-color" content="#15803d">
-  
-  <!-- Favicon -->
+
+  <!-- Favicon 圖標 -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%2315803d'/%3E%3Cpath d='M8 22l8-14 8 14H8z' fill='%23f97316'/%3E%3C/svg%3E">
 
-  <!-- 快取控制 -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
-  <!-- 主樣式表 -->
-  <link rel="stylesheet" href="styles.css?v=202610190400">
+  <!-- 樣式表 -->
+  <link rel="stylesheet" href="styles.css?v=20261019_v1">
 </head>
 <body>
 
-  <!-- ================== 頂部 Hero Header ================== -->
+  <!-- ================= 頂部 Hero Header ================= -->
   <header class="hero-header">
     <div class="hero-inner">
-      <div class="hero-badge-wrap">
-        <span class="badge-tag">🏫 南投縣立南投國民中學</span>
-        <span class="badge-tag highlight">兩天一夜</span>
-        <span class="badge-tag">115學年度 二年級隔宿露營</span>
-        <span class="badge-tag">全校 7 班 · 106 位同學（去個資版）</span>
+      <div class="hero-top-bar">
+        <div class="hero-badges">
+          <span class="badge-tag">🏫 南投縣立南投國民中學</span>
+          <span class="badge-tag highlight">115學年度 二年級</span>
+          <span class="badge-tag">兩天一夜 10/27～10/28</span>
+          <span class="badge-tag">全校 7 班 · 106 位學生</span>
+          <a href="slides.html" class="badge-tag" style="background:#ea580c; border-color:#f97316; text-decoration:none; color:#fff;" title="前往全螢幕簡報模式">🖥️ 簡報模式</a>
+        </div>
+
+        <!-- 隱私模式切換開關 -->
+        <label class="privacy-toggle-wrap" title="切換個資去識別化（保護隱私）或校內點名全名模式">
+          <span id="privacy-toggle-text">🔒 去個資模式</span>
+          <span class="switch-toggle">
+            <input type="checkbox" id="privacy-toggle-cb" checked>
+            <span class="switch-slider"></span>
+          </span>
+        </label>
       </div>
-      <h1 class="hero-title">115學年度 二年級隔宿露營行動數位手冊</h1>
+
+      <h1 class="hero-title">115學年度 二年級戶外教育隔宿露營行動手冊</h1>
       <p class="hero-subtitle">
-        集合出發：07:30～08:00 學校集合（921地震公園逃生演練） 08:00 準時發車 ｜ 尖山埤山訓探索 · 野營炊事 · 團結成長之旅
+        台南柳營尖山埤渡假村 ｜ 山訓探索 · 野營炊事 · 團結成長之旅 ｜ 集合時間：10/27 (二) 07:30～08:00（921地震公園逃生演練） 08:00 準時出發
       </p>
 
-      <!-- 快速營地與電話撥號卡片 -->
-      <div class="hero-quick-cards" id="hero-hotels-container">
+      <!-- 快速營地與緊急撥號卡片 -->
+      <div class="hero-quick-actions" id="hero-quick-actions">
         <!-- 由 JavaScript 動態生成 -->
       </div>
     </div>
   </header>
 
-  <!-- ================== 主導航 Tabs (桌機 & 平板) ================== -->
-  <nav class="nav-tab-bar" aria-label="主要分頁導航">
-    <div class="nav-tabs-container">
-      <a href="slides.html" class="nav-link-highlight" title="開啟全螢幕投影片簡報">
-        🖥️ 去個資簡報模式
-      </a>
-      <button class="nav-tab-btn active" data-tab="itinerary">📅 行程總覽</button>
-      <button class="nav-tab-btn" data-tab="bus">🚌 車輛團務</button>
-      <button class="nav-tab-btn" data-tab="tents">⛺ 帳篷速查</button>
-      <button class="nav-tab-btn" data-tab="squads">🍳 野炊小隊</button>
-      <button class="nav-tab-btn" data-tab="roster">🔍 學生名冊</button>
-      <button class="nav-tab-btn" data-tab="attractions">🏕️ 營地景點</button>
-      <button class="nav-tab-btn" data-tab="scout">⚜️ 童軍知識卡</button>
-      <button class="nav-tab-btn" data-tab="campfire">🔥 營火晚會</button>
-      <button class="nav-tab-btn" data-tab="mountain">🧗 山訓探索</button>
-      <button class="nav-tab-btn" data-tab="checklist">🎒 行李清單</button>
-      <button class="nav-tab-btn" data-tab="notices">⚠️ 生活須知</button>
-      <button class="nav-tab-btn" data-tab="manual">📖 手冊全文</button>
+  <!-- ================= 桌機 / 平板 導航列 ================= -->
+  <nav class="desktop-nav-bar" aria-label="手冊主要分頁導航">
+    <div class="nav-tabs-scroll">
+      <a href="slides.html" class="tab-btn" style="background:#ea580c; color:#fff; text-decoration:none;" title="開啟全螢幕簡報模式">🖥️ 去個資簡報模式</a>
+      <button class="tab-btn active" data-tab="itinerary">📅 行程時間軸</button>
+      <button class="tab-btn" data-tab="tents">⛺ 帳篷住宿速查</button>
+      <button class="tab-btn" data-tab="squads">🍳 野炊炊事分組</button>
+      <button class="tab-btn" data-tab="roster">🔍 全校學生名冊</button>
+      <button class="tab-btn" data-tab="buses">🚌 遊覽車編組</button>
+      <button class="tab-btn" data-tab="checklist">🎒 行前行李清單</button>
+      <button class="tab-btn" data-tab="scout">⚜️ 童軍野營寶典</button>
+      <button class="tab-btn" data-tab="rules">⚠️ 營規生活須知</button>
+      <button class="tab-btn" data-tab="info">ℹ️ 營地與行政資訊</button>
     </div>
   </nav>
 
-  <!-- ================== 主內容區域 ================== -->
+  <!-- ================= 主要內容區 ================= -->
   <main class="main-content">
-    
-    <!-- 1. 行程總覽分頁 -->
+
+    <!-- 1. 兩日行程時間軸 -->
     <section class="tab-pane active" id="tab-itinerary">
-      <div class="section-header">
-        <h2 class="section-title">📅 兩天一夜 完整行程時間與路線</h2>
-        <p class="section-desc">點選下方天數切換行程細節、用餐安排與重點時間</p>
+      <div class="section-head">
+        <h2 class="section-title">📅 兩天一夜 完整行程時間表</h2>
+        <p class="section-desc">包含集合出發、開訓營規、搭帳分站、野炊競賽、營火晚會、山訓挑戰與頒獎結訓完整規劃</p>
       </div>
 
-      <!-- 天數切換按鈕組 -->
-      <div class="day-selector" id="day-selector">
-        <!-- 由 JavaScript 生成 -->
+      <div class="day-switch-bar" id="day-switch-container">
+        <!-- 由 JS 動態生成 -->
       </div>
 
-      <!-- 當日行程內容容器 -->
       <div id="itinerary-content-container">
-        <!-- 由 JavaScript 生成 -->
+        <!-- 當日行程時間軸由 JS 動態生成 -->
       </div>
     </section>
 
-    <!-- 2. 車輛編組與隨車師長團務表分頁 -->
-    <section class="tab-pane" id="tab-bus">
-      <div class="section-header">
-        <h2 class="section-title">🚌 遊覽車編組與隨車師長團務表</h2>
-        <p class="section-desc">全校 4 部遊覽車（1車、2車、3車、丁車）班級配置、男女生人數、飲食統計與隨車行政導師名單（依公文團務表標準製作）</p>
-      </div>
-      <div id="bus-content-container">
-        <!-- 由 JavaScript 生成 -->
-      </div>
-    </section>
-
-    <!-- 3. 帳篷住宿速查分頁 -->
+    <!-- 2. 帳篷住宿速查 -->
     <section class="tab-pane" id="tab-tents">
-      <div class="section-header">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-          <div>
-            <h2 class="section-title">⛺ 帳篷住宿分配速查（全校 27 頂帳篷）</h2>
-            <p class="section-desc">輸入同學姓名、座號、班級（201~207）或帳別（如 男第1帳）即時搜尋！</p>
+      <div class="section-head">
+        <h2 class="section-title">⛺ 帳篷住宿即時速查</h2>
+        <p class="section-desc">全校 27 頂帳篷（男帳 A01~A13、女帳 B01~B14），支援輸入姓名、座號、帳號即時秒查</p>
+      </div>
+
+      <!-- 帳篷篩選工具列 -->
+      <div class="filter-toolbar">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="tent-search-input" class="search-input" placeholder="輸入同學姓名、座號（如 15）、帳號（如 A01, B02）快速查詢...">
+          <button id="tent-search-clear" class="clear-search-btn" title="清除搜尋">✕</button>
+        </div>
+
+        <div class="chip-filters">
+          <span class="chip-label">班級：</span>
+          <button class="filter-chip tent-class-chip active" data-class="all">全部班級</button>
+          <button class="filter-chip tent-class-chip" data-class="801">801 (201)</button>
+          <button class="filter-chip tent-class-chip" data-class="802">802 (202)</button>
+          <button class="filter-chip tent-class-chip" data-class="803">803 (203)</button>
+          <button class="filter-chip tent-class-chip" data-class="804">804 (204)</button>
+          <button class="filter-chip tent-class-chip" data-class="805">805 (205)</button>
+          <button class="filter-chip tent-class-chip" data-class="806">806 (206)</button>
+          <button class="filter-chip tent-class-chip" data-class="807">807 (207)</button>
+        </div>
+
+        <div class="chip-filters">
+          <span class="chip-label">性別：</span>
+          <button class="filter-chip tent-gender-chip active" data-gender="all">全部帳篷</button>
+          <button class="filter-chip tent-gender-chip" data-gender="男">🏕️ 男生帳 (A01~A13)</button>
+          <button class="filter-chip tent-gender-chip" data-gender="女">⛺ 女生帳 (B01~B14)</button>
+        </div>
+
+        <div class="view-actions-bar">
+          <span id="tents-count-badge" class="result-count-badge">共 27 頂帳篷</span>
+          <div class="view-toggle-btns">
+            <button class="view-toggle-btn tent-view-btn active" data-view="card">🗂️ 卡片模式</button>
+            <button class="view-toggle-btn tent-view-btn" data-view="table">📑 表格名冊</button>
           </div>
-          <button onclick="window.print()" class="quick-btn" style="border:1px solid #cbd5e1; padding:6px 14px;">
-            🖨️ 列印查帳名冊
-          </button>
         </div>
       </div>
 
-      <!-- 帳篷搭設教學影音 -->
-      <div class="video-resources-box">
-        <div class="video-resources-title">🎬 帳篷搭建教學影音推薦：</div>
-        <div class="video-chips-row">
-          <a href="https://www.youtube.com/watch?v=AcHiBUqwBQc" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 露營新手教學：蒙古包帳篷如何搭設 (7分鐘速學)</a>
-          <a href="https://www.youtube.com/watch?v=HLJ6EbRRk08" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 經典六人雙門蒙古包帳篷 快速搭設實作教學</a>
-          <a href="https://www.youtube.com/watch?v=kYnLsrpQwMQ" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ Timber Ridge 圓頂蒙古包帳 簡易搭設示範</a>
-        </div>
-      </div>
-
-      <!-- 搜尋輸入框 -->
-      <div class="search-bar-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="tents-search-input" class="search-input" placeholder="輸入同學姓名、座號、班級或帳號...">
-        <button id="tents-search-clear" class="search-clear-btn" aria-label="清除搜尋">✕</button>
-      </div>
-
-      <!-- 班級快速篩選晶片 -->
-      <div style="margin-bottom:12px;">
-        <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-right:6px;">班級篩選：</span>
-        <div class="filter-chips-wrap" id="tents-class-filter-chips">
-          <!-- 由 JavaScript 生成 -->
-        </div>
-      </div>
-
-      <!-- 結果控制列 -->
-      <div class="search-controls-row">
-        <div class="results-stats" id="tents-results-count">符合帳數：27 頂帳篷</div>
-        <div class="view-mode-toggle">
-          <button class="view-btn tents-view-btn active" data-view="card">🗂️ 卡片視圖</button>
-          <button class="view-btn tents-view-btn" data-view="table">📋 表格視圖</button>
-        </div>
-      </div>
-
-      <!-- 卡片視圖容器 -->
-      <div class="roster-cards-grid" id="tents-cards-container">
-        <!-- 由 JavaScript 生成 -->
-      </div>
-
-      <!-- 表格視圖容器 -->
-      <div class="roster-table-wrap" id="tents-table-container" style="display:none; margin-top:10px;">
-        <!-- 由 JavaScript 生成 -->
+      <!-- 帳篷列表 -->
+      <div id="tents-list-container">
+        <!-- JS 動態生成 -->
       </div>
     </section>
 
-    <!-- 3. 野炊小隊速查分頁 -->
+    <!-- 3. 野炊炊事分組速查 -->
     <section class="tab-pane" id="tab-squads">
-      <div class="section-header">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-          <div>
-            <h2 class="section-title">🍳 野炊/烤肉活動小隊編組速查（全校 15 個小隊）</h2>
-            <p class="section-desc">輸入同學姓名、班級、職稱（如 大廚、伙夫、水夫、小隊長）秒查分工！</p>
+      <div class="section-head">
+        <h2 class="section-title">🍳 野炊炊事分組即時速查</h2>
+        <p class="section-desc">全校 15 個野炊小隊，標註小隊長、副小隊長、大廚、二廚、伙夫、水夫、事務分工與素食名單</p>
+      </div>
+
+      <!-- 野炊篩選工具列 -->
+      <div class="filter-toolbar">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="squad-search-input" class="search-input" placeholder="輸入組別（如 第 1 組）、學生姓名、分工職掌（如 大廚）快速查詢...">
+          <button id="squad-search-clear" class="clear-search-btn" title="清除搜尋">✕</button>
+        </div>
+
+        <div class="chip-filters">
+          <span class="chip-label">班級：</span>
+          <button class="filter-chip squad-class-chip active" data-class="all">全部班級</button>
+          <button class="filter-chip squad-class-chip" data-class="801">801 (1-2組)</button>
+          <button class="filter-chip squad-class-chip" data-class="802">802 (3-5組)</button>
+          <button class="filter-chip squad-class-chip" data-class="803">803 (6-7組)</button>
+          <button class="filter-chip squad-class-chip" data-class="804">804 (8-9組)</button>
+          <button class="filter-chip squad-class-chip" data-class="805">805 (10-11組)</button>
+          <button class="filter-chip squad-class-chip" data-class="806">806 (12組)</button>
+          <button class="filter-chip squad-class-chip" data-class="807">807 (13-15組)</button>
+        </div>
+
+        <div class="view-actions-bar">
+          <span id="squads-count-badge" class="result-count-badge">共 15 個野炊小隊</span>
+          <div class="view-toggle-btns">
+            <button class="view-toggle-btn squad-view-btn active" data-view="card">🗂️ 卡片模式</button>
+            <button class="view-toggle-btn squad-view-btn" data-view="table">📑 表格名冊</button>
           </div>
-          <button onclick="window.print()" class="quick-btn" style="border:1px solid #cbd5e1; padding:6px 14px;">
-            🖨️ 列印小隊名冊
-          </button>
         </div>
       </div>
 
-      <!-- 野炊煮飯教學影音 -->
-      <div class="video-resources-box">
-        <div class="video-resources-title">🎬 野炊生火與煮飯技巧影音推薦：</div>
-        <div class="video-chips-row">
-          <a href="https://www.youtube.com/watch?v=ewgSXZZqR-g" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 蔡興隆老師童軍野炊教學：野外炊事與生火煮飯</a>
-          <a href="https://www.youtube.com/watch?v=h9KZEYU-EEo" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 戶外休閒生活技能：生火與無具野炊實作示範</a>
-          <a href="https://www.youtube.com/watch?v=-_WSLsslGyM" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 露營戶外煮白飯零失敗技巧：米水黃金比例與悶飯</a>
-        </div>
-      </div>
-
-      <!-- 搜尋輸入框 -->
-      <div class="search-bar-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="squads-search-input" class="search-input" placeholder="輸入同學姓名、班級或職稱 (如 大廚、水夫)...">
-        <button id="squads-search-clear" class="search-clear-btn" aria-label="清除搜尋">✕</button>
-      </div>
-
-      <!-- 班級快速篩選晶片 -->
-      <div style="margin-bottom:12px;">
-        <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-right:6px;">班級篩選：</span>
-        <div class="filter-chips-wrap" id="squads-class-filter-chips">
-          <!-- 由 JavaScript 生成 -->
-        </div>
-      </div>
-
-      <!-- 結果控制列 -->
-      <div class="search-controls-row">
-        <div class="results-stats" id="squads-results-count">符合隊數：15 個小隊</div>
-        <div class="view-mode-toggle">
-          <button class="view-btn squads-view-btn active" data-view="card">🗂️ 卡片視圖</button>
-          <button class="view-btn squads-view-btn" data-view="table">📋 表格視圖</button>
-        </div>
-      </div>
-
-      <!-- 卡片視圖容器 -->
-      <div class="roster-cards-grid" id="squads-cards-container">
-        <!-- 由 JavaScript 生成 -->
-      </div>
-
-      <!-- 表格視圖容器 -->
-      <div class="roster-table-wrap" id="squads-table-container" style="display:none; margin-top:10px;">
-        <!-- 由 JavaScript 生成 -->
+      <!-- 野炊小隊列表 -->
+      <div id="squads-list-container">
+        <!-- JS 動態生成 -->
       </div>
     </section>
 
-    <!-- 4. 全校學生名冊即時速查 -->
+    <!-- 4. 全校學生名冊資料庫 -->
     <section class="tab-pane" id="tab-roster">
-      <div class="section-header">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-          <div>
-            <h2 class="section-title">🔍 全校學生資料庫總清冊（共 106 位同學）</h2>
-            <p class="section-desc">支援即時輸入同學姓名、座號、帳別、野炊職稱或飲食習慣快速檢索</p>
-          </div>
-          <button onclick="window.print()" class="quick-btn" style="border:1px solid #cbd5e1; padding:6px 14px;">
-            🖨️ 列印學生總清冊
-          </button>
+      <div class="section-head">
+        <h2 class="section-title">🔍 全校學生資料庫速查</h2>
+        <p class="section-desc">全校 106 位二年級同學，快速查詢座號、班級、性別、車次、帳號、野炊組別與飲食習慣</p>
+      </div>
+
+      <!-- 名冊篩選工具列 -->
+      <div class="filter-toolbar">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="roster-search-input" class="search-input" placeholder="搜尋學生姓名、座號、帳號、組別或職掌...">
+          <button id="roster-search-clear" class="clear-search-btn" title="清除搜尋">✕</button>
+        </div>
+
+        <div class="chip-filters">
+          <span class="chip-label">班級：</span>
+          <button class="filter-chip roster-class-chip active" data-class="all">全部</button>
+          <button class="filter-chip roster-class-chip" data-class="801">801</button>
+          <button class="filter-chip roster-class-chip" data-class="802">802</button>
+          <button class="filter-chip roster-class-chip" data-class="803">803</button>
+          <button class="filter-chip roster-class-chip" data-class="804">804</button>
+          <button class="filter-chip roster-class-chip" data-class="805">805</button>
+          <button class="filter-chip roster-class-chip" data-class="806">806</button>
+          <button class="filter-chip roster-class-chip" data-class="807">807</button>
+        </div>
+
+        <div class="chip-filters">
+          <span class="chip-label">條件：</span>
+          <button class="filter-chip roster-gender-chip active" data-gender="all">全部性別</button>
+          <button class="filter-chip roster-gender-chip" data-gender="男">男生</button>
+          <button class="filter-chip roster-gender-chip" data-gender="女">女生</button>
+          <button class="filter-chip roster-diet-chip" data-diet="veg">🥗 僅看素食</button>
+        </div>
+
+        <div class="view-actions-bar">
+          <span id="roster-count-badge" class="result-count-badge">共 106 位同學</span>
         </div>
       </div>
 
-      <!-- 搜尋輸入框 -->
-      <div class="search-bar-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="roster-search-input" class="search-input" placeholder="輸入同學姓名、座號、帳別、小隊或職稱...">
-        <button id="roster-search-clear" class="search-clear-btn" aria-label="清除搜尋">✕</button>
-      </div>
-
-      <!-- 篩選晶片 -->
-      <div style="margin-bottom:12px;">
-        <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-right:6px;">類型篩選：</span>
-        <div class="filter-chips-wrap" id="roster-filter-chips">
-          <button class="chip-btn active" data-filter="all">全部學生 (106人)</button>
-          <button class="chip-btn" data-filter="male">男生 (48人)</button>
-          <button class="chip-btn" data-filter="female">女生 (58人)</button>
-          <button class="chip-btn" data-filter="leader">室長幹部 (27人)</button>
-          <button class="chip-btn" data-filter="veg">素食 (1人)</button>
-        </div>
-      </div>
-
-      <div class="results-stats" id="roster-results-count" style="margin-bottom:8px;">
-        符合筆數：106 位同學
-      </div>
-
-      <div class="roster-table-wrap">
-        <table class="custom-table" id="roster-table">
-          <thead>
-            <tr>
-              <th>序號</th>
-              <th>班級</th>
-              <th>座號</th>
-              <th>姓名</th>
-              <th>性別</th>
-              <th>導師</th>
-              <th>帳篷分配</th>
-              <th>室長註記</th>
-              <th>野炊小隊</th>
-              <th>小隊職稱</th>
-              <th>飲食習慣</th>
-            </tr>
-          </thead>
-          <tbody id="roster-tbody">
-            <!-- 由 JavaScript 生成 -->
-          </tbody>
-        </table>
+      <div id="roster-list-container">
+        <!-- JS 動態生成 -->
       </div>
     </section>
 
-    <!-- 5. 營地景點導覽分頁 -->
-    <section class="tab-pane" id="tab-attractions">
-      <div class="section-header">
-        <h2 class="section-title">🏕️ 營地景點圖文導覽與自然生態</h2>
-        <p class="section-desc">深入認識台南柳營尖山埤渡假村（水庫生態、專業山訓場、露營野炊基地與自然生態）</p>
+    <!-- 5. 遊覽車編組與師長團務 -->
+    <section class="tab-pane" id="tab-buses">
+      <div class="section-head">
+        <h2 class="section-title">🚌 遊覽車編組與隨車師長</h2>
+        <p class="section-desc">全校 4 部遊覽車（1 車、2 車、3 車、丁車）搭乘班級配置、隨車行政師長與學生名冊</p>
       </div>
-
-      <!-- 營地景點導覽影音 -->
-      <div class="video-resources-box">
-        <div class="video-resources-title">🎬 尖山埤營地實景影音推薦（3部）：</div>
-        <div class="video-chips-row">
-          <a href="https://www.youtube.com/watch?v=lDcxvZLpFzg" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 全國最幸福百甲山水：柳營尖山埤渡假村導覽</a>
-          <a href="https://www.youtube.com/watch?v=t0kx0gp59Rg" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 尖山埤渡假村漫遊：醉月小樓、獨木舟與自然生態</a>
-          <a href="https://www.youtube.com/watch?v=nhbdVGMLyOo" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 柳營尖山埤渡假村：湖光山色・露營山訓基地實景</a>
-        </div>
-        <div class="video-resources-title" style="margin-top:10px;">🏫 南投國中校園影音推薦（3部）：</div>
-        <div class="video-chips-row">
-          <a href="https://www.youtube.com/watch?v=LTHQ0ce8aLY" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 飛閱南投國中：校園全景與操場空拍巡禮</a>
-          <a href="https://www.youtube.com/watch?v=gV0nUrw1BbQ" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 南投國中60周年校慶運動會與校園成果展</a>
-          <a href="https://www.youtube.com/watch?v=KCagLyhd8iM" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 南投國中校園風采與精彩活動花絮</a>
-        </div>
-      </div>
-
-      <div id="attractions-content-container">
-        <!-- 由 JavaScript 生成 -->
+      <div id="buses-content-container">
+        <!-- JS 動態生成 -->
       </div>
     </section>
 
-    <!-- 6. 童軍技能知識卡分頁 -->
-    <section class="tab-pane" id="tab-scout">
-      <div class="section-header">
-        <h2 class="section-title">⚜️ 童軍技能教育・實作知識卡</h2>
-        <p class="section-desc">點選知識卡片展開折疊詳細圖解與核心口訣（含搭帳六部曲、野炊生火、戰術偽裝、八大繩結與六大毒蛇急救）</p>
-      </div>
-
-      <!-- 童軍技能影音 -->
-      <div class="video-resources-box">
-        <div class="video-resources-title">🎬 童軍技能實作影音推薦：</div>
-        <div class="video-chips-row">
-          <a href="https://www.youtube.com/watch?v=CcbWx_sKo08" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 童軍初級八大繩結全攻略：平結、稱人結、接繩結示範</a>
-          <a href="https://www.youtube.com/watch?v=Fk6-NhGYmbg" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 李團長教你削火媒棒：羽毛棒安全削切與生火技巧</a>
-          <a href="https://www.youtube.com/watch?v=fIWV-E_q45o" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 許伯簡芝：臺灣六大毒蛇生態辨識與野外應對</a>
-        </div>
-      </div>
-
-      <div id="scout-knowledge-container">
-        <!-- 由 JavaScript 生成 -->
-      </div>
-    </section>
-
-    <!-- 7. 營火晚會歌詞分頁 -->
-    <section class="tab-pane" id="tab-campfire">
-      <div class="section-header">
-        <h2 class="section-title">🔥 超ㄅ一ㄤˋ營火晚會 · 歡呼歌詞與真情夜語</h2>
-        <p class="section-desc">神聖拜火詞、營火歌、成吉思汗、第一支舞、萍聚、朋友完整歌詞與燭光夜語導引</p>
-      </div>
-
-      <!-- 營火晚會影音 -->
-      <div class="video-resources-box">
-        <div class="video-resources-title">🎬 營火晚會經典動唱與拜火影音推薦：</div>
-        <div class="video-chips-row">
-          <a href="https://www.youtube.com/watch?v=7gkjhNzvaB0" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 營火晚會經典交際舞：《第一支舞》帶動跳示範</a>
-          <a href="https://www.youtube.com/watch?v=7ie52VsGiSA" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 營火晚會迎火儀式：神聖拜火詞與營火舞震撼全場</a>
-          <a href="https://www.youtube.com/watch?v=EarIVtT71uk" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 營火晚會帶動跳經典洗腦歌：《成吉思汗》熱血狂歡</a>
-        </div>
-      </div>
-
-      <div id="campfire-lyrics-container">
-        <!-- 由 JavaScript 生成 -->
-      </div>
-    </section>
-
-    <!-- 8. 山訓探索教育專題分頁 -->
-    <section class="tab-pane" id="tab-mountain">
-      <div class="section-header">
-        <h2 class="section-title">🧗 分站山訓與探索教育・安全教則</h2>
-        <p class="section-desc">進擊の高空垂降、PA解手結團隊跳繩、超級蜘蛛人攀岩、水彈射擊生存遊戲與獨木橋平衡橫渡</p>
-      </div>
-
-      <!-- 山訓探索影音 -->
-      <div class="video-resources-box">
-        <div class="video-resources-title">🎬 山訓探索高空垂降與攀岩影音推薦：</div>
-        <div class="video-chips-row">
-          <a href="https://www.youtube.com/watch?v=hn-qEoUKA2E" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 國中隔宿露營山訓挑戰：高空垂降與雙索吊橋實況</a>
-          <a href="https://www.youtube.com/watch?v=ah7ZRuEL2yE" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 戶外山訓技能：單人垂直高空垂降系統架設與操作</a>
-          <a href="https://www.youtube.com/watch?v=0KO8Sq7WMPw" target="_blank" rel="noopener noreferrer" class="video-chip-link">▶ 戶外攀岩與繩索垂降快速回收操作示範</a>
-        </div>
-      </div>
-
-      <div id="mountain-training-container">
-        <!-- 由 JavaScript 生成 -->
-      </div>
-    </section>
-
-    <!-- 9. 行李打包清單分頁 -->
+    <!-- 6. 行前行李清單 -->
     <section class="tab-pane" id="tab-checklist">
-      <div class="section-header">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-          <div>
-            <h2 class="section-title">🎒 行前行李打包清單</h2>
-            <p class="section-desc">打勾記錄自動儲存在手機本機，整理行李不再丟三落四！</p>
-          </div>
-          <button id="reset-checklist-btn" class="quick-btn" style="border:1px solid #cbd5e1; padding:6px 12px; color:var(--text-muted);">
-            🔄 重設勾選
-          </button>
+      <div class="section-head">
+        <h2 class="section-title">🎒 行前行李打包清單</h2>
+        <p class="section-desc">點擊項目可打勾完成打包，進度自動儲存於手機瀏覽器，重開不遺失！</p>
+      </div>
+
+      <!-- 進度指示卡片 -->
+      <div class="pack-progress-card">
+        <div class="pack-progress-top">
+          <span style="font-weight:800; font-size:1.05rem;">行李打包進度</span>
+          <span id="pack-progress-percent" style="font-size:1.3rem; font-weight:800; color:#fed7aa;">0%</span>
+        </div>
+        <div class="pack-progress-bar-bg">
+          <div class="pack-progress-fill" id="pack-progress-fill"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span id="pack-progress-text" style="font-size:0.8rem; opacity:0.95;">已完成 0 / 15 項必備裝備</span>
+          <button id="reset-checklist-btn" style="background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.3); color:#fff; border-radius:var(--radius-full); font-size:0.74rem; padding:3px 10px; cursor:pointer;">重設清單</button>
         </div>
       </div>
 
-      <!-- 打包進度條 -->
-      <div class="progress-box">
-        <div class="progress-header">
-          <span>📦 打包完成進度</span>
-          <span id="progress-text" style="color:#ffffff;">0 / 22 項 (0%)</span>
-        </div>
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="progress-fill" style="width: 0%;"></div>
-        </div>
-      </div>
-
-      <!-- 清單項目容器 -->
       <div id="checklist-container">
-        <!-- 由 JavaScript 生成 -->
+        <!-- JS 動態生成 -->
       </div>
     </section>
 
-    <!-- 10. 生活須知與營規分頁 -->
-    <section class="tab-pane" id="tab-notices">
-      <div class="section-header">
-        <h2 class="section-title">⚠️ 生活安全須知 ＆ 應變指引</h2>
-        <p class="section-desc">營地生活守則、用火用電安全、內務晨檢計分標準與緊急醫療後送網絡</p>
+    <!-- 7. 童軍野營技能寶典 -->
+    <section class="tab-pane" id="tab-scout">
+      <div class="section-head">
+        <h2 class="section-title">⚜️ 童軍與野外技能寶典</h2>
+        <p class="section-desc">包含營地建設、屋式帳搭收口訣、八大繩結、毒蛇五要五不、自然方向辨識與緊急急救法</p>
       </div>
-      <div id="notices-content-container">
-        <!-- 由 JavaScript 生成 -->
+      <div id="scout-content-container">
+        <!-- JS 動態生成 -->
       </div>
     </section>
 
-    <!-- 11. 完整手冊全文檢視與下載分頁 -->
-    <section class="tab-pane" id="tab-manual">
-      <div class="section-header">
-        <h2 class="section-title">📖 南投國中隔宿手冊 全文檢視與下載</h2>
-        <p class="section-desc">完整整合行前摘要、兩天一夜行程、帳篷名冊、野炊小隊、三大教學專題、裝備清單與營規應變網絡（去個資版）</p>
+    <!-- 8. 營規生活須知 -->
+    <section class="tab-pane" id="tab-rules">
+      <div class="section-head">
+        <h2 class="section-title">⚠️ 營規生活須知與安全守則</h2>
+        <p class="section-desc">嚴守團體紀律、營火用火安全、夜間查舖與山訓水彈安全規範</p>
       </div>
-      <div id="manual-content-container">
-        <!-- 由 JavaScript 生成 -->
+      <div id="rules-content-container">
+        <!-- JS 動態生成 -->
+      </div>
+    </section>
+
+    <!-- 9. 營地與行政資訊 -->
+    <section class="tab-pane" id="tab-info">
+      <div class="section-head">
+        <h2 class="section-title">ℹ️ 營地與活動行政資訊</h2>
+        <p class="section-desc">主辦單位、承辦旅行社、營地地址電話、工作人員與全校導師一覽</p>
+      </div>
+      <div id="info-content-container">
+        <!-- JS 動態生成 -->
       </div>
     </section>
 
   </main>
 
-  <!-- ================== 手機底部導航列 (Mobile Bottom Nav) ================== -->
-  <nav class="mobile-bottom-nav" aria-label="手機快捷導航">
-    <a href="slides.html" class="mobile-nav-btn mobile-link-highlight" title="切換至全螢幕簡報模式">
-      <span>🖥️</span>
-      <span>簡報</span>
-    </a>
+  <!-- ================= 手機端 底部固定導航欄 ================= -->
+  <nav class="mobile-bottom-nav" aria-label="手機端底部快捷導航">
     <button class="mobile-nav-btn active" data-tab="itinerary">
-      <span>📅</span>
+      <span class="mobile-nav-icon">📅</span>
       <span>行程</span>
     </button>
-    <button class="mobile-nav-btn" data-tab="bus">
-      <span>🚌</span>
-      <span>車輛</span>
-    </button>
     <button class="mobile-nav-btn" data-tab="tents">
-      <span>⛺</span>
+      <span class="mobile-nav-icon">⛺</span>
       <span>帳篷</span>
     </button>
     <button class="mobile-nav-btn" data-tab="squads">
-      <span>🍳</span>
+      <span class="mobile-nav-icon">🍳</span>
       <span>野炊</span>
     </button>
     <button class="mobile-nav-btn" data-tab="roster">
-      <span>🔍</span>
+      <span class="mobile-nav-icon">🔍</span>
       <span>名冊</span>
     </button>
-    <button class="mobile-nav-btn" data-tab="attractions">
-      <span>🏕️</span>
-      <span>營地</span>
-    </button>
-    <button class="mobile-nav-btn" data-tab="scout">
-      <span>⚜️</span>
-      <span>童軍</span>
-    </button>
-    <button class="mobile-nav-btn" data-tab="campfire">
-      <span>🔥</span>
-      <span>營火</span>
-    </button>
-    <button class="mobile-nav-btn" data-tab="mountain">
-      <span>🧗</span>
-      <span>山訓</span>
-    </button>
     <button class="mobile-nav-btn" data-tab="checklist">
-      <span>🎒</span>
+      <span class="mobile-nav-icon">🎒</span>
       <span>行李</span>
     </button>
-    <button class="mobile-nav-btn" data-tab="notices">
-      <span>⚠️</span>
-      <span>須知</span>
+    <button class="mobile-nav-btn" data-tab="scout">
+      <span class="mobile-nav-icon">⚜️</span>
+      <span>寶典</span>
     </button>
-    <button class="mobile-nav-btn" data-tab="manual">
-      <span>📖</span>
-      <span>全文</span>
-    </button>
+    <a href="slides.html" class="mobile-nav-btn" style="color:var(--accent); text-decoration:none;">
+      <span class="mobile-nav-icon">🖥️</span>
+      <span>簡報</span>
+    </a>
   </nav>
 
-  <!-- 引用資料庫與互動腳本（帶快取刷新版本號） -->
-  <script src="data.js?v=202610190400"></script>
-  <script src="script.js?v=202610190400"></script>
+  <!-- 資料檔與腳本 -->
+  <script src="data.js?v=20261019_v1"></script>
+  <script src="app.js?v=20261019_v1"></script>
 </body>
 </html>
