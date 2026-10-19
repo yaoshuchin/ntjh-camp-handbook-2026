@@ -626,16 +626,16 @@ document.addEventListener("DOMContentLoaded", () => {
         webUrl: "https://www.taisugar.com.tw/chinese/CP.aspx?s=357&n=10433"
       },
       {
-        id: "attract-mingjian",
-        name: "南投名間親子生態園區",
-        tag: "共融生態樂園 · 5米高巨型彩虹溜滑梯",
-        img: "assets/img/mingjian_1.jpg",
-        desc: "南投縣名間鄉最新打造、佔地達 2.6 公頃的全齡共融式生態公園！全區以繽紛色彩結合綠意自然，最受矚目的地標為高達 5 公尺之巨型彩虹磨石子溜滑梯（設有大型遮陽天幕），兩側具備 25° 與 50° 草坡攀爬網與攀岩拉繩，並規劃長達 74 公尺的高架無障礙空中緩坡步道，可俯瞰心型大草坪。鄰近南投豬事文化園區，是返校前全班奔馳放電與大合影的絕美景點。",
-        features: ["5米巨型彩虹磨石子雙軌溜滑梯", "草皮攀爬坡與拉繩挑戰", "心型景觀大草坪與無障礙空中景觀步道"],
-        phone: "(049) 222-2106",
-        telLink: "tel:0492222106",
-        mapUrl: "https://maps.google.com/?q=名間親子生態園區",
-        webUrl: "https://travel.nantou.gov.tw/spot/%E5%90%8D%E9%96%93%E8%A6%AA%E5%AD%90%E7%94%9F%E6%85%8B%E5%9C%92%E5%8D%80/"
+        id: "attract-school",
+        name: "南投市立南投國民中學（起訖基地）",
+        tag: "校本部集合 · 921地震公園演練 · 平安抵校",
+        img: "assets/img/jianshanpi_3.jpg",
+        desc: "南投國中為本次戶外教育隔宿露營之集合出發與平安抵達基地。第一天 07:30 於學校操場及 921 地震公園集合點名、落實逃生避難演練，08:00 準時專車發車；第二天下午 14:00 專車自營地返程，預計 16:30 平安返抵學校，清點行囊歡樂賦歸。",
+        features: ["921地震公園落實防震與車輛逃生演練", "隨車師長與行政團隊全程督導護送", "專車直達接送，預計 16:30 平安抵校"],
+        phone: "(049) 222-2549",
+        telLink: "tel:0492222549",
+        mapUrl: "https://maps.google.com/?q=南投市立南投國民中學",
+        webUrl: "https://ntjh.ntct.edu.tw/"
       }
     ];
 
