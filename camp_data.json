@@ -8783,6 +8783,77 @@
       }
     ]
   },
+  "resortSpotGuide": {
+    "title": "台糖柳營尖山埤渡假村",
+    "subtitle": "百甲山水 · 湖光山色 · 南瀛勝景「小江南」之環境教育與休閒渡假勝地",
+    "officialUrl": "https://www.taisugar.com.tw/resting/jianshanpi/",
+    "tourismBureauUrl": "https://www.twtainan.net/zh-tw/attractions/detail/523/",
+    "mapUrl": "https://maps.google.com/?q=柳營尖山埤渡假村",
+    "address": "736006 臺南市柳營區旭山里60號",
+    "phone": "06-623-3888",
+    "overview": "柳營尖山埤渡假村（原名尖山埤江南渡假村）由台灣糖業公司經營，前身為日治時期提供新營糖廠製糖用水之尖山埤水庫。園區佔地近百甲，四面群山環抱、湖面碧波如鏡，清晨或煙雨時分薄霧繚繞，宛如江南水鄉，素有「南臺灣小江南」之美稱，並入選為「新南瀛勝景」之一。園區設有通過環境部認證之「尖山埤環境學習中心」，兼具生態保育、水庫文化、環境教育與戶外山訓探索，榮獲交通部觀光署特優等觀光遊樂區殊榮。",
+    "features": [
+      "全國唯一擁有專屬水庫，全台唯一常態性提供水庫合法獨木舟探索之觀光遊樂區。",
+      "獨特「雕樑畫棟遊湖畫舫」，如古代小小宮殿般緩緩航行水庫，聆聽水庫歷史與自然生態解說。",
+      "配備完善高空山訓塔台、人工攀岩壁、低空PA探索場、安全水彈生存遊戲戰場與大營火晚會草坪。",
+      "榮獲環境教育設施場所認證與銅級環保標章旅館，園區棲地維護良好，富含豐富淺山林相生態。"
+    ],
+    "videos": [
+      {
+        "title": "全國最幸福百甲山水-柳營尖山埤渡假村",
+        "channel": "台糖官方頻道",
+        "videoId": "XUHYWY6ZSg0",
+        "url": "https://www.youtube.com/watch?v=XUHYWY6ZSg0",
+        "desc": "台糖官方榮獲臺南旅宿行銷大獎之形象影片，俯瞰百甲湖光山色、尖山埤會館與全園區休閒設施。"
+      },
+      {
+        "title": "【食尚玩家】台糖尖山埤江南渡假村 台南首推媲美江南美景的渡假村！",
+        "channel": "食尚玩家",
+        "videoId": "DMfsfOEWVlY",
+        "url": "https://www.youtube.com/watch?v=DMfsfOEWVlY",
+        "desc": "電視旅遊節目外景主持實地開箱，暢遊遊湖畫舫、大壩風光、水上Villa與渡假村特色美食。"
+      },
+      {
+        "title": "momo小玩家S3【台南文化古都之旅】第10集｜尖山埤江南渡假村",
+        "channel": "momokids親子台",
+        "videoId": "nv2L3qGBt4I",
+        "url": "https://www.youtube.com/watch?v=nv2L3qGBt4I",
+        "desc": "親子與青少年戶外活動全紀錄：遊園小火車、生態導覽、水上畫舫遊湖與園區大地探索。"
+      }
+    ],
+    "photos": [
+      {
+        "file": "assets/img/resort/resort_1_boat.jpg",
+        "title": "① 雕樑畫棟遊湖畫舫",
+        "desc": "宛如古代小小宮殿的畫舫遊船緩緩航行在尖山埤水庫碧波中，沿途聆聽生動導覽，欣賞秀麗湖光山色與水鳥棲息。"
+      },
+      {
+        "file": "assets/img/resort/resort_2_panorama.jpg",
+        "title": "② 群山圍繞的尖山埤水庫",
+        "desc": "尖山埤水庫四面環山、林相茂密，水庫大壩雄偉開闊，清晨薄霧微濛，享有「南臺灣小江南」之美譽。"
+      },
+      {
+        "file": "assets/img/resort/resort_3_bridge.jpg",
+        "title": "③ 鮮紅奪目「映虹橋」",
+        "desc": "鮮豔朱紅色的映虹橋橫跨水庫湖灣，與翠綠山巒交相輝映，是園區漫步與師生拍照打卡之代表地標。"
+      },
+      {
+        "file": "assets/img/resort/resort_4_hotel.jpg",
+        "title": "④ 現代氣派尖山埤會館",
+        "desc": "依山傍水而建的尖山埤會館，具備完善餐飲、會議廳、醫護救護站及環景視野，為營隊活動之後勤中心。"
+      },
+      {
+        "file": "assets/img/resort/resort_5_water_fun.jpg",
+        "title": "⑤ 水上腳踏船與獨木舟探索水域",
+        "desc": "全台唯一常態性提供合法水庫獨木舟與多樣造型水上腳踏船，提供安全合規之水域生態與探索教育體驗。"
+      },
+      {
+        "file": "assets/img/resort/resort_6_train_camp.jpg",
+        "title": "⑥ 繽紛遊園車與露營野炊區",
+        "desc": "可愛繽紛的遊園小火車穿梭林道，銜接全區大型露營營位、風雨野炊烹飪場地與雙索滑降山訓挑戰場。"
+      }
+    ]
+  },
   "scoutKnowledge": [
     {
       "id": "camp_ridge",
