@@ -53,10 +53,8 @@
     <div class="nav-tabs-scroll">
       <a href="slides.html" class="tab-btn" style="background:#ea580c; color:#fff; text-decoration:none;" title="開啟全螢幕簡報模式">🖥️ 簡報模式</a>
       <button class="tab-btn active" data-tab="itinerary">📅 行程表</button>
-      <button class="tab-btn" data-tab="tents">⛺ 帳篷速查</button>
-      <button class="tab-btn" data-tab="squads">🍳 野炊分組</button>
+      <button class="tab-btn" data-tab="camp-groups">🚐 車.野炊.帳棚</button>
       <button class="tab-btn" data-tab="roster">🔍 全校名冊</button>
-      <button class="tab-btn" data-tab="buses">🚌 遊覽車編組</button>
       <button class="tab-btn" data-tab="briefing" style="background:rgba(234,88,12,0.12); color:#ea580c; border:1px solid rgba(234,88,12,0.35); font-weight:700;">📢 行前說明</button>
       <button class="tab-btn" data-tab="checklist">🎒 行李清單</button>
       <button class="tab-btn" data-tab="scout">⚜️ 童軍野營</button>
@@ -86,94 +84,118 @@
       </div>
     </section>
 
-    <!-- 2. 帳篷速查 -->
-    <section class="tab-pane" id="tab-tents">
+    <!-- 2. 車.野炊.帳棚 (合組三合一專區) -->
+    <section class="tab-pane" id="tab-camp-groups">
       <div class="section-head">
-        <h2 class="section-title">⛺ 帳篷速查</h2>
-        <p class="section-desc">全校 27 頂帳篷（男帳 A01~A13、女帳 B01~B14），支援輸入姓名、座號、帳號即時秒查</p>
+        <h2 class="section-title">🚐 車.野炊.帳棚</h2>
+        <p class="section-desc">整合全校 4 部遊覽車配置、15 個野炊小隊分工與 27 頂帳篷住宿分配速查</p>
       </div>
 
-      <!-- 帳篷篩選工具列 -->
-      <div class="filter-toolbar">
-        <div class="search-input-wrap">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="tent-search-input" class="search-input" placeholder="輸入同學姓名、座號（如 15）、帳號（如 A01, B02）快速查詢...">
-          <button id="tent-search-clear" class="clear-search-btn" title="清除搜尋">✕</button>
+      <!-- 子分頁快捷切換按鈕列 -->
+      <div class="groups-subnav-bar">
+        <button class="groups-subnav-btn active" data-subpane="all">📋 全部總覽</button>
+        <button class="groups-subnav-btn" data-subpane="buses">🚌 遊覽車 (4車)</button>
+        <button class="groups-subnav-btn" data-subpane="squads">🍳 野炊分組 (15組)</button>
+        <button class="groups-subnav-btn" data-subpane="tents">⛺ 帳棚速查 (27頂)</button>
+      </div>
+
+      <!-- 子區塊 1: 遊覽車編組 -->
+      <div class="groups-subpane-block" id="subpane-buses">
+        <div class="groups-block-header">
+          <h3 class="groups-block-title">🚌 遊覽車編組（全校 4 部車次與乘車名冊）</h3>
+        </div>
+        <div id="buses-content-container">
+          <!-- JS 動態生成 -->
+        </div>
+      </div>
+
+      <!-- 子區塊 2: 野炊分組 -->
+      <div class="groups-subpane-block" id="subpane-squads">
+        <div class="groups-block-header">
+          <h3 class="groups-block-title">🍳 野炊分組（全校 15 個炊事小隊與食材分工）</h3>
         </div>
 
-        <div class="chip-filters">
-          <span class="chip-label">班級：</span>
-          <button class="filter-chip tent-class-chip active" data-class="all">全部班級</button>
-          <button class="filter-chip tent-class-chip" data-class="801">801 (201)</button>
-          <button class="filter-chip tent-class-chip" data-class="802">802 (202)</button>
-          <button class="filter-chip tent-class-chip" data-class="803">803 (203)</button>
-          <button class="filter-chip tent-class-chip" data-class="804">804 (204)</button>
-          <button class="filter-chip tent-class-chip" data-class="805">805 (205)</button>
-          <button class="filter-chip tent-class-chip" data-class="806">806 (206)</button>
-          <button class="filter-chip tent-class-chip" data-class="807">807 (207)</button>
-        </div>
+        <!-- 野炊篩選工具列 -->
+        <div class="filter-toolbar">
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="squad-search-input" class="search-input" placeholder="輸入組別（如 第 1 組）、學生姓名、分工職掌（如 大廚）快速查詢...">
+            <button id="squad-search-clear" class="clear-search-btn" title="清除搜尋">✕</button>
+          </div>
 
-        <div class="chip-filters">
-          <span class="chip-label">性別：</span>
-          <button class="filter-chip tent-gender-chip active" data-gender="all">全部帳篷</button>
-          <button class="filter-chip tent-gender-chip" data-gender="男">🏕️ 男生帳 (A01~A13)</button>
-          <button class="filter-chip tent-gender-chip" data-gender="女">⛺ 女生帳 (B01~B14)</button>
-        </div>
+          <div class="chip-filters">
+            <span class="chip-label">班級：</span>
+            <button class="filter-chip squad-class-chip active" data-class="all">全部班級</button>
+            <button class="filter-chip squad-class-chip" data-class="801">801 (1-2組)</button>
+            <button class="filter-chip squad-class-chip" data-class="802">802 (3-5組)</button>
+            <button class="filter-chip squad-class-chip" data-class="803">803 (6-7組)</button>
+            <button class="filter-chip squad-class-chip" data-class="804">804 (8-9組)</button>
+            <button class="filter-chip squad-class-chip" data-class="805">805 (10-11組)</button>
+            <button class="filter-chip squad-class-chip" data-class="806">806 (12組)</button>
+            <button class="filter-chip squad-class-chip" data-class="807">807 (13-15組)</button>
+          </div>
 
-        <div class="view-actions-bar">
-          <span id="tents-count-badge" class="result-count-badge">共 27 頂帳篷</span>
-          <div class="view-toggle-btns">
-            <button class="view-toggle-btn tent-view-btn active" data-view="card">🗂️ 卡片模式</button>
-            <button class="view-toggle-btn tent-view-btn" data-view="table">📑 表格名冊</button>
+          <div class="view-actions-bar">
+            <span id="squads-count-badge" class="result-count-badge">共 15 個野炊小隊</span>
+            <div class="view-toggle-btns">
+              <button class="view-toggle-btn squad-view-btn active" data-view="card">🗂️ 卡片模式</button>
+              <button class="view-toggle-btn squad-view-btn" data-view="table">📑 表格名冊</button>
+            </div>
           </div>
         </div>
+
+        <!-- 野炊小隊列表 -->
+        <div id="squads-list-container">
+          <!-- JS 動態生成 -->
+        </div>
       </div>
 
-      <!-- 帳篷列表 -->
-      <div id="tents-list-container">
-        <!-- JS 動態生成 -->
-      </div>
-    </section>
-
-    <!-- 3. 野炊分組 -->
-    <section class="tab-pane" id="tab-squads">
-      <div class="section-head">
-        <h2 class="section-title">🍳 野炊分組</h2>
-        <p class="section-desc">全校 15 個野炊小隊，標註小隊長、副小隊長、大廚、二廚、伙夫、水夫、事務分工與素食名單</p>
-      </div>
-
-      <!-- 野炊篩選工具列 -->
-      <div class="filter-toolbar">
-        <div class="search-input-wrap">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="squad-search-input" class="search-input" placeholder="輸入組別（如 第 1 組）、學生姓名、分工職掌（如 大廚）快速查詢...">
-          <button id="squad-search-clear" class="clear-search-btn" title="清除搜尋">✕</button>
+      <!-- 子區塊 3: 帳棚速查 -->
+      <div class="groups-subpane-block" id="subpane-tents">
+        <div class="groups-block-header">
+          <h3 class="groups-block-title">⛺ 帳棚速查（全校 27 頂帳篷住宿名單與性別配置）</h3>
         </div>
 
-        <div class="chip-filters">
-          <span class="chip-label">班級：</span>
-          <button class="filter-chip squad-class-chip active" data-class="all">全部班級</button>
-          <button class="filter-chip squad-class-chip" data-class="801">801 (1-2組)</button>
-          <button class="filter-chip squad-class-chip" data-class="802">802 (3-5組)</button>
-          <button class="filter-chip squad-class-chip" data-class="803">803 (6-7組)</button>
-          <button class="filter-chip squad-class-chip" data-class="804">804 (8-9組)</button>
-          <button class="filter-chip squad-class-chip" data-class="805">805 (10-11組)</button>
-          <button class="filter-chip squad-class-chip" data-class="806">806 (12組)</button>
-          <button class="filter-chip squad-class-chip" data-class="807">807 (13-15組)</button>
-        </div>
+        <!-- 帳篷篩選工具列 -->
+        <div class="filter-toolbar">
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="tent-search-input" class="search-input" placeholder="輸入同學姓名、座號（如 15）、帳號（如 A01, B02）快速查詢...">
+            <button id="tent-search-clear" class="clear-search-btn" title="清除搜尋">✕</button>
+          </div>
 
-        <div class="view-actions-bar">
-          <span id="squads-count-badge" class="result-count-badge">共 15 個野炊小隊</span>
-          <div class="view-toggle-btns">
-            <button class="view-toggle-btn squad-view-btn active" data-view="card">🗂️ 卡片模式</button>
-            <button class="view-toggle-btn squad-view-btn" data-view="table">📑 表格名冊</button>
+          <div class="chip-filters">
+            <span class="chip-label">班級：</span>
+            <button class="filter-chip tent-class-chip active" data-class="all">全部班級</button>
+            <button class="filter-chip tent-class-chip" data-class="801">801 (201)</button>
+            <button class="filter-chip tent-class-chip" data-class="802">802 (202)</button>
+            <button class="filter-chip tent-class-chip" data-class="803">803 (203)</button>
+            <button class="filter-chip tent-class-chip" data-class="804">804 (204)</button>
+            <button class="filter-chip tent-class-chip" data-class="805">805 (205)</button>
+            <button class="filter-chip tent-class-chip" data-class="806">806 (206)</button>
+            <button class="filter-chip tent-class-chip" data-class="807">807 (207)</button>
+          </div>
+
+          <div class="chip-filters">
+            <span class="chip-label">性別：</span>
+            <button class="filter-chip tent-gender-chip active" data-gender="all">全部帳篷</button>
+            <button class="filter-chip tent-gender-chip" data-gender="男">🏕️ 男生帳 (A01~A13)</button>
+            <button class="filter-chip tent-gender-chip" data-gender="女">⛺ 女生帳 (B01~B14)</button>
+          </div>
+
+          <div class="view-actions-bar">
+            <span id="tents-count-badge" class="result-count-badge">共 27 頂帳篷</span>
+            <div class="view-toggle-btns">
+              <button class="view-toggle-btn tent-view-btn active" data-view="card">🗂️ 卡片模式</button>
+              <button class="view-toggle-btn tent-view-btn" data-view="table">📑 表格名冊</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 野炊小隊列表 -->
-      <div id="squads-list-container">
-        <!-- JS 動態生成 -->
+        <!-- 帳篷列表 -->
+        <div id="tents-list-container">
+          <!-- JS 動態生成 -->
+        </div>
       </div>
     </section>
 
@@ -222,16 +244,7 @@
       </div>
     </section>
 
-    <!-- 5. 遊覽車編組 -->
-    <section class="tab-pane" id="tab-buses">
-      <div class="section-head">
-        <h2 class="section-title">🚌 遊覽車編組</h2>
-        <p class="section-desc">全校 4 部遊覽車（1 車、2 車、3 車、丁車）搭乘班級配置、隨車行政師長與學生名冊</p>
-      </div>
-      <div id="buses-content-container">
-        <!-- JS 動態生成 -->
-      </div>
-    </section>
+
 
     <!-- 6. 行前說明 -->
     <section class="tab-pane" id="tab-briefing">
@@ -334,13 +347,9 @@
       <span class="mobile-nav-icon">📅</span>
       <span>行程表</span>
     </button>
-    <button class="mobile-nav-btn" data-tab="tents">
-      <span class="mobile-nav-icon">⛺</span>
-      <span>帳篷速查</span>
-    </button>
-    <button class="mobile-nav-btn" data-tab="squads">
-      <span class="mobile-nav-icon">🍳</span>
-      <span>野炊分組</span>
+    <button class="mobile-nav-btn" data-tab="camp-groups">
+      <span class="mobile-nav-icon">🚐</span>
+      <span>車.野炊.帳棚</span>
     </button>
     <button class="mobile-nav-btn" data-tab="roster">
       <span class="mobile-nav-icon">🔍</span>

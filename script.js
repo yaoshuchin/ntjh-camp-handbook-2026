@@ -105,10 +105,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================================================
-     導航切換
+     導航切換與子分頁
      ========================================================================== */
   function switchTab(target) {
     if (!target) return;
+
+    // 相容性映射：若外部請求 tents, squads 或 buses，自動導向 camp-groups 並切換子標籤
+    let subTarget = null;
+    if (target === "tents" || target === "squads" || target === "buses") {
+      subTarget = target;
+      target = "camp-groups";
+    }
+
     state.activeTab = target;
 
     // 導航按鈕樣式
@@ -126,12 +134,40 @@ document.addEventListener("DOMContentLoaded", () => {
       pane.style.display = isTarget ? "block" : "none";
     });
 
+    // 若有指定的子分頁，同時切換子區塊
+    if (subTarget) {
+      switchSubpane(subTarget);
+    }
+
     // 捲動至頂部
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function switchSubpane(targetSub) {
+    document.querySelectorAll(".groups-subnav-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.subpane === targetSub);
+    });
+
+    const subpanes = {
+      buses: document.getElementById("subpane-buses"),
+      squads: document.getElementById("subpane-squads"),
+      tents: document.getElementById("subpane-tents")
+    };
+
+    if (targetSub === "all") {
+      Object.values(subpanes).forEach(el => {
+        if (el) el.style.display = "block";
+      });
+    } else {
+      Object.entries(subpanes).forEach(([key, el]) => {
+        if (el) el.style.display = (key === targetSub) ? "block" : "none";
+      });
+    }
+  }
+
   // 全域綁定方便調用
   window.switchTab = switchTab;
+  window.switchSubpane = switchSubpane;
 
   /* ==========================================================================
      1. 渲染頂部快捷卡片
@@ -1631,6 +1667,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".mobile-nav-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         switchTab(btn.dataset.tab);
+      });
+    });
+
+    // 5.5 車.野炊.帳棚 子分頁切換按鈕綁定
+    document.querySelectorAll(".groups-subnav-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        switchSubpane(btn.dataset.subpane);
       });
     });
   }
