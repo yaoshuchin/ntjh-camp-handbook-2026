@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const { info, classes, buses, students, tents, squads, itinerary, checklist, rules, scoutKnowledge, preCampBriefing, resortSpotGuide } = CAMP_DATA;
+  const { info, classes, buses, students, tents, squads, itinerary, checklist, rules, scoutKnowledge, preCampBriefing, resortSpotGuide, worksheet, selfChecklist } = CAMP_DATA;
 
   // 1. 初始化狀態管理
   let initialChecklistState = {};
@@ -1113,6 +1113,363 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================================================
+     童軍技能分站教育學習單 (手冊第 22、23 頁)
+     ========================================================================== */
+  function renderWorksheet() {
+    const container = document.getElementById("worksheet-content-container");
+    if (!container || !worksheet) return;
+
+    let savedWorksheet = {};
+    try {
+      savedWorksheet = JSON.parse(localStorage.getItem("ntjh_camp_worksheet_answers_115") || "{}");
+    } catch (e) { savedWorksheet = {}; }
+
+    container.innerHTML = `
+      <div style="background:linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border:2px solid #818cf8; border-radius:var(--radius-md); padding:16px 20px; margin-bottom:18px; box-shadow:0 3px 12px rgba(99,102,241,0.08);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h3 style="margin:0; font-size:1.25rem; color:#3730a3; font-weight:800;">📝 ${worksheet.title}</h3>
+            <p style="margin:4px 0 0; font-size:0.86rem; color:#4338ca;">${worksheet.subtitle}</p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button id="ws-save-btn" class="btn btn-primary" style="background:#4f46e5; border-color:#4f46e5; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); cursor:pointer;">💾 儲存作答</button>
+            <button id="ws-print-btn" class="btn" style="background:#fff; border:1px solid #c7d2fe; color:#3730a3; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); cursor:pointer;">🖨️ 列印學習單</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 任務一：營帳使用原則挑錯題 -->
+      <div class="info-card" style="margin-bottom:20px; background:#fff; border-top:4px solid #ea580c;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+          <div>
+            <h4 style="margin:0; font-size:1.1rem; color:#c2410c; font-weight:800;">🏕️ ${worksheet.sections[0].title}</h4>
+            <p style="font-size:0.86rem; color:var(--text-secondary); margin:4px 0 0;">${worksheet.sections[0].instruction}</p>
+          </div>
+          <span class="meta-pill" style="background:#ffedd5; color:#c2410c; font-weight:700;">手冊第 22 頁</span>
+        </div>
+
+        <div style="text-align:center; margin:12px 0; background:#f8fafc; border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px;">
+          <img src="${worksheet.sections[0].image}" alt="營帳使用原則挑錯" style="max-width:100%; max-height:360px; object-fit:contain; border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); display:block; margin:0 auto;" loading="lazy">
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; font-weight:600;">📷 ${worksheet.sections[0].imageCaption}</div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.9rem;">✍️ 我的作答（請寫出圖中違反營帳原則的地方）：</label>
+          <textarea id="ws-input-tent" class="search-input" style="width:100%; height:80px; padding:10px; font-size:0.88rem; line-height:1.5; border:1px solid var(--border); border-radius:var(--radius-sm); resize:vertical;" placeholder="例如：1. 在帳篷內使用瓦斯爐生火煮食...">${savedWorksheet.tent || ''}</textarea>
+        </div>
+
+        <details style="margin-top:12px; background:#fff7ed; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:10px 14px;">
+          <summary style="font-weight:700; color:#c2410c; cursor:pointer; font-size:0.9rem;">💡 點此查看【官方參考解答與違規解析】（共 5 大違規點）</summary>
+          <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px;">
+            ${worksheet.sections[0].errors.map(err => `
+              <div style="background:#fff; border-left:4px solid #ea580c; padding:8px 12px; border-radius:4px; font-size:0.86rem;">
+                <strong style="color:#c2410c;">${err.num}. ${err.point}</strong>
+                <p style="margin:3px 0 0; color:var(--text-secondary); line-height:1.5;">${err.reason}</p>
+              </div>
+            `).join('')}
+          </div>
+        </details>
+      </div>
+
+      <!-- 任務二：有毒動植物連連看 -->
+      <div class="info-card" style="margin-bottom:20px; background:#fff; border-top:4px solid #dc2626;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+          <div>
+            <h4 style="margin:0; font-size:1.1rem; color:#dc2626; font-weight:800;">🌿 ${worksheet.sections[1].title}</h4>
+            <p style="font-size:0.86rem; color:var(--text-secondary); margin:4px 0 0;">${worksheet.sections[1].instruction}</p>
+          </div>
+          <span class="meta-pill" style="background:#fee2e2; color:#dc2626; font-weight:700;">手冊第 22 頁</span>
+        </div>
+
+        <div style="text-align:center; margin:12px 0; background:#f8fafc; border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px;">
+          <img src="${worksheet.sections[1].image}" alt="有毒動植物辨識連連看" style="max-width:100%; max-height:300px; object-fit:contain; border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); display:block; margin:0 auto;" loading="lazy">
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; font-weight:600;">📷 ${worksheet.sections[1].imageCaption}</div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.9rem;">✍️ 我的配對答案（圖 1～5 對應 A～J 代號）：</label>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:8px;">
+            ${[1, 2, 3, 4, 5].map(n => `
+              <div style="display:flex; align-items:center; gap:6px; background:#f8fafc; padding:6px 10px; border-radius:var(--radius-sm); border:1px solid var(--border);">
+                <span style="font-weight:700; font-size:0.88rem; color:#b91c1c;">圖 ${n}：</span>
+                <input type="text" id="ws-poison-${n}" maxlength="2" value="${savedWorksheet['poison_' + n] || ''}" style="width:40px; text-align:center; font-weight:800; border:1px solid var(--border); border-radius:4px; padding:3px; text-transform:uppercase;" placeholder="代號">
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <details style="margin-top:12px; background:#fef2f2; border:1px solid #fecdd3; border-radius:var(--radius-sm); padding:10px 14px;">
+          <summary style="font-weight:700; color:#dc2626; cursor:pointer; font-size:0.9rem;">💡 點此查看【官方參考配對答案與特徵說明】</summary>
+          <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:8px;">
+              ${worksheet.sections[1].pairs.map(p => `
+                <div style="background:#fff; border-left:4px solid #dc2626; padding:8px 12px; border-radius:4px; font-size:0.85rem;">
+                  <strong style="color:#b91c1c; font-size:0.92rem;">圖 ${p.imgIndex} ➔ 【${p.code}. ${p.name}】</strong>
+                  <p style="margin:2px 0 0; color:var(--text-secondary); line-height:1.45;">${p.feature}</p>
+                </div>
+              `).join('')}
+            </div>
+            <div style="margin-top:6px; font-size:0.82rem; color:#991b1b; background:#fff; padding:8px 12px; border-radius:4px;">
+              <b>📌 其餘干擾項目速查：</b>
+              ${worksheet.sections[1].distractors.map(d => `<span>【${d.code}. ${d.name}】${d.desc}　</span>`).join('')}
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- 任務三：中暑急救流程圖判讀 -->
+      <div class="info-card" style="margin-bottom:20px; background:#fff; border-top:4px solid #2563eb;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+          <div>
+            <h4 style="margin:0; font-size:1.1rem; color:#2563eb; font-weight:800;">🚑 ${worksheet.sections[2].title}</h4>
+            <p style="font-size:0.86rem; color:var(--text-secondary); margin:4px 0 0;">${worksheet.sections[2].instruction}</p>
+          </div>
+          <span class="meta-pill" style="background:#dbeafe; color:#2563eb; font-weight:700;">手冊第 22 頁</span>
+        </div>
+
+        <div style="text-align:center; margin:12px 0; background:#f8fafc; border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px;">
+          <img src="${worksheet.sections[2].image}" alt="中暑急救流程圖" style="max-width:100%; max-height:280px; object-fit:contain; border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); display:block; margin:0 auto;" loading="lazy">
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; font-weight:600;">📷 ${worksheet.sections[2].imageCaption}</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px; margin-top:12px;">
+          ${worksheet.sections[2].steps.map((st, i) => `
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-sm); padding:10px;">
+              <strong style="color:#1d4ed8; font-size:0.88rem; display:block; margin-bottom:3px;">${st.step}</strong>
+              <p style="font-size:0.8rem; color:#1e40af; margin:0; line-height:1.45;">${st.desc}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- 任務四：繩結情境歡樂連線與功能深度解析 -->
+      <div class="info-card" style="margin-bottom:20px; background:#fff; border-top:4px solid #16a34a;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+          <div>
+            <h4 style="margin:0; font-size:1.1rem; color:#16a34a; font-weight:800;">🪢 ${worksheet.sections[3].title}</h4>
+            <p style="font-size:0.86rem; color:var(--text-secondary); margin:4px 0 0;">${worksheet.sections[3].instruction}</p>
+          </div>
+          <span class="meta-pill" style="background:#dcfce7; color:#16a34a; font-weight:700;">手冊第 23 頁</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin:12px 0;">
+          <div style="text-align:center; background:#f8fafc; border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px;">
+            <img src="${worksheet.sections[3].image1}" alt="繩結歡樂連線" style="max-width:100%; max-height:280px; object-fit:contain; border-radius:var(--radius-sm); display:block; margin:0 auto;" loading="lazy">
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:6px; font-weight:600;">📷 歡樂連線情境圖（領巾、茶壺、爬繩、腳踝包紮）</div>
+          </div>
+          <div style="text-align:center; background:#f8fafc; border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px;">
+            <img src="${worksheet.sections[3].image2}" alt="單結與繩梯變化" style="max-width:100%; max-height:280px; object-fit:contain; border-radius:var(--radius-sm); display:block; margin:0 auto;" loading="lazy">
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:6px; font-weight:600;">📷 單結基礎與繩梯多重單結防滑變化圖</div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px; margin-top:14px;">
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-sm); padding:12px 14px;">
+            <strong style="color:#15803d; font-size:0.92rem; display:block; margin-bottom:4px;">Q1. 歡樂連線解答：</strong>
+            <p style="margin:0; font-size:0.86rem; color:#166534; line-height:1.6; white-space:pre-line;">${worksheet.sections[3].qa[0].ans}</p>
+          </div>
+
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-sm); padding:12px 14px;">
+            <strong style="color:#15803d; font-size:0.92rem; display:block; margin-bottom:4px;">Q2 & Q3. 單結與繩梯結應用：</strong>
+            <p style="margin:0 0 6px; font-size:0.86rem; color:#166534; line-height:1.5;"><b>單結用途：</b>${worksheet.sections[3].qa[1].ans}</p>
+            <p style="margin:0; font-size:0.86rem; color:#166534; line-height:1.5;"><b>繩梯結變化：</b>${worksheet.sections[3].qa[2].ans}</p>
+          </div>
+
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-sm); padding:12px 14px;">
+            <strong style="color:#15803d; font-size:0.92rem; display:block; margin-bottom:8px;">Q4. 繩子對十大人、事、物之用途（手冊第 23 頁 A～J）：</strong>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:8px;">
+              ${worksheet.sections[3].qa[3].items.map(it => `
+                <div style="background:#fff; border-left:3px solid #16a34a; padding:6px 10px; border-radius:4px; font-size:0.82rem;">
+                  <strong style="color:#15803d;">${it.item}：</strong>
+                  <span style="color:var(--text-secondary);">${it.use}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-sm); padding:12px 14px;">
+            <strong style="color:#15803d; font-size:0.92rem; display:block; margin-bottom:8px;">Q5. 哪些材料可以做繩子？天然 vs 化學纖維功能區別：</strong>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:10px;">
+              ${worksheet.sections[3].qa[4].materials.map(mat => `
+                <div style="background:#fff; border:1px solid #bbf7d0; padding:10px; border-radius:4px; font-size:0.84rem;">
+                  <strong style="color:#15803d; display:block; margin-bottom:4px;">${mat.type}</strong>
+                  <div style="color:var(--text-secondary); line-height:1.5;">
+                    <b style="color:#166534;">優點：</b>${mat.pros}<br>
+                    <b style="color:#991b1b;">缺點：</b>${mat.cons}<br>
+                    <b style="color:#2563eb;">最適用於：</b>${mat.bestFor}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // 綁定儲存按鈕
+    const saveBtn = document.getElementById("ws-save-btn");
+    if (saveBtn) {
+      saveBtn.addEventListener("click", () => {
+        const tentVal = document.getElementById("ws-input-tent")?.value || "";
+        const dataToSave = { tent: tentVal };
+        [1, 2, 3, 4, 5].forEach(n => {
+          dataToSave['poison_' + n] = document.getElementById(`ws-poison-${n}`)?.value || "";
+        });
+        localStorage.setItem("ntjh_camp_worksheet_answers_115", JSON.stringify(dataToSave));
+        saveBtn.textContent = "✅ 已儲存！";
+        setTimeout(() => { saveBtn.textContent = "💾 儲存作答"; }, 2000);
+      });
+    }
+
+    // 綁定列印按鈕
+    const printBtn = document.getElementById("ws-print-btn");
+    if (printBtn) {
+      printBtn.addEventListener("click", () => {
+        window.print();
+      });
+    }
+  }
+
+  /* ==========================================================================
+     自我檢核表 (手冊第 24 頁)
+     ========================================================================== */
+  function renderSelfChecklist() {
+    const container = document.getElementById("selfcheck-content-container");
+    if (!container || !selfChecklist) return;
+
+    let savedGrades = {};
+    let savedNote = "";
+    try {
+      const data = JSON.parse(localStorage.getItem("ntjh_camp_selfcheck_grades_115") || "{}");
+      savedGrades = data.grades || {};
+      savedNote = data.note || "";
+    } catch (e) {
+      savedGrades = {};
+      savedNote = "";
+    }
+
+    const gradePoints = { '優': 5, '良': 4, '可': 3, '差': 2, '劣': 1 };
+    let totalScore = 0;
+    let answeredCount = 0;
+
+    selfChecklist.items.forEach(it => {
+      const g = savedGrades[it.id];
+      if (g && gradePoints[g]) {
+        totalScore += gradePoints[g];
+        answeredCount++;
+      }
+    });
+
+    const maxScore = selfChecklist.items.length * 5; // 65分
+    const scorePct = maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
+
+    container.innerHTML = `
+      <div style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border:2px solid #6ee7b7; border-radius:var(--radius-md); padding:16px 20px; margin-bottom:18px; box-shadow:0 3px 12px rgba(16,185,129,0.08);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h3 style="margin:0; font-size:1.25rem; color:#065f46; font-weight:800;">✅ ${selfChecklist.title}</h3>
+            <p style="margin:4px 0 0; font-size:0.86rem; color:#047857;">${selfChecklist.subtitle}</p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button id="sc-save-btn" class="btn btn-primary" style="background:#059669; border-color:#059669; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); cursor:pointer;">💾 儲存評量</button>
+            <button id="sc-print-btn" class="btn" style="background:#fff; border:1px solid #a7f3d0; color:#065f46; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); cursor:pointer;">🖨️ 列印檢核表</button>
+          </div>
+        </div>
+
+        <div style="margin-top:14px; background:#fff; border:1px solid #a7f3d0; border-radius:var(--radius-sm); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+          <div>
+            <span style="font-size:0.85rem; color:#047857; font-weight:700;">目前檢核進度：已評定 ${answeredCount} / ${selfChecklist.items.length} 題</span>
+            <div style="font-size:1.15rem; font-weight:800; color:#065f46; margin-top:2px;">
+              綜合得分：${totalScore} / ${maxScore} 分（達成率 ${scorePct}%）
+            </div>
+          </div>
+          <div style="width:160px; background:#e2e8f0; border-radius:999px; height:12px; overflow:hidden;">
+            <div style="width:${scorePct}%; background:#10b981; height:100%; transition:width 0.3s ease;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius-md); padding:18px 20px; margin-bottom:18px; box-shadow:var(--shadow-sm);">
+        <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7; margin-bottom:14px; font-weight:500;">
+          『115 學年度二年級戶外教育活動』，即將進入尾聲，當思緒由絢爛回歸平靜，我們一起來檢核一下是否做到下列幾點：
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          ${selfChecklist.items.map((it, idx) => {
+            const currentGrade = savedGrades[it.id] || '';
+            return `
+              <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding:10px 14px; background:${idx % 2 === 0 ? '#f8fafc' : '#fff'}; border:1px solid var(--border); border-radius:var(--radius-sm);">
+                <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:260px;">
+                  <span style="font-family:var(--font-mono); font-weight:700; color:#059669; min-width:24px;">${String(it.id).padStart(2, '0')}.</span>
+                  <span style="font-size:0.9rem; color:var(--text-primary); font-weight:600;">${it.text}</span>
+                  <span class="meta-pill" style="font-size:0.72rem; padding:1px 6px; background:#e0f2fe; color:#0369a1;">${it.cat}</span>
+                </div>
+                <div class="grade-button-group" style="display:flex; gap:6px;">
+                  ${selfChecklist.grades.map(g => `
+                    <button type="button" class="sc-grade-btn ${currentGrade === g ? 'active' : ''}" data-id="${it.id}" data-grade="${g}" style="padding:4px 10px; font-size:0.8rem; font-weight:700; border-radius:4px; border:1px solid ${currentGrade === g ? '#059669' : 'var(--border)'}; background:${currentGrade === g ? '#059669' : '#fff'}; color:${currentGrade === g ? '#fff' : 'var(--text-secondary)'}; cursor:pointer; transition:all 0.15s ease;">
+                      ${g}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+
+        <div style="margin-top:20px; border-top:1px dashed var(--border); padding-top:16px;">
+          <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.92rem;">💭 個人心得反思（本次隔宿露營我最大的收穫與感動）：</label>
+          <textarea id="sc-note-input" class="search-input" style="width:100%; height:90px; padding:10px; font-size:0.88rem; line-height:1.6; border:1px solid var(--border); border-radius:var(--radius-sm); resize:vertical;" placeholder="分享你的成長歷程、小隊團隊合作感動，或是給自己未來的期許...">${savedNote}</textarea>
+        </div>
+
+        <!-- 導師簽章欄 -->
+        <div style="margin-top:16px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-sm); padding:12px 16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div>
+            <strong style="color:#15803d; font-size:0.9rem;">綜合表現評核（本欄由隨隊導師填寫）：</strong>
+            <div style="margin-top:4px; font-size:0.84rem; color:#166534;">
+              整體表現：【 優 ｜ 良 ｜ 可 ｜ 差 ｜ 劣 】 ｜ 表現優異者得推薦全校生活教育楷模獎項。
+            </div>
+          </div>
+          <div style="font-size:0.88rem; color:#166534; font-weight:700; border-bottom:1px solid #15803d; padding-bottom:2px; min-width:140px; text-align:center;">
+            導師簽名：____________
+          </div>
+        </div>
+      </div>
+    `;
+
+    // 綁定各題評分按鈕
+    container.querySelectorAll(".sc-grade-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const qId = btn.dataset.id;
+        const grade = btn.dataset.grade;
+        savedGrades[qId] = grade;
+        const note = document.getElementById("sc-note-input")?.value || "";
+        localStorage.setItem("ntjh_camp_selfcheck_grades_115", JSON.stringify({ grades: savedGrades, note }));
+        renderSelfChecklist();
+      });
+    });
+
+    // 綁定儲存按鈕
+    const saveBtn = document.getElementById("sc-save-btn");
+    if (saveBtn) {
+      saveBtn.addEventListener("click", () => {
+        const note = document.getElementById("sc-note-input")?.value || "";
+        localStorage.setItem("ntjh_camp_selfcheck_grades_115", JSON.stringify({ grades: savedGrades, note }));
+        saveBtn.textContent = "✅ 已儲存！";
+        setTimeout(() => { saveBtn.textContent = "💾 儲存評量"; }, 2000);
+      });
+    }
+
+    // 綁定列印按鈕
+    const printBtn = document.getElementById("sc-print-btn");
+    if (printBtn) {
+      printBtn.addEventListener("click", () => {
+        window.print();
+      });
+    }
+  }
+
+
+  /* ==========================================================================
      全部重新渲染（切換隱私模式時使用）
      ========================================================================== */
   function reRenderAll() {
@@ -1127,6 +1484,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderScout();
     renderRules();
     renderInfo();
+    renderWorksheet();
+    renderSelfChecklist();
   }
 
   /* ==========================================================================

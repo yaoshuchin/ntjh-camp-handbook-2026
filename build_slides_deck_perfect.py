@@ -1447,28 +1447,172 @@ html = f"""<!DOCTYPE html>
     </div>
   </section>
 
-  <!-- Slide 31: 自我檢核、美好回憶與結語 -->
+  <!-- Slide 31: 童軍技能分站教育學習單（一） -->
   <section class="slide" id="slide-31">
-    <p class="s-eyebrow">MEMORIES & REVIEW · 美好回憶</p>
-    <h2 class="s-title">自我檢核 · 青春美好回憶 ＆ 平安賦歸</h2>
+    <p class="s-eyebrow">SCOUT WORKSHEET ① · 童軍學習單 ①</p>
+    <h2 class="s-title">童軍技能分站學習單（手冊 P.22）：營帳挑錯 ＆ 有毒生物 ＆ 中暑急救</h2>
+    <div class="s-body">
+      <div class="grid-deck-3">
+        <!-- 任務一 -->
+        <div class="card-slide">
+          <h4 class="orange">⛺ 任務一：營帳挑錯（圈出5處違規）</h4>
+          <img class="img-slide" src="assets/img/worksheet/tent_error_spotting.jpg" alt="營帳挑錯情境" style="height:120px; object-fit:contain; background:#111; margin-bottom:6px;">
+          <ul style="font-size:11px; color:var(--cf-text-dim); line-height:1.5; padding-left:14px;">
+            <li><strong>① 嚴禁帳內開火生火</strong>（極易引起帳篷燃燒或一氧化碳中毒）。</li>
+            <li><strong>② 嚴禁帳內吸菸</strong>（火星引燃化學帳布，密閉煙霧窒息）。</li>
+            <li><strong>③ 嚴禁帳內外散落食物</strong>（易引來蛇類、螞蟻、野狗及老鼠）。</li>
+            <li><strong>④ 鞋子應倒扣朝外放於前庭</strong>（避免露水蟲蟻爬入）。</li>
+            <li><strong>⑤ 營釘需45度外斜固定、營繩拉緊</strong>（未拉緊易坍塌灌風雨）。</li>
+          </ul>
+        </div>
+
+        <!-- 任務二 -->
+        <div class="card-slide">
+          <h4 style="color:#38bdf8;">🌿 任務二：5大有毒動植物辨識配對</h4>
+          <img class="img-slide" src="assets/img/worksheet/poisonous_matching.jpg" alt="有毒動植物配對" style="height:120px; object-fit:contain; background:#111; margin-bottom:6px;">
+          <div style="font-size:11px; color:var(--cf-text-dim); line-height:1.5;">
+            <div><strong>① 刺絲胞水母 (F)</strong>：觸鬚有毒刺絲胞，引起紅腫劇痛休克。</div>
+            <div><strong>② 百步蛇 (B)</strong>：出血毒性強烈，體表三角斑紋，致死率高。</div>
+            <div><strong>③ 咬人貓 (D)</strong>：全株具刺毛含蟻酸，碰觸灼痛紅腫。</div>
+            <div><strong>④ 海檬果 (H)</strong>：全株劇毒含海檬果苷，白色汁液致心律不整。</div>
+            <div><strong>⑤ 眼鏡蛇 (G)</strong>：神經性毒毒蛇，受驚時頸部扁平膨起。</div>
+          </div>
+        </div>
+
+        <!-- 任務三 -->
+        <div class="card-slide">
+          <h4 style="color:#4ade80;">🚑 任務三：熱傷害／中暑急救 SOP</h4>
+          <img class="img-slide" src="assets/img/worksheet/heatstroke_flowchart.jpg" alt="中暑急救流程" style="height:120px; object-fit:contain; background:#111; margin-bottom:6px;">
+          <div style="font-size:11px; color:var(--cf-text-dim); line-height:1.5;">
+            <div><strong>步驟 1【移】</strong>迅速移至陰涼通風處，解開衣物鬆開束縛。</div>
+            <div><strong>步驟 2【降】</strong>冷水噴灑擦拭全身，以扇子風扇搧風加速蒸發。</div>
+            <div><strong>步驟 3【補】</strong>患者清醒時補充適量清水或淡鹽水（昏迷絕不可灌水）。</div>
+            <div><strong>步驟 4【送】</strong>體溫持續高燒不退或意識不清，保持側臥呼吸順暢儘速送醫。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 32: 童軍技能分站教育學習單（二） -->
+  <section class="slide" id="slide-32">
+    <p class="s-eyebrow">SCOUT WORKSHEET ② · 童軍學習單 ②</p>
+    <h2 class="s-title">童軍技能分站學習單（手冊 P.23）：繩結連線 ＆ 單結繩梯 ＆ 繩索特性</h2>
+    <div class="s-body">
+      <div class="grid-deck-3">
+        <!-- 任務四：歡樂連線 -->
+        <div class="card-slide">
+          <h4 class="orange">🔗 歡樂連線（情境與繩結配對）</h4>
+          <img class="img-slide" src="assets/img/worksheet/knot_matching.jpg" alt="繩結情境連線" style="height:120px; object-fit:contain; background:#111; margin-bottom:6px;">
+          <ul style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.6; padding-left:14px;">
+            <li><strong>領巾配戴</strong> ➔ <strong>平結</strong>（平整美觀服貼於胸前）</li>
+            <li><strong>熱水壺提把防燙</strong> ➔ <strong>連續雙半結／纏繞結</strong></li>
+            <li><strong>抓繩攀爬防滑</strong> ➔ <strong>繩梯多重單結／防滑結</strong></li>
+            <li><strong>腳踝三角巾固定</strong> ➔ <strong>平結</strong>（包紮平整不壓迫傷口）</li>
+          </ul>
+        </div>
+
+        <!-- 單結與繩梯變化 -->
+        <div class="card-slide">
+          <h4 style="color:#38bdf8;">🪢 單結基本用途 ＆ 繩梯防滑變化</h4>
+          <img class="img-slide" src="assets/img/worksheet/overhand_knot_variations.jpg" alt="單結繩梯變化" style="height:120px; object-fit:contain; background:#111; margin-bottom:6px;">
+          <div style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.6;">
+            <div><strong>① 單結基本用途</strong>：</div>
+            <div style="padding-left:8px; margin-bottom:4px;">繩端防脫結、最基礎簡易結繩打法、其他複合繩結之核心起點。</div>
+            <div><strong>② 繩梯多重防滑結</strong>：</div>
+            <div style="padding-left:8px;">沿攀爬主繩間隔等距打上單結或八字結，提供抓握支點與防滑踩踏階梯，大幅減輕攀登耗力。</div>
+          </div>
+        </div>
+
+        <!-- 繩索材質比較 -->
+        <div class="card-slide">
+          <h4 style="color:#4ade80;">🧵 繩索材質比較（天然 vs 化學）</h4>
+          <table class="table-deck" style="font-size:11px; margin-top:2px;">
+            <thead>
+              <tr><th>材質特性</th><th>天然纖維（麻繩/棉繩）</th><th>人造纖維（尼龍/特多龍）</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>拉力強度</strong></td>
+                <td>拉力較小，承重力普通</td>
+                <td><strong style="color:#38bdf8;">拉力極高</strong>，承重極佳</td>
+              </tr>
+              <tr>
+                <td><strong>吸水防腐</strong></td>
+                <td>易吸水增重、潮濕易發霉腐爛</td>
+                <td>耐水性強、快乾、不發霉腐爛</td>
+              </tr>
+              <tr>
+                <td><strong>耐磨耐熱</strong></td>
+                <td>耐摩擦耐高溫，不易熔化</td>
+                <td>耐磨性佳，但遇高溫摩擦易熔化</td>
+              </tr>
+              <tr>
+                <td><strong>最佳用途</strong></td>
+                <td>童軍工程架設、包裝、結紮</td>
+                <td>攀岩登山、水上救援、帳篷風繩</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 33: 二年級戶外教育活動自我檢核表 -->
+  <section class="slide" id="slide-33">
+    <p class="s-eyebrow">SELF CHECKLIST · 自我檢核表</p>
+    <h2 class="s-title">二年級戶外教育活動自我檢核表（手冊 P.24 · 全 13 項標準評量）</h2>
     <div class="s-body">
       <div class="cols c2">
         <div>
-          <div class="card-slide" style="margin-bottom:8px;">
-            <h4>📝 活動結束後的自我檢核（手冊指標）</h4>
-            <ul style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.5; padding-left:16px;">
-              <li>能學習規劃童軍體驗生活。 ｜ 能運用資訊，做好行前準備。</li>
-              <li>每個單元課程都能仔細觀察。 ｜ 能認真完成學習手冊。</li>
-              <li>能體會「行萬里路，勝讀萬卷書」。 ｜ 集合能守時，遵守作息規定。</li>
-              <li>能熟讀生活須知並確實遵守。 ｜ 遵守團體紀律維護團體榮譽。</li>
-              <li>聽從帶隊師長指導不私自行動。 ｜ 同學互助合作、互相照顧。</li>
-              <li>能傾聽及發表分享心得。 ｜ 尊重生命，愛惜大自然。</li>
-              <li>遊必有方，能每天向家人報平安。</li>
-            </ul>
-          </div>
+          <table class="table-deck" style="font-size:11px;">
+            <thead>
+              <tr><th>#</th><th>檢核指標項目（手冊第24頁規範）</th><th>標準配分</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>我能學習規劃童軍體驗生活。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>2</td><td>我能運用資訊，做好行前準備。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>3</td><td>每個單元課程我都能仔細觀察。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>4</td><td>我能認真完成學習手冊。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>5</td><td>我能體會「行萬里路，勝讀萬卷書」的意義。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>6</td><td>集合時能守時，遵守作息規定。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>7</td><td>能熟讀生活須知並確實遵守。</td><td>5分（優/良/可/差/劣）</td></tr>
+            </tbody>
+          </table>
         </div>
         <div>
-          <div class="card-slide" style="border-left:4px solid var(--cf-accent); text-align:center; padding:16px 12px; margin-bottom:8px;">
+          <table class="table-deck" style="font-size:11px;">
+            <thead>
+              <tr><th>#</th><th>檢核指標項目（手冊第24頁規範）</th><th>標準配分</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>8</td><td>遵守團體紀律維護團體榮譽。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>9</td><td>聽從帶隊師長指導不私自行動。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>10</td><td>同學互助合作、互相照顧。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>11</td><td>我能傾聽及發表分享心得。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>12</td><td>尊重生命，愛惜大自然。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td>13</td><td>遊必有方，能每天向家人報平安。</td><td>5分（優/良/可/差/劣）</td></tr>
+              <tr><td colspan="2"><strong style="color:var(--fire-orange);">滿分 65 分 · 綜合評分與導師簽章核可</strong></td><td><strong>總分 65</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="tip" style="margin-top:8px;">
+            <span class="tip-tag">電子手冊連動</span>
+            <div class="tip-body">手機版電子手冊「檢核表」分頁提供互動點選計分、自動換算達成率與評語簽章儲存功能！</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 34: 青春美好回憶 ＆ 平安賦歸 -->
+  <section class="slide" id="slide-34">
+    <p class="s-eyebrow">MEMORIES & CONCLUSION · 美好回憶</p>
+    <h2 class="s-title">青春美好回憶 · 榮譽感恩 ＆ 平安賦歸</h2>
+    <div class="s-body">
+      <div class="cols c2">
+        <div>
+          <div class="card-slide" style="border-left:4px solid var(--cf-accent); text-align:center; padding:18px 14px; margin-bottom:10px;">
             <p style="font-size:16px; color:#f8fafc; font-weight:700; line-height:1.8;">
               「在休閒旅遊的地圖上，找到失落已久的寶藏；<br>
               發現真實的自己，以及與心靈對話的樂趣；<br>
@@ -1478,8 +1622,25 @@ html = f"""<!DOCTYPE html>
               —— 南投縣立南投國民中學 115 學年度二年級全體師生 留念
             </p>
           </div>
-          <div style="text-align:center; margin-top:10px;">
-            <a href="index.html" class="deck-btn is-on" style="font-size:13px; padding:6px 16px; text-decoration:none;">📱 返回手冊網頁版</a>
+          <div class="card-slide">
+            <h4>🙏 感恩與致謝</h4>
+            <p style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.6;">
+              感謝校長、學務處團隊、全體二年級隨隊導師全程守護；<br>
+              感謝車隊司機大哥平穩駕駛、營區工作人員與領隊隊輔熱情帶領；<br>
+              更感謝每一位互相扶持、發揮童軍合作精神的南投國中同學！
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="card-slide" style="text-align:center; padding:16px 12px; margin-bottom:10px;">
+            <h4 style="justify-content:center; margin-bottom:8px;">⛺ 營隊榮譽錦標回顧</h4>
+            <div style="font-size:12px; color:var(--cf-text-dim); line-height:1.7;">
+              精神總錦標 ｜ 秩序錦標 ｜ 整潔錦標 ｜ 炊事錦標 ｜ 營火晚會演出獎<br>
+              <span style="color:#fcd34d; font-weight:700;">每個小隊都收穫了無價的團隊合作與童軍生活淬鍊！</span>
+            </div>
+          </div>
+          <div style="text-align:center; margin-top:16px;">
+            <a href="index.html" class="deck-btn is-on" style="font-size:14px; padding:8px 20px; text-decoration:none;">📱 開啟手機版電子手冊 (index.html)</a>
           </div>
         </div>
       </div>
@@ -1495,7 +1656,7 @@ html = f"""<!DOCTYPE html>
 <!-- 投影模式底部懸浮控制列 -->
 <nav class="deck-ctrl" id="deck-ctrl" aria-label="簡報控制">
   <button class="ctrl-btn" id="ctrl-prev" type="button" title="上一頁 (←)">◀ 上一頁</button>
-  <span class="ctrl-pos" id="ctrl-pos">01 / 31</span>
+  <span class="ctrl-pos" id="ctrl-pos">01 / 34</span>
   <button class="ctrl-btn" id="ctrl-next" type="button" title="下一頁 (→ / 空白鍵)">下一頁 ▶</button>
   <button class="ctrl-btn" id="ctrl-toc-bottom" type="button" title="目錄總覽 (T)">📑 目錄總覽</button>
 </nav>
@@ -1504,7 +1665,7 @@ html = f"""<!DOCTYPE html>
 <div class="deck-toc" id="deck-toc" hidden>
   <div class="deck-toc-panel">
     <div class="deck-toc-head">
-      <span class="deck-toc-title">📑 簡報目錄總覽（全 31 頁）</span>
+      <span class="deck-toc-title">📑 簡報目錄總覽（全 34 頁）</span>
       <button class="deck-btn" id="toc-close" type="button">✕ 關閉 (ESC)</button>
     </div>
     <div class="deck-toc-grid" id="deck-toc-grid">

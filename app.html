@@ -60,6 +60,8 @@
       <button class="tab-btn" data-tab="briefing" style="background:rgba(234,88,12,0.12); color:#ea580c; border:1px solid rgba(234,88,12,0.35); font-weight:700;">📢 行前說明</button>
       <button class="tab-btn" data-tab="checklist">🎒 行李清單</button>
       <button class="tab-btn" data-tab="scout">⚜️ 童軍野營</button>
+      <button class="tab-btn" data-tab="worksheet" style="background:rgba(79,70,229,0.12); color:#4f46e5; border:1px solid rgba(79,70,229,0.35); font-weight:700;">📝 學習單</button>
+      <button class="tab-btn" data-tab="selfcheck" style="background:rgba(16,185,129,0.12); color:#059669; border:1px solid rgba(16,185,129,0.35); font-weight:700;">✅ 檢核表</button>
       <button class="tab-btn" data-tab="rules">⚠️ 營規生活須知</button>
       <button class="tab-btn" data-tab="info">ℹ️ 營地與行政資訊</button>
     </div>
@@ -276,6 +278,28 @@
         <p class="section-desc">包含營地建設、屋式帳搭收口訣、八大繩結、毒蛇五要五不、自然方向辨識與緊急急救法</p>
       </div>
       <div id="scout-content-container">
+        <!-- JS 動態生成 -->
+      </div>
+    </section>
+
+    <!-- 8.5 童軍技能學習單 (手冊 P.22-23) -->
+    <section class="tab-pane" id="tab-worksheet">
+      <div class="section-head">
+        <h2 class="section-title">📝 童軍技能學習單</h2>
+        <p class="section-desc">參考手冊第 22、23 頁：營帳挑錯、有毒動植物辨識、中暑急救流程、生活繩結連線與材質比較（支援作答自動儲存）</p>
+      </div>
+      <div id="worksheet-content-container">
+        <!-- JS 動態生成 -->
+      </div>
+    </section>
+
+    <!-- 8.6 自我檢核表 (手冊 P.24) -->
+    <section class="tab-pane" id="tab-selfcheck">
+      <div class="section-head">
+        <h2 class="section-title">✅ 自我檢核表</h2>
+        <p class="section-desc">參考手冊第 24 頁：全 13 項生活教育與童軍體驗指標自我評量、自動計算總分與達成率、導師評語簽核</p>
+      </div>
+      <div id="selfcheck-content-container">
         <!-- JS 動態生成 -->
       </div>
     </section>
