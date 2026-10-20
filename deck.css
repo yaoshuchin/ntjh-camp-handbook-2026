@@ -1060,3 +1060,427 @@ body.deck.hub { padding-bottom: 0; }
     .hub-cards { grid-template-columns: 1fr; }
     .hub-main { padding: 30px 18px 60px; }
 }
+
+
+/* ============================================================
+   6 大主題底色切換系統 (淡綠、淡紫、淡紅、淡藍、淺灰、淺橙)
+   ============================================================ */
+
+/* 1. 淡綠色 (theme-green) */
+body.deck.theme-green {
+    --cf-bg: #f0fdf4;
+    --cf-bg-2: #dcfce7;
+    --cf-bg-glow: #bbf7d0;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #f0fdf4;
+    --cf-node: #e8f5e9;
+    --cf-node-head: #dcfce7;
+    --cf-line: rgba(22, 163, 74, 0.4);
+    --cf-accent: #16a34a;
+    --cf-accent-dim: #15803d;
+    --cf-on-accent: #ffffff;
+    --cf-text: #14532d;
+    --cf-text-dim: #166534;
+    --cf-text-faint: #4b5563;
+    --cf-rule: rgba(22, 163, 74, 0.2);
+    --deck-bar-bg: rgba(240, 253, 244, 0.96);
+    background: radial-gradient(900px 520px at 12% -8%, #bbf7d0 0%, transparent 62%),
+                radial-gradient(760px 460px at 92% 4%, #dcfce7 0%, transparent 58%),
+                #f0fdf4 !important;
+}
+
+/* 2. 淡紫色 (theme-purple) */
+body.deck.theme-purple {
+    --cf-bg: #faf5ff;
+    --cf-bg-2: #f3e8ff;
+    --cf-bg-glow: #e9d5ff;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #faf5ff;
+    --cf-node: #f5f3ff;
+    --cf-node-head: #ede9fe;
+    --cf-line: rgba(147, 51, 234, 0.4);
+    --cf-accent: #9333ea;
+    --cf-accent-dim: #7e22ce;
+    --cf-on-accent: #ffffff;
+    --cf-text: #3b0764;
+    --cf-text-dim: #581c87;
+    --cf-text-faint: #4b5563;
+    --cf-rule: rgba(147, 51, 234, 0.2);
+    --deck-bar-bg: rgba(250, 245, 255, 0.96);
+    background: radial-gradient(900px 520px at 12% -8%, #e9d5ff 0%, transparent 62%),
+                radial-gradient(760px 460px at 92% 4%, #f3e8ff 0%, transparent 58%),
+                #faf5ff !important;
+}
+
+/* 3. 淡紅色 (theme-red) */
+body.deck.theme-red {
+    --cf-bg: #fff1f2;
+    --cf-bg-2: #ffe4e6;
+    --cf-bg-glow: #fecdd3;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #fff1f2;
+    --cf-node: #fff5f5;
+    --cf-node-head: #fde2e4;
+    --cf-line: rgba(225, 29, 72, 0.4);
+    --cf-accent: #e11d48;
+    --cf-accent-dim: #be123c;
+    --cf-on-accent: #ffffff;
+    --cf-text: #881337;
+    --cf-text-dim: #9f1239;
+    --cf-text-faint: #4b5563;
+    --cf-rule: rgba(225, 29, 72, 0.2);
+    --deck-bar-bg: rgba(255, 241, 242, 0.96);
+    background: radial-gradient(900px 520px at 12% -8%, #fecdd3 0%, transparent 62%),
+                radial-gradient(760px 460px at 92% 4%, #ffe4e6 0%, transparent 58%),
+                #fff1f2 !important;
+}
+
+/* 4. 淡藍色 (theme-blue - 預設) */
+body.deck.theme-blue {
+    --cf-bg: #f0f9ff;
+    --cf-bg-2: #e0f2fe;
+    --cf-bg-glow: #bae6fd;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #f0f9ff;
+    --cf-node: #f8fafc;
+    --cf-node-head: #e2e8f0;
+    --cf-line: rgba(2, 132, 199, 0.4);
+    --cf-accent: #0284c7;
+    --cf-accent-dim: #0369a1;
+    --cf-on-accent: #ffffff;
+    --cf-text: #0c4a6e;
+    --cf-text-dim: #075985;
+    --cf-text-faint: #4b5563;
+    --cf-rule: rgba(2, 132, 199, 0.2);
+    --deck-bar-bg: rgba(240, 249, 255, 0.96);
+    background: radial-gradient(900px 520px at 12% -8%, #bae6fd 0%, transparent 62%),
+                radial-gradient(760px 460px at 92% 4%, #e0f2fe 0%, transparent 58%),
+                #f0f9ff !important;
+}
+
+/* 5. 淺灰色 (theme-gray) */
+body.deck.theme-gray {
+    --cf-bg: #f8fafc;
+    --cf-bg-2: #f1f5f9;
+    --cf-bg-glow: #e2e8f0;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #f8fafc;
+    --cf-node: #f1f5f9;
+    --cf-node-head: #e2e8f0;
+    --cf-line: rgba(71, 85, 105, 0.4);
+    --cf-accent: #475569;
+    --cf-accent-dim: #334155;
+    --cf-on-accent: #ffffff;
+    --cf-text: #0f172a;
+    --cf-text-dim: #334155;
+    --cf-text-faint: #64748b;
+    --cf-rule: rgba(71, 85, 105, 0.2);
+    --deck-bar-bg: rgba(248, 250, 252, 0.96);
+    background: radial-gradient(900px 520px at 12% -8%, #e2e8f0 0%, transparent 62%),
+                radial-gradient(760px 460px at 92% 4%, #f1f5f9 0%, transparent 58%),
+                #f8fafc !important;
+}
+
+/* 6. 淺橙色 (theme-orange) */
+body.deck.theme-orange {
+    --cf-bg: #fff7ed;
+    --cf-bg-2: #ffedd5;
+    --cf-bg-glow: #fed7aa;
+    --cf-panel: #ffffff;
+    --cf-panel-2: #fff7ed;
+    --cf-node: #fffbf5;
+    --cf-node-head: #fed7aa;
+    --cf-line: rgba(234, 88, 12, 0.4);
+    --cf-accent: #ea580c;
+    --cf-accent-dim: #c2410c;
+    --cf-on-accent: #ffffff;
+    --cf-text: #7c2d12;
+    --cf-text-dim: #9a3412;
+    --cf-text-faint: #4b5563;
+    --cf-rule: rgba(234, 88, 12, 0.2);
+    --deck-bar-bg: rgba(255, 247, 237, 0.96);
+    background: radial-gradient(900px 520px at 12% -8%, #fed7aa 0%, transparent 62%),
+                radial-gradient(760px 460px at 92% 4%, #ffedd5 0%, transparent 58%),
+                #fff7ed !important;
+}
+
+/* 通用淡色系覆蓋 (提升對比度與質感) */
+body.deck {
+    color: var(--cf-text);
+}
+body.deck .slide {
+    background: var(--cf-panel) !important;
+    color: var(--cf-text) !important;
+    border: 2px solid var(--cf-rule) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+body.deck .s-title, body.deck .s-title-xl {
+    color: var(--cf-text) !important;
+}
+body.deck .s-eyebrow {
+    color: var(--cf-accent) !important;
+    font-weight: 700 !important;
+}
+body.deck .table-deck th {
+    background: var(--cf-node-head, rgba(0,0,0,0.06)) !important;
+    color: var(--cf-text) !important;
+    border: 1px solid var(--cf-rule) !important;
+    font-weight: 700;
+}
+body.deck .table-deck td {
+    color: var(--cf-text) !important;
+    border: 1px solid var(--cf-rule) !important;
+    background: var(--cf-panel) !important;
+}
+body.deck .table-deck tr:nth-child(even) td {
+    background: var(--cf-node, rgba(0,0,0,0.02)) !important;
+}
+body.deck .table-deck strong {
+    color: var(--cf-accent) !important;
+}
+body.deck .card-slide {
+    background: var(--cf-node) !important;
+    border: 1px solid var(--cf-rule) !important;
+}
+body.deck .card-slide p, body.deck .card-slide li {
+    color: var(--cf-text-dim) !important;
+}
+body.deck .tip {
+    background: var(--cf-node) !important;
+    border-left: 4px solid var(--cf-accent) !important;
+    color: var(--cf-text) !important;
+}
+body.deck .tip.warn {
+    border-left-color: #ea580c !important;
+}
+body.deck .tip-body {
+    color: var(--cf-text-dim) !important;
+}
+body.deck .deck-bar {
+    background: var(--deck-bar-bg, rgba(255, 255, 255, 0.95)) !important;
+    border-bottom: 1px solid var(--cf-rule) !important;
+    color: var(--cf-text) !important;
+}
+body.deck .deck-id {
+    color: var(--cf-accent) !important;
+}
+body.deck .deck-name {
+    color: var(--cf-text) !important;
+}
+body.deck .deck-btn {
+    color: var(--cf-text) !important;
+    background: var(--cf-panel) !important;
+    border-color: var(--cf-rule) !important;
+}
+body.deck .deck-btn:hover {
+    color: var(--cf-accent) !important;
+    border-color: var(--cf-accent) !important;
+}
+body.deck .nav-btn-primary {
+    background: var(--cf-accent) !important;
+    color: var(--cf-on-accent) !important;
+    border-color: var(--cf-accent) !important;
+    font-weight: 700 !important;
+}
+body.deck .nav-btn-primary:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-1px) !important;
+}
+body.deck .deck-ctrl {
+    background: var(--deck-bar-bg, rgba(255, 255, 255, 0.95)) !important;
+    border: 1px solid var(--cf-rule) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12) !important;
+}
+body.deck .ctrl-btn {
+    background: var(--cf-panel) !important;
+    color: var(--cf-text) !important;
+    border-color: var(--cf-rule) !important;
+    font-weight: 600;
+}
+body.deck .ctrl-btn:hover:not(:disabled) {
+    background: var(--cf-accent) !important;
+    color: var(--cf-on-accent) !important;
+    border-color: var(--cf-accent) !important;
+}
+body.deck .ctrl-pos {
+    color: var(--cf-accent) !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+}
+
+/* 主題切換按鈕群組 */
+.theme-picker {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--cf-node);
+    border: 1px solid var(--cf-rule);
+    border-radius: 999px;
+    padding: 2px 7px;
+}
+.theme-chip {
+    font-size: 11px;
+    font-weight: 600;
+    font-family: var(--cf-sans);
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--cf-rule);
+    background: var(--cf-panel);
+    color: var(--cf-text-dim);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.theme-chip:hover {
+    border-color: var(--cf-accent);
+    color: var(--cf-accent);
+    transform: translateY(-1px);
+}
+.theme-chip.active {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+    color: var(--cf-on-accent);
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* 浮動大上一頁/下一頁按鈕 */
+.floating-nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 64px;
+    background: var(--cf-panel);
+    border: 1px solid var(--cf-rule);
+    color: var(--cf-text);
+    font-size: 32px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 55;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+    user-select: none;
+}
+.floating-nav-btn.prev { left: 16px; }
+.floating-nav-btn.next { right: 16px; }
+.floating-nav-btn:hover:not(:disabled) {
+    background: var(--cf-accent);
+    color: var(--cf-on-accent);
+    border-color: var(--cf-accent);
+    transform: translateY(-50%) scale(1.06);
+}
+.floating-nav-btn:disabled {
+    opacity: 0.2;
+    cursor: default;
+}
+body[data-mode="read"] .floating-nav-btn { display: none !important; }
+
+/* 目錄總覽 (TOC Modal) */
+.deck-toc {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 2.5rem);
+}
+.deck-toc[hidden] { display: none !important; }
+.deck-toc-panel {
+    width: min(1080px, 95vw);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--cf-panel) !important;
+    border: 2px solid var(--cf-rule) !important;
+    border-radius: 16px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.22);
+    overflow: hidden;
+}
+.deck-toc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--cf-rule);
+    background: var(--cf-node);
+}
+.deck-toc-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--cf-text);
+}
+.deck-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+    padding: 18px 20px;
+    overflow-y: auto;
+    max-height: calc(90vh - 75px);
+}
+.toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--cf-node);
+    border: 1px solid var(--cf-rule);
+    color: var(--cf-text);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s ease;
+}
+.toc-item:hover {
+    background: var(--cf-panel-2);
+    border-color: var(--cf-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+.toc-item.is-current {
+    background: var(--cf-accent) !important;
+    color: var(--cf-on-accent) !important;
+    border-color: var(--cf-accent) !important;
+    font-weight: 700;
+}
+.toc-item.is-current .toc-no,
+.toc-item.is-current .toc-eyebrow,
+.toc-item.is-current .toc-h {
+    color: var(--cf-on-accent) !important;
+}
+.toc-no {
+    font-family: var(--cf-mono);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--cf-accent);
+    min-width: 28px;
+}
+.toc-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1;
+}
+.toc-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--cf-text-dim);
+    text-transform: uppercase;
+}
+.toc-h {
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--cf-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

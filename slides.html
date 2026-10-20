@@ -151,10 +151,24 @@
   <span class="deck-id">南投國中 115 隔宿露營</span>
   <span class="deck-name">二年級隔宿露營行動簡報手冊（去個資版）</span>
   <div class="deck-tools">
-    <a href="index.html" class="deck-btn" style="text-decoration:none; color:var(--cf-accent); border-color:rgba(34,197,94,0.4); margin-right:4px;">📱 手冊網頁版</a>
-    <button class="deck-btn" id="toc-btn" type="button">目錄總覽</button>
-    <button class="deck-btn is-on" id="mode-btn" type="button">閱讀模式</button>
-    <button class="deck-btn" id="fs-btn" type="button">全螢幕</button>
+    <!-- 6 色淡色系背景切換 -->
+    <div class="theme-picker" title="切換簡報底色">
+      <span style="font-size:11px; font-weight:700; color:var(--cf-text-dim); margin-right:2px;">🎨 底色：</span>
+      <button type="button" class="theme-chip" data-set-theme="green" title="淡綠色">淡綠</button>
+      <button type="button" class="theme-chip" data-set-theme="purple" title="淡紫色">淡紫</button>
+      <button type="button" class="theme-chip" data-set-theme="red" title="淡紅色">淡紅</button>
+      <button type="button" class="theme-chip" data-set-theme="blue" title="淡藍色">淡藍</button>
+      <button type="button" class="theme-chip" data-set-theme="gray" title="淺灰色">淺灰</button>
+      <button type="button" class="theme-chip" data-set-theme="orange" title="淺橙色">淺橙</button>
+    </div>
+
+    <!-- 上一頁 / 下一頁切換鍵 -->
+    <button class="deck-btn nav-btn-primary" id="nav-prev-top" type="button" title="上一頁 (←)">◀ 上一頁</button>
+    <button class="deck-btn nav-btn-primary" id="nav-next-top" type="button" title="下一頁 (→)">下一頁 ▶</button>
+    <button class="deck-btn" id="toc-btn" type="button" title="目錄總覽 (T)">📑 目錄總覽</button>
+    <button class="deck-btn is-on" id="mode-btn" type="button">📖 閱讀模式</button>
+    <button class="deck-btn" id="fs-btn" type="button">⛶ 全螢幕</button>
+    <a href="index.html" class="deck-btn" style="text-decoration:none; color:var(--cf-accent); border-color:var(--cf-accent); font-weight:700;">📱 手冊網頁版</a>
     <span class="deck-count" id="deck-count"></span>
   </div>
 </header>
@@ -216,8 +230,59 @@
     </div>
   </section>
 
-  <!-- Slide 03: 行程一覽 Day 1 -->
+
+  <!-- Slide 03: 10/23（五)隔宿露營行前說明會 -->
   <section class="slide" id="slide-03">
+    <p class="s-eyebrow">BRIEFING · 行前說明會宣導</p>
+    <h2 class="s-title">📢 10/23（五) 隔宿露營行前說明會 · 四大生活常規與違紀處分叮嚀</h2>
+    <div class="s-body">
+      <div class="cols c2">
+        <div>
+          <div class="card-slide" style="border-left: 5px solid #ea580c; margin-bottom: 10px;">
+            <h4 class="orange">🚫 一、違禁品出發前再檢查一次</h4>
+            <p style="font-size: 13.5px; color: var(--cf-text); line-height: 1.6; font-weight: 700;">
+              一、違禁品(菸酒檳榔、刀械…) 出發前再檢查一次
+            </p>
+            <p style="font-size: 12px; color: var(--cf-text-dim); line-height: 1.5; margin-top: 4px;">
+              出發前請在家徹底檢視隨身行李，嚴禁攜帶任何危險品、菸品、酒類、檳榔或刀械。出發當日於 921 地震公園集合時，隨隊導師將實施嚴格安全檢查。
+            </p>
+          </div>
+          <div class="card-slide" style="border-left: 5px solid #2563eb;">
+            <h4 style="color:#2563eb;">🪪 二、個人物品與通訊報平安</h4>
+            <p style="font-size: 13.5px; color: var(--cf-text); line-height: 1.6; font-weight: 700;">
+              二、個人物品(健保卡、醫藥、錢600元內、體育服晚上穿)，手機會統一保管，晚上會有約１小時打回家報平安…
+            </p>
+            <p style="font-size: 12px; color: var(--cf-text-dim); line-height: 1.5; margin-top: 4px;">
+              健保卡正本隨身放內層，零用錢限 600 元內勿攜帶貴重物品。手機由隨隊人員統一保管，於第一天晚間安排約 1 小時開放通話向家長報平安。
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="card-slide" style="border-left: 5px solid #16a34a; margin-bottom: 10px;">
+            <h4 style="color:#16a34a;">👕 三、服裝儀容規範與畢旅連動機制</h4>
+            <p style="font-size: 13.5px; color: var(--cf-text); line-height: 1.6; font-weight: 700;">
+              三、服裝儀容著便服或班服（深色長褲）畢旅服裝看表現！
+            </p>
+            <p style="font-size: 12px; color: var(--cf-text-dim); line-height: 1.5; margin-top: 4px;">
+              出發請著乾淨便服或班服，下身務必穿著深色長褲（防蚊蟲及山訓攀岩磨損）。未來國三畢業旅行服裝穿著開放彈性，完全看大家在本次隔宿露營日常紀律的整體表現！
+            </p>
+          </div>
+          <div class="card-slide" style="border-left: 5px solid #dc2626;">
+            <h4 style="color:#dc2626;">🚨 四、機動車待命！重大違紀即刻遣返</h4>
+            <p style="font-size: 13.5px; color: #dc2626; line-height: 1.6; font-weight: 800;">
+              四、機動車！違犯校規之打架、抽菸、喝酒、吃檳檳等 即刻送回學校,家長帶回家管教！記大過！
+            </p>
+            <p style="font-size: 12px; color: var(--cf-text-dim); line-height: 1.5; margin-top: 4px;">
+              營地現場備有機動專車專人待命，若有打架滋事、抽菸、喝酒、嚼食檳榔等重大違犯校規情事，【即刻專車送回學校】，通知家長到校帶回管教，並嚴厲【記大過】處分！
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 04: 行程一覽 Day 1 -->
+  <section class="slide" id="slide-04">
     <p class="s-eyebrow">SCHEDULE · 第一天行程</p>
     <h2 class="s-title">Day 1：啟程開訓 · 營地建設 · 童軍分站 · 野炊競賽 · 營火晚會</h2>
     <div class="s-body">
@@ -251,8 +316,8 @@
     </div>
   </section>
 
-  <!-- Slide 04: 行程一覽 Day 2 -->
-  <section class="slide" id="slide-04">
+  <!-- Slide 05: 行程一覽 Day 2 -->
+  <section class="slide" id="slide-05">
     <p class="s-eyebrow">SCHEDULE · 第二天行程</p>
     <h2 class="s-title">Day 2：晨喚有氧 · 分站山訓極限探索 · BBQ盛宴 · 結訓頒獎</h2>
     <div class="s-body">
@@ -282,8 +347,8 @@
     </div>
   </section>
 
-  <!-- Slide 05: 遊覽車編組與隨車師長 -->
-  <section class="slide" id="slide-05">
+  <!-- Slide 06: 遊覽車編組與隨車師長 -->
+  <section class="slide" id="slide-06">
     <p class="s-eyebrow">TRANSPORTATION · 官方車次團務表</p>
     <h2 class="s-title">遊覽車編組與隨車師長團務表（去個資版）</h2>
     <div class="s-body">
@@ -344,8 +409,8 @@
     </div>
   </section>
 
-  <!-- Slide 06: 野營常識 ① 營地建設與屋式帳 -->
-  <section class="slide" id="slide-06">
+  <!-- Slide 07: 野營常識 ① 營地建設與屋式帳 -->
+  <section class="slide" id="slide-07">
     <p class="s-eyebrow">CAMPING SKILLS · 教學參考 ①</p>
     <h2 class="s-title">野營常識 · 營地規劃原則與屋式帳器材步驟</h2>
     <div class="s-body">
@@ -390,8 +455,8 @@
     </div>
   </section>
 
-  <!-- Slide 07: 野營常識 ② 帳棚搭設圖文與無痕山林 -->
-  <section class="slide" id="slide-07">
+  <!-- Slide 08: 野營常識 ② 帳棚搭設圖文與無痕山林 -->
+  <section class="slide" id="slide-08">
     <p class="s-eyebrow">CAMPING SKILLS · 教學參考 ②</p>
     <h2 class="s-title">野營常識 · 帳棚搭設四步驟圖解 ＆ 無痕山林 (LNT)</h2>
     <div class="s-body">
@@ -436,8 +501,8 @@
     </div>
   </section>
 
-  <!-- Slide 08: 野營常識 ③ 曬帳技巧與防蛇避蟲 -->
-  <section class="slide" id="slide-08">
+  <!-- Slide 09: 野營常識 ③ 曬帳技巧與防蛇避蟲 -->
+  <section class="slide" id="slide-09">
     <p class="s-eyebrow">CAMPING SKILLS · 教學參考 ③</p>
     <h2 class="s-title">野營常識 · 收外帳口訣、曬帳技巧與營地注意事項</h2>
     <div class="s-body">
@@ -478,8 +543,8 @@
     </div>
   </section>
 
-  <!-- Slide 09: 童軍技能 ① 生火技巧與野炊煮飯 -->
-  <section class="slide" id="slide-09">
+  <!-- Slide 10: 童軍技能 ① 生火技巧與野炊煮飯 -->
+  <section class="slide" id="slide-10">
     <p class="s-eyebrow">SCOUT SKILLS · 教學參考 ④</p>
     <h2 class="s-title">童軍技能 · 生火技巧、三級柴火與野炊煮飯要領</h2>
     <div class="s-body">
@@ -515,8 +580,8 @@
     </div>
   </section>
 
-  <!-- Slide 10: 童軍技能 ② 戰術偽裝與方向辨識 -->
-  <section class="slide" id="slide-10">
+  <!-- Slide 11: 童軍技能 ② 戰術偽裝與方向辨識 -->
+  <section class="slide" id="slide-11">
     <p class="s-eyebrow">SCOUT SKILLS · 教學參考 ⑤</p>
     <h2 class="s-title">童軍技能 · 戰術偽裝原則與自然方向辨識 (16方位)</h2>
     <div class="s-body">
@@ -534,7 +599,7 @@
             <h4>🧭 自然方向辨識（手冊官方記載）</h4>
             <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.45;">
               1. <b>指針與地圖</b>：指南針磁北校正。<br>
-              2. <b>日月星象</b>：日出東日落西；北斗七星尋北極星（正北方）。<br>
+              2. <b>日月星象</b>：日出東日落西；北斗七星尋北極星（正北方）。<a href="https://gemini.google.com/share/90fe02a031a5?social_preview=false&skid=498c1de2-4192-4fb7-9b14-92d3a058c761" target="_blank" rel="noopener noreferrer" class="deck-res-chip" style="background:#4338ca; color:#ffffff; border-color:#6366f1; font-weight:700; margin-left:6px; padding:2px 8px;">🌓 月相模擬器 ↗</a><br>
               3. <b>樹木年輪</b>：密者為北（南向陽光多年輪疏寬，北向年輪密集）。<br>
               4. <b>樹木茂密</b>：密者為南、青苔多者為北。<br>
               5. <b>向日葵</b>：12:00 以前朝向東南，12:00 以後朝向西南。<br>
@@ -561,8 +626,8 @@
     </div>
   </section>
 
-  <!-- Slide 11: 童軍技能 ③ 常用八大繩結 -->
-  <section class="slide" id="slide-11">
+  <!-- Slide 12: 童軍技能 ③ 常用八大繩結 -->
+  <section class="slide" id="slide-12">
     <p class="s-eyebrow">SCOUT SKILLS · 教學參考 ⑥</p>
     <h2 class="s-title">童軍技能 · 出神入化！手冊常用八大繩結</h2>
     <div class="s-body">
@@ -593,8 +658,8 @@
     </div>
   </section>
 
-  <!-- Slide 12: 野外安全 ① 臺灣毒蛇辨識 -->
-  <section class="slide" id="slide-12">
+  <!-- Slide 13: 野外安全 ① 臺灣毒蛇辨識 -->
+  <section class="slide" id="slide-13">
     <p class="s-eyebrow">OUTDOOR SAFETY · 教學參考 ⑦</p>
     <h2 class="s-title">野外安全 · 臺灣主要毒蛇辨識與習性</h2>
     <div class="s-body">
@@ -635,8 +700,8 @@
     </div>
   </section>
 
-  <!-- Slide 13: 野外安全 ② 蛇傷急救【五要五不】 -->
-  <section class="slide" id="slide-13">
+  <!-- Slide 14: 野外安全 ② 蛇傷急救【五要五不】 -->
+  <section class="slide" id="slide-14">
     <p class="s-eyebrow">FIRST AID · 教學參考 ⑧</p>
     <h2 class="s-title">野外安全 · 毒蛇咬傷黃金自救【五要五不】原則</h2>
     <div class="s-body">
@@ -665,8 +730,8 @@
     </div>
   </section>
 
-  <!-- Slide 14: 簡易急救專題 -->
-  <section class="slide" id="slide-14">
+  <!-- Slide 15: 簡易急救專題 -->
+  <section class="slide" id="slide-15">
     <p class="s-eyebrow">FIRST AID · 手冊官方課程</p>
     <h2 class="s-title">簡易急救 · 意外割傷、抽筋、流鼻血與骨折緊急處理</h2>
     <div class="s-body">
@@ -710,8 +775,8 @@
     </div>
   </section>
 
-  <!-- Slide 15: 營火晚會與動唱律動 -->
-  <section class="slide" id="slide-15">
+  <!-- Slide 16: 營火晚會與動唱律動 -->
+  <section class="slide" id="slide-16">
     <p class="s-eyebrow">CAMPFIRE NIGHT · 青春高潮</p>
     <h2 class="s-title">童軍技能 · 超ㄅ一ㄤˋ營火晚會儀式、拜火詞與燭光夜語</h2>
     <div class="s-body">
@@ -754,8 +819,8 @@
     </div>
   </section>
 
-  <!-- Slide 16: 探索教育哲學與精神 -->
-  <section class="slide" id="slide-16">
+  <!-- Slide 17: 探索教育哲學與精神 -->
+  <section class="slide" id="slide-17">
     <p class="s-eyebrow">ADVENTURE EDUCATION · 探索教育</p>
     <h2 class="s-title">探索教育 · 體驗式學習四大精神 ＆ FVC 三哲學</h2>
     <div class="s-body">
@@ -798,8 +863,8 @@
     </div>
   </section>
 
-  <!-- Slide 17: 山訓探索 ① 高空垂直垂降 -->
-  <section class="slide" id="slide-17">
+  <!-- Slide 18: 山訓探索 ① 高空垂直垂降 -->
+  <section class="slide" id="slide-18">
     <p class="s-eyebrow">MOUNTAIN TRAINING · 山訓探索 ①</p>
     <h2 class="s-title">山訓探索 · 膽量大考驗！進擊の高空垂直垂降</h2>
     <div class="s-body">
@@ -832,8 +897,8 @@
     </div>
   </section>
 
-  <!-- Slide 18: 山訓探索 ② 超級蜘蛛人攀岩 -->
-  <section class="slide" id="slide-18">
+  <!-- Slide 19: 山訓探索 ② 超級蜘蛛人攀岩 -->
+  <section class="slide" id="slide-19">
     <p class="s-eyebrow">MOUNTAIN TRAINING · 山訓探索 ②</p>
     <h2 class="s-title">山訓探索 · 超級蜘蛛人～人工岩場攀登絕技</h2>
     <div class="s-body">
@@ -865,8 +930,8 @@
     </div>
   </section>
 
-  <!-- Slide 19: 山訓探索 ③ 獨木橋橫渡平衡 -->
-  <section class="slide" id="slide-19">
+  <!-- Slide 20: 山訓探索 ③ 獨木橋橫渡平衡 -->
+  <section class="slide" id="slide-20">
     <p class="s-eyebrow">MOUNTAIN TRAINING · 山訓探索 ③</p>
     <h2 class="s-title">山訓探索 · 獨木橋橫渡 ＆ 雙索、三索突擊吊橋走法</h2>
     <div class="s-body">
@@ -903,8 +968,8 @@
     </div>
   </section>
 
-  <!-- Slide 20: 探索教育 ② 解手結與團隊跳繩 -->
-  <section class="slide" id="slide-20">
+  <!-- Slide 21: 探索教育 ② 解手結與團隊跳繩 -->
+  <section class="slide" id="slide-21">
     <p class="s-eyebrow">ADVENTURE EDUCATION · 探索教育 ②</p>
     <h2 class="s-title">探索教育 · 解手結謎題 (Human Knot) ＆ 團隊跳繩心跳同頻</h2>
     <div class="s-body">
@@ -939,8 +1004,8 @@
     </div>
   </section>
 
-  <!-- Slide 21: 探索教育 ③ 水彈生存競技與13條安全守則 -->
-  <section class="slide" id="slide-21">
+  <!-- Slide 22: 探索教育 ③ 水彈生存競技與13條安全守則 -->
+  <section class="slide" id="slide-22">
     <p class="s-eyebrow">TACTICAL GAME · 山訓探索 ④</p>
     <h2 class="s-title">探索教育 · 水彈生存競技戰術 ＆ 13 條安全守則</h2>
     <div class="s-body">
@@ -977,8 +1042,8 @@
     </div>
   </section>
 
-  <!-- Slide 22: 行前行李打包清單 -->
-  <section class="slide" id="slide-22">
+  <!-- Slide 23: 行前行李打包清單 -->
+  <section class="slide" id="slide-23">
     <p class="s-eyebrow">PACKING LIST · 想一想，準備好了，出發！</p>
     <h2 class="s-title">行前必備 · 行李清單與打包防護（手冊官方標準）</h2>
     <div class="s-body">
@@ -1023,8 +1088,8 @@
     </div>
   </section>
 
-  <!-- Slide 23: 營規生活須知與考核評分 -->
-  <section class="slide" id="slide-23">
+  <!-- Slide 24: 營規生活須知與考核評分 -->
+  <section class="slide" id="slide-24">
     <p class="s-eyebrow">CAMP RULES & HONORS</p>
     <h2 class="s-title">營規生活須知 · 精神總錦標計分 ＆ 緊急應變聯絡</h2>
     <div class="s-body">
@@ -1067,8 +1132,8 @@
     </div>
   </section>
 
-  <!-- Slide 24: 去個資帳篷住宿分配總表（一） -->
-  <section class="slide" id="slide-24">
+  <!-- Slide 25: 去個資帳篷住宿分配總表（一） -->
+  <section class="slide" id="slide-25">
     <p class="s-eyebrow">TENT ALLOCATION · 帳篷住宿表 ①</p>
     <h2 class="s-title">801 班 ＆ 802 班 帳篷住宿分配一覽表（去個資版）</h2>
     <div class="s-body">
@@ -1120,8 +1185,8 @@
     </div>
   </section>
 
-  <!-- Slide 25: 去個資帳篷住宿分配總表（二） -->
-  <section class="slide" id="slide-25">
+  <!-- Slide 26: 去個資帳篷住宿分配總表（二） -->
+  <section class="slide" id="slide-26">
     <p class="s-eyebrow">TENT ALLOCATION · 帳篷住宿表 ②</p>
     <h2 class="s-title">803 班 ＆ 804 班 帳篷住宿分配一覽表（去個資版）</h2>
     <div class="s-body">
@@ -1169,8 +1234,8 @@
     </div>
   </section>
 
-  <!-- Slide 26: 去個資帳篷住宿分配總表（三） -->
-  <section class="slide" id="slide-26">
+  <!-- Slide 27: 去個資帳篷住宿分配總表（三） -->
+  <section class="slide" id="slide-27">
     <p class="s-eyebrow">TENT ALLOCATION · 帳篷住宿表 ③</p>
     <h2 class="s-title">805班、806班 ＆ 807班 帳篷住宿分配一覽表（去個資版）</h2>
     <div class="s-body">
@@ -1227,8 +1292,8 @@
     </div>
   </section>
 
-  <!-- Slide 27: 去個資野炊分組表（一） -->
-  <section class="slide" id="slide-27">
+  <!-- Slide 28: 去個資野炊分組表（一） -->
+  <section class="slide" id="slide-28">
     <p class="s-eyebrow">COOKING SQUADS · 野炊炊事表 ①</p>
     <h2 class="s-title">第 1 組 ～ 第 5 組 野炊分組名冊（801 班、802 班 去個資版）</h2>
     <div class="s-body">
@@ -1266,8 +1331,8 @@
     </div>
   </section>
 
-  <!-- Slide 28: 去個資野炊分組表（二） -->
-  <section class="slide" id="slide-28">
+  <!-- Slide 29: 去個資野炊分組表（二） -->
+  <section class="slide" id="slide-29">
     <p class="s-eyebrow">COOKING SQUADS · 野炊炊事表 ②</p>
     <h2 class="s-title">第 6 組 ～ 第 10 組 野炊分組名冊（803 班、804 班、805 班 去個資版）</h2>
     <div class="s-body">
@@ -1305,8 +1370,8 @@
     </div>
   </section>
 
-  <!-- Slide 29: 去個資野炊分組表（三） -->
-  <section class="slide" id="slide-29">
+  <!-- Slide 30: 去個資野炊分組表（三） -->
+  <section class="slide" id="slide-30">
     <p class="s-eyebrow">COOKING SQUADS · 野炊炊事表 ③</p>
     <h2 class="s-title">第 11 組 ～ 第 15 組 野炊分組名冊（805班、806班、807班 去個資版）</h2>
     <div class="s-body">
@@ -1344,8 +1409,8 @@
     </div>
   </section>
 
-  <!-- Slide 30: 自我檢核、美好回憶與結語 -->
-  <section class="slide" id="slide-30">
+  <!-- Slide 31: 自我檢核、美好回憶與結語 -->
+  <section class="slide" id="slide-31">
     <p class="s-eyebrow">MEMORIES & REVIEW · 美好回憶</p>
     <h2 class="s-title">自我檢核 · 青春美好回憶 ＆ 平安賦歸</h2>
     <div class="s-body">
@@ -1385,6 +1450,31 @@
 
 </main>
 
-<script src="lesson-deck.js?v=20261019_v1"></script>
+<!-- 懸浮左右快速翻頁大箭頭 -->
+<button class="floating-nav-btn prev" id="float-prev" type="button" title="上一頁 (←)" aria-label="上一頁">‹</button>
+<button class="floating-nav-btn next" id="float-next" type="button" title="下一頁 (→)" aria-label="下一頁">›</button>
+
+<!-- 投影模式底部懸浮控制列 -->
+<nav class="deck-ctrl" id="deck-ctrl" aria-label="簡報控制">
+  <button class="ctrl-btn" id="ctrl-prev" type="button" title="上一頁 (←)">◀ 上一頁</button>
+  <span class="ctrl-pos" id="ctrl-pos">01 / 31</span>
+  <button class="ctrl-btn" id="ctrl-next" type="button" title="下一頁 (→ / 空白鍵)">下一頁 ▶</button>
+  <button class="ctrl-btn" id="ctrl-toc-bottom" type="button" title="目錄總覽 (T)">📑 目錄總覽</button>
+</nav>
+
+<!-- 簡報目錄總覽彈出層 (TOC Modal) -->
+<div class="deck-toc" id="deck-toc" hidden>
+  <div class="deck-toc-panel">
+    <div class="deck-toc-head">
+      <span class="deck-toc-title">📑 簡報目錄總覽（全 31 頁）</span>
+      <button class="deck-btn" id="toc-close" type="button">✕ 關閉 (ESC)</button>
+    </div>
+    <div class="deck-toc-grid" id="deck-toc-grid">
+      <!-- 由 JS 動態生成每頁卡片 -->
+    </div>
+  </div>
+</div>
+
+<script src="lesson-deck.js?v=20261020_v2"></script>
 </body>
 </html>
