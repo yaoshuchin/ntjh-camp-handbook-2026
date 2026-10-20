@@ -1182,27 +1182,106 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================================================
-     童軍技能分站教育學習單 (手冊第 22、23 頁)
+     共用輔助工具：學生個人資訊與通知 Toast
+     ========================================================================== */
+  function showToast(msg) {
+    let toast = document.getElementById("app-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "app-toast";
+      toast.style.cssText = "position:fixed; bottom:72px; left:50%; transform:translateX(-50%); background:#0f172a; color:#f8fafc; padding:10px 22px; border-radius:30px; font-size:0.9rem; font-weight:700; z-index:99999; box-shadow:0 4px 16px rgba(0,0,0,0.28); display:none; pointer-events:none; transition:opacity 0.25s ease;";
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.display = "block";
+    toast.style.opacity = "1";
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
+      toast.style.opacity = "0";
+      setTimeout(() => { toast.style.display = "none"; }, 250);
+    }, 2200);
+  }
+
+  function getStudentInfo() {
+    try {
+      return JSON.parse(localStorage.getItem("ntjh_camp_student_info_115") || "{}");
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveStudentInfo(infoObj) {
+    const current = getStudentInfo();
+    const updated = { ...current, ...infoObj };
+    localStorage.setItem("ntjh_camp_student_info_115", JSON.stringify(updated));
+    document.querySelectorAll("[data-student-field]").forEach(input => {
+      const field = input.dataset.studentField;
+      if (updated[field] !== undefined && input.value !== updated[field]) {
+        input.value = updated[field];
+      }
+    });
+    document.querySelectorAll("[data-student-mirror]").forEach(el => {
+      const field = el.dataset.studentMirror;
+      el.textContent = updated[field] || "______";
+    });
+  }
+
+  /* ==========================================================================
+     童軍技能學習單 (手冊第 22~23 頁)
      ========================================================================== */
   function renderWorksheet() {
     const container = document.getElementById("worksheet-content-container");
     if (!container || !worksheet) return;
 
-    let savedWorksheet = {};
+    let savedAnswers = {};
     try {
-      savedWorksheet = JSON.parse(localStorage.getItem("ntjh_camp_worksheet_answers_115") || "{}");
-    } catch (e) { savedWorksheet = {}; }
+      savedAnswers = JSON.parse(localStorage.getItem("ntjh_camp_worksheet_answers_115") || "{}");
+    } catch (e) {
+      savedAnswers = {};
+    }
+    const student = getStudentInfo();
 
     container.innerHTML = `
-      <div style="background:linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border:2px solid #818cf8; border-radius:var(--radius-md); padding:16px 20px; margin-bottom:18px; box-shadow:0 3px 12px rgba(99,102,241,0.08);">
+      <!-- 列印專用抬頭 (螢幕隱藏) -->
+      <div class="print-header-banner">
+        <h2>南投縣立南投國民中學 115 學年度二年級戶外教育隔宿露營</h2>
+        <p>【童軍技能分站教育學習單】（手冊第 22～23 頁）</p>
+      </div>
+
+      <!-- 操作頂部條（列印時自動隱藏操作鈕） -->
+      <div style="background:linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border:2px solid #818cf8; border-radius:var(--radius-md); padding:16px 20px; margin-bottom:16px; box-shadow:0 3px 12px rgba(99,102,241,0.08);">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
           <div>
             <h3 style="margin:0; font-size:1.25rem; color:#3730a3; font-weight:800;">📝 ${worksheet.title}</h3>
             <p style="margin:4px 0 0; font-size:0.86rem; color:#4338ca;">${worksheet.subtitle}</p>
           </div>
-          <div style="display:flex; gap:8px;">
-            <button id="ws-save-btn" class="btn btn-primary" style="background:#4f46e5; border-color:#4f46e5; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); cursor:pointer;">💾 儲存作答</button>
-            <button id="ws-print-btn" class="btn" style="background:#fff; border:1px solid #c7d2fe; color:#3730a3; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); cursor:pointer;">🖨️ 列印學習單</button>
+          <div style="display:flex; gap:8px;" class="print-hide">
+            <button id="ws-save-btn" class="btn btn-primary" style="background:#4f46e5; border-color:#4f46e5; font-size:0.85rem; padding:7px 16px; border-radius:var(--radius-full); cursor:pointer; font-weight:700;">💾 儲存作答</button>
+            <button id="ws-print-btn" class="btn" style="background:#fff; border:1px solid #c7d2fe; color:#3730a3; font-size:0.85rem; padding:7px 16px; border-radius:var(--radius-full); cursor:pointer; font-weight:700;">🖨️ 列印學習單</button>
+          </div>
+        </div>
+
+        <!-- 學生個人資料填寫條 (自動同步與自動儲存) -->
+        <div class="student-info-bar" style="margin-top:14px; background:#fff; border:1px solid #c7d2fe; border-radius:var(--radius-sm); padding:10px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; font-size:0.92rem; font-weight:700; color:#3730a3;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span>班級：</span>
+              <input type="text" id="ws-student-class" data-student-field="class" value="${student.class || ''}" class="screen-only-input" style="width:75px; padding:4px 8px; border:1px solid var(--border); border-radius:4px; font-weight:700; font-size:0.9rem;" placeholder="如 801">
+              <span class="print-inline-val" data-student-mirror="class">${student.class || '______'}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span>座號：</span>
+              <input type="text" id="ws-student-seat" data-student-field="seat" value="${student.seat || ''}" class="screen-only-input" style="width:65px; padding:4px 8px; border:1px solid var(--border); border-radius:4px; font-weight:700; font-size:0.9rem;" placeholder="如 15">
+              <span class="print-inline-val" data-student-mirror="seat">${student.seat || '______'}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span>姓名：</span>
+              <input type="text" id="ws-student-name" data-student-field="name" value="${student.name || ''}" class="screen-only-input" style="width:110px; padding:4px 8px; border:1px solid var(--border); border-radius:4px; font-weight:700; font-size:0.9rem;" placeholder="填寫姓名">
+              <span class="print-inline-val" data-student-mirror="name">${student.name || '____________'}</span>
+            </div>
+          </div>
+          <div style="font-size:0.8rem; color:#4338ca;" class="print-hide">
+            <span id="ws-autosave-indicator">⚡ 支援即時自動儲存</span>
           </div>
         </div>
       </div>
@@ -1223,11 +1302,13 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div style="margin-top:14px;">
-          <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.9rem;">✍️ 我的作答（請寫出圖中違反營帳原則的地方）：</label>
-          <textarea id="ws-input-tent" class="search-input" style="width:100%; height:80px; padding:10px; font-size:0.88rem; line-height:1.5; border:1px solid var(--border); border-radius:var(--radius-sm); resize:vertical;" placeholder="例如：1. 在帳篷內使用瓦斯爐生火煮食...">${savedWorksheet.tent || ''}</textarea>
+          <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.92rem;">✍️ 我的作答（請具體寫出圖中違反安全原則之處與修正方式）：</label>
+          <textarea id="ws-input-tent" class="screen-only-input search-input" style="width:100%; height:90px; padding:10px; font-size:0.88rem; line-height:1.5; border:1px solid var(--border); border-radius:var(--radius-sm); resize:vertical;" placeholder="例如：1. 帳內嚴禁生火煮食... 2. 嚴禁吸菸... 3. 散落食物招引昆蟲蛇類...">${savedAnswers.tent || ''}</textarea>
+          <!-- 列印專用鏡像文字 -->
+          <div id="ws-tent-mirror" class="print-textarea-mirror">${savedAnswers.tent || '（未填答）'}</div>
         </div>
 
-        <details style="margin-top:12px; background:#fff7ed; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:10px 14px;">
+        <details class="print-hide" style="margin-top:12px; background:#fff7ed; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:10px 14px;">
           <summary style="font-weight:700; color:#c2410c; cursor:pointer; font-size:0.9rem;">💡 點此查看【官方參考解答與違規解析】（共 5 大違規點）</summary>
           <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px;">
             ${worksheet.sections[0].errors.map(err => `
@@ -1256,18 +1337,19 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div style="margin-top:14px;">
-          <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.9rem;">✍️ 我的配對答案（圖 1～5 對應 A～J 代號）：</label>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:8px;">
+          <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.92rem;">✍️ 我的配對答案（圖 1～5 對應 A～J 代號）：</label>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
             ${[1, 2, 3, 4, 5].map(n => `
               <div style="display:flex; align-items:center; gap:6px; background:#f8fafc; padding:6px 10px; border-radius:var(--radius-sm); border:1px solid var(--border);">
                 <span style="font-weight:700; font-size:0.88rem; color:#b91c1c;">圖 ${n}：</span>
-                <input type="text" id="ws-poison-${n}" maxlength="2" value="${savedWorksheet['poison_' + n] || ''}" style="width:40px; text-align:center; font-weight:800; border:1px solid var(--border); border-radius:4px; padding:3px; text-transform:uppercase;" placeholder="代號">
+                <input type="text" id="ws-poison-${n}" maxlength="2" value="${savedAnswers['poison_' + n] || ''}" class="screen-only-input" style="width:40px; text-align:center; font-weight:800; border:1px solid var(--border); border-radius:4px; padding:3px; text-transform:uppercase;" placeholder="代號">
+                <span class="print-inline-val" id="ws-poison-${n}-mirror">${savedAnswers['poison_' + n] || '___'}</span>
               </div>
             `).join('')}
           </div>
         </div>
 
-        <details style="margin-top:12px; background:#fef2f2; border:1px solid #fecdd3; border-radius:var(--radius-sm); padding:10px 14px;">
+        <details class="print-hide" style="margin-top:12px; background:#fef2f2; border:1px solid #fecdd3; border-radius:var(--radius-sm); padding:10px 14px;">
           <summary style="font-weight:700; color:#dc2626; cursor:pointer; font-size:0.9rem;">💡 點此查看【官方參考配對答案與特徵說明】</summary>
           <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px;">
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:8px;">
@@ -1308,6 +1390,12 @@ document.addEventListener("DOMContentLoaded", () => {
               <p style="font-size:0.8rem; color:#1e40af; margin:0; line-height:1.45;">${st.desc}</p>
             </div>
           `).join('')}
+        </div>
+
+        <div style="margin-top:14px;">
+          <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.92rem;">✍️ 熱傷害急救核心筆記（昏迷灌水危險性與處置口訣）：</label>
+          <textarea id="ws-input-aid" class="screen-only-input search-input" style="width:100%; height:75px; padding:10px; font-size:0.88rem; line-height:1.5; border:1px solid var(--border); border-radius:var(--radius-sm); resize:vertical;" placeholder="寫下急救四字訣【移、降、補、送】的實施注意事項...">${savedAnswers.aid || ''}</textarea>
+          <div id="ws-aid-mirror" class="print-textarea-mirror">${savedAnswers.aid || '（未填答）'}</div>
         </div>
       </div>
 
@@ -1371,30 +1459,107 @@ document.addEventListener("DOMContentLoaded", () => {
               `).join('')}
             </div>
           </div>
+
+          <div style="margin-top:10px;">
+            <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.92rem;">✍️ 繩結與繩索生活探索心得筆記：</label>
+            <textarea id="ws-input-knot" class="screen-only-input search-input" style="width:100%; height:75px; padding:10px; font-size:0.88rem; line-height:1.5; border:1px solid var(--border); border-radius:var(--radius-sm); resize:vertical;" placeholder="記錄在營隊中實作繩結、打防滑結或搭建繩梯的體會...">${savedAnswers.knot || ''}</textarea>
+            <div id="ws-knot-mirror" class="print-textarea-mirror">${savedAnswers.knot || '（未填答）'}</div>
+          </div>
         </div>
       </div>
     `;
 
-    // 綁定儲存按鈕
+    // 輔助函式：收集當前學習單所有作答資料
+    function collectWorksheetData() {
+      const tentVal = document.getElementById("ws-input-tent")?.value || "";
+      const aidVal = document.getElementById("ws-input-aid")?.value || "";
+      const knotVal = document.getElementById("ws-input-knot")?.value || "";
+      const dataToSave = { tent: tentVal, aid: aidVal, knot: knotVal };
+      [1, 2, 3, 4, 5].forEach(n => {
+        dataToSave['poison_' + n] = (document.getElementById(`ws-poison-${n}`)?.value || "").toUpperCase().trim();
+      });
+      return dataToSave;
+    }
+
+    // 輔助函式：同步列印鏡像文字
+    function syncWorksheetPrintMirrors() {
+      const data = collectWorksheetData();
+      const tentMirror = document.getElementById("ws-tent-mirror");
+      if (tentMirror) tentMirror.textContent = data.tent || "（未填答）";
+      const aidMirror = document.getElementById("ws-aid-mirror");
+      if (aidMirror) aidMirror.textContent = data.aid || "（未填答）";
+      const knotMirror = document.getElementById("ws-knot-mirror");
+      if (knotMirror) knotMirror.textContent = data.knot || "（未填答）";
+      [1, 2, 3, 4, 5].forEach(n => {
+        const pMirror = document.getElementById(`ws-poison-${n}-mirror`);
+        if (pMirror) pMirror.textContent = data['poison_' + n] || "___";
+      });
+    }
+
+    // 1. 綁定個人資料欄位 (班級、座號、姓名) 自動儲存與同步
+    ["class", "seat", "name"].forEach(field => {
+      const input = document.getElementById(`ws-student-${field}`);
+      if (input) {
+        input.addEventListener("input", (e) => {
+          saveStudentInfo({ [field]: e.target.value.trim() });
+        });
+      }
+    });
+
+    // 2. 綁定學習單作答即時自動儲存 (Debounced Auto-save)
+    let wsAutosaveTimer = null;
+    function triggerWorksheetAutosave() {
+      clearTimeout(wsAutosaveTimer);
+      wsAutosaveTimer = setTimeout(() => {
+        const data = collectWorksheetData();
+        localStorage.setItem("ntjh_camp_worksheet_answers_115", JSON.stringify(data));
+        syncWorksheetPrintMirrors();
+        const ind = document.getElementById("ws-autosave-indicator");
+        if (ind) {
+          ind.textContent = "⚡ 已自動儲存作答 " + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+      }, 400);
+    }
+
+    const tentInput = document.getElementById("ws-input-tent");
+    if (tentInput) tentInput.addEventListener("input", triggerWorksheetAutosave);
+    const aidInput = document.getElementById("ws-input-aid");
+    if (aidInput) aidInput.addEventListener("input", triggerWorksheetAutosave);
+    const knotInput = document.getElementById("ws-input-knot");
+    if (knotInput) knotInput.addEventListener("input", triggerWorksheetAutosave);
+    [1, 2, 3, 4, 5].forEach(n => {
+      const pInput = document.getElementById(`ws-poison-${n}`);
+      if (pInput) pInput.addEventListener("input", triggerWorksheetAutosave);
+    });
+
+    // 3. 綁定手動「💾 儲存作答」按鈕
     const saveBtn = document.getElementById("ws-save-btn");
     if (saveBtn) {
       saveBtn.addEventListener("click", () => {
-        const tentVal = document.getElementById("ws-input-tent")?.value || "";
-        const dataToSave = { tent: tentVal };
-        [1, 2, 3, 4, 5].forEach(n => {
-          dataToSave['poison_' + n] = document.getElementById(`ws-poison-${n}`)?.value || "";
-        });
-        localStorage.setItem("ntjh_camp_worksheet_answers_115", JSON.stringify(dataToSave));
+        const data = collectWorksheetData();
+        localStorage.setItem("ntjh_camp_worksheet_answers_115", JSON.stringify(data));
+        syncWorksheetPrintMirrors();
         saveBtn.textContent = "✅ 已儲存！";
+        showToast("✅ 學習單作答資料已成功儲存！");
         setTimeout(() => { saveBtn.textContent = "💾 儲存作答"; }, 2000);
       });
     }
 
-    // 綁定列印按鈕
+    // 4. 綁定「🖨️ 列印學習單」按鈕
     const printBtn = document.getElementById("ws-print-btn");
     if (printBtn) {
       printBtn.addEventListener("click", () => {
-        window.print();
+        // 先儲存並同步所有列印鏡像文字
+        const data = collectWorksheetData();
+        localStorage.setItem("ntjh_camp_worksheet_answers_115", JSON.stringify(data));
+        syncWorksheetPrintMirrors();
+        // 確保目前是在 worksheet 分頁以保證只列印本頁
+        if (typeof switchTab === "function") {
+          switchTab("worksheet");
+        }
+        setTimeout(() => {
+          window.print();
+        }, 150);
       });
     }
   }
@@ -1406,16 +1571,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("selfcheck-content-container");
     if (!container || !selfChecklist) return;
 
-    let savedGrades = {};
-    let savedNote = "";
+    let savedData = {};
     try {
-      const data = JSON.parse(localStorage.getItem("ntjh_camp_selfcheck_grades_115") || "{}");
-      savedGrades = data.grades || {};
-      savedNote = data.note || "";
+      savedData = JSON.parse(localStorage.getItem("ntjh_camp_selfcheck_grades_115") || "{}");
     } catch (e) {
-      savedGrades = {};
-      savedNote = "";
+      savedData = {};
     }
+    const savedGrades = savedData.grades || {};
+    const savedNote = savedData.note || "";
+    const savedSig = savedData.sig || "";
+    const student = getStudentInfo();
 
     const gradePoints = { '優': 5, '良': 4, '可': 3, '差': 2, '劣': 1 };
     let totalScore = 0;
@@ -1433,32 +1598,64 @@ document.addEventListener("DOMContentLoaded", () => {
     const scorePct = maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
 
     container.innerHTML = `
-      <div style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border:2px solid #6ee7b7; border-radius:var(--radius-md); padding:16px 20px; margin-bottom:18px; box-shadow:0 3px 12px rgba(16,185,129,0.08);">
+      <!-- 列印專用抬頭 (螢幕隱藏) -->
+      <div class="print-header-banner">
+        <h2>南投縣立南投國民中學 115 學年度二年級戶外教育隔宿露營</h2>
+        <p>【活動自我檢核表】（手冊第 24 頁）</p>
+      </div>
+
+      <!-- 操作頂部條（列印時自動隱藏操作鈕） -->
+      <div style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border:2px solid #6ee7b7; border-radius:var(--radius-md); padding:16px 20px; margin-bottom:16px; box-shadow:0 3px 12px rgba(16,185,129,0.08);">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
           <div>
             <h3 style="margin:0; font-size:1.25rem; color:#065f46; font-weight:800;">✅ ${selfChecklist.title}</h3>
             <p style="margin:4px 0 0; font-size:0.86rem; color:#047857;">${selfChecklist.subtitle}</p>
           </div>
-          <div style="display:flex; gap:8px;">
-            <button id="sc-save-btn" class="btn btn-primary" style="background:#059669; border-color:#059669; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); cursor:pointer;">💾 儲存評量</button>
-            <button id="sc-print-btn" class="btn" style="background:#fff; border:1px solid #a7f3d0; color:#065f46; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); cursor:pointer;">🖨️ 列印檢核表</button>
+          <div style="display:flex; gap:8px;" class="print-hide">
+            <button id="sc-save-btn" class="btn btn-primary" style="background:#059669; border-color:#059669; font-size:0.85rem; padding:7px 16px; border-radius:var(--radius-full); cursor:pointer; font-weight:700;">💾 儲存評量</button>
+            <button id="sc-print-btn" class="btn" style="background:#fff; border:1px solid #a7f3d0; color:#065f46; font-size:0.85rem; padding:7px 16px; border-radius:var(--radius-full); cursor:pointer; font-weight:700;">🖨️ 列印檢核表</button>
           </div>
         </div>
 
-        <div style="margin-top:14px; background:#fff; border:1px solid #a7f3d0; border-radius:var(--radius-sm); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <!-- 學生個人資料填寫條 (自動同步與自動儲存) -->
+        <div class="student-info-bar" style="margin-top:14px; background:#fff; border:1px solid #a7f3d0; border-radius:var(--radius-sm); padding:10px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; font-size:0.92rem; font-weight:700; color:#065f46;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span>班級：</span>
+              <input type="text" id="sc-student-class" data-student-field="class" value="${student.class || ''}" class="screen-only-input" style="width:75px; padding:4px 8px; border:1px solid var(--border); border-radius:4px; font-weight:700; font-size:0.9rem;" placeholder="如 801">
+              <span class="print-inline-val" data-student-mirror="class">${student.class || '______'}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span>座號：</span>
+              <input type="text" id="sc-student-seat" data-student-field="seat" value="${student.seat || ''}" class="screen-only-input" style="width:65px; padding:4px 8px; border:1px solid var(--border); border-radius:4px; font-weight:700; font-size:0.9rem;" placeholder="如 15">
+              <span class="print-inline-val" data-student-mirror="seat">${student.seat || '______'}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span>姓名：</span>
+              <input type="text" id="sc-student-name" data-student-field="name" value="${student.name || ''}" class="screen-only-input" style="width:110px; padding:4px 8px; border:1px solid var(--border); border-radius:4px; font-weight:700; font-size:0.9rem;" placeholder="填寫姓名">
+              <span class="print-inline-val" data-student-mirror="name">${student.name || '____________'}</span>
+            </div>
+          </div>
+          <div style="font-size:0.8rem; color:#047857;" class="print-hide">
+            <span id="sc-autosave-indicator">⚡ 支援即時自動儲存</span>
+          </div>
+        </div>
+
+        <!-- 即時得分進度卡 -->
+        <div style="margin-top:10px; background:#fff; border:1px solid #a7f3d0; border-radius:var(--radius-sm); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
           <div>
-            <span style="font-size:0.85rem; color:#047857; font-weight:700;">目前檢核進度：已評定 ${answeredCount} / ${selfChecklist.items.length} 題</span>
-            <div style="font-size:1.15rem; font-weight:800; color:#065f46; margin-top:2px;">
+            <span style="font-size:0.85rem; color:#047857; font-weight:700;" id="sc-progress-text">目前檢核進度：已評定 ${answeredCount} / ${selfChecklist.items.length} 題</span>
+            <div style="font-size:1.15rem; font-weight:800; color:#065f46; margin-top:2px;" id="sc-score-text">
               綜合得分：${totalScore} / ${maxScore} 分（達成率 ${scorePct}%）
             </div>
           </div>
-          <div style="width:160px; background:#e2e8f0; border-radius:999px; height:12px; overflow:hidden;">
-            <div style="width:${scorePct}%; background:#10b981; height:100%; transition:width 0.3s ease;"></div>
+          <div style="width:160px; background:#e2e8f0; border-radius:999px; height:12px; overflow:hidden;" class="print-hide">
+            <div id="sc-score-bar" style="width:${scorePct}%; background:#10b981; height:100%; transition:width 0.25s ease;"></div>
           </div>
         </div>
       </div>
 
-      <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius-md); padding:18px 20px; margin-bottom:18px; box-shadow:var(--shadow-sm);">
+      <div class="info-card" style="background:#fff; border:1px solid var(--border); border-radius:var(--radius-md); padding:18px 20px; margin-bottom:18px; box-shadow:var(--shadow-sm);">
         <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7; margin-bottom:14px; font-weight:500;">
           『115 學年度二年級戶外教育活動』，即將進入尾聲，當思緒由絢爛回歸平靜，我們一起來檢核一下是否做到下列幾點：
         </p>
@@ -1467,19 +1664,24 @@ document.addEventListener("DOMContentLoaded", () => {
           ${selfChecklist.items.map((it, idx) => {
             const currentGrade = savedGrades[it.id] || '';
             return `
-              <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding:10px 14px; background:${idx % 2 === 0 ? '#f8fafc' : '#fff'}; border:1px solid var(--border); border-radius:var(--radius-sm);">
+              <div class="selfcheck-row" data-id="${it.id}" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding:10px 14px; background:${idx % 2 === 0 ? '#f8fafc' : '#fff'}; border:1px solid var(--border); border-radius:var(--radius-sm);">
                 <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:260px;">
                   <span style="font-family:var(--font-mono); font-weight:700; color:#059669; min-width:24px;">${String(it.id).padStart(2, '0')}.</span>
                   <span style="font-size:0.9rem; color:var(--text-primary); font-weight:600;">${it.text}</span>
-                  <span class="meta-pill" style="font-size:0.72rem; padding:1px 6px; background:#e0f2fe; color:#0369a1;">${it.cat}</span>
+                  <span class="meta-pill print-hide" style="font-size:0.72rem; padding:1px 6px; background:#e0f2fe; color:#0369a1;">${it.cat}</span>
                 </div>
+
+                <!-- 螢幕評等按鈕群 -->
                 <div class="grade-button-group" style="display:flex; gap:6px;">
                   ${selfChecklist.grades.map(g => `
-                    <button type="button" class="sc-grade-btn ${currentGrade === g ? 'active' : ''}" data-id="${it.id}" data-grade="${g}" style="padding:4px 10px; font-size:0.8rem; font-weight:700; border-radius:4px; border:1px solid ${currentGrade === g ? '#059669' : 'var(--border)'}; background:${currentGrade === g ? '#059669' : '#fff'}; color:${currentGrade === g ? '#fff' : 'var(--text-secondary)'}; cursor:pointer; transition:all 0.15s ease;">
+                    <button type="button" class="sc-grade-btn ${currentGrade === g ? 'active' : ''}" data-id="${it.id}" data-grade="${g}" style="padding:4px 10px; font-size:0.82rem; font-weight:700; border-radius:4px; border:1px solid ${currentGrade === g ? '#059669' : 'var(--border)'}; background:${currentGrade === g ? '#059669' : '#fff'}; color:${currentGrade === g ? '#fff' : 'var(--text-secondary)'}; cursor:pointer; transition:all 0.15s ease;">
                       ${g}
                     </button>
                   `).join('')}
                 </div>
+
+                <!-- 列印專用得分文字 (螢幕隱藏) -->
+                <span class="print-only-grade" id="sc-grade-mirror-${it.id}">【 ${currentGrade || '未評定'} 】</span>
               </div>
             `;
           }).join('')}
@@ -1487,10 +1689,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div style="margin-top:20px; border-top:1px dashed var(--border); padding-top:16px;">
           <label style="display:block; font-weight:700; color:var(--text-primary); margin-bottom:6px; font-size:0.92rem;">💭 個人心得反思（本次隔宿露營我最大的收穫與感動）：</label>
-          <textarea id="sc-note-input" class="search-input" style="width:100%; height:90px; padding:10px; font-size:0.88rem; line-height:1.6; border:1px solid var(--border); border-radius:var(--radius-sm); resize:vertical;" placeholder="分享你的成長歷程、小隊團隊合作感動，或是給自己未來的期許...">${savedNote}</textarea>
+          <textarea id="sc-note-input" class="screen-only-input search-input" style="width:100%; height:90px; padding:10px; font-size:0.88rem; line-height:1.6; border:1px solid var(--border); border-radius:var(--radius-sm); resize:vertical;" placeholder="分享你的成長歷程、小隊團隊合作感動，或是給自己未來的期許...">${savedNote}</textarea>
+          <div id="sc-note-mirror" class="print-textarea-mirror">${savedNote || '（無填寫心得）'}</div>
         </div>
 
-        <!-- 導師簽章欄 -->
+        <!-- 導師評核與簽章欄 -->
         <div style="margin-top:16px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-sm); padding:12px 16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
           <div>
             <strong style="color:#15803d; font-size:0.9rem;">綜合表現評核（本欄由隨隊導師填寫）：</strong>
@@ -1498,50 +1701,151 @@ document.addEventListener("DOMContentLoaded", () => {
               整體表現：【 優 ｜ 良 ｜ 可 ｜ 差 ｜ 劣 】 ｜ 表現優異者得推薦全校生活教育楷模獎項。
             </div>
           </div>
-          <div style="font-size:0.88rem; color:#166534; font-weight:700; border-bottom:1px solid #15803d; padding-bottom:2px; min-width:140px; text-align:center;">
-            導師簽名：____________
+          <div style="font-size:0.88rem; color:#166534; font-weight:700; display:flex; align-items:center; gap:6px;">
+            <span>導師簽名：</span>
+            <input type="text" id="sc-teacher-sig" value="${savedSig}" class="screen-only-input" style="width:110px; padding:4px 6px; border:1px solid var(--border); border-radius:4px; font-weight:700; font-size:0.88rem;" placeholder="導師姓名">
+            <span class="print-inline-val" id="sc-sig-mirror">${savedSig || '____________'}</span>
           </div>
         </div>
       </div>
     `;
 
-    // 綁定各題評分按鈕
+    // 重新計算分數並動態更新畫面的輔助函式 (不刷新整頁，避免滾動跳動)
+    function updateScoreDisplay() {
+      let currentScore = 0;
+      let currentCount = 0;
+      selfChecklist.items.forEach(it => {
+        const g = savedGrades[it.id];
+        if (g && gradePoints[g]) {
+          currentScore += gradePoints[g];
+          currentCount++;
+        }
+      });
+      const pct = maxScore > 0 ? Math.round((currentScore / maxScore) * 100) : 0;
+      const progressEl = document.getElementById("sc-progress-text");
+      if (progressEl) progressEl.textContent = `目前檢核進度：已評定 ${currentCount} / ${selfChecklist.items.length} 題`;
+      const scoreEl = document.getElementById("sc-score-text");
+      if (scoreEl) scoreEl.textContent = `綜合得分：${currentScore} / ${maxScore} 分（達成率 ${pct}%）`;
+      const barEl = document.getElementById("sc-score-bar");
+      if (barEl) barEl.style.width = `${pct}%`;
+    }
+
+    // 輔助函式：同步檢核表列印鏡像文字
+    function syncSelfCheckPrintMirrors() {
+      const noteMirror = document.getElementById("sc-note-mirror");
+      const noteVal = document.getElementById("sc-note-input")?.value || "";
+      if (noteMirror) noteMirror.textContent = noteVal || "（無填寫心得）";
+      const sigMirror = document.getElementById("sc-sig-mirror");
+      const sigVal = document.getElementById("sc-teacher-sig")?.value || "";
+      if (sigMirror) sigMirror.textContent = sigVal || "____________";
+      selfChecklist.items.forEach(it => {
+        const mirror = document.getElementById(`sc-grade-mirror-${it.id}`);
+        if (mirror) mirror.textContent = `【 ${savedGrades[it.id] || '未評定'} 】`;
+      });
+    }
+
+    // 1. 綁定個人資料欄位 (班級、座號、姓名) 自動儲存與同步
+    ["class", "seat", "name"].forEach(field => {
+      const input = document.getElementById(`sc-student-${field}`);
+      if (input) {
+        input.addEventListener("input", (e) => {
+          saveStudentInfo({ [field]: e.target.value.trim() });
+        });
+      }
+    });
+
+    // 2. 綁定各題評分按鈕點擊 (即時切換樣式 + 即時計算分數 + 即時存入 localStorage，不重刷 innerHTML)
     container.querySelectorAll(".sc-grade-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const qId = btn.dataset.id;
         const grade = btn.dataset.grade;
         savedGrades[qId] = grade;
+
+        // 更新該題按鈕的外觀樣式
+        const row = btn.closest(".selfcheck-row");
+        if (row) {
+          row.querySelectorAll(".sc-grade-btn").forEach(b => {
+            const isMatch = b.dataset.grade === grade;
+            b.classList.toggle("active", isMatch);
+            b.style.background = isMatch ? "#059669" : "#fff";
+            b.style.color = isMatch ? "#fff" : "var(--text-secondary)";
+            b.style.borderColor = isMatch ? "#059669" : "var(--border)";
+          });
+          const mirror = document.getElementById(`sc-grade-mirror-${qId}`);
+          if (mirror) mirror.textContent = `【 ${grade} 】`;
+        }
+
+        // 動態計算分數
+        updateScoreDisplay();
+
+        // 立即儲存至 LocalStorage
         const note = document.getElementById("sc-note-input")?.value || "";
-        localStorage.setItem("ntjh_camp_selfcheck_grades_115", JSON.stringify({ grades: savedGrades, note }));
-        renderSelfChecklist();
+        const sig = document.getElementById("sc-teacher-sig")?.value || "";
+        localStorage.setItem("ntjh_camp_selfcheck_grades_115", JSON.stringify({ grades: savedGrades, note, sig }));
+        syncSelfCheckPrintMirrors();
+
+        const ind = document.getElementById("sc-autosave-indicator");
+        if (ind) {
+          ind.textContent = "⚡ 已自動儲存評量 " + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
       });
     });
 
-    // 綁定儲存按鈕
+    // 3. 綁定個人心得反思與導師簽名即時自動儲存 (Debounced)
+    let scAutosaveTimer = null;
+    function triggerSelfcheckAutosave() {
+      clearTimeout(scAutosaveTimer);
+      scAutosaveTimer = setTimeout(() => {
+        const note = document.getElementById("sc-note-input")?.value || "";
+        const sig = document.getElementById("sc-teacher-sig")?.value || "";
+        localStorage.setItem("ntjh_camp_selfcheck_grades_115", JSON.stringify({ grades: savedGrades, note, sig }));
+        syncSelfCheckPrintMirrors();
+        const ind = document.getElementById("sc-autosave-indicator");
+        if (ind) {
+          ind.textContent = "⚡ 已自動儲存評量 " + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+      }, 400);
+    }
+
+    const noteInput = document.getElementById("sc-note-input");
+    if (noteInput) noteInput.addEventListener("input", triggerSelfcheckAutosave);
+    const sigInput = document.getElementById("sc-teacher-sig");
+    if (sigInput) sigInput.addEventListener("input", triggerSelfcheckAutosave);
+
+    // 4. 綁定「💾 儲存評量」手動確認按鈕
     const saveBtn = document.getElementById("sc-save-btn");
     if (saveBtn) {
       saveBtn.addEventListener("click", () => {
         const note = document.getElementById("sc-note-input")?.value || "";
-        localStorage.setItem("ntjh_camp_selfcheck_grades_115", JSON.stringify({ grades: savedGrades, note }));
+        const sig = document.getElementById("sc-teacher-sig")?.value || "";
+        localStorage.setItem("ntjh_camp_selfcheck_grades_115", JSON.stringify({ grades: savedGrades, note, sig }));
+        syncSelfCheckPrintMirrors();
         saveBtn.textContent = "✅ 已儲存！";
+        showToast("✅ 自我檢核表已成功儲存！");
         setTimeout(() => { saveBtn.textContent = "💾 儲存評量"; }, 2000);
       });
     }
 
-    // 綁定列印按鈕
+    // 5. 綁定「🖨️ 列印檢核表」按鈕
     const printBtn = document.getElementById("sc-print-btn");
     if (printBtn) {
       printBtn.addEventListener("click", () => {
-        window.print();
+        const note = document.getElementById("sc-note-input")?.value || "";
+        const sig = document.getElementById("sc-teacher-sig")?.value || "";
+        localStorage.setItem("ntjh_camp_selfcheck_grades_115", JSON.stringify({ grades: savedGrades, note, sig }));
+        syncSelfCheckPrintMirrors();
+        // 確保目前是在 selfcheck 分頁以保證只列印本頁
+        if (typeof switchTab === "function") {
+          switchTab("selfcheck");
+        }
+        setTimeout(() => {
+          window.print();
+        }, 150);
       });
     }
   }
 
-
-  /* ==========================================================================
-     全部重新渲染（切換隱私模式時使用）
-     ========================================================================== */
-  function reRenderAll() {
+function reRenderAll() {
     renderHero();
     renderItinerary();
     renderTents();

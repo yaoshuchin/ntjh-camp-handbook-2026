@@ -1067,25 +1067,147 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ================= 列印樣式 ================= */
+/* ================= 螢幕與列印專用樣式 ================= */
+.print-textarea-mirror,
+.print-inline-val,
+.print-only-grade,
+.print-header-banner {
+  display: none;
+}
+
 @media print {
-  .hero-header, .desktop-nav-bar, .mobile-bottom-nav, .filter-toolbar, .view-actions-bar, .copy-mini-btn {
+  /* 1. 隱藏無關導航、按鈕、控制條 */
+  .hero-header,
+  .desktop-nav-bar,
+  .mobile-bottom-nav,
+  .filter-toolbar,
+  .view-actions-bar,
+  .copy-mini-btn,
+  .groups-subnav-bar,
+  .day-switch-bar,
+  .floating-nav-btn,
+  .deck-ctrl,
+  .print-hide,
+  #ws-save-btn,
+  #ws-print-btn,
+  #sc-save-btn,
+  #sc-print-btn,
+  #reset-checklist-btn,
+  .clear-search-btn,
+  .btn,
+  button {
     display: none !important;
   }
+
   body {
-    padding-bottom: 0 !important;
+    padding: 0 !important;
     background: #fff !important;
     color: #000 !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
   }
+
   .main-content {
     max-width: 100% !important;
     padding: 0 !important;
+    margin: 0 !important;
   }
+
+  /* 2. 核心修正：只列印當前顯示中的分頁 (active)，其餘分頁一律隱藏！ */
   .tab-pane {
+    display: none !important;
+  }
+  .tab-pane.active {
     display: block !important;
   }
-  .tent-card, .squad-card {
-    border: 1px solid #999 !important;
+
+  /* 3. 列印抬頭 */
+  .print-header-banner {
+    display: block !important;
+    text-align: center !important;
+    border-bottom: 2px solid #000 !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  .print-header-banner h2 {
+    font-size: 16pt !important;
+    margin: 0 0 4px 0 !important;
+    color: #000 !important;
+  }
+  .print-header-banner p {
+    font-size: 11pt !important;
+    margin: 0 !important;
+    color: #333 !important;
+  }
+
+  /* 4. 學生資料條列印外觀 */
+  .student-info-bar {
+    border: 1px solid #333 !important;
+    background: #fdfdfd !important;
+    padding: 8px 12px !important;
+    margin-bottom: 14px !important;
+    border-radius: 4px !important;
+  }
+
+  /* 5. 卡片列印外觀 */
+  .info-card {
+    box-shadow: none !important;
+    border: 1px solid #444 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 14px !important;
+    padding: 10px 14px !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* 6. 輸入框與文字區塊列印鏡像 */
+  .print-textarea-mirror {
+    display: block !important;
+    border: 1px solid #444 !important;
+    padding: 8px 10px !important;
+    min-height: 55px !important;
+    font-size: 10.5pt !important;
+    line-height: 1.5 !important;
+    white-space: pre-wrap !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  textarea.screen-only-input,
+  input.screen-only-input {
+    display: none !important;
+  }
+
+  .print-inline-val {
+    display: inline-block !important;
+    font-weight: 800 !important;
+    color: #000 !important;
+    border-bottom: 1.5px solid #000 !important;
+    padding: 0 6px !important;
+    min-width: 32px !important;
+    text-align: center !important;
+  }
+
+  .print-only-grade {
+    display: inline-block !important;
+    font-weight: 800 !important;
+    color: #000 !important;
+  }
+
+  .grade-button-group {
+    display: none !important;
+  }
+
+  /* 摺疊解答區若未展開則不列印 */
+  details:not([open]) {
+    display: none !important;
+  }
+
+  /* 圖片避免切頁 */
+  img {
+    max-width: 80% !important;
+    height: auto !important;
     page-break-inside: avoid;
     break-inside: avoid;
   }
