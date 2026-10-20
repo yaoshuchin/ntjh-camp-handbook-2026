@@ -1185,3 +1185,41 @@ body {
   color: var(--text-primary);
   margin: 0;
 }
+
+/* ==========================================================================
+   行前.行李.營規 三合一整合區塊樣式
+   ========================================================================== */
+.prep-subnav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.prep-subnav-btn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--primary-surface);
+}
+
+.prep-subnav-btn.active {
+  background: var(--primary);
+  color: var(--text-white);
+  border-color: var(--primary-dark);
+  box-shadow: 0 2px 8px rgba(21, 128, 61, 0.35);
+}
+
+.prep-subpane-block {
+  margin-bottom: 32px;
+  transition: opacity 0.2s ease;
+}

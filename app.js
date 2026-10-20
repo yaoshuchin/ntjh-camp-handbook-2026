@@ -117,6 +117,13 @@ document.addEventListener("DOMContentLoaded", () => {
       target = "camp-groups";
     }
 
+    // 相容性映射：若外部請求 briefing, checklist 或 rules，自動導向 prep-rules 並切換子標籤
+    let prepSubTarget = null;
+    if (target === "briefing" || target === "checklist" || target === "rules") {
+      prepSubTarget = target;
+      target = "prep-rules";
+    }
+
     state.activeTab = target;
 
     // 導航按鈕樣式
@@ -137,6 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 若有指定的子分頁，同時切換子區塊
     if (subTarget) {
       switchSubpane(subTarget);
+    }
+    if (prepSubTarget) {
+      switchPrepSubpane(prepSubTarget);
     }
 
     // 捲動至頂部
@@ -165,9 +175,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function switchPrepSubpane(targetSub) {
+    document.querySelectorAll(".prep-subnav-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.subpane === targetSub);
+    });
+
+    const subpanes = {
+      briefing: document.getElementById("subpane-briefing"),
+      checklist: document.getElementById("subpane-checklist"),
+      rules: document.getElementById("subpane-rules")
+    };
+
+    if (targetSub === "all") {
+      Object.values(subpanes).forEach(el => {
+        if (el) el.style.display = "block";
+      });
+    } else {
+      Object.entries(subpanes).forEach(([key, el]) => {
+        if (el) el.style.display = (key === targetSub) ? "block" : "none";
+      });
+    }
+  }
+
   // 全域綁定方便調用
   window.switchTab = switchTab;
   window.switchSubpane = switchSubpane;
+  window.switchPrepSubpane = switchPrepSubpane;
 
   /* ==========================================================================
      1. 渲染頂部快捷卡片
@@ -1674,6 +1707,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".groups-subnav-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         switchSubpane(btn.dataset.subpane);
+      });
+    });
+
+    // 5.6 行前.行李.營規 子分頁切換按鈕綁定
+    document.querySelectorAll(".prep-subnav-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        switchPrepSubpane(btn.dataset.subpane);
       });
     });
   }

@@ -55,12 +55,10 @@
       <button class="tab-btn active" data-tab="itinerary">📅 行程表</button>
       <button class="tab-btn" data-tab="camp-groups">🚐 車.野炊.帳棚</button>
       <button class="tab-btn" data-tab="roster">🔍 全校名冊</button>
-      <button class="tab-btn" data-tab="briefing" style="background:rgba(234,88,12,0.12); color:#ea580c; border:1px solid rgba(234,88,12,0.35); font-weight:700;">📢 行前說明</button>
-      <button class="tab-btn" data-tab="checklist">🎒 行李清單</button>
+      <button class="tab-btn" data-tab="prep-rules" style="background:rgba(234,88,12,0.12); color:#ea580c; border:1px solid rgba(234,88,12,0.35); font-weight:700;">🎒 行前.行李.營規</button>
       <button class="tab-btn" data-tab="scout">⚜️ 童軍野營</button>
       <button class="tab-btn" data-tab="worksheet" style="background:rgba(79,70,229,0.12); color:#4f46e5; border:1px solid rgba(79,70,229,0.35); font-weight:700;">📝 學習單</button>
       <button class="tab-btn" data-tab="selfcheck" style="background:rgba(16,185,129,0.12); color:#059669; border:1px solid rgba(16,185,129,0.35); font-weight:700;">✅ 檢核表</button>
-      <button class="tab-btn" data-tab="rules">⚠️ 營規生活須知</button>
       <button class="tab-btn" data-tab="info">ℹ️ 營地與行政資訊</button>
     </div>
   </nav>
@@ -246,41 +244,65 @@
 
 
 
-    <!-- 6. 行前說明 -->
-    <section class="tab-pane" id="tab-briefing">
+    <!-- 6. 行前.行李.營規 (合組三合一專區) -->
+    <section class="tab-pane" id="tab-prep-rules">
       <div class="section-head">
-        <h2 class="section-title">📢 行前說明</h2>
-        <p class="section-desc">學校官方行前生活規範宣導：違禁品檢查、個人重要物品與通訊報平安、服裝儀容紀律、機動車重大違紀處分</p>
-      </div>
-      <div id="briefing-content-container">
-        <!-- JS 動態生成 -->
-      </div>
-    </section>
-
-    <!-- 7. 行李清單 -->
-    <section class="tab-pane" id="tab-checklist">
-      <div class="section-head">
-        <h2 class="section-title">🎒 行李清單</h2>
-        <p class="section-desc">點擊項目可打勾完成打包，進度自動儲存於手機瀏覽器，重開不遺失！</p>
+        <h2 class="section-title">🎒 行前.行李.營規</h2>
+        <p class="section-desc">整合 10/23 行前說明會重點宣導、個人必備裝備打包清單與露營生活常規紀律</p>
       </div>
 
-      <!-- 進度指示卡片 -->
-      <div class="pack-progress-card">
-        <div class="pack-progress-top">
-          <span style="font-weight:800; font-size:1.05rem;">行李打包進度</span>
-          <span id="pack-progress-percent" style="font-size:1.3rem; font-weight:800; color:#fed7aa;">0%</span>
+      <!-- 子分頁快捷切換按鈕列 -->
+      <div class="groups-subnav-bar">
+        <button class="prep-subnav-btn active" data-subpane="all">📋 全部總覽</button>
+        <button class="prep-subnav-btn" data-subpane="briefing">📢 行前說明 (10/23)</button>
+        <button class="prep-subnav-btn" data-subpane="checklist">🎒 行李清單 (打包打勾)</button>
+        <button class="prep-subnav-btn" data-subpane="rules">⚠️ 營規生活須知</button>
+      </div>
+
+      <!-- 子區塊 1: 行前說明 -->
+      <div class="prep-subpane-block" id="subpane-briefing">
+        <div class="groups-block-header">
+          <h3 class="groups-block-title">📢 行前說明會重要宣導（違禁品、通訊報平安、服裝儀容、重大紀律處分）</h3>
         </div>
-        <div class="pack-progress-bar-bg">
-          <div class="pack-progress-fill" id="pack-progress-fill"></div>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span id="pack-progress-text" style="font-size:0.8rem; opacity:0.95;">已完成 0 / 15 項必備裝備</span>
-          <button id="reset-checklist-btn" style="background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.3); color:#fff; border-radius:var(--radius-full); font-size:0.74rem; padding:3px 10px; cursor:pointer;">重設清單</button>
+        <div id="briefing-content-container">
+          <!-- JS 動態生成 -->
         </div>
       </div>
 
-      <div id="checklist-container">
-        <!-- JS 動態生成 -->
+      <!-- 子區塊 2: 行李清單 -->
+      <div class="prep-subpane-block" id="subpane-checklist">
+        <div class="groups-block-header">
+          <h3 class="groups-block-title">🎒 行前必備行李清單（點擊即可打勾儲存進度）</h3>
+        </div>
+
+        <!-- 進度指示卡片 -->
+        <div class="pack-progress-card">
+          <div class="pack-progress-top">
+            <span style="font-weight:800; font-size:1.05rem;">行李打包進度</span>
+            <span id="pack-progress-percent" style="font-size:1.3rem; font-weight:800; color:#fed7aa;">0%</span>
+          </div>
+          <div class="pack-progress-bar-bg">
+            <div class="pack-progress-fill" id="pack-progress-fill"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span id="pack-progress-text" style="font-size:0.8rem; opacity:0.95;">已完成 0 / 15 項必備裝備</span>
+            <button id="reset-checklist-btn" style="background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.3); color:#fff; border-radius:var(--radius-full); font-size:0.74rem; padding:3px 10px; cursor:pointer;">重設清單</button>
+          </div>
+        </div>
+
+        <div id="checklist-container">
+          <!-- JS 動態生成 -->
+        </div>
+      </div>
+
+      <!-- 子區塊 3: 營規生活須知 -->
+      <div class="prep-subpane-block" id="subpane-rules">
+        <div class="groups-block-header">
+          <h3 class="groups-block-title">⚠️ 營規生活須知與安全守則（營地生活常規、用火、夜間查舖、山訓水彈規範）</h3>
+        </div>
+        <div id="rules-content-container">
+          <!-- JS 動態生成 -->
+        </div>
       </div>
     </section>
 
@@ -317,16 +339,7 @@
       </div>
     </section>
 
-    <!-- 9. 營規生活須知 -->
-    <section class="tab-pane" id="tab-rules">
-      <div class="section-head">
-        <h2 class="section-title">⚠️ 營規生活須知與安全守則</h2>
-        <p class="section-desc">嚴守團體紀律、營火用火安全、夜間查舖與山訓水彈安全規範</p>
-      </div>
-      <div id="rules-content-container">
-        <!-- JS 動態生成 -->
-      </div>
-    </section>
+
 
     <!-- 9. 營地與行政資訊 -->
     <section class="tab-pane" id="tab-info">
@@ -355,9 +368,9 @@
       <span class="mobile-nav-icon">🔍</span>
       <span>全校名冊</span>
     </button>
-    <button class="mobile-nav-btn" data-tab="checklist">
+    <button class="mobile-nav-btn" data-tab="prep-rules">
       <span class="mobile-nav-icon">🎒</span>
-      <span>行李清單</span>
+      <span>行前.行李.營規</span>
     </button>
     <button class="mobile-nav-btn" data-tab="scout">
       <span class="mobile-nav-icon">⚜️</span>
