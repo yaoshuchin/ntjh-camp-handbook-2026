@@ -29,7 +29,7 @@ wb = openpyxl.load_workbook(excel_path, data_only=True)
 # 導師名單（全部第二字替換為 O）
 classes_meta = {
     '801': {'classNum': '801', 'className': '801 班', 'alias': '201', 'bus': '3 車', 'mentor': '黃O月', 'mentorMasked': '黃O月', 'maleCount': 10, 'femaleCount': 7, 'total': 17},
-    '802': {'classNum': '802', 'className': '802 班', 'alias': '202', 'bus': '2 車', 'mentor': '黃O君', 'mentorMasked': '黃O君', 'maleCount': 6, 'femaleCount': 12, 'total': 18},
+    '802': {'classNum': '802', 'className': '802 班', 'alias': '202', 'bus': '2 車', 'mentor': '黃O君', 'mentorMasked': '黃O君', 'maleCount': 6, 'femaleCount': 13, 'total': 19},
     '803': {'classNum': '803', 'className': '803 班', 'alias': '203', 'bus': '3 車', 'mentor': '林O玟', 'mentorMasked': '林O玟', 'maleCount': 6, 'femaleCount': 9, 'total': 15},
     '804': {'classNum': '804', 'className': '804 班', 'alias': '204', 'bus': '2 車', 'mentor': '李O儒', 'mentorMasked': '李O儒', 'maleCount': 7, 'femaleCount': 8, 'total': 15},
     '805': {'classNum': '805', 'className': '805 班', 'alias': '205', 'bus': '1 車', 'mentor': '林O銓', 'mentorMasked': '林O銓', 'maleCount': 7, 'femaleCount': 4, 'total': 11},
@@ -90,6 +90,31 @@ for r in range(5, ws_students.max_row + 1):
     students.append(st_obj)
     student_dict_by_name_class[(c_num, clean_raw_name)] = st_obj
 
+# 802 班新增學生「詹O彤」(葷食，第5組，B05女帳，座號25號)
+st_zhan = {
+    'id': len(students) + 1,
+    'classNum': '802',
+    'className': '802 班',
+    'bus': '2 車',
+    'mentor': '黃O君',
+    'mentorMasked': '黃O君',
+    'seat': 25,
+    'realName': '詹O彤',
+    'name': '詹O彤',
+    'gender': '女',
+    'tentRaw': '女宿 3 室',
+    'tentId': 'B05',
+    'isLeader': False,
+    'leaderLabel': '成員',
+    'squadRaw': '第 3 小隊',
+    'squadId': 5,
+    'role': '隊員',
+    'diet': '葷食',
+    'isVeg': False
+}
+students.append(st_zhan)
+student_dict_by_name_class[('802', '詹O彤')] = st_zhan
+
 # 2. PDF 帳棚對照表
 pdf_tents_data = [
     # 801
@@ -102,7 +127,7 @@ pdf_tents_data = [
     {"tentId": "A04", "classNum": "802", "gender": "男", "members": ["劉軒宇", "張哲瑋", "簡伯宸"]},
     {"tentId": "B03", "classNum": "802", "gender": "女", "members": ["李芮妮", "李聿甯", "鄭綵琳", "黃馨蒂"]},
     {"tentId": "B04", "classNum": "802", "gender": "女", "members": ["簡觀懿", "黃艾薇", "賴翊其", "鐘云彤"]},
-    {"tentId": "B05", "classNum": "802", "gender": "女", "members": ["郭音琪", "廖子昕", "胡詠薰", "張苡桔"]},
+    {"tentId": "B05", "classNum": "802", "gender": "女", "members": ["郭音琪", "廖子昕", "胡詠薰", "張苡桔", "詹O彤"]},
     # 803
     {"tentId": "A05", "classNum": "803", "gender": "男", "members": ["許泳煜", "陳宥熙", "蔡宇呈"]},
     {"tentId": "A06", "classNum": "803", "gender": "男", "members": ["陳倚天", "陳訢瑜", "李佳成"]},
@@ -136,7 +161,7 @@ pdf_squads_data = [
     # 802
     {"squadId": 3, "classNum": "802", "members": ["黃艾薇", "廖梓惟", "賴翊其", "簡觀懿", "鐘云彤", "張哲瑋"]},
     {"squadId": 4, "classNum": "802", "members": ["葉品毅", "李聿甯", "李芮妮", "鄭綵琳", "黃馨蒂", "黃士睿"]},
-    {"squadId": 5, "classNum": "802", "members": ["廖子昕", "胡詠薰", "郭音琪", "張苡桔", "簡伯宸", "劉軒宇"]},
+    {"squadId": 5, "classNum": "802", "members": ["廖子昕", "胡詠薰", "郭音琪", "張苡桔", "簡伯宸", "劉軒宇", "詹O彤"]},
     # 803
     {"squadId": 6, "classNum": "803", "members": ["王妍芝", "石榮芳", "吳予恩", "吳欣蓉", "潘芝汝", "許泳煜", "陳宥熙", "蔡宇呈"]},
     {"squadId": 7, "classNum": "803", "members": ["邱炘慈", "陳姿羽", "謝雨璇", "沈芳愉", "陳倚天", "陳訢瑜", "李佳成"]},
@@ -301,7 +326,7 @@ bus_data = [
             {'title': '802 導師', 'realName': '黃O君', 'name': '黃O君'},
             {'title': '804 導師', 'realName': '李O儒', 'name': '李O儒'}
         ],
-        'studentCounts': {'male': 13, 'female': 20, 'total': 33},
+        'studentCounts': {'male': 13, 'female': 21, 'total': 34},
         'students': [s for s in students if s['classNum'] in ['802', '804']]
     },
     {
@@ -944,9 +969,9 @@ full_camp_data = {
             'desc': '集合出發（921地震公園逃生演練）與平安賦歸之起訖點。'
         },
         'stats': {
-            'studentsTotal': 106,
+            'studentsTotal': 107,
             'maleStudents': 48,
-            'femaleStudents': 58,
+            'femaleStudents': 59,
             'vegetarianStudents': 1,
             'classesCount': 7,
             'tentsTotal': 27,

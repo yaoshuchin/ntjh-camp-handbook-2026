@@ -31,9 +31,9 @@ const CAMP_DATA = {
       "desc": "集合出發（921地震公園逃生演練）與平安賦歸之起訖點。"
     },
     "stats": {
-      "studentsTotal": 106,
+      "studentsTotal": 107,
       "maleStudents": 48,
-      "femaleStudents": 58,
+      "femaleStudents": 59,
       "vegetarianStudents": 1,
       "classesCount": 7,
       "tentsTotal": 27,
@@ -131,8 +131,8 @@ const CAMP_DATA = {
       "mentor": "黃O君",
       "mentorMasked": "黃O君",
       "maleCount": 6,
-      "femaleCount": 12,
-      "total": 18
+      "femaleCount": 13,
+      "total": 19
     },
     "803": {
       "classNum": "803",
@@ -684,8 +684,8 @@ const CAMP_DATA = {
       ],
       "studentCounts": {
         "male": 13,
-        "female": 20,
-        "total": 33
+        "female": 21,
+        "total": 34
       },
       "students": [
         {
@@ -1413,6 +1413,28 @@ const CAMP_DATA = {
           "diet": "葷食",
           "isVeg": false,
           "squadName": "第 8 組"
+        },
+        {
+          "id": 107,
+          "classNum": "802",
+          "className": "802 班",
+          "bus": "2 車",
+          "mentor": "黃O君",
+          "mentorMasked": "黃O君",
+          "seat": 25,
+          "realName": "詹O彤",
+          "name": "詹O彤",
+          "gender": "女",
+          "tentRaw": "女宿 3 室",
+          "tentId": "B05",
+          "isLeader": false,
+          "leaderLabel": "成員",
+          "squadRaw": "第 3 小隊",
+          "squadId": 5,
+          "role": "隊員",
+          "diet": "葷食",
+          "isVeg": false,
+          "squadName": "第 5 組"
         }
       ]
     },
@@ -4968,6 +4990,28 @@ const CAMP_DATA = {
       "diet": "葷食",
       "isVeg": false,
       "squadName": "第 15 組"
+    },
+    {
+      "id": 107,
+      "classNum": "802",
+      "className": "802 班",
+      "bus": "2 車",
+      "mentor": "黃O君",
+      "mentorMasked": "黃O君",
+      "seat": 25,
+      "realName": "詹O彤",
+      "name": "詹O彤",
+      "gender": "女",
+      "tentRaw": "女宿 3 室",
+      "tentId": "B05",
+      "isLeader": false,
+      "leaderLabel": "成員",
+      "squadRaw": "第 3 小隊",
+      "squadId": 5,
+      "role": "隊員",
+      "diet": "葷食",
+      "isVeg": false,
+      "squadName": "第 5 組"
     }
   ],
   "tents": [
@@ -5443,7 +5487,7 @@ const CAMP_DATA = {
       "mentor": "黃O君",
       "gender": "女",
       "genderLabel": "女生帳",
-      "count": 4,
+      "count": 5,
       "leader": {
         "seat": 7,
         "realName": "郭O琪",
@@ -5487,6 +5531,15 @@ const CAMP_DATA = {
           "name": "張O桔",
           "isLeader": false,
           "role": "二廚",
+          "diet": "葷食",
+          "isVeg": false
+        },
+        {
+          "seat": 25,
+          "realName": "詹O彤",
+          "name": "詹O彤",
+          "isLeader": false,
+          "role": "隊員",
           "diet": "葷食",
           "isVeg": false
         }
@@ -7062,7 +7115,7 @@ const CAMP_DATA = {
       "className": "802 班",
       "bus": "2 車",
       "mentor": "黃O君",
-      "count": 6,
+      "count": 7,
       "officers": {
         "leader": {
           "seat": 9,
@@ -7160,6 +7213,14 @@ const CAMP_DATA = {
           "realName": "劉O宇",
           "name": "劉O宇",
           "role": "水夫",
+          "diet": "葷食",
+          "isVeg": false
+        },
+        {
+          "seat": 25,
+          "realName": "詹O彤",
+          "name": "詹O彤",
+          "role": "隊員",
           "diet": "葷食",
           "isVeg": false
         }

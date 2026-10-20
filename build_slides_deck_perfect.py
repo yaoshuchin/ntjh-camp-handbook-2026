@@ -209,7 +209,7 @@ html = f"""<!DOCTYPE html>
     <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: center;">
       <span class="tag-badge">⛺ 全校 27 頂帳篷 (A01~A13 / B01~B14)</span>
       <span class="tag-badge orange">🍳 15 個野炊小隊 (第1組~第15組)</span>
-      <span class="tag-badge blue">👥 106 位學生（男48 / 女58）</span>
+      <span class="tag-badge blue">👥 107 位學生（男48 / 女59）</span>
     </div>
   </section>
 
@@ -225,7 +225,7 @@ html = f"""<!DOCTYPE html>
               <tr><th style="width:90px;">活動主旨</th><td>自立自強、主動敏捷、互助合作，於「做中學、學中做」熟練各項童軍野外求生技能。</td></tr>
               <tr><th>活動時間</th><td><strong>115年10月27日 (二) 至 10月28日 (三)</strong>，兩天一夜。</td></tr>
               <tr><th>起訖時間</th><td>10/27 (二) 07:30 校園集合（921地震公園逃生演練），08:00 準時出發；10/28 (三) 16:20 返抵學校。</td></tr>
-              <tr><th>參加對象</th><td>二年級全體師生，學生 106 人、隨隊師長，共計 116 人。</td></tr>
+              <tr><th>參加對象</th><td>二年級全體師生，學生 107 人、隨隊師長，共計 117 人。</td></tr>
               <tr><th>承辦單位</th><td>中國青年旅行社中部分公司 ｜ 團控經理：邱O凱 (0972-721756)。</td></tr>
             </tbody>
           </table>
@@ -341,7 +341,7 @@ html = f"""<!DOCTYPE html>
               </tr>
               <tr>
                 <td rowspan="2"><strong>2車</strong></td>
-                <td>802 班 (202)</td><td>6</td><td>12</td><td rowspan="2"><strong>33</strong></td><td rowspan="2">0</td><td rowspan="2">黃O君 (802導師)、李O儒 (804導師)</td>
+                <td>802 班 (202)</td><td>6</td><td>13</td><td rowspan="2"><strong>34</strong></td><td rowspan="2">0</td><td rowspan="2">黃O君 (802導師)、李O儒 (804導師)</td>
               </tr>
               <tr>
                 <td>804 班 (204)</td><td>7</td><td>8</td>
@@ -358,7 +358,7 @@ html = f"""<!DOCTYPE html>
                 <td>807 班 (207)</td><td>8</td><td>13</td><td><strong>21</strong></td><td>0</td><td>姚O勤 (訓育組長)、黃O慧 (807導師)</td>
               </tr>
               <tr style="background:rgba(255,255,255,0.08); font-weight:700;">
-                <td colspan="2">全校合計</td><td>48</td><td>58</td><td style="color:var(--cf-accent);">106</td><td style="color:#4ade80;">1</td><td>校長劉O彥、團控經理邱O凱</td>
+                <td colspan="2">全校合計</td><td>48</td><td>59</td><td style="color:var(--cf-accent);">107</td><td style="color:#4ade80;">1</td><td>校長劉O彥、團控經理邱O凱</td>
               </tr>
             </tbody>
           </table>
@@ -1150,8 +1150,8 @@ html = f"""<!DOCTYPE html>
             <td>簡O懿、黃O薇、賴O其、鐘O彤</td>
           </tr>
           <tr>
-            <td><strong>B05</strong></td><td>2車</td><td>女帳</td><td>4人</td>
-            <td>郭O琪、廖O昕、胡O薰、張O桔</td>
+            <td><strong>B05</strong></td><td>2車</td><td>女帳</td><td>5人</td>
+            <td>郭O琪、廖O昕、胡O薰、張O桔、詹O彤</td>
           </tr>
         </tbody>
       </table>
@@ -1292,8 +1292,8 @@ html = f"""<!DOCTYPE html>
             <td>葉O毅、李O甯、李O妮、鄭O琳、黃O蒂、黃O睿</td>
           </tr>
           <tr>
-            <td><strong>第 5 組</strong></td><td>802 班</td><td>2車</td><td>6人</td>
-            <td>廖O昕、胡O薰、郭O琪、張O桔、簡O宸、劉O宇</td>
+            <td><strong>第 5 組</strong></td><td>802 班</td><td>2車</td><td>7人</td>
+            <td>廖O昕、胡O薰、郭O琪、張O桔、簡O宸、劉O宇、詹O彤</td>
           </tr>
         </tbody>
       </table>

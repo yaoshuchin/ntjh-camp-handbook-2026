@@ -11,310 +11,98 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="deck.css?v=20261019_v2">
+<link rel="stylesheet" href="deck.css?v=20261019_v1">
 <style>
-  /* ================= 簡報色彩主題系統 (淡藍、淡紅、淡綠、淡紫、淺灰) ================= */
-  :root, body.theme-blue {
-    --cf-bg: #f0f7ff;
-    --cf-bg-2: #e0f2fe;
-    --cf-bg-glow: #bae6fd;
-    --cf-panel: #ffffff;
-    --cf-panel-2: #f8fbff;
-    --cf-card-border: #dbeafe;
-    --cf-node-head: #e0f2fe;
-    --cf-line: rgba(2, 132, 199, 0.25);
-    --cf-accent: #0284c7;
-    --cf-accent-dim: #0369a1;
-    --cf-accent-hover: #e0f2fe;
-    --cf-rule: #bae6fd;
-    --cf-title: #0c4a6e;
-    --cf-text: #0f172a;
-    --cf-text-dim: #334155;
-    --cf-text-faint: #64748b;
-    --cf-bar-bg: rgba(240, 247, 255, 0.95);
-    --cf-shadow: rgba(2, 132, 199, 0.08);
-    --cf-gradient: linear-gradient(90deg, #0284c7, #38bdf8, #60a5fa);
-    --tag-pill: #0284c7;
-    --fire-orange: #ea580c;
+  :root {
+    --cf-accent: #22c55e;
+    --cf-accent-dim: #16a34a;
+    --cf-bg-glow: #064e3b;
+    --tag-pill: #15803d;
+    --fire-orange: #f97316;
   }
-
-  body.theme-red {
-    --cf-bg: #fff1f2;
-    --cf-bg-2: #ffe4e6;
-    --cf-bg-glow: #fecdd3;
-    --cf-panel: #ffffff;
-    --cf-panel-2: #fff5f5;
-    --cf-card-border: #fecdd3;
-    --cf-node-head: #ffe4e6;
-    --cf-line: rgba(225, 29, 72, 0.25);
-    --cf-accent: #e11d48;
-    --cf-accent-dim: #be123c;
-    --cf-accent-hover: #ffe4e6;
-    --cf-rule: #fecdd3;
-    --cf-title: #881337;
-    --cf-text: #1f2937;
-    --cf-text-dim: #4b5563;
-    --cf-text-faint: #6b7280;
-    --cf-bar-bg: rgba(255, 241, 242, 0.95);
-    --cf-shadow: rgba(225, 29, 72, 0.08);
-    --cf-gradient: linear-gradient(90deg, #e11d48, #fb7185, #fda4af);
-    --tag-pill: #e11d48;
-    --fire-orange: #ea580c;
-  }
-
-  body.theme-green {
-    --cf-bg: #f0fdf4;
-    --cf-bg-2: #dcfce7;
-    --cf-bg-glow: #bbf7d0;
-    --cf-panel: #ffffff;
-    --cf-panel-2: #f7fef9;
-    --cf-card-border: #bbf7d0;
-    --cf-node-head: #dcfce7;
-    --cf-line: rgba(22, 163, 74, 0.25);
-    --cf-accent: #16a34a;
-    --cf-accent-dim: #15803d;
-    --cf-accent-hover: #dcfce7;
-    --cf-rule: #bbf7d0;
-    --cf-title: #14532d;
-    --cf-text: #0f172a;
-    --cf-text-dim: #334155;
-    --cf-text-faint: #64748b;
-    --cf-bar-bg: rgba(240, 253, 244, 0.95);
-    --cf-shadow: rgba(22, 163, 74, 0.08);
-    --cf-gradient: linear-gradient(90deg, #16a34a, #4ade80, #86efac);
-    --tag-pill: #16a34a;
-    --fire-orange: #ea580c;
-  }
-
-  body.theme-purple {
-    --cf-bg: #faf5ff;
-    --cf-bg-2: #f3e8ff;
-    --cf-bg-glow: #e9d5ff;
-    --cf-panel: #ffffff;
-    --cf-panel-2: #fbf7ff;
-    --cf-card-border: #e9d5ff;
-    --cf-node-head: #f3e8ff;
-    --cf-line: rgba(147, 51, 234, 0.25);
-    --cf-accent: #9333ea;
-    --cf-accent-dim: #7e22ce;
-    --cf-accent-hover: #f3e8ff;
-    --cf-rule: #e9d5ff;
-    --cf-title: #581c87;
-    --cf-text: #0f172a;
-    --cf-text-dim: #334155;
-    --cf-text-faint: #64748b;
-    --cf-bar-bg: rgba(250, 245, 255, 0.95);
-    --cf-shadow: rgba(147, 51, 234, 0.08);
-    --cf-gradient: linear-gradient(90deg, #9333ea, #c084fc, #d8b4fe);
-    --tag-pill: #9333ea;
-    --fire-orange: #ea580c;
-  }
-
-  body.theme-gray {
-    --cf-bg: #f8fafc;
-    --cf-bg-2: #f1f5f9;
-    --cf-bg-glow: #e2e8f0;
-    --cf-panel: #ffffff;
-    --cf-panel-2: #fafaf9;
-    --cf-card-border: #e2e8f0;
-    --cf-node-head: #f1f5f9;
-    --cf-line: rgba(71, 85, 105, 0.25);
-    --cf-accent: #475569;
-    --cf-accent-dim: #334155;
-    --cf-accent-hover: #e2e8f0;
-    --cf-rule: #cbd5e1;
-    --cf-title: #0f172a;
-    --cf-text: #0f172a;
-    --cf-text-dim: #334155;
-    --cf-text-faint: #64748b;
-    --cf-bar-bg: rgba(248, 250, 252, 0.95);
-    --cf-shadow: rgba(71, 85, 105, 0.08);
-    --cf-gradient: linear-gradient(90deg, #475569, #94a3b8, #cbd5e1);
-    --tag-pill: #475569;
-    --fire-orange: #ea580c;
-  }
-
-  html {
-    background: var(--cf-bg) !important;
-  }
-
-  body.deck {
-    background:
-      radial-gradient(1100px 600px at 10% -5%, var(--cf-bg-2) 0%, transparent 60%),
-      radial-gradient(900px 550px at 90% 5%, var(--cf-bg-glow) 0%, transparent 55%),
-      radial-gradient(800px 600px at 50% 90%, var(--cf-bg-2) 0%, transparent 60%),
-      var(--cf-bg) !important;
-    background-attachment: fixed !important;
-    color: var(--cf-text) !important;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-
-  /* 頂部控制列 */
-  .deck-bar {
-    background: var(--cf-bar-bg) !important;
-    backdrop-filter: blur(16px) !important;
-    border-bottom: 1px solid var(--cf-rule) !important;
-    box-shadow: 0 2px 14px var(--cf-shadow) !important;
-    transition: all 0.3s ease;
-  }
-  .deck-back {
-    color: var(--cf-accent-dim) !important;
-    border-color: var(--cf-rule) !important;
-    background: #ffffff !important;
-  }
-  .deck-back:hover {
-    color: var(--cf-accent) !important;
-    border-color: var(--cf-accent) !important;
-    background: var(--cf-accent-hover) !important;
-  }
-  .deck-id {
-    color: var(--cf-accent) !important;
-  }
-  .deck-name {
-    color: var(--cf-title) !important;
-  }
-  .deck-btn {
-    background: #ffffff !important;
-    border: 1px solid var(--cf-rule) !important;
-    color: var(--cf-accent-dim) !important;
-    transition: all 0.2s ease;
-  }
-  .deck-btn:hover {
-    background: var(--cf-accent-hover) !important;
-    color: var(--cf-accent) !important;
-    border-color: var(--cf-rule) !important;
-  }
-  .deck-btn.active, .deck-btn.is-on {
-    background: var(--cf-accent) !important;
-    color: #ffffff !important;
-    border-color: var(--cf-accent) !important;
-  }
-
-  /* 投影幻燈片主容器 */
-  .slide {
-    background: #ffffff !important;
-    border: 1px solid var(--cf-rule) !important;
-    box-shadow: 0 12px 36px var(--cf-shadow) !important;
-    color: var(--cf-text) !important;
-    transition: all 0.3s ease;
-  }
-  .slide::before {
-    background: var(--cf-gradient) !important;
-  }
-  .s-title {
-    color: var(--cf-title) !important;
-  }
-  .s-eyebrow {
-    color: var(--cf-accent) !important;
-  }
-  .s-num {
-    color: var(--cf-text-faint) !important;
-  }
-  .slide-no {
-    color: var(--cf-text-faint) !important;
-  }
-
-  /* 卡片元件 */
-  .card-slide {
-    background: var(--cf-panel-2) !important;
-    border: 1px solid var(--cf-card-border) !important;
-    border-radius: 8px;
-    padding: 10px 12px;
-    box-shadow: 0 1px 4px var(--cf-shadow) !important;
-    color: #1e293b !important;
-    transition: all 0.3s ease;
-  }
-  .card-slide h4 {
-    font-size: 13.5px;
-    color: var(--cf-accent) !important;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  .tag-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
     font-weight: 700;
+    background: rgba(34, 197, 94, 0.18);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.35);
   }
-  .card-slide h4.orange {
-    color: #ea580c !important;
+  .tag-badge.orange {
+    background: rgba(249, 115, 22, 0.18);
+    color: #fb923c;
+    border-color: rgba(249, 115, 22, 0.35);
   }
-  .card-slide p, .card-slide div, .card-slide ul, .card-slide ol {
-    color: var(--cf-text-dim) !important;
+  .tag-badge.blue {
+    background: rgba(56, 189, 248, 0.18);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.35);
   }
-
-  /* 表格元件 */
   .table-deck {
     width: 100%;
     border-collapse: collapse;
     font-size: 12.5px;
     margin-top: 5px;
-    background: #ffffff !important;
   }
   .table-deck th {
-    background: var(--cf-node-head) !important;
-    color: var(--cf-title) !important;
-    padding: 6px 8px;
-    border: 1px solid var(--cf-rule) !important;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--cf-text);
+    padding: 5px 8px;
+    border: 1px solid var(--cf-rule);
     text-align: left;
     font-weight: 700;
   }
   .table-deck td {
-    padding: 5px 8px;
-    border: 1px solid var(--cf-card-border) !important;
-    color: var(--cf-text-dim) !important;
+    padding: 4px 8px;
+    border: 1px solid var(--cf-rule);
+    color: var(--cf-text-dim);
   }
   .table-deck tr:nth-child(even) td {
-    background: var(--cf-panel-2) !important;
+    background: rgba(255, 255, 255, 0.02);
   }
   .table-deck strong {
-    color: var(--cf-title) !important;
+    color: #ffffff;
   }
-
   .grid-deck-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 14px;
   }
   .grid-deck-3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
   }
-
+  .card-slide {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--cf-rule);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .card-slide h4 {
+    font-size: 14px;
+    color: var(--cf-accent);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-slide h4.orange {
+    color: var(--fire-orange);
+  }
   .img-slide {
     width: 100%;
     height: 180px;
     object-fit: cover;
     border-radius: 8px;
-    border: 1px solid var(--cf-rule) !important;
+    border: 1px solid var(--cf-rule);
   }
-
-  /* 提示標籤與資源區 */
-  .tip {
-    background: var(--cf-panel-2) !important;
-    border: 1px solid var(--cf-rule) !important;
-    color: var(--cf-accent-dim) !important;
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .tip-tag {
-    background: var(--cf-accent) !important;
-    color: #ffffff !important;
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-size: 10.5px;
-    font-weight: 700;
-  }
-  .tip-body {
-    color: var(--cf-title) !important;
-    font-size: 11.5px;
-  }
-
   .deck-res-box {
     margin-top: 6px;
-    background: var(--cf-panel-2) !important;
-    border: 1px solid var(--cf-rule) !important;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid var(--cf-rule);
     border-radius: 6px;
     padding: 5px 8px;
   }
@@ -331,199 +119,42 @@
   }
   .deck-res-label {
     font-weight: 700;
-    color: var(--cf-title) !important;
+    color: var(--cf-text);
     min-width: 44px;
   }
   .deck-res-chip {
     display: inline-flex;
     align-items: center;
     gap: 3px;
-    padding: 2px 7px;
+    padding: 1px 6px;
     border-radius: 4px;
     text-decoration: none;
     font-size: 11px;
-    color: var(--cf-accent-dim) !important;
-    background: #ffffff !important;
-    border: 1px solid var(--cf-rule) !important;
-    transition: all 0.2s ease;
-  }
-  .deck-res-chip:hover {
-    border-color: var(--cf-accent) !important;
-    color: var(--cf-accent) !important;
-    background: var(--cf-accent-hover) !important;
-  }
-  .deck-res-chip.video {
-    background: var(--cf-bg) !important;
-    color: var(--cf-accent) !important;
-    border-color: var(--cf-rule) !important;
-  }
-  .deck-res-chip.video:hover {
-    background: var(--cf-accent-hover) !important;
-    color: var(--cf-title) !important;
+    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
   .deck-res-chip.map {
-    background: var(--cf-bg-2) !important;
-    color: var(--cf-accent-dim) !important;
-    border-color: var(--cf-rule) !important;
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border-color: rgba(34, 197, 94, 0.35);
   }
-
-  .tag-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 700;
-    background: var(--cf-bg-2) !important;
-    color: var(--cf-accent-dim) !important;
-    border: 1px solid var(--cf-rule) !important;
-  }
-  .tag-badge.orange {
-    background: #ffedd5 !important;
-    color: #c2410c !important;
-    border-color: #fdba74 !important;
-  }
-  .tag-badge.blue {
-    background: var(--cf-bg-2) !important;
-    color: var(--cf-accent-dim) !important;
-    border-color: var(--cf-rule) !important;
-  }
-
-  /* 底部固定控制面板 */
-  .deck-ctrl {
-    background: var(--cf-bar-bg) !important;
-    border: 1px solid var(--cf-rule) !important;
-    box-shadow: 0 4px 18px var(--cf-shadow) !important;
-    color: var(--cf-text) !important;
-  }
-  .deck-ctrl-btn {
-    background: #ffffff !important;
-    border: 1px solid var(--cf-rule) !important;
-    color: var(--cf-accent-dim) !important;
-  }
-  .deck-ctrl-btn:hover:not(:disabled) {
-    background: var(--cf-accent) !important;
-    color: #ffffff !important;
-    border-color: var(--cf-accent) !important;
-  }
-  .deck-ctrl-pos {
-    color: var(--cf-title) !important;
-    font-weight: 600;
-  }
-
-  /* 目錄彈窗 Modal */
-  .deck-toc {
-    background: rgba(15, 23, 42, 0.35) !important;
-    backdrop-filter: blur(8px) !important;
-  }
-  .deck-toc-box {
-    background: #ffffff !important;
-    border: 1px solid var(--cf-rule) !important;
-    box-shadow: 0 20px 45px var(--cf-shadow) !important;
-    color: var(--cf-text) !important;
-  }
-  .deck-toc-head h3 {
-    color: var(--cf-title) !important;
-  }
-  .deck-toc-head p {
-    color: var(--cf-text-faint) !important;
-  }
-  .toc-item {
-    background: var(--cf-panel-2) !important;
-    border: 1px solid var(--cf-card-border) !important;
-    color: var(--cf-text) !important;
-  }
-  .toc-item:hover {
-    background: var(--cf-accent-hover) !important;
-    border-color: var(--cf-rule) !important;
-    color: var(--cf-accent) !important;
-  }
-  .toc-item.is-current {
-    background: var(--cf-bg-2) !important;
-    border-color: var(--cf-accent) !important;
-    color: var(--cf-title) !important;
-  }
-  .toc-no {
-    color: var(--cf-text-faint) !important;
-  }
-  .toc-eb {
-    color: var(--cf-accent) !important;
-  }
-  .toc-h {
-    color: var(--cf-title) !important;
-  }
-
-  /* 主題選擇器 (Theme Picker) 樣式 */
-  .theme-picker-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--cf-rule);
-    padding: 2px 8px;
-    border-radius: 20px;
-    box-shadow: 0 1px 4px var(--cf-shadow);
-  }
-  .theme-picker-label {
-    font-size: 11.5px;
-    font-weight: 700;
-    color: var(--cf-title);
-    margin-right: 2px;
-    user-select: none;
-    white-space: nowrap;
-  }
-  .theme-btn {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    padding: 0;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .theme-btn:hover {
-    transform: scale(1.18);
-  }
-  .theme-btn.active {
-    box-shadow: 0 0 0 2px var(--cf-accent), 0 2px 6px rgba(0,0,0,0.25);
-    transform: scale(1.22);
-  }
-  .theme-btn.active::after {
-    content: "✓";
-    font-size: 10px;
-    font-weight: 900;
-    color: #ffffff;
-    line-height: 1;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  .deck-res-chip.video {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.35);
   }
 </style>
-
 </head>
 <body class="deck" data-mode="present">
 <header class="deck-bar">
-  <div style="display:flex; align-items:center; gap:10px;">
-    <img src="assets/img/school_logo.png" alt="南投國中 Logo" style="height:32px; width:auto; background:#fff; padding:2px 4px; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,0.3);">
-    <span class="deck-id">南投國中 115 隔宿露營</span>
-  </div>
+  <span class="deck-id">南投國中 115 隔宿露營</span>
   <span class="deck-name">二年級隔宿露營行動簡報手冊（去個資版）</span>
-  <div class="deck-tools" id="deck-tools">
-    <div class="theme-picker-group" title="選擇簡報底色風格">
-      <span class="theme-picker-label">🎨 底色:</span>
-      <button class="theme-btn active" data-set-theme="blue" title="淡藍 (Pale Blue)" style="background:#38bdf8;"></button>
-      <button class="theme-btn" data-set-theme="red" title="淡紅 (Pale Red)" style="background:#fb7185;"></button>
-      <button class="theme-btn" data-set-theme="green" title="淡綠 (Pale Green)" style="background:#4ade80;"></button>
-      <button class="theme-btn" data-set-theme="purple" title="淡紫 (Pale Purple)" style="background:#c084fc;"></button>
-      <button class="theme-btn" data-set-theme="gray" title="淺灰 (Pale Gray)" style="background:#94a3b8;"></button>
-    </div>
-    <button class="deck-btn" id="nav-prev-top" type="button" title="上一頁 (← / P)">◀ 上一頁</button>
-    <button class="deck-btn" id="nav-next-top" type="button" title="下一頁 (→ / N / Space)">下一頁 ▶</button>
-    <button class="deck-btn" id="toc-btn" type="button" title="開啟目錄總覽 (T)">目錄總覽</button>
-    <button class="deck-btn" id="mode-btn" type="button" title="切換簡報/閱讀模式 (M)">📖 閱讀模式</button>
-    <button class="deck-btn" id="fs-btn" type="button" title="全螢幕 (F)">全螢幕</button>
-    <a href="index.html" class="deck-btn" style="text-decoration:none; color:var(--cf-accent); border-color:var(--cf-rule); margin-left:4px;">📱 手冊網頁版</a>
+  <div class="deck-tools">
+    <a href="index.html" class="deck-btn" style="text-decoration:none; color:var(--cf-accent); border-color:rgba(34,197,94,0.4); margin-right:4px;">📱 手冊網頁版</a>
+    <button class="deck-btn" id="toc-btn" type="button">目錄總覽</button>
+    <button class="deck-btn is-on" id="mode-btn" type="button">閱讀模式</button>
+    <button class="deck-btn" id="fs-btn" type="button">全螢幕</button>
     <span class="deck-count" id="deck-count"></span>
   </div>
 </header>
@@ -531,10 +162,6 @@
 
   <!-- Slide 01: 封面 -->
   <section class="slide slide-cover" id="slide-01">
-    <div style="display:flex; align-items:center; justify-content:center; gap:20px; margin-bottom:14px;">
-      <img src="assets/img/school_logo.png" alt="南投國中 校徽 Logo" style="height:76px; width:auto; background:#fff; padding:4px 8px; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,0.4);">
-      <img src="assets/img/site_qr.png" alt="手冊 QR Code" style="height:76px; width:76px; background:#fff; padding:4px; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,0.4);" title="手機掃描立即同步瀏覽">
-    </div>
     <p class="s-eyebrow">南投縣立南投國民中學 · 115 學年度 · 二年級戶外教育活動</p>
     <h1 class="s-title-xl" style="font-size: 44px; line-height: 1.25;">隔宿露營 行動簡報手冊<br><span style="font-size:30px; color:var(--cf-accent);">尖山埤山訓探索 · 野營炊事 · 團結成長之旅（去個資版）</span></h1>
     <p class="s-sub" style="font-size: 17px; margin-top: 14px;">
@@ -544,7 +171,7 @@
     <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: center;">
       <span class="tag-badge">⛺ 全校 27 頂帳篷 (A01~A13 / B01~B14)</span>
       <span class="tag-badge orange">🍳 15 個野炊小隊 (第1組~第15組)</span>
-      <span class="tag-badge blue">👥 106 位學生（男48 / 女58）</span>
+      <span class="tag-badge blue">👥 107 位學生（男48 / 女59）</span>
     </div>
   </section>
 
@@ -560,7 +187,7 @@
               <tr><th style="width:90px;">活動主旨</th><td>自立自強、主動敏捷、互助合作，於「做中學、學中做」熟練各項童軍野外求生技能。</td></tr>
               <tr><th>活動時間</th><td><strong>115年10月27日 (二) 至 10月28日 (三)</strong>，兩天一夜。</td></tr>
               <tr><th>起訖時間</th><td>10/27 (二) 07:30 校園集合（921地震公園逃生演練），08:00 準時出發；10/28 (三) 16:20 返抵學校。</td></tr>
-              <tr><th>參加對象</th><td>二年級全體師生，學生 106 人、隨隊師長，共計 116 人。</td></tr>
+              <tr><th>參加對象</th><td>二年級全體師生，學生 107 人、隨隊師長，共計 117 人。</td></tr>
               <tr><th>承辦單位</th><td>中國青年旅行社中部分公司 ｜ 團控經理：邱O凱 (0972-721756)。</td></tr>
             </tbody>
           </table>
@@ -570,19 +197,13 @@
             <h4>🏕️ 台南柳營尖山埤露營區（台糖尖山埤渡假村）</h4>
             <div style="font-size:12px; color:var(--cf-text-dim);">
               電話：(06) 623-3888 ｜ 地址：台南市柳營區旭山里 60 號<br>
-              特色：尖山埤水庫湖光山色「南瀛小江南」，配備標準高空山訓塔台、人工攀岩壁、低空PA探索場、安全水彈生存遊戲戰場與大營火晚會草坪。
+              特色：尖山埤水庫湖光山色，配備標準高空山訓塔台、人工攀岩壁、低空PA探索場、安全水彈生存遊戲戰場與大營火晚會草坪。
             </div>
             <div class="deck-res-box" style="margin-top:6px;">
               <div class="deck-res-row">
-                <span class="deck-res-label">官網：</span>
-                <a class="deck-res-chip" href="https://www.taisugar.com.tw/resting/jianshanpi/" target="_blank">🌐 尖山埤官方網站</a>
-                <a class="deck-res-chip map" href="https://maps.google.com/?q=柳營尖山埤渡假村" target="_blank">🗺️ 地圖導航</a>
-              </div>
-              <div class="deck-res-row">
-                <span class="deck-res-label">影音：</span>
-                <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=XUHYWY6ZSg0" target="_blank">🎬 官方形象宣傳</a>
-                <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=DMfsfOEWVlY" target="_blank">🎬 食尚玩家開箱</a>
-                <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=nv2L3qGBt4I" target="_blank">🎬 momo小玩家</a>
+                <span class="deck-res-label">地圖：</span>
+                <a class="deck-res-chip map" href="https://maps.google.com/?q=柳營尖山埤渡假村" target="_blank">🗺️ Google 地圖導航</a>
+                <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=lDcxvZLpFzg" target="_blank">🎬 尖山埤空拍巡禮</a>
               </div>
             </div>
           </div>
@@ -590,67 +211,6 @@
             <span class="tip-tag">全體守則</span>
             <div class="tip-body">各項活動採中隊競賽，落實生活教育、技能教育與團體合作，爭取最高精神總錦標！</div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Slide: 尖山埤渡假村景點與六大代表特色風光全覽 -->
-  <section class="slide" id="slide-resort">
-    <p class="s-eyebrow">RESORT & ATTRACTIONS · 營地景點導覽</p>
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
-      <h2 class="s-title" style="margin:0;">台糖柳營尖山埤渡假村 · 景點風光與六大特色全覽</h2>
-      <div style="display:flex; gap:6px;">
-        <a class="deck-res-chip" href="https://www.taisugar.com.tw/resting/jianshanpi/" target="_blank" style="font-weight:700;">🌐 官方網站</a>
-        <a class="deck-res-chip map" href="https://www.twtainan.net/zh-tw/attractions/detail/523/" target="_blank" style="font-weight:700;">🏛️ 觀光局推薦</a>
-        <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=XUHYWY6ZSg0" target="_blank">🎬 官方宣傳</a>
-        <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=DMfsfOEWVlY" target="_blank">🎬 食尚玩家</a>
-        <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=nv2L3qGBt4I" target="_blank">🎬 戶外活動</a>
-      </div>
-    </div>
-    <div class="s-body">
-      <div class="grid-deck-3" style="gap:10px;">
-        <div class="card-slide" style="padding:6px 8px;">
-          <img src="assets/img/resort/resort_1_boat.jpg" alt="雕樑畫棟遊湖畫舫" style="width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
-          <h4 style="font-size:12.5px; margin-bottom:2px;">① 雕樑畫棟遊湖畫舫</h4>
-          <p style="font-size:10.5px; line-height:1.45; color:var(--cf-text-dim); margin:0;">
-            如古代宮殿般畫舫遊船航行碧波中，沿途聆聽生動導覽，飽覽秀麗湖光山色。
-          </p>
-        </div>
-        <div class="card-slide" style="padding:6px 8px;">
-          <img src="assets/img/resort/resort_2_panorama.jpg" alt="尖山埤水庫全景" style="width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
-          <h4 style="font-size:12.5px; margin-bottom:2px;">② 群山圍繞尖山埤水庫</h4>
-          <p style="font-size:10.5px; line-height:1.45; color:var(--cf-text-dim); margin:0;">
-            四面群山環抱、水庫大壩雄偉，清晨薄霧瀰漫，享有「南臺灣小江南」之美譽。
-          </p>
-        </div>
-        <div class="card-slide" style="padding:6px 8px;">
-          <img src="assets/img/resort/resort_3_bridge.jpg" alt="映虹橋" style="width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
-          <h4 style="font-size:12.5px; margin-bottom:2px;">③ 鮮紅奪目「映虹橋」</h4>
-          <p style="font-size:10.5px; line-height:1.45; color:var(--cf-text-dim); margin:0;">
-            鮮豔朱紅拱橋橫跨湖灣，與翠綠山巒倒影交織，是漫步與拍照打卡著名地標。
-          </p>
-        </div>
-        <div class="card-slide" style="padding:6px 8px;">
-          <img src="assets/img/resort/resort_4_hotel.jpg" alt="尖山埤會館" style="width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
-          <h4 style="font-size:12.5px; margin-bottom:2px;">④ 現代氣派尖山埤會館</h4>
-          <p style="font-size:10.5px; line-height:1.45; color:var(--cf-text-dim); margin:0;">
-            依山構築之園區核心建築，具備完善餐飲、會議廳、醫護站及居高臨下環景視野。
-          </p>
-        </div>
-        <div class="card-slide" style="padding:6px 8px;">
-          <img src="assets/img/resort/resort_5_water_fun.jpg" alt="水上腳踏船與獨木舟" style="width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
-          <h4 style="font-size:12.5px; margin-bottom:2px;">⑤ 水上腳踏船與獨木舟</h4>
-          <p style="font-size:10.5px; line-height:1.45; color:var(--cf-text-dim); margin:0;">
-            全台唯一常態合法水庫獨木舟探索水域與可愛造型水上腳踏船，安全親水。
-          </p>
-        </div>
-        <div class="card-slide" style="padding:6px 8px;">
-          <img src="assets/img/resort/resort_6_train_camp.jpg" alt="遊園車與露營區" style="width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
-          <h4 style="font-size:12.5px; margin-bottom:2px;">⑥ 繽紛遊園車與露營野炊區</h4>
-          <p style="font-size:10.5px; line-height:1.45; color:var(--cf-text-dim); margin:0;">
-            繽紛小火車穿梭林道，串連大型露營營位、風雨野炊烹飪區與山訓挑戰場。
-          </p>
         </div>
       </div>
     </div>
@@ -743,7 +303,7 @@
               </tr>
               <tr>
                 <td rowspan="2"><strong>2車</strong></td>
-                <td>802 班 (202)</td><td>6</td><td>12</td><td rowspan="2"><strong>33</strong></td><td rowspan="2">0</td><td rowspan="2">黃O君 (802導師)、李O儒 (804導師)</td>
+                <td>802 班 (202)</td><td>6</td><td>13</td><td rowspan="2"><strong>34</strong></td><td rowspan="2">0</td><td rowspan="2">黃O君 (802導師)、李O儒 (804導師)</td>
               </tr>
               <tr>
                 <td>804 班 (204)</td><td>7</td><td>8</td>
@@ -760,7 +320,7 @@
                 <td>807 班 (207)</td><td>8</td><td>13</td><td><strong>21</strong></td><td>0</td><td>姚O勤 (訓育組長)、黃O慧 (807導師)</td>
               </tr>
               <tr style="background:rgba(255,255,255,0.08); font-weight:700;">
-                <td colspan="2">全校合計</td><td>48</td><td>58</td><td style="color:var(--cf-accent);">106</td><td style="color:#4ade80;">1</td><td>校長劉O彥、團控經理邱O凱</td>
+                <td colspan="2">全校合計</td><td>48</td><td>59</td><td style="color:var(--cf-accent);">107</td><td style="color:#4ade80;">1</td><td>校長劉O彥、團控經理邱O凱</td>
               </tr>
             </tbody>
           </table>
@@ -784,66 +344,10 @@
     </div>
   </section>
 
-  <!-- Slide: 隔宿露營行前說明會四大核心重點（源自：隔宿露營行前說明會.txt） -->
-  <section class="slide" id="slide-briefing">
-    <p class="s-eyebrow">PRE-CAMP BRIEFING · 重要生活叮嚀</p>
-    <h2 class="s-title">📢 隔宿露營行前說明會 · 四大生活規範與違紀處分叮嚀</h2>
-    <div class="s-body">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-        <div class="card-slide" style="border-left:5px solid #ea580c; padding:9px 12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <h4 class="orange" style="font-size:13px; margin:0;">🚫 一、違禁品出發前再檢查一次</h4>
-            <span class="tag-badge orange" style="font-size:10px;">出發前安檢</span>
-          </div>
-          <p style="font-size:11.5px; line-height:1.55; color:var(--cf-text-dim); margin:0;">
-            <b>嚴禁攜帶菸品、酒類、檳榔、刀械與打火機等危險物品！</b><br>
-            出發當天於 921 地震公園集合時，各班導師與行政團隊將實施最後隨身行李安全檢查，嚴防違禁品進入營區。
-          </p>
-        </div>
-
-        <div class="card-slide" style="border-left:5px solid #0284c7; padding:9px 12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <h4 style="font-size:13px; margin:0; color:#0284c7;">🪪 二、個人物品與通訊報平安</h4>
-            <span class="tag-badge blue" style="font-size:10px;">物品與通訊</span>
-          </div>
-          <p style="font-size:11.5px; line-height:1.55; color:var(--cf-text-dim); margin:0;">
-            <b>必備健保卡正本、個人常備醫藥、零用錢 600 元以內、體育服</b>（晚上盥洗後就寢換穿）。<br>
-            <b>手機統一保管機制</b>：露營期間手機由隨隊人員統一保管，第一天晚間安排約 1 小時開放通話向家長打電話報平安。
-          </p>
-        </div>
-
-        <div class="card-slide" style="border-left:5px solid #16a34a; padding:9px 12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <h4 style="font-size:13px; margin:0; color:#16a34a;">👕 三、服裝儀容與畢旅表現連動</h4>
-            <span class="tag-badge" style="font-size:10px;">服裝紀律</span>
-          </div>
-          <p style="font-size:11.5px; line-height:1.55; color:var(--cf-text-dim); margin:0;">
-            出發當日<b>著便服或班服</b>，下身務必穿著<b>「深色長褲」</b>（防蚊蟲叮咬割傷與山訓磨損）。<br>
-            <b>【重要連動】</b>：未來國三畢業旅行服裝穿著開放彈性，將完全依據全體同學在本次隔宿露營日常規律與表現評定！
-          </p>
-        </div>
-
-        <div class="card-slide" style="border-left:5px solid #dc2626; padding:9px 12px; background:#fff1f2 !important;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <h4 style="font-size:13px; margin:0; color:#dc2626;">🚨 四、機動車待命！重大違紀即刻遣返</h4>
-            <span class="tag-badge" style="background:#fee2e2 !important; color:#b91c1c !important; border-color:#fca5a5 !important; font-size:10px;">記大過處分</span>
-          </div>
-          <p style="font-size:11.5px; line-height:1.55; color:#991b1b !important; margin:0;">
-            <b>【機動車待命遣返專送機制】</b>：凡違犯校規之<b>打架滋事、抽菸、喝酒、吃檳榔</b>等重大不良行徑，營地現場備有機動車輛，<b>即刻專車送回學校，通知家長當天帶回家管教！並依校規嚴厲【記大過】處分！</b>
-          </p>
-        </div>
-      </div>
-      <div class="tip" style="margin-top:8px;">
-        <span class="tip-tag">導師叮嚀</span>
-        <div class="tip-body">隔宿露營是國中階段難得的自我挑戰與團隊洗禮，互相關懷、嚴守紀律，共同爭取班級精神總錦標榮耀！</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Slide 06: 野營常識 ① 營地建設與一般帳棚 -->
+  <!-- Slide 06: 野營常識 ① 營地建設與屋式帳 -->
   <section class="slide" id="slide-06">
     <p class="s-eyebrow">CAMPING SKILLS · 教學參考 ①</p>
-    <h2 class="s-title">野營常識 · 營地規劃原則與標準一般露營帳棚</h2>
+    <h2 class="s-title">野營常識 · 營地規劃原則與屋式帳器材步驟</h2>
     <div class="s-body">
       <div class="cols c2">
         <div>
@@ -858,72 +362,75 @@
             </div>
           </div>
           <div class="card-slide">
-            <h4>📦 一般露營帳（蒙古包帳）標準器材</h4>
-            <div style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.5;">
-              鋼質營釘 14 支 ｜ 主營繩 2 條、副營繩 16 條 ｜ 玻璃纖維/鋁合金營柱 ｜ 防水外帳、透氣內帳、防潮地布。
+            <h4>📦 屋式帳標準器材</h4>
+            <div style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
+              營釘 14 支 ｜ 主營繩 2 條、副營繩 16 條 ｜ 營柱、雷管、雷帽 ｜ 營樑、內帳、外帳。
             </div>
+          </div>
+        </div>
+        <div>
+          <div class="card-slide">
+            <h4>⛺ 屋式帳搭設十步驟（手冊官方標準）</h4>
+            <ol style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.45; padding-left:18px;">
+              <li>先清點器材，分配工作 ｜ 2. 整地排除尖石枯枝</li>
+              <li>營門關上保持帳形 ｜ 4. 所有的帳篷定位對齊</li>
+              <li>對角 90° 釘下營釘 ｜ 6. 組合金屬營柱</li>
+              <li>主營繩拉 45°，接雷管用<b>雙套結</b>，接營釘用<b>營繩結</b>，營釘 45° 釘入</li>
+              <li>副營繩拉 45°，營釘 45° 釘入固定</li>
+              <li>加外帳，Mark（商標）朝外</li>
+              <li>剩餘器材和袋子整齊收入帳篷營門下方</li>
+            </ol>
           </div>
           <div class="tip" style="margin-top:6px;">
             <span class="tip-tag">搭帳口訣</span>
             <div class="tip-body"><b>一拉對角、二立中柱、三拉角繩、四拉邊繩、五加外帳膨內帳</b>！</div>
           </div>
         </div>
-        <div>
-          <img class="img-slide" src="assets/img/tent_general_camp.jpg" alt="標準露營帳棚圖解" style="height:210px; object-fit:contain; background:#fff; padding:2px;">
-          <div class="deck-res-box" style="margin-top:6px;">
-            <div class="deck-res-row">
-              <span class="deck-res-label">影片：</span>
-              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=AcHiBUqwBQc" target="_blank">🎬 蒙古包帳篷標準搭設</a>
-              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=HLJ6EbRRk08" target="_blank">🎬 蔡興隆老師露營常識</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 07: 野營常識 ② 屋式帳搭設步驟（每步附圖） -->
+  <!-- Slide 07: 野營常識 ② 帳棚搭設圖文與無痕山林 -->
   <section class="slide" id="slide-07">
     <p class="s-eyebrow">CAMPING SKILLS · 教學參考 ②</p>
-    <h2 class="s-title">野營常識 · 帳棚搭設六步驟分解圖解（手冊第 14 頁）</h2>
+    <h2 class="s-title">野營常識 · 帳棚搭設四步驟圖解 ＆ 無痕山林 (LNT)</h2>
     <div class="s-body">
-      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px;">
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/tent_pitch_step_1.jpg" alt="1. 取出鋪平" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">1. 取出鋪平</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">內帳攤開鋪平，營門拉鍊閉合。「如何取就如何收」。</p>
+      <div class="cols c2">
+        <div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+            <div class="card-slide">
+              <h4 style="font-size:12.5px;">1. 取出鋪平</h4>
+              <p style="font-size:11px; color:var(--cf-text-dim);">將內帳取出攤開鋪平。「如何取就如何收，簡單又輕鬆」。</p>
+            </div>
+            <div class="card-slide">
+              <h4 style="font-size:12.5px;">2. 組合營柱</h4>
+              <p style="font-size:11px; color:var(--cf-text-dim);">組合四邊營柱，視帳篷規格一般而言有 2-4 根，接節緊密。</p>
+            </div>
+            <div class="card-slide">
+              <h4 style="font-size:12.5px;">3. 吊掛內帳</h4>
+              <p style="font-size:11px; color:var(--cf-text-dim);">營柱與地布四邊小釘固定，內帳與營柱吊掛接合撐起內帳。</p>
+            </div>
+            <div class="card-slide">
+              <h4 style="font-size:12.5px;">4. 穿架外帳</h4>
+              <p style="font-size:11px; color:var(--cf-text-dim);">短營柱組合好與營門方向平行垂直，穿過內帳頂端與外帳組合。</p>
+            </div>
+          </div>
+          <div class="card-slide" style="margin-top:6px;">
+            <h4>🌿 無痕山林 (LNT) 七大原則</h4>
+            <div style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.45;">
+              1.事前充分準備 2.在堅實地面紮營 3.妥善處理廢棄物 4.保持環境原貌 5.減低用火影響 6.尊重野生動物 7.考量其他使用者。
+            </div>
+          </div>
         </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/tent_pitch_step_2.jpg" alt="2. 組合營柱" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">2. 組合營柱</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">組合交叉四邊營柱，檢查金屬套管確實緊扣。</p>
-        </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/tent_pitch_step_3.jpg" alt="3. 固定插銷" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">3. 固定插銷</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">營柱四端插入地布四角插銷或小釘對齊定位。</p>
-        </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/tent_pitch_step_4.jpg" alt="4. 吊掛內帳" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">4. 吊掛內帳</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">將內帳掛勾依序扣在營柱上，平穩撐起內帳主體。</p>
-        </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/tent_pitch_step_5.jpg" alt="5. 穿架外帳" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">5. 穿架外帳</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">短營柱橫向支撐門簷前廳，穿過頂端與外帳組合。</p>
-        </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/tent_pitch_step_6.jpg" alt="6. 拉繩打釘" style="width:100%; height:90px; object-fit:cover; border-radius:4px;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">6. 拉繩打釘</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0; line-height:1.35;">覆蓋防水外帳，拉副營繩45度釘入，維持內外分離。</p>
-        </div>
-      </div>
-      <div class="deck-res-box" style="margin-top:6px;">
-        <div class="deck-res-row">
-          <span class="deck-res-label">影片：</span>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=kYnLsrpQwMQ" target="_blank">🎬 六人帳篷搭建分解示範</a>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=AcHiBUqwBQc" target="_blank">🎬 蒙古包標準搭設步驟</a>
+        <div>
+          <img class="img-slide" src="assets/img/tent_setup.jpg" alt="帳棚搭設">
+          <div class="deck-res-box" style="margin-top:6px;">
+            <div class="deck-res-row">
+              <span class="deck-res-label">影片：</span>
+              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=AcHiBUqwBQc" target="_blank">🎬 蒙古包帳篷搭設</a>
+              <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=HLJ6EbRRk08" target="_blank">🎬 6人帳實作教學</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1008,287 +515,196 @@
     </div>
   </section>
 
-  <!-- Slide 10: 童軍技能 ② 自然方向辨識 6 大模式 -->
+  <!-- Slide 10: 童軍技能 ② 戰術偽裝與方向辨識 -->
   <section class="slide" id="slide-10">
     <p class="s-eyebrow">SCOUT SKILLS · 教學參考 ⑤</p>
-    <h2 class="s-title">童軍技能 · 自然方向辨識六大模式（每種附圖解與影音）</h2>
+    <h2 class="s-title">童軍技能 · 戰術偽裝原則與自然方向辨識 (16方位)</h2>
     <div class="s-body">
-      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px;">
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/dir_compass_map.jpg" alt="指南針與地圖" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">🧭 指南針與地圖</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">磁針紅端直指磁北(0°)，地圖正置定向三步驟。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=BrUQSgHSZa0" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 定向越野指北針解讀</a>
+      <div class="cols c2">
+        <div>
+          <div class="card-slide" style="margin-bottom:8px;">
+            <h4>🪖 面部偽裝「凸暗凹亮」打破輪廓原則</h4>
+            <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
+              <b>凸處塗暗</b>：額頭、鼻樑、顴骨、下巴等反光面塗深綠/黑色迷彩。<br>
+              <b>凹處塗亮</b>：眼窩、人中、頸項陰影部位塗淡草綠色。<br>
+              <b>破壞對稱</b>：以斜斑紋塗抹，破壞人臉原有生理輪廓，完美隱身草叢。
+            </p>
+          </div>
+          <div class="card-slide">
+            <h4>🧭 自然方向辨識（手冊官方記載）</h4>
+            <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.45;">
+              1. <b>指針與地圖</b>：指南針磁北校正。<br>
+              2. <b>日月星象</b>：日出東日落西；北斗七星尋北極星（正北方）。<br>
+              3. <b>樹木年輪</b>：密者為北（南向陽光多年輪疏寬，北向年輪密集）。<br>
+              4. <b>樹木茂密</b>：密者為南、青苔多者為北。<br>
+              5. <b>向日葵</b>：12:00 以前朝向東南，12:00 以後朝向西南。<br>
+              6. <b>古老房舍與墓碑</b>：閩南傳統建築大多「坐北朝南」。
+            </p>
+          </div>
         </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/dir_sun_moon.jpg" alt="太陽與月亮規律" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">☀️ 太陽與月亮規律</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">日出東落西，正午影子指北；立竿見影與月相法。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=Pn9RIbYEMwA" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 太陽視運動定向</a>
-        </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/dir_stars_polaris.jpg" alt="星象觀測" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">✨ 星象觀測尋北極星</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">北斗七星天璇天樞延5倍，夜間直指正北方。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=VtaAc502eqc" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 北斗七星尋北極星</a>
-        </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/dir_tree_rings.jpg" alt="年輪與枝葉疏密" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">🌲 年輪與枝葉疏密</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">樹木年輪南寬北密；南側茂盛，北側陰暗青苔多。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=Q8Xz5zvxCRo" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 樹木年輪辨向教學</a>
-        </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/dir_sunflower.jpg" alt="向日葵花盤朝向" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">🌻 向日葵花盤朝向</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">手冊官方記載：上午朝東南、下午朝西南。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=kT5xUlc8qJ8" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 向日葵追日秘密</a>
-        </div>
-        <div class="card-slide" style="padding:6px;">
-          <img src="assets/img/dir_trad_building.jpg" alt="傳統建築坐向" style="width:100%; height:95px; object-fit:cover; border-radius:4px; background:#fff;">
-          <h4 style="font-size:11.5px; margin:4px 0 2px;">🏛️ 傳統建築坐向</h4>
-          <p style="font-size:10.5px; color:var(--cf-text-dim); margin:0 0 4px; line-height:1.35;">手冊官方記載：臺灣閩南傳統三合院大抵坐北朝南。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=4vEPMHnSEbo" target="_blank" style="font-size:10px; padding:1px 6px;">🎬 古厝坐北朝南解密</a>
+        <div>
+          <div class="card-slide" style="margin-bottom:6px;">
+            <h4>🧭 16 方位盤角度速查</h4>
+            <div style="font-size:11.5px; color:var(--cf-text-dim); line-height:1.45;">
+              1. 北 0° ｜ 2. 北北東 22.5° ｜ 3. 東北 45° ｜ 4. 東東北 67.5°<br>
+              5. 東 90° ｜ 6. 東南東 112.5° ｜ 7. 東南 135° ｜ 8. 南南東 157.5°<br>
+              9. 南 180° ｜ 10. 南南西 202.5° ｜ 11. 西南 225° ｜ 12. 西南西 247.5°<br>
+              13. 西 270° ｜ 14. 西西北 292.5° ｜ 15. 西北 315° ｜ 16. 北西北 337.5°
+            </div>
+          </div>
+          <div class="tip">
+            <span class="tip-tag">追蹤記號</span>
+            <div class="tip-body">以落葉、枯枝或石塊擺成箭頭、叉號或藏寶信號，引導隊友行進定向。</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 11: 童軍技能 ③ 常用八大繩結（每種附圖解與教學影片） -->
+  <!-- Slide 11: 童軍技能 ③ 常用八大繩結 -->
   <section class="slide" id="slide-11">
     <p class="s-eyebrow">SCOUT SKILLS · 教學參考 ⑥</p>
-    <h2 class="s-title">童軍技能 · 出神入化！手冊常用八大繩結（每種附圖解與教學影音）</h2>
+    <h2 class="s-title">童軍技能 · 出神入化！手冊常用八大繩結</h2>
     <div class="s-body">
-      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px;">
-        <div class="card-slide" style="padding:5px;">
-          <img src="assets/img/knot_single.jpg" alt="單結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
-          <h4 style="font-size:11px; margin:3px 0 1px;">單結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(防脫結)</span></h4>
-          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">最基礎繩結，打於繩尾防止脫線滑脫。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=u31i8uMJEEY" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 單結教學</a>
+      <div class="cols c2">
+        <div>
+          <table class="table-deck">
+            <thead><tr><th>繩結名稱</th><th>用途類別</th><th>操作要領與應用場合</th></tr></thead>
+            <tbody>
+              <tr><td><strong>單結</strong></td><td>防脫結</td><td>最基礎繩結，打於繩尾防止脫線滑脫</td></tr>
+              <tr><td><strong>八字結</strong></td><td>繩端結</td><td>強度優於單結，受力後極易解開，登山攀岩必備</td></tr>
+              <tr><td><strong>活結</strong></td><td>束口吊掛</td><td>輕拉繩尾即可瞬間解開，臨時繫綁行李</td></tr>
+              <tr><td><strong>平結</strong></td><td>接等粗繩</td><td>左壓右右壓左，連接粗細相同之繩索，急救三角巾包紮</td></tr>
+              <tr><td><strong>接繩結</strong></td><td>接異徑繩</td><td>粗繩成環細繩穿繞，連接粗細不同或乾濕不同之繩</td></tr>
+              <tr><td><strong>雙套結</strong></td><td>工程起手</td><td>繞桿兩圈交叉扣入，搭帳固定於營柱雷管必備之王</td></tr>
+              <tr><td><strong>雙半結</strong></td><td>繫固於樁</td><td>兩次半結繞固定於樹木或圓環，越拉越牢</td></tr>
+              <tr><td><strong>營繩結</strong></td><td>張力調節</td><td>可滑動微調長度張力，受力咬死，搭帳拉營繩必備</td></tr>
+            </tbody>
+          </table>
         </div>
-        <div class="card-slide" style="padding:5px;">
-          <img src="assets/img/knot_eight.jpg" alt="八字結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
-          <h4 style="font-size:11px; margin:3px 0 1px;">八字結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(繩端防脫)</span></h4>
-          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">強度優於單結，受力後極易解開，攀岩必備。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=VWTN7pMyaVg" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 八字結教學</a>
-        </div>
-        <div class="card-slide" style="padding:5px;">
-          <img src="assets/img/knot_reef.jpg" alt="平結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
-          <h4 style="font-size:11px; margin:3px 0 1px;">平結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(接等粗繩)</span></h4>
-          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">左壓右右壓左，接等粗繩索，三角巾急救。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=ac5gHDUkIcY" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 平結教學</a>
-        </div>
-        <div class="card-slide" style="padding:5px;">
-          <img src="assets/img/knot_sheetbend.jpg" alt="接繩結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
-          <h4 style="font-size:11px; margin:3px 0 1px;">接繩結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(接異徑繩)</span></h4>
-          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">粗繩成環細繩穿繞，連接粗細乾濕不同繩索。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=-h7ZMySH0IY" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 接繩結教學</a>
-        </div>
-        <div class="card-slide" style="padding:5px;">
-          <img src="assets/img/knot_clovehitch.jpg" alt="雙套結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
-          <h4 style="font-size:11px; margin:3px 0 1px;">雙套結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(工程起手)</span></h4>
-          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">繞桿兩圈交叉扣入，固定營柱雷管必備之王。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=K40kJJ0bSr0" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 雙套結教學</a>
-        </div>
-        <div class="card-slide" style="padding:5px;">
-          <img src="assets/img/knot_tautline.jpg" alt="營繩結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
-          <h4 style="font-size:11px; margin:3px 0 1px;">營繩結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(張力調節)</span></h4>
-          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">滑動微調長度張力，受力咬死，搭帳拉繩必備。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=eSZnKHwomHM" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 營繩結教學</a>
-        </div>
-        <div class="card-slide" style="padding:5px;">
-          <img src="assets/img/knot_twohalfhitches.jpg" alt="雙半結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
-          <h4 style="font-size:11px; margin:3px 0 1px;">雙半結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(繫固於樁)</span></h4>
-          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">兩次半結繞固定於樹木或圓環，越拉越牢。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=Ub9Bf1bgmQk" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 雙半結教學</a>
-        </div>
-        <div class="card-slide" style="padding:5px;">
-          <img src="assets/img/knot_slip.jpg" alt="活結" style="width:100%; height:62px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;">
-          <h4 style="font-size:11px; margin:3px 0 1px;">活結 <span style="font-size:9.5px; opacity:0.8; font-weight:normal;">(束口吊掛)</span></h4>
-          <p style="font-size:9.5px; color:var(--cf-text-dim); margin:0 0 3px; line-height:1.25;">拉繩尾即可瞬間解開，適用臨時繫綁行李。</p>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=zhlxG9r8emQ" target="_blank" style="font-size:9px; padding:1px 5px;">🎬 活結教學</a>
+        <div>
+          <img class="img-slide" src="assets/img/rope_knots.jpg" alt="八大繩結">
+          <div class="tip" style="margin-top:6px;">
+            <span class="tip-tag">練習口訣</span>
+            <div class="tip-body"><b>平結接等粗、接繩接異徑；雷管用雙套、營繩結調拉線</b>！童軍繩隨身帶隨手練。</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 12: 野外安全 ① 臺灣四大毒蛇（每種附圖解與教學影音） -->
+  <!-- Slide 12: 野外安全 ① 臺灣毒蛇辨識 -->
   <section class="slide" id="slide-12">
     <p class="s-eyebrow">OUTDOOR SAFETY · 教學參考 ⑦</p>
-    <h2 class="s-title">野外安全 · 臺灣主要毒蛇辨識與習性（每種附圖解與教學影音）</h2>
+    <h2 class="s-title">野外安全 · 臺灣主要毒蛇辨識與習性</h2>
     <div class="s-body">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-        <div class="card-slide" style="border-left:4px solid #ef4444; padding:6px; display:flex; gap:8px; align-items:center;">
-          <img src="assets/img/snake_hundred_pacer.jpg" alt="百步蛇" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
-              <h4 style="color:#dc2626; font-size:12px; margin:0;">百步蛇</h4>
-              <span style="font-size:9.5px; background:rgba(239,68,68,0.15); color:#b91c1c; padding:1px 5px; border-radius:3px;">出血性毒</span>
-            </div>
-            <p style="font-size:10px; line-height:1.35; color:var(--cf-text-dim); margin:0 0 4px;">頭大呈三角形，吻端向上翹起，側有黑褐三角形斑。排毒量大，致死率居首！</p>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=rqsA_4IpCLI" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 百步蛇特徵介紹</a>
-          </div>
+      <div class="grid-deck-2">
+        <div class="card-slide" style="border-left:4px solid #ef4444;">
+          <h4 style="color:#f87171;">百步蛇 (出血性毒 · 蝮蛇科)</h4>
+          <p style="font-size:12px; line-height:1.5; color:var(--cf-text-dim);">
+            <b>特徵</b>：頭大呈三角形，吻端明顯向上突出翹起，體側黑褐色大三角形斑紋。<br>
+            <b>危險</b>：排毒量大，咬人率第五，<b>致死率第一</b>！皮下嚴重出血壞死。
+          </p>
         </div>
-
-        <div class="card-slide" style="border-left:4px solid #ef4444; padding:6px; display:flex; gap:8px; align-items:center;">
-          <img src="assets/img/snake_many_banded_krait.jpg" alt="雨傘節" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
-              <h4 style="color:#dc2626; font-size:12px; margin:0;">雨傘節</h4>
-              <span style="font-size:9.5px; background:rgba(239,68,68,0.15); color:#b91c1c; padding:1px 5px; border-radius:3px;">神經性毒</span>
-            </div>
-            <p style="font-size:10px; line-height:1.35; color:var(--cf-text-dim); margin:0 0 4px;">體背黑白相間等寬環紋，背脊呈菱形隆起。咬傷不痛不腫，數小時內呼吸衰竭！</p>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=W2KDwhhAehQ" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 雨傘節神經毒介紹</a>
-          </div>
+        <div class="card-slide" style="border-left:4px solid #ef4444;">
+          <h4 style="color:#f87171;">雨傘節 (神經性毒 · 蝙蝠蛇科)</h4>
+          <p style="font-size:12px; line-height:1.5; color:var(--cf-text-dim);">
+            <b>特徵</b>：體背黑白相間等寬環紋，背脊呈菱形隆起。<br>
+            <b>危險</b>：咬人率第三，<b>致死率第二</b>！咬傷不痛不腫，數小時內呼吸衰竭！
+          </p>
         </div>
-
-        <div class="card-slide" style="border-left:4px solid #ea580c; padding:6px; display:flex; gap:8px; align-items:center;">
-          <img src="assets/img/snake_bamboo_viper.jpg" alt="赤尾青竹絲" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
-              <h4 style="color:#ea580c; font-size:12px; margin:0;">赤尾青竹絲</h4>
-              <span style="font-size:9.5px; background:rgba(234,88,12,0.15); color:#c2410c; padding:1px 5px; border-radius:3px;">出血性毒</span>
-            </div>
-            <p style="font-size:10px; line-height:1.35; color:var(--cf-text-dim); margin:0 0 4px;">體色翠綠，尾端磚紅色，體側白縱線。台灣咬人率最高（常棲灌木草叢）。</p>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=fIWV-E_q45o" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 青竹絲辨識全集</a>
-          </div>
+        <div class="card-slide" style="border-left:4px solid #f59e0b;">
+          <h4 style="color:#fbbf24;">赤尾青竹絲 (出血性毒 · 蝮蛇科)</h4>
+          <p style="font-size:12px; line-height:1.5; color:var(--cf-text-dim);">
+            <b>特徵</b>：體色翠綠，尾端磚紅色，體側有一條白色縱線。<br>
+            <b>危險</b>：台灣咬人率最高（常棲於草叢灌木），毒性相對較溫和。
+          </p>
         </div>
-
-        <div class="card-slide" style="border-left:4px solid #ea580c; padding:6px; display:flex; gap:8px; align-items:center;">
-          <img src="assets/img/snake_habu.jpg" alt="龜殼花" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
-              <h4 style="color:#ea580c; font-size:12px; margin:0;">龜殼花</h4>
-              <span style="font-size:9.5px; background:rgba(234,88,12,0.15); color:#c2410c; padding:1px 5px; border-radius:3px;">出血性毒</span>
-            </div>
-            <p style="font-size:10px; line-height:1.35; color:var(--cf-text-dim); margin:0 0 4px;">頭烙鐵三角形，背部有暗褐龜裂斑塊。夜行出沒落葉堆，出血毒性強，咬傷起血泡。</p>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=mlKi0yiHvpw" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 龜殼花習性教學</a>
-          </div>
+        <div class="card-slide" style="border-left:4px solid #f59e0b;">
+          <h4 style="color:#fbbf24;">龜殼花 (出血性毒 · 蝮蛇科)</h4>
+          <p style="font-size:12px; line-height:1.5; color:var(--cf-text-dim);">
+            <b>特徵</b>：頭部呈烙鐵三角形，背部有褐色不規則波浪龜裂狀斑塊。<br>
+            <b>危險</b>：夜間出沒於枯枝落葉堆，出血毒性強，咬傷腫脹血泡。
+          </p>
         </div>
       </div>
-      <div class="tip" style="margin-top:6px;">
+      <div class="tip" style="margin-top:8px;">
         <span class="tip-tag">防蛇鐵則</span>
         <div class="tip-body">戶外野外行進落實<b>「打草驚蛇」</b>；穿著長褲布鞋、夜間攜手電筒，嚴禁徒手翻動草叢與石塊！</div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 13: 野外安全 ② 蛇傷急救【五要五不】每句附專屬圖示 -->
+  <!-- Slide 13: 野外安全 ② 蛇傷急救【五要五不】 -->
   <section class="slide" id="slide-13">
     <p class="s-eyebrow">FIRST AID · 教學參考 ⑧</p>
-    <h2 class="s-title">野外安全 · 毒蛇咬傷自救【五要五不】圖示原則</h2>
+    <h2 class="s-title">野外安全 · 毒蛇咬傷黃金自救【五要五不】原則</h2>
     <div class="s-body">
       <div class="cols c2">
-        <div class="card-slide" style="border-left:4px solid #16a34a; padding:8px;">
-          <h4 style="color:#15803d; margin-bottom:6px; font-size:13px;">✅ 毒蛇咬傷【五要】原則</h4>
-          <div style="display:grid; gap:4px;">
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🐍</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">要視為毒蛇</b>：遭蛇咬第一時間皆以毒蛇咬傷謹慎處置。</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🧘</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">要保持冷靜</b>：安撫傷患靜臥，避免奔跑劇烈運動加速血液循環。</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">💍</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">要脫下束縛</b>：取下戒指手錶手鐲鞋襪，避免腫脹缺血壞死。</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🩹</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">要包紮置心下</b>：彈性繃帶寬鬆包紮，患肢保持<b>低於心臟</b>位置。</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(34,197,94,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🏥</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">要火速就醫</b>：記下或拍下蛇類外觀，速就醫施打對應血清！</div>
-            </div>
-          </div>
+        <div class="card-slide" style="border-left:4px solid #22c55e;">
+          <h4 style="color:#4ade80;">✅ 毒蛇咬傷【五要】原則</h4>
+          <ul style="font-size:12.5px; line-height:1.6; color:var(--cf-text-dim); padding-left:16px;">
+            <li><b>要視為毒蛇</b>：凡遭蛇咬，第一時間皆以毒蛇咬傷處理。</li>
+            <li><b>要保持冷靜</b>：安撫傷患靜坐，避免奔跑劇烈運動加速血液循環。</li>
+            <li><b>要脫下束縛物</b>：迅速取下傷肢之戒指、手錶、手鐲，避免腫脹缺血壞死。</li>
+            <li><b>要彈性包紮固定</b>：以彈性繃帶寬鬆包紮，患肢保持<b>低於心臟</b>位置。</li>
+            <li><b>要火速送醫</b>：記下或拍下蛇類外觀特徵，儘速送醫施打對應抗蛇毒血清。</li>
+          </ul>
         </div>
-
-        <div class="card-slide" style="border-left:4px solid #dc2626; padding:8px;">
-          <h4 style="color:#dc2626; margin-bottom:6px; font-size:13px;">❌ 毒蛇咬傷【五不】禁忌</h4>
-          <div style="display:grid; gap:4px;">
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🚫🔪</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">不要切開傷口</b>：破壞肌腱血管，造成大量失血與感染。</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🚫👄</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">不要用嘴吸吮</b>：口腔黏膜微創吸收毒素，造成施救者中毒！</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🚫🧊</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">不要冰敷傷口</b>：造成血管極度痙攣，加速組織壞疽發黑。</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🚫🪢</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">不要緊勒止血帶</b>：阻斷動脈血流，易引發肢體缺血截肢危機。</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; background:rgba(239,68,68,0.1); padding:3px 6px; border-radius:4px;">
-              <span style="font-size:18px; line-height:1;">🚫☕</span>
-              <div style="font-size:11px; line-height:1.3; color:#1e293b;"><b style="color:#0f172a;">不要飲用刺激品</b>：嚴禁飲酒、濃茶或咖啡，避免擴散毒素。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="deck-res-box" style="margin-top:6px;">
-        <div class="deck-res-row">
-          <span class="deck-res-label">影片：</span>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=fIWV-E_q45o" target="_blank">🎬 臺灣六大毒蛇辨識全集</a>
-          <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=UDoayDd7LMY" target="_blank">🎬 毒蛇咬傷五要五不教學</a>
+        <div class="card-slide" style="border-left:4px solid #ef4444;">
+          <h4 style="color:#f87171;">❌ 毒蛇咬傷【五不】禁忌</h4>
+          <ul style="font-size:12.5px; line-height:1.6; color:var(--cf-text-dim); padding-left:16px;">
+            <li><b>不要切開傷口</b>：切開會破壞血管肌腱，造成大量失血與細菌感染。</li>
+            <li><b>不要用嘴吸吮</b>：口腔微創黏膜會吸收毒素，造成施救者中毒！</li>
+            <li><b>不要冰敷傷口</b>：冰敷造成極度血管痙攣，加速局部組織壞疽。</li>
+            <li><b>不要使用止血帶勒緊</b>：過度束緊阻斷動脈，易引發缺血截肢危機！</li>
+            <li><b>不要飲用刺激品</b>：嚴禁飲酒、濃茶或咖啡，避免擴散毒素。</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Slide 14: 簡易急救專題（每種附圖解與教學影音） -->
+  <!-- Slide 14: 簡易急救專題 -->
   <section class="slide" id="slide-14">
     <p class="s-eyebrow">FIRST AID · 手冊官方課程</p>
-    <h2 class="s-title">簡易急救 · 割傷止血、抽筋、流鼻血與骨折處理（每種附圖解與影音）</h2>
+    <h2 class="s-title">簡易急救 · 意外割傷、抽筋、流鼻血與骨折緊急處理</h2>
     <div class="s-body">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-        <div class="card-slide" style="padding:6px; display:flex; gap:8px; align-items:center;">
-          <img src="assets/img/fa_cut_bleeding.jpg" alt="意外割傷止血" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
-          <div style="flex:1;">
-            <h4 style="font-size:11.5px; margin:0 0 2px;">🩹 意外割傷止血</h4>
-            <p style="font-size:10px; color:var(--cf-text-dim); line-height:1.35; margin:0 0 4px;">
-              1. 乾淨生水沖洗傷口。2. 紗布「直接加壓止血」5~10分。3. 傷肢「抬高高於心臟」。4. 送醫評估疫苗。
-            </p>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=WdcT0HK2zYA" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 加壓止血教學</a>
-          </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div class="card-slide">
+          <h4>🩹 意外割傷處理</h4>
+          <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
+            1. 生水或稀釋消毒藥水洗淨傷口。<br>
+            2. 無菌清潔紗布直接「加壓止血」，不可亂用未經消毒粉末或藥油。<br>
+            3. 繃帶紮好並儘可能將傷處「抬高高於心臟」。<br>
+            4. 趕緊送醫救治。
+          </p>
         </div>
-
-        <div class="card-slide" style="padding:6px; display:flex; gap:8px; align-items:center;">
-          <img src="assets/img/fa_muscle_cramp.jpg" alt="肌肉抽筋緩解" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
-          <div style="flex:1;">
-            <h4 style="font-size:11.5px; margin:0 0 2px;">🦵 肌肉抽筋緩解</h4>
-            <p style="font-size:10px; color:var(--cf-text-dim); line-height:1.35; margin:0 0 4px;">
-              原則「反向緩慢伸展輕柔按摩」：小腿抽筋伸直膝蓋腳掌扳向小腿；大腿抬高按摩；補充電解質與水。
-            </p>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=fVUNWsuhPAs" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 抽筋拉伸教學</a>
-          </div>
+        <div class="card-slide">
+          <h4>🦵 肌肉抽筋緩解四部位手法</h4>
+          <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
+            <b>手抽筋</b>：慢慢拉直抽筋手指，輕輕施力按摩。<br>
+            <b>腳抽筋</b>：慢慢拉直腳趾，輕輕按摩腳部肌肉。<br>
+            <b>大腿抽筋</b>：膝部拉直，一手放腳跟抬高腿部，一手按壓按摩。<br>
+            <b>小腿抽筋</b>：小心伸直膝蓋抬腿，腳掌向上屈壓向小腿，輕柔按摩。
+          </p>
         </div>
-
-        <div class="card-slide" style="padding:6px; display:flex; gap:8px; align-items:center;">
-          <img src="assets/img/fa_nosebleed.jpg" alt="流鼻血緊急處理" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
-          <div style="flex:1;">
-            <h4 style="font-size:11.5px; margin:0 0 2px;">🩸 流鼻血緊急處理</h4>
-            <p style="font-size:10px; color:var(--cf-text-dim); line-height:1.35; margin:0 0 4px;">
-              1. 安靜坐椅上，<b>「頭向前傾」</b>（切勿後仰防嗆血）。2. 捏兩側鼻翼軟骨 5~10 分鐘改口呼吸。3. 毛巾冷敷鼻樑。
-            </p>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=DllJ-LtTlkA" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 流鼻血處置教學</a>
-          </div>
+        <div class="card-slide">
+          <h4>🩸 流鼻血緊急處理（大原則）</h4>
+          <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
+            1. 安靜坐椅上，<b>「頭向前傾」</b>（千萬不要後仰避免嗆血，勿拍脖子）。<br>
+            2. 改用口呼吸，手用力捏住兩側鼻部軟骨 5~10 分鐘設法止血。<br>
+            3. 鼻樑以毛巾冷敷，口中血液吐出；10~15 分鐘未止血儘速就醫。
+          </p>
         </div>
-
-        <div class="card-slide" style="padding:6px; display:flex; gap:8px; align-items:center;">
-          <img src="assets/img/fa_fracture.jpg" alt="骨折緊急固定" style="width:100px; height:85px; object-fit:cover; border-radius:4px; flex-shrink:0;">
-          <div style="flex:1;">
-            <h4 style="font-size:11.5px; margin:0 0 2px;">🦴 骨折緊急固定</h4>
-            <p style="font-size:10px; color:var(--cf-text-dim); line-height:1.35; margin:0 0 4px;">
-              1. 切勿推回斷骨。2. 夾板長度<b>超過上下兩關節</b>固定。3. 無夾板上肢固胸壁、下肢與健肢綑綁。4. 平臥硬板送醫。
-            </p>
-            <a class="deck-res-chip video" href="https://www.youtube.com/watch?v=DzQzMpd0uTE" target="_blank" style="font-size:9.5px; padding:1px 6px;">🎬 骨折固定教學</a>
-          </div>
+        <div class="card-slide">
+          <h4>🦴 骨折緊急處理</h4>
+          <p style="font-size:12px; color:var(--cf-text-dim); line-height:1.5;">
+            1. 檢查意識呼吸，休克時心肺復甦。<br>
+            2. 固定傷肢減輕疼痛，就地取材（木板、竹竿），<b>夾板長度超過上下兩關節</b>！<br>
+            3. 無材料時上肢固定胸壁、下肢與未受傷側綑綁。<br>
+            4. 脊椎骨折平臥硬板，等待救護人員。
+          </p>
         </div>
       </div>
     </div>
@@ -1696,8 +1112,8 @@
             <td>簡O懿、黃O薇、賴O其、鐘O彤</td>
           </tr>
           <tr>
-            <td><strong>B05</strong></td><td>2車</td><td>女帳</td><td>4人</td>
-            <td>郭O琪、廖O昕、胡O薰、張O桔</td>
+            <td><strong>B05</strong></td><td>2車</td><td>女帳</td><td>5人</td>
+            <td>郭O琪、廖O昕、胡O薰、張O桔、詹O彤</td>
           </tr>
         </tbody>
       </table>
@@ -1838,8 +1254,8 @@
             <td>葉O毅、李O甯、李O妮、鄭O琳、黃O蒂、黃O睿</td>
           </tr>
           <tr>
-            <td><strong>第 5 組</strong></td><td>802 班</td><td>2車</td><td>6人</td>
-            <td>廖O昕、胡O薰、郭O琪、張O桔、簡O宸、劉O宇</td>
+            <td><strong>第 5 組</strong></td><td>802 班</td><td>2車</td><td>7人</td>
+            <td>廖O昕、胡O薰、郭O琪、張O桔、簡O宸、劉O宇、詹O彤</td>
           </tr>
         </tbody>
       </table>
@@ -1969,32 +1385,6 @@
 
 </main>
 
-<!-- 投影模式底部控制列 -->
-<div class="deck-ctrl" id="deck-ctrl">
-  <button class="ctrl-btn" id="ctrl-prev" type="button" aria-label="上一頁">◀ 上一頁</button>
-  <span class="ctrl-pos" id="ctrl-pos">1 / 30</span>
-  <button class="ctrl-btn" id="ctrl-next" type="button" aria-label="下一頁">下一頁 ▶</button>
-  <div class="theme-picker-group" title="切換簡報底色" style="margin-left:10px; padding:2px 7px;">
-    <span class="theme-picker-label" style="font-size:10.5px;">底色:</span>
-    <button class="theme-btn active" data-set-theme="blue" title="淡藍" style="background:#38bdf8; width:16px; height:16px;"></button>
-    <button class="theme-btn" data-set-theme="red" title="淡紅" style="background:#fb7185; width:16px; height:16px;"></button>
-    <button class="theme-btn" data-set-theme="green" title="淡綠" style="background:#4ade80; width:16px; height:16px;"></button>
-    <button class="theme-btn" data-set-theme="purple" title="淡紫" style="background:#c084fc; width:16px; height:16px;"></button>
-    <button class="theme-btn" data-set-theme="gray" title="淺灰" style="background:#94a3b8; width:16px; height:16px;"></button>
-  </div>
-</div>
-
-<!-- 目錄總覽浮層 -->
-<div class="deck-toc" id="deck-toc" hidden style="display:none;">
-  <div class="deck-toc-panel">
-    <div class="deck-toc-head">
-      <span class="deck-toc-title">📋 簡報目錄總覽 (共 30 頁投影片)</span>
-      <button class="deck-btn" id="toc-close" type="button">✕ 關閉</button>
-    </div>
-    <div class="deck-toc-grid" id="deck-toc-grid"></div>
-  </div>
-</div>
-
-<script src="lesson-deck.js?v=20261019_v2"></script>
+<script src="lesson-deck.js?v=20261019_v1"></script>
 </body>
 </html>
